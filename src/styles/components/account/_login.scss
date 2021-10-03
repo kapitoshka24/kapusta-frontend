@@ -1,0 +1,139 @@
+.login {
+  max-width: 300px;
+  padding: 40px 17px;
+  border-radius: 30px;
+  background: $white;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+
+  @include from(tablet) {
+    max-width: 436px;
+    padding: 50px 86px;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  }
+
+  @include to(desktop) {
+    margin: 0 auto;
+  }
+}
+
+.login__body {
+  @include to(tablet) {
+    padding: 0 12px;
+  }
+
+  margin-bottom: 40px;
+}
+
+.login__title {
+  margin: 0 0 24px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+
+  @include to(tablet) {
+    &--google {
+      text-align: center;
+    }
+  }
+
+  @include from(tablet) {
+    margin: 0 0 20px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.login__google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  padding: 10px 20px;
+  color: $black;
+  border: none;
+  border-radius: 26px;
+  background-color: $background-grey;
+}
+
+.login__googleSymbol {
+  width: 18px;
+  height: 17.5px;
+  margin-right: 10px;
+}
+
+.login__group {
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}
+
+.login__label {
+  display: block;
+  margin-bottom: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+  color: $black;
+
+  @include from(tablet) {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+.login__input {
+  display: block;
+  width: 100%;
+  padding: 17px 20px;
+  border: none;
+  border-radius: 30px;
+  background: $google-background;
+
+  &::placeholder {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.04em;
+
+    color: $email-text;
+  }
+}
+
+.login__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    width: calc((100% - 15px) / 2);
+    padding: 12px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $text-grey;
+    border: none;
+    border-radius: 16px;
+    background-color: $background-grey;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $white;
+
+      background: $background-orange;
+    }
+  }
+}

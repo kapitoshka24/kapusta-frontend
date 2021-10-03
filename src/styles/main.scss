@@ -1,4 +1,8 @@
 @import './utils/fonts';
 @import './utils/variables';
+@import './utils/mixins';
 
 @import './base/common';
+
+@import './components/account/login';
+@import './components/account/register';
