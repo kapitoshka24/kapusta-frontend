@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .turnover {
   position: relative;
   display: flex;
@@ -79,39 +78,3 @@
     height: 36px;
   }
 }
-||||||| parent of 124e49d (Test commit before rebasing)
-=======
-.turnover{
-	display: block;
-	width: 100%;
-	max-width: 1060px;
-	height: 50px;
-	.turnover__list{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	padding: 15px 0;
-	.turnover__item{
-		display: inline-block;
-		font-family: "Roboto";
-		font-style: normal;
-		font-weight: bold;
-		font-size: 14px;
-		line-height: 16px;
-		.turnover_value{
-			font-style: normal;
-			font-weight: bold;
-			font-size: 14px;
-			line-height: 16px;
-			letter-spacing: 0.04em;
-			color: #E53935;
-			&:last-child{
-				color: #407946;
-			}
-		}
-	}
-}
-}
-
->>>>>>> 124e49d (Test commit before rebasing)
