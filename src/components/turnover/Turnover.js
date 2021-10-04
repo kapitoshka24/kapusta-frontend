@@ -37,7 +37,7 @@ export default function Turnover() {
                 )}
                 {turnoverItem.name === 'Доходы' && (
                   <span
-                    className={`${styles.turnover_value} ${styles.income_color}`}
+                    className={`${styles.turnover__value} ${styles.income_color}`}
                   >
                     {finalValue}
                   </span>
