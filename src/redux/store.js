@@ -1,10 +1,10 @@
-import { kapustaReducer } from './kapusta';
-// import { authReducer } from './auth';
+// import { kapustaReducer } from './kapusta';
+import { authReducer, kapustaReducer } from './reducers';
 
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
-  //   persistReducer,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,17 +12,17 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 
-// const authPersistConfig = {
-//     key: 'token',
-//     storage,
-//     whitelist: ['token'],
-// };
+const authPersistConfig = {
+  key: 'token',
+  storage,
+  whitelist: ['token'],
+};
 
 export const store = configureStore({
   reducer: {
-    // auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
     kapusta: kapustaReducer,
   },
   middleware: getDefaultMiddleware =>
