@@ -1,3 +1,21 @@
+@import '../../../styles/main.scss';
+
+.error {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+  color: $text-red;
+}
+
+.errorStar {
+  letter-spacing: 0.04em;
+  color: $text-red;
+  font-size: 12px;
+  line-height: 14px;
+}
+
 .register {
   max-width: 300px;
   padding: 40px 17px;
@@ -16,7 +34,7 @@
   }
 }
 
-.register__body {
+.registerBody {
   @include to(tablet) {
     padding: 0 12px;
   }
@@ -24,7 +42,7 @@
   margin-bottom: 40px;
 }
 
-.register__title {
+.registerTitle {
   margin: 0 0 24px;
   font-style: normal;
   font-weight: normal;
@@ -34,7 +52,7 @@
   color: $text-grey;
 
   @include to(tablet) {
-    &--google {
+    &Register {
       text-align: center;
     }
   }
@@ -46,7 +64,7 @@
   }
 }
 
-.register__google {
+.registerGoogle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,19 +76,19 @@
   background-color: $background-grey;
 }
 
-.register__googleSymbol {
+.registerGoogleSymbol {
   width: 18px;
   height: 17.5px;
   margin-right: 10px;
 }
 
-.register__group {
+.registerGroup {
   &:not(:last-child) {
     margin-bottom: 30px;
   }
 }
 
-.register__label {
+.registerLabel {
   display: block;
   margin-bottom: 12px;
   font-style: normal;
@@ -87,7 +105,7 @@
   }
 }
 
-.register__input {
+.registerInput {
   display: block;
   width: 100%;
   padding: 17px 20px;
@@ -106,7 +124,7 @@
   }
 }
 
-.register__buttons {
+.registerButtons {
   display: flex;
   align-items: center;
   justify-content: space-between;
