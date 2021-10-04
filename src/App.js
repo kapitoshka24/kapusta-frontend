@@ -1,9 +1,14 @@
 import React from 'react';
 
+import Container from './components/Container';
+import Expense from './components/Expense';
+import Controls from './components/Controls';
+
 export default function App() {
   return (
-    <>
-      <h1>replace to component</h1>
-    </>
+    <Container>
+      <Controls />
+      <Expense />
+    </Container>
   );
 }

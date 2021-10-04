@@ -1,0 +1,84 @@
+@import '../../styles/utils/variables';
+
+.date {
+  display: inline-block;
+  margin-right: 23px;
+
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.1667;
+
+  letter-spacing: 0.04em;
+
+  color: $text-grey;
+}
+
+.input__container {
+  display: flex;
+  align-items: center;
+  padding: 33px 0 59px 0;
+}
+
+.input__item {
+  height: 44px;
+  width: 289px;
+  border: 2px solid $background-grey;
+  border-top-left-radius: 16px;
+
+  &::placeholder {
+    padding: 0 21px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.1667;
+    letter-spacing: 0.02em;
+
+    color: $text-description;
+  }
+}
+
+.input__sum {
+  height: 44px;
+  width: 126px;
+  border: 2px solid $background-grey;
+  border-radius: 0 16px 16px 0;
+
+  &::placeholder {
+    padding: 0 21px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.1667;
+    letter-spacing: 0.02em;
+
+    color: $text-description;
+  }
+}
+
+.button__submit,
+.button__reset {
+  width: 125px;
+  height: 44px;
+
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.1667;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.button__submit {
+  background-color: $background-orange;
+  color: $white;
+}
+
+.button__reset {
+  background-color: $white;
+  color: $text-grey;
+  border: 2px solid $background-grey;
+}
