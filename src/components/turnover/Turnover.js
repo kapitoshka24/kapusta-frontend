@@ -17,29 +17,22 @@ export default function Turnover() {
               stringifiedValue.slice(0, stringifiedValue.length - 6) +
               stringifiedValue.slice(stringifiedValue.length - 6) +
               ' грн.';
-            let finalValue;
 
-            if (turnoverItem.name === 'Доходы') {
-              finalValue = '+ ' + transformedValue;
-            }
-            if (turnoverItem.name === 'Расходы') {
-              finalValue = '- ' + transformedValue;
-            }
             return (
               <li key={turnoverItem.id} className={styles.turnover__item}>
                 {turnoverItem.name} :
                 {turnoverItem.name === 'Расходы' && (
                   <span
-                    className={`${styles.turnover_value} ${styles.expense_color}`}
+                    className={`${styles.turnover__value} ${styles.expense_color}`}
                   >
-                    {finalValue}
+                    - {transformedValue}
                   </span>
                 )}
                 {turnoverItem.name === 'Доходы' && (
                   <span
                     className={`${styles.turnover__value} ${styles.income_color}`}
                   >
-                    {finalValue}
+                    + {transformedValue}
                   </span>
                 )}
               </li>
