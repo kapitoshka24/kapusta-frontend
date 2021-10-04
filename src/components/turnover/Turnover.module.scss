@@ -1,33 +1,36 @@
-.turnover{
-	display: block;
-	width: 100%;
-	max-width: 1060px;
-	height: 50px;
-	.turnover__list{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	padding: 15px 0;
-	.turnover__item{
-		display: inline-block;
-		font-family: "Roboto";
-		font-style: normal;
-		font-weight: bold;
-		font-size: 14px;
-		line-height: 16px;
-		.turnover_value{
-			font-style: normal;
-			font-weight: bold;
-			font-size: 14px;
-			line-height: 16px;
-			letter-spacing: 0.04em;
-			color: #E53935;
-			&:last-child{
-				color: #407946;
-			}
-		}
-	}
+.turnover {
+  display: block;
+  width: 100%;
+  max-width: 1060px;
+  height: 50px;
+  margin: 0 auto;
+  .turnover__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    .turnover__item {
+      display: inline-block;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      &:first-child {
+        margin-right: 10px;
+      }
+      .turnover_value {
+        display: inline-block;
+        letter-spacing: 0.04em;
+        padding-left: 15px;
+      }
+      .expense_color {
+        color: #e53935;
+      }
+      .income_color {
+        color: #407946;
+      }
+    }
+  }
 }
-}
-
