@@ -160,6 +160,7 @@
     background-color: $background-grey;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     &.active {
       color: $white;
