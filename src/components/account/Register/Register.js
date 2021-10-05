@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import styles from './register.module.scss';
+import styles from '../account.module.scss';
 const validate = values => {
   const errors = {};
 
@@ -43,15 +43,15 @@ export default function Register() {
   });
 
   return (
-    <div className={styles.register}>
-      <div className={styles.registerBody}>
-        <p className={styles.registerTitleRegister}>Регистрация</p>
+    <div className={styles.modal}>
+      <div className={styles.modalBody}>
+        <p className={styles.modalTitle}>Регистрация</p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        <div className={styles.registerBody}>
-          <div className={styles.registerGroup}>
-            <label className={styles.registerLabel} htmlFor="inputName">
+        <div className={styles.modalBody}>
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputName">
               {errors.name ? <span className={styles.errorStar}>*</span> : null}
               Имя:
             </label>
@@ -59,7 +59,7 @@ export default function Register() {
               type="text"
               id="inputName"
               name="name"
-              className={styles.registerInput}
+              className={styles.modalInput}
               placeholder="Имя"
               onChange={handleChange}
               value={values.name}
@@ -69,8 +69,8 @@ export default function Register() {
             ) : null}
           </div>
 
-          <div className={styles.registerGroup}>
-            <label className={styles.registerLabel} htmlFor="inputEmail">
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputEmail">
               {errors.email ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
@@ -80,7 +80,7 @@ export default function Register() {
               type="email"
               id="inputEmail"
               name="email"
-              className={styles.registerInput}
+              className={styles.modalInput}
               placeholder="your@email.com"
               onChange={handleChange}
               value={values.email}
@@ -90,8 +90,8 @@ export default function Register() {
             ) : null}
           </div>
 
-          <div className={styles.registerGroup}>
-            <label className={styles.registerLabel} htmlFor="inputPassword">
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputPassword">
               {errors.password ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
@@ -101,7 +101,7 @@ export default function Register() {
               type="password"
               id="inputPassword"
               name="password"
-              className={styles.registerInput}
+              className={styles.modalInput}
               placeholder="Пароль"
               onChange={handleChange}
               value={values.password}
@@ -111,8 +111,8 @@ export default function Register() {
             ) : null}
           </div>
 
-          <div className={styles.registerGroup}>
-            <label className={styles.registerLabel} htmlFor="inputConfirm">
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputConfirm">
               {errors.confirm ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
@@ -122,7 +122,7 @@ export default function Register() {
               type="password"
               id="inputConfirm"
               name="confirm"
-              className={styles.registerInput}
+              className={styles.modalInput}
               placeholder="Подтвердите пароль"
               onChange={handleChange}
               value={values.confirm}
@@ -133,8 +133,8 @@ export default function Register() {
           </div>
         </div>
 
-        <div className={styles.registerButtons}>
-          <button>Войти</button>
+        <div className={styles.modalButtons}>
+          <button type="button">Войти</button>
           <button className={styles.active}>Регистрация</button>
         </div>
       </form>

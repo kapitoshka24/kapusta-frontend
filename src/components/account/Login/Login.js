@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 
 import googleSymbol from '../../../images/google-symbol.svg';
-import styles from './login.module.scss';
+import styles from '../account.module.scss';
 
 const validate = values => {
   const errors = {};
@@ -32,29 +32,29 @@ export default function Login() {
   });
 
   return (
-    <div className={styles.login}>
-      <div className={styles.loginBody}>
-        <p className={`${styles.loginTitle} ${styles.loginTitleGoogle}`}>
+    <div className={styles.modal}>
+      <div className={styles.modalBody}>
+        <p className={`${styles.modalTitle} ${styles.modalTitleGoogle}`}>
           Вы можете авторизоваться с помощью Google Account:
         </p>
-        <button className={styles.loginGoogle} onClick={() => {}}>
+        <button className={styles.googleBtn} onClick={() => {}}>
           <img
             src={googleSymbol}
             alt="Google Symbol"
-            className={styles.loginGoogleSymbol}
+            className={styles.googleSymbol}
           />
           Google
         </button>
-        <p className={styles.loginTitle}>
+        <p className={styles.modalTitle}>
           Или зайти с помощью e-mail и пароля, предварительно
           зарегистрировавшись:
         </p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        <div className={styles.loginBody}>
-          <div className={styles.loginGroup}>
-            <label className={styles.loginLabel} htmlFor="inputEmail">
+        <div className={styles.modalBody}>
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputEmail">
               {errors.email ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
@@ -64,7 +64,7 @@ export default function Login() {
               type="email"
               name="email"
               id="inputEmail"
-              className={styles.loginInput}
+              className={styles.modalInput}
               placeholder="your@email.com"
               onChange={handleChange}
               value={values.email}
@@ -74,8 +74,8 @@ export default function Login() {
             ) : null}
           </div>
 
-          <div className={styles.loginGroup}>
-            <label className={styles.loginLabel} htmlFor="inputPassword">
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputPassword">
               {errors.password ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
@@ -85,7 +85,7 @@ export default function Login() {
               type="password"
               id="inputPassword"
               name="password"
-              className={styles.loginInput}
+              className={styles.modalInput}
               placeholder="Пароль"
               onChange={handleChange}
               value={values.password}
@@ -95,7 +95,7 @@ export default function Login() {
             ) : null}
           </div>
         </div>
-        <div className={styles.loginButtons}>
+        <div className={styles.modalButtons}>
           <button className={styles.active}>Войти</button>
           <button type="button">Регистрация</button>
         </div>

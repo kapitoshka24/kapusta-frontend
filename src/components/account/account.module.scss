@@ -1,5 +1,5 @@
-@import '../../../styles/utils/mixins';
-@import '../../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
 
 .error {
   font-style: normal;
@@ -17,7 +17,7 @@
   line-height: 14px;
 }
 
-.login {
+.modal {
   z-index: 99;
   position: absolute;
   top: 255px;
@@ -48,7 +48,7 @@
   }
 }
 
-.loginBody {
+.modalBody {
   @include to(tablet) {
     padding: 0 12px;
   }
@@ -56,7 +56,7 @@
   margin-bottom: 40px;
 }
 
-.loginTitle {
+.modalTitle {
   margin: 0 0 24px;
   font-style: normal;
   font-weight: normal;
@@ -78,7 +78,7 @@
   }
 }
 
-.loginGoogle {
+.googleBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,19 +91,19 @@
   cursor: pointer;
 }
 
-.loginGoogleSymbol {
+.googleSymbol {
   width: 18px;
   height: 17.5px;
   margin-right: 10px;
 }
 
-.loginGroup {
+.modalGroup {
   &:not(:last-child) {
     margin-bottom: 30px;
   }
 }
 
-.loginLabel {
+.modalLabel {
   display: block;
   margin-bottom: 12px;
   font-style: normal;
@@ -120,7 +120,7 @@
   }
 }
 
-.loginInput {
+.modalInput {
   display: block;
   width: 100%;
   padding: 17px 20px;
@@ -139,7 +139,7 @@
   }
 }
 
-.loginButtons {
+.modalButtons {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -171,7 +171,7 @@
 
     &:hover {
       color: $white;
-      background: $loginButtonAccent;
+      background: $modalButtonAccent;
     }
 
     &:active {
