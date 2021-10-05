@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-const totalBalance = createReducer(0, {});
+import { changeTotalBalance } from '../actions';
+
+const totalBalance = createReducer(500, {
+  [changeTotalBalance]: (_, { payload }) => payload,
+});
 
 export default combineReducers({
   totalBalance,
