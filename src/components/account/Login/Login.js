@@ -7,13 +7,13 @@ const validate = values => {
   const errors = {};
 
   if (!values.email) {
-    errors.email = 'это обязательное поле';
+    errors.email = 'Это обязательное поле';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'не правильный email';
+    errors.email = 'Неправильный email';
   }
 
   if (!values.password) {
-    errors.password = 'это обязательное поле';
+    errors.password = 'Это обязательное поле';
   }
 
   return errors;
@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <div className={styles.modal}>
-      <div className={styles.modalBody}>
+      <div className={styles.modalBodyFirst}>
         <p className={`${styles.modalTitle} ${styles.modalTitleGoogle}`}>
           Вы можете авторизоваться с помощью Google Account:
         </p>
@@ -51,8 +51,8 @@ export default function Login() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div className={styles.modalBody}>
+      <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+        <div className={styles.modalBodySecond}>
           <div className={styles.modalGroup}>
             <label className={styles.modalLabel} htmlFor="inputEmail">
               {errors.email ? (
@@ -68,6 +68,7 @@ export default function Login() {
               placeholder="your@email.com"
               onChange={handleChange}
               value={values.email}
+              autoComplete="off"
             />
             {errors.email ? (
               <div className={styles.error}>{errors.email}</div>
@@ -89,6 +90,7 @@ export default function Login() {
               placeholder="Пароль"
               onChange={handleChange}
               value={values.password}
+              autoComplete="off"
             />
             {errors.password ? (
               <div className={styles.error}>{errors.password}</div>
@@ -96,8 +98,12 @@ export default function Login() {
           </div>
         </div>
         <div className={styles.modalButtons}>
-          <button className={styles.active}>Войти</button>
-          <button type="button">Регистрация</button>
+          <button className={`${styles.active} ${styles.modalLogin}`}>
+            Войти
+          </button>
+          <button className={styles.modalRegister} type="button">
+            Регистрация
+          </button>
         </div>
       </form>
     </div>

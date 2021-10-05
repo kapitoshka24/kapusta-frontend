@@ -4,25 +4,25 @@ const validate = values => {
   const errors = {};
 
   if (!values.name) {
-    errors.name = 'это обязательное поле';
+    errors.name = 'Это обязательное поле';
   }
 
   if (!values.email) {
-    errors.email = 'это обязательное поле';
+    errors.email = 'Это обязательное поле';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'не правильный email';
+    errors.email = 'Неправильный email';
   }
 
   if (!values.password) {
-    errors.password = 'это обязательное поле';
+    errors.password = 'Это обязательное поле';
   } else if (values.password.length < 6) {
-    errors.password = 'пароль должен быть не меньше 6 символов';
+    errors.password = 'Пароль должен содержать не меньше 6 символов';
   }
 
   if (!values.confirm) {
-    errors.confirm = 'это обязательное поле';
+    errors.confirm = 'Это обязательное поле';
   } else if (values.password !== values.confirm) {
-    errors.confirm = 'пароли не совпадают';
+    errors.confirm = 'Пароли не совпадают';
   }
 
   return errors;
@@ -49,7 +49,7 @@ export default function Register() {
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        <div className={styles.modalBody}>
+        <div className={styles.modalBodyFirst}>
           <div className={styles.modalGroup}>
             <label className={styles.modalLabel} htmlFor="inputName">
               {errors.name ? <span className={styles.errorStar}>*</span> : null}
@@ -134,8 +134,12 @@ export default function Register() {
         </div>
 
         <div className={styles.modalButtons}>
-          <button type="button">Войти</button>
-          <button className={styles.active}>Регистрация</button>
+          <button className={styles.modalLogin} type="button">
+            Войти
+          </button>
+          <button className={`${styles.active} ${styles.modalRegister}`}>
+            Регистрация
+          </button>
         </div>
       </form>
     </div>
