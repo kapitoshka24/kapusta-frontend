@@ -21,6 +21,7 @@ $email-text: #a6abb9;
 $diagram-light: #ffdac0;
 $expenses-black: #071f41;
 $expenses-red: #e53935;
+$background-balance-white: #f2f5fc;
 
 @function transitionFunc($key) {
   @return $key 250ms cubic-bezier(0.4, 0, 0.2, 1);
