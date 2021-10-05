@@ -18,21 +18,33 @@
 }
 
 .login {
+  z-index: 99;
+  position: absolute;
+  top: 255px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   max-width: 300px;
-  margin: 0 auto;
+
   padding: 40px 17px;
   border-radius: 30px;
   background: $white;
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
 
+  @include to(mobile) {
+    max-width: calc(100% - 10px);
+  }
+
   @include from(tablet) {
+    top: 295px;
     max-width: 436px;
     padding: 50px 86px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
 
   @include from(desktop) {
-    transform: translate(312px, 174px);
+    top: 175px;
+    transform: translateX(94px);
   }
 }
 
