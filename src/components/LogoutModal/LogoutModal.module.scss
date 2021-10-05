@@ -15,12 +15,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 50px 57px 60px 58px;
+  padding: 50px 55px 60px 55px;
 
   width: 380px;
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
   border-radius: 30px;
   background-color: $white;
+  @include to(tablet) {
+    width: 282px;
+    padding: 50px 10px 60px 10px;
+  }
 }
 .massage {
   margin: 0;
@@ -32,4 +36,47 @@
   text-align: center;
   letter-spacing: 0.02em;
   color: $text-grey;
+}
+.buttonContainer {
+  margin-top: 20px;
+}
+.button {
+  width: 125px;
+  height: 44px;
+
+  border-radius: 16px;
+  border: 2px solid #f5f6fb;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $text-grey;
+  &:first-child {
+    margin-right: 20px;
+    @include to(tablet) {
+      margin-right: 6px;
+    }
+  }
+  &:hover {
+    background-color: $background-orange;
+    border-color: $background-orange;
+    cursor: pointer;
+    color: $white;
+  }
+}
+.closeButton {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  top: 20px;
+  background-image: url(../../images/close.svg);
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 3px;
+  cursor: pointer;
 }
