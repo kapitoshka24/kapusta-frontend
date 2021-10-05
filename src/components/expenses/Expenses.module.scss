@@ -1,0 +1,110 @@
+.expenses {
+  display: block;
+  width: 100%;
+  max-width: 282px;
+  margin: 0 auto 70px;
+  @media screen and (min-width: 768px) {
+    max-width: 613px;
+  }
+
+  .expenses__list {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+    .expenses__card {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+      width: calc((100%-30px) / 3);
+      margin: 40px auto 10px;
+      @media screen and (min-width: 768px) {
+        width: calc(100% / 6);
+      }
+
+      &:nth-child(3n) {
+        &::after {
+          content: '';
+          position: absolute;
+          top: 137px;
+          right: -1px;
+          background-color: #e0e5eb;
+          width: 282px;
+          height: 1px;
+        }
+        @media screen and (min-width: 768px) {
+          &::after {
+            display: none;
+          }
+        }
+      }
+      .expenses__amount {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-align: center;
+        color: #52555f;
+      }
+      .expenses__name {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #52555f;
+      }
+      .expenses__img {
+        display: block;
+        width: 100%;
+        margin: 0;
+        @media screen and (min-width: 768px) {
+          display: flex;
+          // flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        .expenses__icon {
+          display: inline-block;
+          width: 100%;
+          /*  width: 40px;
+  height: 40px; */
+          fill: tomato;
+          margin: 0 auto;
+        }
+      }
+    }
+    .expenses__empty {
+      display: block;
+      position: relative;
+      width: 0;
+      height: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 120px;
+        right: 5px;
+        background-color: #e0e5eb;
+        width: 282px;
+        height: 1px;
+        @media screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+    }
+  }
+}
