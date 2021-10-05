@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .slider {
   position: relative;
   padding: 0px 20px;
@@ -67,3 +68,66 @@
 .slider_big__item {
   padding: 0px 15px;
 }
+||||||| parent of 55e25ef ([Expenses] Add HTML/SCSS with problems)
+=======
+.slider__block {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  // width: 100%;
+  max-width: 134px;
+  margin: 0 auto;
+}
+
+.prev {
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  top: 14px;
+  left: -21px;
+  z-index: 20;
+  background-image: url('../../img/slider/prev-arrow.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.next {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 12px;
+  top: 14px;
+  right: 40px;
+  z-index: 20;
+  background-image: url('../../img/slider/next-arrow.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.slider__text {
+  display: inline-block;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
+}
+/* 
+.slider-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto;
+} */
+.swiper_sliders {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 0 auto;
+}
+>>>>>>> 55e25ef ([Expenses] Add HTML/SCSS with problems)
