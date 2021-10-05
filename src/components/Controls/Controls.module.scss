@@ -13,20 +13,48 @@
   color: $text-grey;
 }
 
-.input__container {
-  display: flex;
-  align-items: center;
+.controls__container {
+  // display: flex;
+  // align-items: center;
   padding: 33px 0 59px 0;
+
+  @media (min-width: 1280px) {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.input__item {
+.inputs__container {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 1279px) {
+    margin-bottom: 30px;
+  }
+}
+
+.buttons__container {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.input__item,
+.input__sum {
+  padding: 0 21px;
   height: 44px;
-  width: 289px;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1667;
+  letter-spacing: 0.02em;
+
+  color: $text-grey;
   border: 2px solid $background-grey;
   border-top-left-radius: 16px;
 
   &::placeholder {
-    padding: 0 21px;
     font-weight: 400;
     font-size: 12px;
     line-height: 1.1667;
@@ -36,20 +64,31 @@
   }
 }
 
+.input__item {
+  @media (min-width: 768px) {
+    width: 192px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 289px;
+  }
+}
+
 .input__sum {
-  height: 44px;
+  margin-right: 27px;
   width: 126px;
-  border: 2px solid $background-grey;
   border-radius: 0 16px 16px 0;
 
-  &::placeholder {
-    padding: 0 21px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.1667;
-    letter-spacing: 0.02em;
+  @media (min-width: 768px) {
+    width: 104px;
+  }
 
-    color: $text-description;
+  @media (min-width: 1280px) {
+    width: 289px;
+  }
+
+  &__thumb {
+    position: relative;
   }
 }
 
@@ -73,6 +112,7 @@
 }
 
 .button__submit {
+  margin-right: 15px;
   background-color: $background-orange;
   color: $white;
 }
@@ -81,4 +121,18 @@
   background-color: $white;
   color: $text-grey;
   border: 2px solid $background-grey;
+}
+
+.icon__calendar {
+  margin-right: 10px;
+}
+
+.icon__calculator {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 84px;
+  transform: translateY(-50%);
 }
