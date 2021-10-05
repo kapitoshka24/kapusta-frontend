@@ -1,4 +1,5 @@
-@import '../../../styles/main.scss';
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
 
 .error {
   font-style: normal;
@@ -156,7 +157,7 @@
 
     &:hover {
       color: $white;
-      background: #ed6a17;
+      background: $loginButtonAccent;
     }
 
     &:active {
