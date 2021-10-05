@@ -8,6 +8,7 @@ body {
   font-family: Roboto;
   margin: 0;
   padding: 0;
+
 }
 
 ul,
@@ -20,6 +21,7 @@ button {
   padding: 0;
   margin: 0;
 }
+
 
 #root {
   @include to(tablet) {
@@ -34,3 +36,4 @@ button {
     min-height: 900px;
   }
 }
+

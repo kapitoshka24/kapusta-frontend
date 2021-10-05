@@ -5,9 +5,7 @@ import RegisterPage from './pages/RegisterPage';
 import ExpenceIncomePage from './pages/ExpenseIncomePage';
 import styles from './styles/App.module.scss';
 
-import Container from './components/Container';
 import Expense from './components/Expense';
-import Controls from './components/Controls';
 
 export default function App() {
   let loggedIn = true;
