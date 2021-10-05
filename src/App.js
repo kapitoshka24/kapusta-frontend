@@ -1,9 +1,11 @@
 import React from 'react';
 
+import MainComponent from './components/MainComponent/MainComponent';
+
 export default function App() {
   return (
     <>
-      <h1>replace to component</h1>
+      <MainComponent />
     </>
   );
 }
