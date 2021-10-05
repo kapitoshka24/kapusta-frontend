@@ -89,6 +89,15 @@
   border-radius: 26px;
   background-color: $background-grey;
   cursor: pointer;
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #222;
+  }
 }
 
 .googleSymbol {
