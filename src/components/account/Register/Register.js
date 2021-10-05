@@ -135,7 +135,7 @@ export default function Register() {
 
         <div className={styles.registerButtons}>
           <button>Войти</button>
-          <button>Регистрация</button>
+          <button className={styles.active}>Регистрация</button>
         </div>
       </form>
     </div>

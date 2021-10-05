@@ -1,9 +1,12 @@
 import React from 'react';
+import Login from './components/account/Login';
+import Register from './components/account/Register';
 
 export default function App() {
   return (
     <>
-      <h1>replace to component</h1>
+      <Login />
+      <Register />
     </>
   );
 }

@@ -34,7 +34,7 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <div className={styles.loginBody}>
-        <p className={{ ...styles.loginTitle, ...styles.loginTitleGoogle }}>
+        <p className={`${styles.loginTitle} ${styles.loginTitleGoogle}`}>
           Вы можете авторизоваться с помощью Google Account:
         </p>
         <button className={styles.loginGoogle} onClick={() => {}}>
@@ -96,7 +96,7 @@ export default function Login() {
           </div>
         </div>
         <div className={styles.loginButtons}>
-          <button>Войти</button>
+          <button className={styles.active}>Войти</button>
           <button type="button">Регистрация</button>
         </div>
       </form>
