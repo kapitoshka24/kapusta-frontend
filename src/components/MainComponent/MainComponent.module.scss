@@ -1,5 +1,9 @@
 @import '../../styles/utils/variables';
 
+* {
+    box-sizing: border-box;
+}
+
 .wrapper{
     position: relative;
     width: 100%;
@@ -37,7 +41,7 @@
 }
 
 .footer{
-    min-height: 514px;
+    min-height: 225px;
 }
 
 .cabbage1{
@@ -83,7 +87,7 @@
     }
 
     .footer{
-        min-height: 268px;
+        min-height: 442px;
     }
 
     .hero{
@@ -221,6 +225,10 @@
         height: 526px;
         padding-top: 308px;
         padding-left: 230px;
+    }
+
+    .footer {
+        min-height: 268px;
     }
 
     .shadow3,
