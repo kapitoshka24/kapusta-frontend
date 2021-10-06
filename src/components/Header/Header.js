@@ -36,7 +36,12 @@ export default function Header() {
           </div>
         )}
       </header>
-      {showModal && <LogoutModal closeModal={toggleModal} />}
+      {showModal && (
+        <LogoutModal
+          closeModal={toggleModal}
+          massage={'Вы действительно хотите выйти?'}
+        />
+      )}
     </div>
   );
 }
