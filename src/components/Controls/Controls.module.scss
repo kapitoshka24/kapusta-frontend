@@ -1,7 +1,18 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/_mixins.scss';
 
 .controls__container {
   padding: 28px 0 48px 0;
+  @include to(tablet) {
+    padding: 21px 9px 43px 9px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+
+    box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+    border-radius: 30px;
+  }
 
   @media (min-width: 1280px) {
     display: flex;
@@ -11,14 +22,23 @@
 }
 
 .inputs__container {
-  display: flex;
   align-items: center;
+
+  @include from(tablet) {
+    display: flex;
+  }
+  @include to(tablet) {
+    margin-top: 21px;
+  }
 }
 
 .inputs__date__thumb {
-  display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+
+  @include from(tablet) {
+    display: flex;
+  }
 
   @media (min-width: 1280px) {
     justify-content: start;
@@ -29,6 +49,10 @@
 .buttons__container {
   display: flex;
   justify-content: center;
+
+  @include to(tablet) {
+    margin-top: 83px;
+  }
 }
 
 .input__item,
@@ -45,6 +69,10 @@
   border: 2px solid $background-grey;
   border-top-left-radius: 16px;
 
+  @include to(tablet) {
+    padding-right: 40px;
+  }
+
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
@@ -52,10 +80,22 @@
     letter-spacing: 0.02em;
 
     color: $text-description;
+
+    @include to(tablet) {
+      text-align: right;
+      text-align: left;
+
+      font-weight: 700;
+    }
   }
 }
 
 .input__item {
+  @include to(tablet) {
+    width: 100%;
+    border-top-right-radius: 16px;
+  }
+
   @media (min-width: 768px) {
     width: 192px;
   }
@@ -78,8 +118,26 @@
     width: 126px;
   }
 
+  @include to(tablet) {
+    display: block;
+
+    border-radius: 16px 0 0 16px;
+
+    &::placeholder {
+      color: $black;
+      text-align: right;
+    }
+  }
+
   &__thumb {
     position: relative;
+
+    @include to(tablet) {
+      display: flex;
+      justify-content: center;
+
+      margin-top: 30px;
+    }
   }
 }
 
@@ -112,6 +170,12 @@
   background-color: $white;
   color: $text-grey;
   border: 2px solid $background-grey;
+
+  @include to(tablet) {
+    background: #f5f6fb;
+    box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+    border-radius: 16px;
+  }
 }
 
 .icon__calculator {
@@ -129,5 +193,51 @@
 
   @media (min-width: 1280px) {
     left: 84px;
+  }
+
+  @include to(tablet) {
+    display: none;
+  }
+}
+.icon__mobile_calculator_container {
+  position: relative;
+  width: 60px;
+  height: 44px;
+
+  border-radius: 0 16px 16px 0;
+  border: 2px solid $background-grey;
+  border-left: 0;
+
+  &::before {
+    content: 'UAH';
+    display: block;
+
+    position: absolute;
+    top: 27%;
+    right: 120%;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: $black;
+  }
+
+  @include from(tablet) {
+    display: none;
+  }
+}
+.icon__mobile_calculator {
+  position: absolute;
+  right: 35%;
+  top: 25%;
+}
+.arrow {
+  height: 15px;
+  font-size: 11px;
+  @include from(tablet) {
+    display: none;
   }
 }
