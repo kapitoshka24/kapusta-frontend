@@ -1,10 +1,13 @@
 import React from 'react';
-import LogoutModal from './components/LogoutModal';
+import TotalBalance from './components/TotalBalance';
+import Header from './components/Header';
+
 
 export default function App() {
   return (
     <>
-      <LogoutModal massage={'Вы действительно хотите выйти?'} />
+      <Header />
+      <TotalBalance />
     </>
   );
 }
