@@ -112,7 +112,7 @@
   }
 
   &:active {
-    box-shadow: inset 1px 1px 4px #222;
+    box-shadow: inset 1px 1px 4px $black;
   }
 }
 
@@ -166,9 +166,9 @@
   font-size: 14px;
   line-height: 1.43;
   letter-spacing: 0.04em;
-  color: #52555f;
+  color: $text-grey;
 
-  @include to(desktop) {
+  @include from(tablet) {
     min-width: 265px;
   }
 
@@ -215,7 +215,7 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  color: #52555f;
+  color: $text-grey;
 
   &.active {
     color: $white;

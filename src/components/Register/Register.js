@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
-
-import googleSymbol from '../../../images/google-symbol.svg';
-import styles from '../account.module.scss';
-
+import styles from './Register.module.scss';
 const validate = values => {
   const errors = {};
+
+  if (!values.name) {
+    errors.name = 'Это обязательное поле';
+  }
 
   if (!values.email) {
     errors.email = 'Это обязательное поле';
@@ -14,16 +15,26 @@ const validate = values => {
 
   if (!values.password) {
     errors.password = 'Это обязательное поле';
+  } else if (values.password.length < 6) {
+    errors.password = 'Пароль должен содержать не меньше 6 символов';
+  }
+
+  if (!values.confirm) {
+    errors.confirm = 'Это обязательное поле';
+  } else if (values.password !== values.confirm) {
+    errors.confirm = 'Пароли не совпадают';
   }
 
   return errors;
 };
 
-export default function Login() {
+export default function Register() {
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
+      name: '',
       email: '',
       password: '',
+      confirm: '',
     },
     validate,
     onSubmit: values => {
@@ -33,26 +44,29 @@ export default function Login() {
 
   return (
     <div className={styles.modal}>
-      <div className={styles.modalBodyFirst}>
-        <p className={`${styles.modalTitle} ${styles.modalTitleGoogle}`}>
-          Вы можете авторизоваться с помощью Google Account:
-        </p>
-        <button className={styles.googleBtn} onClick={() => {}}>
-          <img
-            src={googleSymbol}
-            alt="Google Symbol"
-            className={styles.googleSymbol}
-          />
-          Google
-        </button>
-        <p className={styles.modalTitle}>
-          Или зайти с помощью e-mail и пароля, предварительно
-          зарегистрировавшись:
-        </p>
-      </div>
+      <p className={styles.modalTitleRegister}>Регистрация</p>
 
-      <form onSubmit={handleSubmit} autoComplete="off" noValidate>
-        <div className={styles.modalBodySecond}>
+      <form onSubmit={handleSubmit} noValidate>
+        <div className={styles.modalBodyFirst}>
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputName">
+              {errors.name ? <span className={styles.errorStar}>*</span> : null}
+              Имя:
+            </label>
+            <input
+              type="text"
+              id="inputName"
+              name="name"
+              className={styles.modalInput}
+              placeholder="Имя"
+              onChange={handleChange}
+              value={values.name}
+            />
+            {errors.name ? (
+              <div className={styles.error}>{errors.name}</div>
+            ) : null}
+          </div>
+
           <div className={styles.modalGroup}>
             <label className={styles.modalLabel} htmlFor="inputEmail">
               {errors.email ? (
@@ -62,13 +76,12 @@ export default function Login() {
             </label>
             <input
               type="email"
-              name="email"
               id="inputEmail"
+              name="email"
               className={styles.modalInput}
               placeholder="your@email.com"
               onChange={handleChange}
               value={values.email}
-              autoComplete="off"
             />
             {errors.email ? (
               <div className={styles.error}>{errors.email}</div>
@@ -90,18 +103,39 @@ export default function Login() {
               placeholder="Пароль"
               onChange={handleChange}
               value={values.password}
-              autoComplete="off"
             />
             {errors.password ? (
               <div className={styles.error}>{errors.password}</div>
             ) : null}
           </div>
+
+          <div className={styles.modalGroup}>
+            <label className={styles.modalLabel} htmlFor="inputConfirm">
+              {errors.confirm ? (
+                <span className={styles.errorStar}>*</span>
+              ) : null}
+              Подтверждение пароля:
+            </label>
+            <input
+              type="password"
+              id="inputConfirm"
+              name="confirm"
+              className={styles.modalInput}
+              placeholder="Подтвердите пароль"
+              onChange={handleChange}
+              value={values.confirm}
+            />
+            {errors.confirm ? (
+              <div className={styles.error}>{errors.confirm}</div>
+            ) : null}
+          </div>
         </div>
+
         <div className={styles.modalButtons}>
-          <button className={`${styles.active} ${styles.modalLogin}`}>
+          <button className={styles.modalLogin} type="button">
             Войти
           </button>
-          <button className={styles.modalRegister} type="button">
+          <button className={`${styles.active} ${styles.modalRegister}`}>
             Регистрация
           </button>
         </div>
