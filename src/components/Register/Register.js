@@ -1,5 +1,12 @@
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+
+import authOperations from '../../redux/operations/auth-operations.js';
+import authSelectors from '../../redux/selectors/auth-selectors';
+
 import styles from './Register.module.scss';
+
 const validate = values => {
   const errors = {};
 
@@ -28,7 +35,10 @@ const validate = values => {
   return errors;
 };
 
-export default function Register() {
+export default function Register({ location }) {
+  const dispatch = useDispatch();
+  const userError = useSelector(authSelectors.selectUserError);
+
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: '',
@@ -38,7 +48,7 @@ export default function Register() {
     },
     validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(authOperations.register(values));
     },
   });
 
@@ -86,6 +96,19 @@ export default function Register() {
             {errors.email ? (
               <div className={styles.error}>{errors.email}</div>
             ) : null}
+            {userError ? (
+              <span className={styles.error}>
+                {userError}
+                {/* <Link
+                  to={{
+                    pathname: `/forgotten`,
+                    state: { from: this.props.location },
+                  }}
+                >
+                  Забыли пароль?
+                </Link> */}
+              </span>
+            ) : null}
           </div>
 
           <div className={styles.modalGroup}>
@@ -132,10 +155,19 @@ export default function Register() {
         </div>
 
         <div className={styles.modalButtons}>
-          <button className={styles.modalLogin} type="button">
+          <Link
+            className={styles.modalLogin}
+            to={{
+              pathname: `/login`,
+              state: { from: location },
+            }}
+          >
             Войти
-          </button>
-          <button className={`${styles.active} ${styles.modalRegister}`}>
+          </Link>
+          <button
+            type="submit"
+            className={`${styles.active} ${styles.modalRegister}`}
+          >
             Регистрация
           </button>
         </div>

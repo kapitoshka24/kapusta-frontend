@@ -1,7 +1,13 @@
+// import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+
+import authOperations from '../../redux/operations/auth-operations';
+import authSelectors from '../../redux/selectors/auth-selectors';
 
 import googleSymbol from '../../images/google-symbol.svg';
 import styles from './Login.module.scss';
+import { Link } from 'react-router-dom';
 
 const validate = values => {
   const errors = {};
@@ -19,7 +25,9 @@ const validate = values => {
   return errors;
 };
 
-export default function Login() {
+export default function Login({ location }) {
+  const dispatch = useDispatch();
+  const userError = useSelector(authSelectors.selectUserError);
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       email: '',
@@ -27,7 +35,7 @@ export default function Login() {
     },
     validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(authOperations.login(values));
     },
   });
 
@@ -73,6 +81,19 @@ export default function Login() {
             {errors.email ? (
               <div className={styles.error}>{errors.email}</div>
             ) : null}
+            {userError ? (
+              <span className={styles.error}>
+                {userError}
+                {/* <Link
+                  to={{
+                    pathname: `/forgotten`,
+                    state: { from: this.props.location },
+                  }}
+                >
+                  Забыли пароль?
+                </Link> */}
+              </span>
+            ) : null}
           </div>
 
           <div className={styles.modalGroup}>
@@ -98,12 +119,21 @@ export default function Login() {
           </div>
         </div>
         <div className={styles.modalButtons}>
-          <button className={`${styles.active} ${styles.modalLogin}`}>
+          <button
+            type="submit"
+            className={`${styles.active} ${styles.modalLogin}`}
+          >
             Войти
           </button>
-          <button className={styles.modalRegister} type="button">
+          <Link
+            className={styles.modalRegister}
+            to={{
+              pathname: `/register`,
+              state: { from: location },
+            }}
+          >
             Регистрация
-          </button>
+          </Link>
         </div>
       </form>
     </div>

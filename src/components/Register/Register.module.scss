@@ -19,15 +19,14 @@
 }
 
 .modalTitleRegister {
+  margin-top: 0;
   text-align: center;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 1.18;
-
   letter-spacing: 0.18em;
   text-transform: uppercase;
-
   color: $text-grey;
 
   @include to(tablet) {
@@ -200,14 +199,6 @@
 .modalButtons {
   display: flex;
   align-items: center;
-
-  button {
-    padding: 0;
-    &:hover {
-      color: $white;
-      background: $modalButtonAccent;
-    }
-  }
 }
 
 .modalRegister {
@@ -222,14 +213,18 @@
   box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
   border-radius: 16px;
   border: none;
-
   font-weight: bold;
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-
   color: $text-grey;
+  padding: 0;
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
 
   &.active {
     color: $white;
@@ -245,20 +240,23 @@
   height: 44px;
   margin-right: 15px;
   cursor: pointer;
-
   box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
-
   background: $background-grey;
   border-radius: 16px;
   border: none;
-
   font-weight: bold;
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-
+  text-decoration: none;
   color: $text-grey;
+  padding: 0;
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
 
   &.active {
     color: $white;
