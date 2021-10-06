@@ -26,7 +26,7 @@ export default function Header() {
         {isLogin && (
           <div className={styles.user__menu}>
             <button className={styles.user__button}>{user[0]}</button>
-            <button className={styles.logout__mobile}>
+            <button onClick={toggleModal} className={styles.logout__mobile}>
               <Logout />
             </button>
             <span className={styles.user__name}>{user}</span>
