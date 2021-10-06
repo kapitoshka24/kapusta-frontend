@@ -6,7 +6,6 @@ export default function App() {
   return (
     <>
       <Header />
-      <h1>replace to component</h1>
     </>
   );
 }
