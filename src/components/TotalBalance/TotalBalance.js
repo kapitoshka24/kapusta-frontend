@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTotalBalance } from '../../redux/selectors';
 import { changeTotalBalance } from '../../redux/actions';
 import { useFormik } from 'formik';
+import BalanceModal from '../BalanceModal';
 import styles from './totalBalance.module.scss';
 
 const validate = values => {
@@ -41,7 +42,7 @@ const TotalBalance = () => {
             className={styles.input}
             id="balance"
             name="balance"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={values.balance}
             autoComplete="off"
@@ -57,6 +58,7 @@ const TotalBalance = () => {
       <a className={styles.reports} href="./">
         Перейти к отчетам
       </a>
+      {!balance && <BalanceModal />}
     </div>
   );
 };
