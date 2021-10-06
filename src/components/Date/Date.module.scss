@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
 
-    @include to (tablet) {
+    @include to(tablet) {
       justify-content: center;
     }
   }

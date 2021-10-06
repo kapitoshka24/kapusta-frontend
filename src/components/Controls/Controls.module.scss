@@ -1,35 +1,79 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/_mixins.scss';
 
+.backdrop {
+  @include to(tablet) {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
 .controls__container {
   padding: 28px 0 48px 0;
-  
+
   @include to(tablet) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     padding: 21px 9px 43px 9px;
     width: 300px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
 
+    background-color: $white;
     box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
     border-radius: 30px;
   }
 
-  @media (min-width: 1280px) {
+  @include from-to(tablet, desktop) {
+    position: relative;
+  }
+
+  @include from(desktop) {
     display: flex;
     align-items: center;
     padding: 33px 0 59px 0;
   }
 }
 
+.date__container {
+  @include from-to(tablet, desktop) {
+    position: absolute;
+    top: 40px;
+    left: 0;
+  }
+}
+
 .inputs__container {
-  align-items: center;
+  @include to(tablet) {
+    margin-top: 21px;
+  }
 
   @include from(tablet) {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 30px;
   }
-  @include to(tablet) {
-    margin-top: 21px;
+
+  @include from(desktop) {
+    justify-content: start;
+    align-items: center;
+    margin: 0 38px 0 0;
+  }
+}
+
+.form {
+  @include from(desktop) {
+    display: flex;
   }
 }
 
@@ -41,67 +85,24 @@
     display: flex;
   }
 
-  @media (min-width: 1280px) {
+  @include from(desktop) {
     justify-content: start;
     margin-bottom: 0;
   }
 }
 
-<<<<<<< HEAD
 .buttons__container {
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-.input__container {
-=======
-.controls__container {
-  // display: flex;
-  // align-items: center;
-  padding: 33px 0 59px 0;
-
-  @media (min-width: 1280px) {
-    display: flex;
-    align-items: center;
-  }
-}
-
-.inputs__container {
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
   display: flex;
-<<<<<<< HEAD
   justify-content: center;
 
   @include to(tablet) {
     margin-top: 83px;
   }
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-  align-items: center;
-  padding: 33px 0 59px 0;
-=======
-  align-items: center;
-
-  @media (max-width: 1279px) {
-    margin-bottom: 30px;
-  }
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
 }
-
-<<<<<<< HEAD
-.input__item,
-.input__sum {
-  padding: 0 21px;
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-.input__item {
-=======
-.buttons__container {
-  display: flex;
-  justify-content: center;
-}
-
-
 
 .input__item,
 .input__sum {
   padding: 0 21px;
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
   height: 44px;
 
   font-weight: 400;
@@ -149,23 +150,7 @@
   }
 }
 
-.input__item {
-  @media (min-width: 768px) {
-    width: 192px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 289px;
-  }
-}
-
 .input__sum {
-<<<<<<< HEAD
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-  height: 44px;
-=======
-  margin-right: 27px;
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
   width: 126px;
   border-radius: 0 16px 16px 0;
 
@@ -173,9 +158,7 @@
     width: 104px;
   }
 
-<<<<<<< HEAD
   @media (min-width: 1280px) {
-    margin-right: 27px;
     width: 126px;
   }
 
@@ -199,16 +182,6 @@
 
       margin-top: 30px;
     }
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-    color: $text-description;
-=======
-  @media (min-width: 1280px) {
-    width: 289px;
-  }
-
-  &__thumb {
-    position: relative;
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
   }
 }
 
@@ -241,7 +214,6 @@
   background-color: $white;
   color: $text-grey;
   border: 2px solid $background-grey;
-<<<<<<< HEAD
 
   @include to(tablet) {
     background: #f5f6fb;
@@ -312,27 +284,10 @@
 .arrow {
   height: 15px;
   font-size: 11px;
-  
+  background-color: inherit;
+  border: none;
+
   @include from(tablet) {
     display: none;
   }
 }
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-}
-=======
-}
-
-.icon__calendar {
-  margin-right: 10px;
-}
-
-.icon__calculator {
-  position: absolute;
-  content: '';
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  left: 84px;
-  transform: translateY(-50%);
-}
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
