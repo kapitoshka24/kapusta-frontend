@@ -9,7 +9,9 @@ export default function Controls() {
     <div className={styles.controls__container}>
       <div className={styles.inputs__date__thumb}>
         <Date />
-
+        <button className={styles.arrow} type="button">
+          Стрелка
+        </button>
         <div className={styles.inputs__container}>
           <input
             type="text"
@@ -26,6 +28,10 @@ export default function Controls() {
               className={styles.input__sum}
             />
             <Calculator className={styles.icon__calculator} />
+            <div className={styles.icon__mobile_calculator_container}>
+              <Calculator className={styles.icon__mobile_calculator} />
+              {/* <p className={styles.currency}>UAH</p> */}
+            </div>
           </div>
         </div>
       </div>
