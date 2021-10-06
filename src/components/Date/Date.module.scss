@@ -1,0 +1,25 @@
+@import '../../styles/utils/variables';
+
+.date {
+  display: inline-block;
+
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.1667;
+  letter-spacing: 0.04em;
+
+  color: $text-grey;
+
+  @media (min-width: 1280px) {
+    margin-right: 23px;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.icon__calendar {
+  margin-right: 10px;
+}
