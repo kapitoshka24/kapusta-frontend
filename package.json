@@ -10,14 +10,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.3",
-<<<<<<< HEAD
-    "web-vitals": "1.1.2"
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
-    "web-vitals": "^1.1.2"
-=======
     "react-select": "^5.1.0",
     "web-vitals": "^1.1.2"
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)
   },
   "scripts": {
     "start": "react-scripts start",
