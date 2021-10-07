@@ -1,13 +1,11 @@
-.expenses {
+.income {
   display: block;
   width: 100%;
-  max-width: 282px;
+  max-width: 188px;
+  height: 107px;
   margin: 0 auto 70px;
-  @media screen and (min-width: 768px) {
-    max-width: 613px;
-  }
 
-  .expenses__list {
+  .income__list {
     display: flex;
     position: relative;
     align-items: center;
@@ -17,37 +15,16 @@
     margin: 0 auto;
     padding: 0;
 
-    .expenses__card {
+    .income__card {
       display: flex;
       position: relative;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      max-height: 122px;
-      width: calc((100%-30px) / 3);
-      margin: 20px auto 40px;
+      min-width: 84px;
+      margin: 0 auto;
 
-      @media screen and (min-width: 768px) {
-        width: calc(100% / 6);
-      }
-
-      &:nth-child(3n) {
-        &::after {
-          content: '';
-          position: absolute;
-          top: 157px;
-          right: -6px;
-          background-color: #e0e5eb;
-          width: 282px;
-          height: 1px;
-        }
-        @media screen and (min-width: 768px) {
-          &::after {
-            display: none;
-          }
-        }
-      }
-      .expenses__amount {
+      .income__amount {
         font-style: normal;
         font-weight: normal;
         font-size: 12px;
@@ -57,7 +34,7 @@
         text-align: center;
         color: #52555f;
       }
-      .expenses__name {
+      .income__name {
         font-style: normal;
         font-weight: normal;
         font-size: 12px;
@@ -68,11 +45,11 @@
         color: #52555f;
       }
 
-      .expenses__img {
+      .income__img {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 65%;
+        width: 80%;
         margin: 0;
         background-image: url(../../img/expenses-income-img/icon-background-grey.svg);
         background-position: center center;
@@ -83,29 +60,11 @@
           cursor: pointer;
           background-image: url(../../img/expenses-income-img/icon-background-tomato.svg);
         }
-        .expenses__icon {
+        .income__icon {
           display: block;
           width: 100%;
           margin: 0 auto;
         }
-      }
-    }
-  }
-  .expenses__empty {
-    display: block;
-    position: relative;
-    width: 0;
-    height: 0;
-    &::after {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: 4px;
-      background-color: #e0e5eb;
-      width: 282px;
-      height: 0.5px;
-      @media screen and (min-width: 768px) {
-        display: none;
       }
     }
   }
