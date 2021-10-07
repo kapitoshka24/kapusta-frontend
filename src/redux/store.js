@@ -1,7 +1,6 @@
-// import { kapustaReducer } from './kapusta';
-import { authReducer, kapustaReducer } from './reducers';
-
+import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
+
 import {
   persistStore,
   persistReducer,
@@ -12,12 +11,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+
+import { authReducer, kapustaReducer } from './reducers';
 
 const authPersistConfig = {
   key: 'token',
   storage,
-  whitelist: ['token'],
+  // whitelist: ['token'], // !!! не знаю почему, но с этим persist не заработал у меня
 };
 
 export const store = configureStore({
