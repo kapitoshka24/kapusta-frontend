@@ -1,0 +1,50 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+
+.list {
+  list-style: none;
+
+  &Item {
+    min-width: 20px;
+
+    &:hover .bar {
+      transform: scaleY(1.2);
+    }
+
+    &:hover .label {
+      transform: scale(1.05);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.bar {
+  height: 15px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: transitionFunc(all);
+}
+
+.labelWrapper {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.label {
+  margin-top: 0;
+  margin-bottom: 7px;
+  font-size: 10px;
+  color: $text-grey;
+  line-height: 1.2;
+
+  white-space: nowrap;
+  transition: transitionFunc(all);
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
