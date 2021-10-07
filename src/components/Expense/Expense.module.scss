@@ -1,124 +1,24 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/_mixins.scss';
 
-.table {
-  table-layout: fixed;
-  width: 760px;
-  border-collapse: collapse;
-
-  @media (min-width: 768px) {
-    width: 605px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 760px;
-  }
-
-  td,
-  th {
-    height: 40px;
-    text-align: start;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  td:nth-of-type(1),
-  th:nth-of-type(1) {
-    padding-left: 20px;
-    width: 125px;
-  }
-
-  td:nth-of-type(2),
-  th:nth-of-type(2) {
-    width: 255px;
-
-    @media (min-width: 768px) {
-      width: 195px;
-    }
-  
-    @media (min-width: 1280px) {
-      width: 255px;
-    }
-  }
-
-  td:nth-of-type(3),
-  th:nth-of-type(3) {
-    width: 170px;
-
-    @media (min-width: 768px) {
-      width: 130px;
-    }
-  
-    @media (min-width: 1280px) {
-      width: 170px;
-    }
-  }
-
-  td:nth-of-type(4) {
-    width: 115px;
-  }
-
-  thead {
-    background-color: $background-grey;
-  
-    th {
-      font-family: 'Roboto';
-      font-weight: 700;
-      font-size: 12px;
-      line-height: 1.667;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-  
-      color: $black;
-    }
-
-    th:nth-of-type(1) {
-      border-top-left-radius: 20px;
-    }
-
-    th:nth-of-type(4) {
-      border-top-right-radius: 20px;
-      text-align: center;
-    }
-  }
-}
-
-tbody {
-  tr {
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.667;
-    letter-spacing: 0.04em;
-
-    color: $text-grey;
-    border: 2px solid $background-grey;
-  }
-}
-
-.sum {
-  color: $red;
-}
-
-.icon__bg {
-  position: relative;
+.date__mobile_container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1;
-
-  &::before {
-    position: absolute;
-    content: '';
-    width: 32px;
-    height: 32px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background-color: $background-grey;
-    z-index: -1;
-  }
+  justify-content: center;
+  margin-top: 40px;
 }
+
+// .inputs__date__thumb {
+//   justify-content: space-between;
+//   margin-bottom: 30px;
+
+//   @include from(tablet) {
+//     display: flex;
+//   }
+
+//   @media (min-width: 1280px) {
+//     justify-content: start;
+//     margin-bottom: 0;
+//   }
+// }
 

@@ -3,6 +3,7 @@
 
 .controls__container {
   padding: 28px 0 48px 0;
+  
   @include to(tablet) {
     padding: 21px 9px 43px 9px;
     width: 300px;
@@ -199,6 +200,7 @@
     display: none;
   }
 }
+
 .icon__mobile_calculator_container {
   position: relative;
   width: 60px;
@@ -229,14 +231,17 @@
     display: none;
   }
 }
+
 .icon__mobile_calculator {
   position: absolute;
   right: 35%;
   top: 25%;
 }
+
 .arrow {
   height: 15px;
   font-size: 11px;
+  
   @include from(tablet) {
     display: none;
   }

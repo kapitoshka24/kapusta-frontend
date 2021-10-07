@@ -18,8 +18,9 @@
   &__container {
     display: flex;
     align-items: center;
-    @include to(tablet) {
-      display: none;
+
+    @include to (tablet) {
+      justify-content: center;
     }
   }
 }
