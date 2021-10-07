@@ -8,14 +8,14 @@ export default function Turnover() {
     <div className={styles.turnover}>
       <ul className={styles.turnover__list}>
         <li className={styles.turnover__item}>
-          Расходы
+          Расходы:
           <span className={`${styles.turnover__value} ${styles.expense_color}`}>
             - {turnoverArr[0]} грн.
           </span>
         </li>
         <div className={styles.verticalLine}></div>
         <li className={styles.turnover__item}>
-          Доходы
+          Доходы:
           <span className={`${styles.turnover__value} ${styles.income_color}`}>
             + {turnoverArr[1]} грн.
           </span>

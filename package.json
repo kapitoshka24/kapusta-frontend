@@ -11,15 +11,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-<<<<<<< HEAD
     "web-vitals": "1.1.2",
     "react-slick": "^0.28.1"
-||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
-    "web-vitals": "^1.1.2"
-=======
-    "react-slick": "^0.28.1",
-    "web-vitals": "^1.1.2"
->>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,29 +47,6 @@
     "eslint": "7.32.0",
     "formik": "2.2.9",
     "formik-yup": "0.0.5",
-<<<<<<< HEAD
-    "husky": "7.0.2",
-    "lint-staged": "11.1.2",
-    "node-sass": "5.0.0",
-    "prettier": "2.4.1",
-    "prop-types": "15.7.2",
-    "react-redux": "7.2.5",
-    "react-router-dom": "5.3.0",
-    "redux-persist": "6.0.0",
-    "shortid": "2.2.16",
-    "yup": "0.32.9"
-||||||| parent of 55e25ef ([Expenses] Add HTML/SCSS with problems)
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "node-sass": "^5.0.0",
-    "prettier": "^2.4.1",
-    "prop-types": "^15.7.2",
-    "react-redux": "^7.2.5",
-    "react-router-dom": "^5.3.0",
-    "redux-persist": "^6.0.0",
-    "shortid": "^2.2.16",
-    "yup": "^0.32.9"
-=======
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "node-sass": "^5.0.0",
@@ -88,7 +58,6 @@
     "shortid": "^2.2.16",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
->>>>>>> 55e25ef ([Expenses] Add HTML/SCSS with problems)
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

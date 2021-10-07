@@ -1,22 +1,9 @@
 @import './utils/fonts';
 @import './utils/variables';
-<<<<<<< HEAD
 
 @import './utils/mixins';
 
-||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
-
-=======
-// @use './utils/variables' as c; (так можна теж записувати, але в нас воно не працює)
->>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
 @import './base/common';
-<<<<<<< HEAD
 
 // SLIDER SLICK STYLES
 @import './../components/Turnover-slider/TurnoverSlider.module.scss';
-||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
-=======
-
-// SLIDER SLICK STYLES
-@import './../components/turnover-slider/TurnoverSlider.module.scss';
->>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))

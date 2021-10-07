@@ -1,3 +1,5 @@
+@import '../../styles/utils/mixins';
+
 .turnover {
   position: relative;
   display: flex;
@@ -24,9 +26,6 @@
   .turnover__list {
     display: flex;
     width: 100%;
-    @media screen and (min-width: 768px) {
-      padding: 15px 0;
-    }
 
     .turnover__item {
       display: flex;
@@ -44,8 +43,9 @@
       &:last-child {
         margin-right: 0;
       }
-      @media screen and (min-width: 768px) {
-        display: inline-block;
+
+      @include from(tablet) {
+        flex-direction: row;
       }
 
       .turnover__value {
