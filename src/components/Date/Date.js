@@ -1,11 +1,20 @@
 import styles from './Date.module.scss';
 import { ReactComponent as Calendar } from '../../icons/calendar.svg';
 
-export default function Date() {
+export default function DateComponent() {
+  const getCurrentDay = () => {
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+
+    return `${day}.${month}.${year}`;
+  };
+
   return (
     <div className={styles.date__container}>
       <Calendar className={styles.icon__calendar} />
-      <span className={styles.date}>21.11.2019</span>
+      <span className={styles.date}>{getCurrentDay()}</span>
     </div>
   );
 }
