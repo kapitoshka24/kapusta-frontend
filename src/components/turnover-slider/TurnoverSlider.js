@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import styles from '../turnover-slider/TurnoverSlider.module.scss';
+import styles from '../Turnover-slider/TurnoverSlider.module.scss';
 import Expenses from '../expenses/Expenses';
 import Income from '../income/Income';
 
