@@ -1,9 +1,9 @@
-import styles from './balanceModal.module.scss';
+import styles from './BalanceModal.module.scss';
 
 const BalanceModal = () => {
   return (
     <div className={styles.modalContainer}>
-      <div className={styles.triangle}></div>
+      {/* <div className={styles.triangle}></div>
       <div className={styles.contentContainer}>
         <p className={styles.content}>
           Привет! Для начала работы внеси текущий баланс своего счета!
@@ -11,7 +11,7 @@ const BalanceModal = () => {
         <p className={styles.content}>
           Ты не можешь тратить деньги пока их у тебя нет :)
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
