@@ -1,9 +1,7 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/_mixins.scss';
 
 .button {
-  width: 138px;
-  height: 40px;
-
   font-family: Roboto;
   font-weight: 700;
   font-size: 12px;
@@ -13,24 +11,52 @@
 
   border: none;
   color: $black;
-  background: $border-white;
-  border-radius: 20px 20px 0 0;
+  background-color: $border-white;
   cursor: pointer;
 
+  @include to (tablet) {
+    width: 50%;
+    height: 53px;
+
+    &:first-of-type {
+      border-right: 2px solid $white;
+    }
+  }
+
+  @include from (tablet) {
+    width: 138px;
+    height: 40px;
+  
+    background-color: $border-white;
+    border-radius: 20px 20px 0 0;
+  }
+
   &__active {
-    color: $background-orange;
-    background: $background-white;
+    @include to (tablet) {
+      color: $white;
+      background: $background-orange;
+    }
+
+    @include from (tablet) {
+      color: $background-orange;
+      background: $background-white;
+    }
   }
 
   &__container {
-    max-width: 1060px;
-    margin: 0 auto;
+    @include to (tablet) {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
 
-    @media (min-width: 768px) {
+    @include from (tablet) {
+      max-width: 1060px;
+      margin: 0 auto;
       width: 665px;
     }
 
-    @media (min-width: 1280px) {
+    @include from (desktop) {
       width: 1060px;
     }
   }

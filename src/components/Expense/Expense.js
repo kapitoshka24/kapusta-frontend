@@ -1,110 +1,43 @@
+import { useState } from 'react';
+
 import TabContainer from '../TabContainer';
 import Controls from '../Controls';
 import Tabs from '../Tabs';
-import { ReactComponent as Delete } from '../../icons/delete.svg';
+import TabsMobile from '../TabsMobile';
+import Date from '../Date';
+import EnterButton from '../EnterButton';
+import Table from '../Table';
+import TableMobile from '../TableMobile';
+// import ControlsMobile from '../ControlsMobile';
 import styles from './Expense.module.scss';
 
 export default function Expense() {
+  const [showControls, setShowControls] = useState(false);
+
+  const toggleControls = () => {
+    setShowControls(prevVal => !prevVal);
+  };
+
+  const mobile = window.screen.width < 768;
+
   return (
     <>
-      {/* <Tabs />
+      {mobile ? <TabsMobile /> : <Tabs />}
 
-      <TabContainer> */}
-      <Controls />
+      <TabContainer>
+        {mobile && (
+          <div className={styles.date__mobile_container}>
+            <Date />
+            <EnterButton closeControls={toggleControls} />
+          </div>
+        )}
 
-      {/* <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Дата</th>
-              <th>Описание</th>
-              <th>Категория</th>
-              <th colspan="2">Сумма</th>
-            </tr>
-          </thead>
+        {mobile ? null : <Controls />}
 
-          <tbody>
-            <tr>
-              <td>05.09.2019</td>
-              <td>
-                Метро (Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Iste accusantium quaerat explicabo, recusandae facere sequi
-                aperiam hic blanditiis repudiandae ea.{' '}
-              </td>
-              <td>Транспорт</td>
-              <td className={styles.sum}>- 30.00 грн.</td>
-              <td className={styles.icon__bg}>
-                <Delete className={styles.icon__delete} />
-              </td>
-            </tr>
+        {showControls && <Controls closeControls={toggleControls} />}
 
-            <tr>
-              <td>05.09.2019</td>
-              <td>Бананы</td>
-              <td>Продукты</td>
-              <td className={styles.sum}>- 50.00 грн.</td>
-              <td className={styles.icon__bg}>
-                <Delete className={styles.icon__delete} />
-              </td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td className={styles.sum}></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </TabContainer> */}
+        {mobile ? <TableMobile /> : <Table />}
+      </TabContainer>
     </>
   );
 }
