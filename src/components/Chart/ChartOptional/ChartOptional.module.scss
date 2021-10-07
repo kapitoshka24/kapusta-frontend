@@ -58,7 +58,7 @@
   width: 666px;
   height: 422px;
   border-radius: 30px;
-  padding: 25px 31px;
+  padding: 29px 31px 25px 31px;
   background-color: $white;
   background-image: url('./chart-bg-tablet.png');
   background-repeat: no-repeat;
@@ -66,7 +66,7 @@
 
   @include from(desktop) {
     width: 1060px;
-    padding: 25px 228px;
+    padding: 27px 228px 25px 228px;
     border-radius: 60px;
     background-size: 758px 314px;
     background-position: 50% 60%;
