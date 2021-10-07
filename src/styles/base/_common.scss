@@ -1,6 +1,5 @@
 body {
   font-family: Roboto;
-<<<<<<< HEAD
 }
 
 ul,
@@ -13,8 +12,11 @@ button {
   padding: 0;
   margin: 0;
 }
-||||||| parent of f902ba7 ([Expense] Add dropdown & tabs components)
+
+ul {
+  list-style: none;
 }
-=======
+
+p {
+  margin: 0;
 }
->>>>>>> f902ba7 ([Expense] Add dropdown & tabs components)

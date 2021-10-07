@@ -1,18 +1,13 @@
 import Select from '../Select';
 
-import Date from '../Date';
-import styles from './Controls.module.scss';
+import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../icons/calculator.svg';
 
-export default function Controls({ closeControls }) {
-  const mobile = window.screen.width < 768;
-
+export default function Controls() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.inputs__date__thumb}>
-        {!mobile && <Date />}
-
-        <button className={styles.arrow} onClick={closeControls} type="button">
+        <button className={styles.arrow} type="button">
           Стрелка
         </button>
         <div className={styles.inputs__container}>
@@ -30,7 +25,6 @@ export default function Controls({ closeControls }) {
               placeholder="0,00"
               className={styles.input__sum}
             />
-            <Calculator className={styles.icon__calculator} />
             <div className={styles.icon__mobile_calculator_container}>
               <Calculator className={styles.icon__mobile_calculator} />
             </div>
