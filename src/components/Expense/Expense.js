@@ -7,12 +7,12 @@ import styles from './Expense.module.scss';
 export default function Expense() {
   return (
     <>
-      <Tabs />
+      {/* <Tabs />
 
-      <TabContainer>
-        <Controls />
+      <TabContainer> */}
+      <Controls />
 
-        <table className={styles.table}>
+      {/* <table className={styles.table}>
           <thead>
             <tr>
               <th>Дата</th>
@@ -104,7 +104,7 @@ export default function Expense() {
             </tr>
           </tbody>
         </table>
-      </TabContainer>
+      </TabContainer> */}
     </>
   );
 }
