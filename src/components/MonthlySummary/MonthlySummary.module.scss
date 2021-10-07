@@ -12,14 +12,16 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.17;
   color: $black;
   text-transform: uppercase;
   text-align: center;
 
-  padding: 15px;
-  //   height: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2px;
 
   background-color: $background-grey;
@@ -32,8 +34,9 @@
   font-weight: 400;
   font-style: normal;
   font-size: 12px;
-  line-height: 1.34;
+  line-height: 1.17;
 }
+
 .MonthItem {
   padding-left: 22px;
   padding-right: 20px;
@@ -42,8 +45,8 @@
 
   display: flex;
   justify-content: space-between;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  align-items: center;
+  height: 38px;
 
   &:not(:last-child) {
     margin-bottom: 2px;
