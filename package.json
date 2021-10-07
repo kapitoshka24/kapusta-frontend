@@ -11,8 +11,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+<<<<<<< HEAD
     "web-vitals": "1.1.2",
     "react-slick": "^0.28.1"
+||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
+    "web-vitals": "^1.1.2"
+=======
+    "react-slick": "^0.28.1",
+    "web-vitals": "^1.1.2"
+>>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
   },
   "scripts": {
     "start": "react-scripts start",
@@ -79,7 +86,7 @@
     "react-router-dom": "^5.3.0",
     "redux-persist": "^6.0.0",
     "shortid": "^2.2.16",
-    "swiper": "^6.0.2",
+    "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
 >>>>>>> 55e25ef ([Expenses] Add HTML/SCSS with problems)
   },

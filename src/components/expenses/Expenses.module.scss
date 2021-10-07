@@ -138,9 +138,10 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      height: 84px;
+      max-height: 122px;
       width: calc((100%-30px) / 3);
-      margin: 40px auto 10px;
+      margin: 20px auto 40px;
+
       @media screen and (min-width: 768px) {
         width: calc(100% / 6);
       }
@@ -149,8 +150,8 @@
         &::after {
           content: '';
           position: absolute;
-          top: 137px;
-          right: -1px;
+          top: 157px;
+          right: -6px;
           background-color: #e0e5eb;
           width: 282px;
           height: 1px;
@@ -181,44 +182,45 @@
         text-transform: uppercase;
         color: #52555f;
       }
+
       .expenses__img {
-        display: block;
-        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65%;
         margin: 0;
-        @media screen and (min-width: 768px) {
-          display: flex;
-          // flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
+        background-image: url(../../img/expenses-income-img/icon-background-grey.svg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        &:hover {
+          fill: #ff751d;
+          cursor: pointer;
+          background-image: url(../../img/expenses-income-img/icon-background-tomato.svg);
         }
         .expenses__icon {
-          display: inline-block;
+          display: block;
           width: 100%;
-          /*  width: 40px;
-  height: 40px; */
-          fill: tomato;
           margin: 0 auto;
         }
       }
     }
-    .expenses__empty {
-      display: block;
-      position: relative;
-      width: 0;
-      height: 0;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 120px;
-        right: 5px;
-        background-color: #e0e5eb;
-        width: 282px;
-        height: 1px;
-        @media screen and (min-width: 768px) {
-          display: none;
-        }
+  }
+  .expenses__empty {
+    display: block;
+    position: relative;
+    width: 0;
+    height: 0;
+    &::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 4px;
+      background-color: #e0e5eb;
+      width: 282px;
+      height: 0.5px;
+      @media screen and (min-width: 768px) {
+        display: none;
       }
     }
   }

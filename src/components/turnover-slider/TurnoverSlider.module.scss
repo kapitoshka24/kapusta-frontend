@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .slider {
   position: relative;
   padding: 0px 20px;
@@ -71,63 +72,81 @@
 ||||||| parent of 55e25ef ([Expenses] Add HTML/SCSS with problems)
 =======
 .slider__block {
+||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
+.slider__block {
+=======
+.slider {
+>>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
   position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  // width: 100%;
-  max-width: 134px;
+  padding: 0px 20px;
+  width: 134px;
   margin: 0 auto;
 }
 
-.prev {
-  display: block;
+.slick-arrow {
   position: absolute;
+  top: 110%;
+  margin: -30px 0px 0px 0px;
+  z-index: 10;
+  font-size: 0;
+  cursor: pointer;
+}
+.slick-prev {
+  left: 0;
   width: 6px;
   height: 12px;
-  top: 14px;
-  left: -21px;
-  z-index: 20;
-  background-image: url('../../img/slider/prev-arrow.png');
+  border: none;
+  background-image: url('../../img/slider/prev-arrow.svg');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
-.next {
-  position: absolute;
-  display: block;
+.slick-next {
+  right: 0;
   width: 6px;
   height: 12px;
-  top: 14px;
-  right: 40px;
-  z-index: 20;
-  background-image: url('../../img/slider/next-arrow.png');
+  border: none;
+  background-image: url('../../img/slider/next-arrow.svg');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
-.slider__text {
-  display: inline-block;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #000000;
+.slick-slider {
+  min-width: 0;
 }
-/* 
-.slider-wrapper {
-  display: flex;
-  justify-content: center;
+.slick-list {
   overflow: hidden;
-  margin: 0 auto;
-} */
-.swiper_sliders {
+}
+.slick-track {
   display: flex;
-  justify-content: space-between;
-  overflow: hidden;
+  min-width: 0;
+  align-items: flex-start;
+}
+.slider__item {
+  padding: 0px 15px;
+  .slider__text {
+    display: inline-block;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+}
+
+.slider__big {
+  position: relative;
+  padding: 0px 20px;
+  width: 100%;
   margin: 0 auto;
 }
+<<<<<<< HEAD
 >>>>>>> 55e25ef ([Expenses] Add HTML/SCSS with problems)
+||||||| parent of 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
+=======
+.slider_big__item {
+  padding: 0px 15px;
+}
+>>>>>>> 91a31e8 ([Expenses, Slider, Income] Add HTML, CSS, JS; (colors should be substituted by variables))
