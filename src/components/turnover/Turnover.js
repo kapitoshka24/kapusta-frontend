@@ -1,26 +1,32 @@
 import React from 'react';
-import styles from './Turnover.module.scss';
+import styles from './turnover.module.scss';
 
-export default function Turnover() {
-  const turnoverArr = [23000, 300];
+const Turnover = () => {
+  const expenses = '1810000.00';
+  const income = '41144444552100.00';
 
   return (
-    <div className={styles.turnover}>
-      <ul className={styles.turnover__list}>
-        <li className={styles.turnover__item}>
+    <div className={styles.turnoverContainer}>
+      <div className={styles.contentContainer}>
+        <p className={styles.expenses}>
           Расходы:
-          <span className={`${styles.turnover__value} ${styles.expense_color}`}>
-            - {turnoverArr[0]} грн.
-          </span>
-        </li>
-        <div className={styles.verticalLine}></div>
-        <li className={styles.turnover__item}>
+          <span className={styles.expensesContent}>{`- ${
+            expenses.length > 8 ? `${expenses.substring(0, 7)}...` : expenses
+          } грн.`}</span>
+        </p>
+      </div>
+      <span className={styles.verticalLine}></span>
+      <div className={styles.contentContainer}>
+        <p className={styles.income}>
           Доходы:
-          <span className={`${styles.turnover__value} ${styles.income_color}`}>
-            + {turnoverArr[1]} грн.
+          <span className={styles.incomeContent}>
+            {`+ ${
+              income.length > 8 ? `${income.substring(0, 7)}...` : income
+            } грн.`}
           </span>
-        </li>
-      </ul>
+        </p>
+      </div>
     </div>
   );
-}
+};
+export default Turnover;

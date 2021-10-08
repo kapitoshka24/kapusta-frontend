@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import styles from '../turnover-slider/TurnoverSlider.module.scss';
-import Expenses from '../expenses/Expenses';
-import Income from '../income/Income';
+import styles from './turnoverSlider.module.scss';
+import Expenses from '../SliderExpenses';
+import Income from '../SliderIncome/SliderIncome';
 
-class AsNavFor extends Component {
+class TurnoverSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,10 +34,12 @@ class AsNavFor extends Component {
       slidesToScroll: 1,
       arrows: false,
       asNavFor: '.slider',
+      centerPadding: '3px',
+      adaptiveHeight: true,
     };
 
     return (
-      <>
+      <div className={styles.sliderContainer}>
         <Slider
           {...settingsSmall}
           className={styles.slider}
@@ -65,9 +67,9 @@ class AsNavFor extends Component {
             <Income />
           </div>
         </Slider>
-      </>
+      </div>
     );
   }
 }
 
-export default AsNavFor;
+export default TurnoverSlider;

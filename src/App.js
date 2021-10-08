@@ -1,17 +1,12 @@
 import React from 'react';
-import Turnover from './components/turnover/Turnover';
-import TurnoverSlider from './components/turnover-slider/TurnoverSlider';
-import TurnoverWrapper from './components/turnover-wrapper/TurnoverWrapper';
+import Turnover from './components/Turnover/Turnover';
+import TurnoverSlider from './components/TurnoverSlider';
 
 export default function App() {
   return (
     <>
-      {/* <Turnover /> */}
-
+      <Turnover />
       <TurnoverSlider />
-      <TurnoverWrapper>
-        <TurnoverSlider />
-      </TurnoverWrapper>
     </>
   );
 }

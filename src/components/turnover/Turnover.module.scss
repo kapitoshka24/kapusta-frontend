@@ -1,70 +1,91 @@
 @import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
 
-.turnover {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  max-width: 282px;
-  height: 85px;
-  background: #ffffff;
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+.turnoverContainer {
+  width: 282px;
   border-radius: 20px;
-  margin: 0 auto 40px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
 
-  @media screen and (min-width: 768px) {
-    max-width: 668px;
-    height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  background: $white;
+
+  @include from(tablet) {
+    width: 668px;
     border-radius: 30px;
-    margin: 0 auto 30px;
-  }
-  @media screen and (min-width: 1280px) {
-    max-width: 1060px;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
 
-  .turnover__list {
-    display: flex;
-    width: 100%;
+  @include from(desktop) {
+    width: 1060px;
+  }
+}
+.income,
+.expenses {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.45;
 
-    .turnover__item {
-      display: flex;
-      width: 50%;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #52555f;
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 1.14;
+  color: $text-grey;
+}
+.expenses {
+  @include from(tablet) {
+    padding-right: 21px;
+  }
+}
 
-      &:last-child {
-        margin-right: 0;
-      }
+.income {
+  @include from(tablet) {
+    padding-left: 19px;
+  }
+}
 
-      @include from(tablet) {
-        flex-direction: row;
-      }
+.contentContainer {
+  padding: 20px 0 25px 0;
 
-      .turnover__value {
-        display: inline-block;
-        letter-spacing: 0.04em;
-        margin-top: 7px;
+  @include to(tablet) {
+    width: 50%;
+    text-align: center;
+  }
 
-        @media screen and (min-width: 768px) {
-          margin-top: 0;
-          padding-left: 15px;
-        }
-      }
-      .expense_color {
-        color: #e53935;
-      }
-      .income_color {
-        color: #407946;
-      }
-    }
+  @include from(tablet) {
+    padding: 15px 0 15px 0;
+  }
+}
+
+.expensesContent {
+  color: $expenses-red;
+  letter-spacing: 0.04em;
+  padding-left: 9px;
+  padding-right: 9px;
+
+  @include from(tablet) {
+    margin-left: 15px;
+  }
+
+  @include to(tablet) {
+    display: block;
+  }
+}
+
+.incomeContent {
+  color: #407946;
+  letter-spacing: 0.04em;
+  padding-left: 9px;
+  padding-right: 9px;
+
+  @include from(tablet) {
+    margin-left: 15px;
+  }
+
+  @include to(tablet) {
+    display: block;
   }
 }
 
