@@ -6,7 +6,7 @@ import TurnoverWrapper from './components/turnover-wrapper/TurnoverWrapper';
 export default function App() {
   return (
     <>
-      <Turnover />
+      {/* <Turnover /> */}
 
       <TurnoverSlider />
       <TurnoverWrapper>
