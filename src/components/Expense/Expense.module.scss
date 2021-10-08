@@ -10,16 +10,9 @@
   }
 }
 
-// .inputs__date__thumb {
-//   justify-content: space-between;
-//   margin-bottom: 30px;
-
-//   @include from(tablet) {
-//     display: flex;
-//   }
-
-//   @media (min-width: 1280px) {
-//     justify-content: start;
-//     margin-bottom: 0;
-//   }
-// }
+.data__container {
+  @include from(desktop) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

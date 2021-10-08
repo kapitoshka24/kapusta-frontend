@@ -12,14 +12,16 @@ export default function Controls() {
 
   return (
     <div className={styles.controls__container}>
-      <div className={styles.inputs__date__thumb}>
+      <div className={styles.date__container}>
         {windowWidth >= 768 && <Date />}
+      </div>
 
-        <button className={styles.arrow} type="button">
-          <GoBack />
-        </button>
-        {/* <BackToMainPage onClick={closeControls} /> */}
-        <form className={styles.inputs__container}>
+      <button className={styles.arrow} type="button">
+        <GoBack />
+      </button>
+      {/* <BackToMainPage onClick={closeControls} /> */}
+      <form className={styles.form}>
+        <div className={styles.inputs__container}>
           <input
             type="text"
             placeholder="Описание товара"
@@ -39,17 +41,17 @@ export default function Controls() {
               <Calculator className={styles.icon__mobile_calculator} />
             </div>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <div className={styles.buttons__container}>
-        <button type="submit" className={styles.button__submit}>
-          Ввод
-        </button>
-        <button type="reset" className={styles.button__reset}>
-          Очистить
-        </button>
-      </div>
+        <div className={styles.buttons__container}>
+          <button type="submit" className={styles.button__submit}>
+            Ввод
+          </button>
+          <button type="reset" className={styles.button__reset}>
+            Очистить
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

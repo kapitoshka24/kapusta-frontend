@@ -9,6 +9,7 @@ import Date from '../Date';
 import EnterButton from '../EnterButton';
 import Table from '../Table';
 import TableMobile from '../TableMobile';
+import MonthlySummary from '../MonthlySummary';
 import styles from './Expense.module.scss';
 import useWindowWidth from '../../helpers/useWindowWidth';
 
@@ -47,8 +48,12 @@ export default function Expense() {
           <ControlsMobile closeControls={toggleControls} />
         )}
 
-        {windowWidth < 768 ? null : <Table />}
-        {windowWidth < 768 && showButton && <TableMobile />}
+        <div className={styles.data__container}>
+          {windowWidth < 768 ? null : <Table />}
+          {windowWidth < 768 && showButton && <TableMobile />}
+
+          <MonthlySummary />
+        </div>
       </TabContainer>
     </>
   );
