@@ -10,19 +10,17 @@ const initialUserState = {
   email: '',
   error: null,
   token: null,
+  onVerification: false,
 };
 
 const user = createReducer(initialUserState, {
   [authActions.registerPending]: state => {
     state.isLoading = true;
   },
-  [authActions.registerFulfilled]: (state, { payload }) => ({
+  [authActions.registerFulfilled]: state => ({
+    ...state,
     isLoading: false,
-    isLogged: true,
-    name: payload.name,
-    email: payload.email,
     error: null,
-    token: payload.token,
   }),
   [authActions.registerRejected]: (_, { payload }) => ({
     ...initialUserState,
@@ -39,6 +37,7 @@ const user = createReducer(initialUserState, {
     email: payload.email,
     error: null,
     token: payload.token,
+    onVerification: false,
   }),
   [authActions.loginRejected]: (_, { payload }) => ({
     ...initialUserState,
@@ -50,6 +49,11 @@ const user = createReducer(initialUserState, {
   },
   [authActions.logoutFulfilled]: () => initialUserState,
   [authActions.logoutRejected]: state => state, // !!! what we should do when logout rejected ?
+
+  [authActions.onVerification]: (state, { payload }) => ({
+    ...state,
+    onVerification: payload,
+  }),
 });
 
 export default combineReducers({

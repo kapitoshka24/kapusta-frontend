@@ -36,6 +36,32 @@
   }
 }
 
+.modalTitleVerification {
+  margin: 0 0 24px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+
+  @include to(tablet) {
+    &Google {
+      text-align: center;
+    }
+    &:first-child {
+      margin: 0 auto 24px;
+      width: 222px;
+    }
+  }
+
+  @include from(tablet) {
+    margin: 0 0 20px;
+    font-size: 12px;
+    line-height: 1.16;
+  }
+}
+
 .modal {
   z-index: 99;
   position: absolute;
@@ -199,6 +225,13 @@
 .modalButtons {
   display: flex;
   align-items: center;
+}
+
+.modalContinueBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 .modalRegister {

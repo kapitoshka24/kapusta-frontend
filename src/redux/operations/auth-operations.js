@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authActions from '../actions/auth-actions';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api/users/';
+axios.defaults.baseURL = 'http://localhost:3030/api/users/';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
@@ -9,21 +9,17 @@ const authOperations = {
   register: values => async dispatch => {
     dispatch(authActions.registerPending());
 
-    try {
-      //   const { resp } = await axios.post('/registration');
-      const resp = {
-        name: values.name,
-        email: values.email,
-        status: 'success',
-        message: '',
-        token: '1',
-      };
+    delete values.confirm;
 
-      if (resp.status === 'error') {
-        throw resp.message;
+    try {
+      const { data } = await axios.post('/registration', values);
+
+      if (data.status === 'error') {
+        throw data.message;
       }
 
-      dispatch(authActions.registerFulfilled(resp));
+      dispatch(authActions.registerFulfilled());
+      dispatch(authActions.onVerification(true));
     } catch (error) {
       dispatch(authActions.registerRejected(error));
     }
@@ -33,21 +29,24 @@ const authOperations = {
     dispatch(authActions.loginPending());
 
     try {
-      //   const { resp } = await axios.post('/login');
+      const { data } = await axios.post('/login', values);
 
-      const resp = {
-        name: values.name ?? 'A',
-        email: values.email,
-        status: 'success',
-        message: '',
-        token: '1',
-      };
-
-      if (resp.status === 'error') {
-        throw resp.message;
+      if (data.status === 'error') {
+        throw data.message;
       }
 
-      dispatch(authActions.loginFulfilled(resp));
+      const user = await axios.get('/current', {
+        headers: {
+          Authorization: 'Bearer ' + data.data.token,
+        },
+      });
+
+      dispatch(
+        authActions.loginFulfilled({
+          ...user.data.data,
+          token: data.data.token,
+        }),
+      );
     } catch (error) {
       dispatch(authActions.loginRejected(error));
     }
@@ -63,6 +62,10 @@ const authOperations = {
     } catch (error) {
       dispatch(authActions.logoutRejected(error));
     }
+  },
+
+  onVerification: is => async dispatch => {
+    dispatch(authActions.onVerification(is));
   },
 };
 

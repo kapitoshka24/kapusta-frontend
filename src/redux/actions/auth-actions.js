@@ -12,6 +12,8 @@ const authActions = {
   logoutPending: createAction('user/logoutPending'),
   logoutFulfilled: createAction('user/logoutFulfilled'),
   logoutRejected: createAction('user/logoutRejected'),
+
+  onVerification: createAction('user/onVerification'),
 };
 
 export default authActions;

@@ -1,7 +1,6 @@
 import { Route, Redirect } from 'react-router';
 
 export default function PrivateRoute({ children, isLogged, ...rest }) {
-  console.log(rest);
   return (
     <Route
       {...rest}
