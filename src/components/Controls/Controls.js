@@ -7,60 +7,48 @@ import { ReactComponent as Calculator } from '../../icons/calculator.svg';
 import { ReactComponent as GoBack } from '../../icons/go-home.svg';
 import useWindowWidth from '../../helpers/useWindowWidth';
 
-export default function Controls({ closeControls }) {
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      closeControls();
-    }
-  };
-
+export default function Controls() {
   const windowWidth = useWindowWidth();
 
   return (
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
-      <div className={styles.controls__container}>
-        <div className={styles.inputs__date__thumb}>
-          {windowWidth >= 768 && <Date />}
+    <div className={styles.controls__container}>
+      <div className={styles.inputs__date__thumb}>
+        {windowWidth >= 768 && <Date />}
 
-          <button
-            className={styles.arrow}
-            onClick={closeControls}
-            type="button"
-          >
-            <GoBack />
-          </button>
-          {/* <BackToMainPage onClick={closeControls} /> */}
-          <form className={styles.inputs__container}>
+        <button className={styles.arrow} type="button">
+          <GoBack />
+        </button>
+        {/* <BackToMainPage onClick={closeControls} /> */}
+        <form className={styles.inputs__container}>
+          <input
+            type="text"
+            placeholder="Описание товара"
+            className={styles.input__item}
+          />
+
+          <Select />
+
+          <div className={styles.input__sum__thumb}>
             <input
               type="text"
-              placeholder="Описание товара"
-              className={styles.input__item}
+              placeholder="0,00"
+              className={styles.input__sum}
             />
-
-            <Select />
-
-            <div className={styles.input__sum__thumb}>
-              <input
-                type="text"
-                placeholder="0,00"
-                className={styles.input__sum}
-              />
-              <Calculator className={styles.icon__calculator} />
-              <div className={styles.icon__mobile_calculator_container}>
-                <Calculator className={styles.icon__mobile_calculator} />
-              </div>
+            <Calculator className={styles.icon__calculator} />
+            <div className={styles.icon__mobile_calculator_container}>
+              <Calculator className={styles.icon__mobile_calculator} />
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
+      </div>
 
-        <div className={styles.buttons__container}>
-          <button type="submit" className={styles.button__submit}>
-            Ввод
-          </button>
-          <button type="reset" className={styles.button__reset}>
-            Очистить
-          </button>
-        </div>
+      <div className={styles.buttons__container}>
+        <button type="submit" className={styles.button__submit}>
+          Ввод
+        </button>
+        <button type="reset" className={styles.button__reset}>
+          Очистить
+        </button>
       </div>
     </div>
   );
