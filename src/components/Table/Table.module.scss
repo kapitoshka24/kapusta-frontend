@@ -2,7 +2,7 @@
 @import '../../styles/utils/_mixins.scss';
 
 .table__container {
-  @include to (tablet) {
+  @include to(tablet) {
     width: 100%;
     padding: 0 19px;
   }
@@ -12,11 +12,11 @@
   table-layout: fixed;
   border-collapse: collapse;
 
-  @include from (tablet) {
+  @include from(tablet) {
     width: 605px;
   }
 
-  @include from (desktop) {
+  @include from(desktop) {
     width: 760px;
   }
 
@@ -40,11 +40,11 @@
   th:nth-of-type(2) {
     width: 255px;
 
-    @include from (tablet) {
+    @include from(tablet) {
       width: 195px;
     }
-  
-    @include from (desktop) {
+
+    @include from(desktop) {
       width: 255px;
     }
   }
@@ -53,11 +53,11 @@
   th:nth-of-type(3) {
     width: 170px;
 
-    @include from (tablet) {
+    @include from(tablet) {
       width: 130px;
     }
-  
-    @include from (desktop) {
+
+    @include from(desktop) {
       width: 170px;
     }
   }
@@ -69,7 +69,7 @@
   thead {
     background-color: $background-grey;
 
-    @include to (tablet) {
+    @include to(tablet) {
       display: none;
     }
 
@@ -80,7 +80,7 @@
       line-height: 1.667;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-  
+
       color: $black;
     }
 
@@ -90,7 +90,7 @@
 
     th:nth-of-type(4) {
       border-top-right-radius: 20px;
-      text-align: center;
+      padding-left: 22px;
     }
   }
 }
@@ -117,9 +117,11 @@ tbody {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   z-index: 1;
 
-  &::before {
+  &:hover::before,
+  &:focus::before {
     position: absolute;
     content: '';
     width: 32px;

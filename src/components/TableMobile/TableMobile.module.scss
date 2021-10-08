@@ -2,7 +2,7 @@
 @import '../../styles/utils/_mixins.scss';
 
 .list {
-  padding: 0 19px;
+  padding: 0 19px 53px 19px;
 }
 
 .item {
@@ -22,6 +22,10 @@
   align-items: center;
 }
 
+.expense__thumb {
+  width: 60%;
+}
+
 .name {
   margin-bottom: 3px;
 
@@ -31,6 +35,9 @@
   letter-spacing: 0.04em;
 
   color: $text-grey;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .date,
