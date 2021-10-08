@@ -1,0 +1,10 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+.container {
+  padding-top: 55px;
+}
+
+.title {
+  text-align: center;
+  color: $text-grey;
+}
