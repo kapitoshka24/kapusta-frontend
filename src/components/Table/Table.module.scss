@@ -6,6 +6,10 @@
     width: 100%;
     padding: 0 19px;
   }
+
+  @include to(desktop) {
+    margin-bottom: 40px;
+  }
 }
 
 .table {
