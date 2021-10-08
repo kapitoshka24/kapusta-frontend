@@ -5,7 +5,6 @@
 }
 
 .wrapper{
-    position: relative;
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
@@ -13,10 +12,17 @@
 
 .hero__container{
     height: 286px;
+    overflow: hidden;
     padding-top: 86px;
     padding-left: 49px;
     background-color: $background-grey;
     border-radius: 0 0 0 120px;
+    background-image: url(./icons/Vector2.png);
+    background-repeat: no-repeat;
+    background-position: right 0px top 104px;
+}
+.hero__login{
+    background-image: none;
 }
 
 .hero__tablet{
@@ -42,35 +48,16 @@
 
 .footer{
     min-height: 225px;
+    background-image: url(./icons/Vector.png);
+    background-repeat: no-repeat;
+    background-position: bottom 0px left 35px;
 }
 
-.cabbage1{
-    position: absolute;
-    right: -34px;
-    top: 160px;
-    transform: rotate(180deg);
-}
-
-.cabbage2{
-    position: absolute;
-    bottom: 0;
-    left: 35px;
-}
-
-.cabbages__tablet{
-    display: none;
+.footer__login{
+    background-image: none;
 }
 
 .img__desktop{
-    display: none;
-}
-
-.cabbages__desktop,
-.cabbage11,
-.cabbage12,
-.shadow3,
-.shadow4,
-.cabbages__desktop__isLogin{
     display: none;
 }
 
@@ -79,6 +66,13 @@
         height: 526px;
         padding-top: 90px;
         padding-left: 171px;
+        background-image: url(./icons/Group.png);
+        background-repeat: repeat-x;
+        background-position: 0 28px;
+    }
+
+    .hero__login{
+        background-image: none;
     }
 
     .description {
@@ -88,6 +82,13 @@
 
     .footer{
         min-height: 442px;
+        background-image: url(./icons/Group2.png);
+        background-repeat: no-repeat;
+        background-position: left 103px bottom 56px;
+    }
+
+    .footer__login{
+        background-position: right 88px bottom 64px;
     }
 
     .hero{
@@ -96,126 +97,6 @@
     }
 
     .hero__tablet{
-        display: block;
-    }
-
-    .cabbages__tablet{
-        display: block;
-    }
-
-    .cabbage1{
-        position: absolute;
-        right: -70px;
-        top: 147px;
-        transform: rotate(270deg);
-    }
-
-    .cabbage2{
-        position: absolute;
-        left: 103px;
-        bottom: 90px;
-    }
-    .cabbage3{
-        position: absolute;
-        top: 84px;
-        left: 80%;
-    }
-
-    .cabbage4{
-        position: absolute;
-        top: 84px;
-        left: 20%;
-        z-index: 0;
-    }
-
-    .cabbage5{
-        position: absolute;
-        top: 84px;
-        left: 50%;
-        transform: rotate(180deg);
-        z-index: 0;
-    }
-
-    .cabbage6{
-        position: absolute;
-        top: 147px;
-        left: 3%;
-        transform: rotate(270deg);
-        z-index: 0;
-    }
-    
-    .cabbage7{
-        position: absolute;
-        top: 147px;
-        left: 35%;
-        transform: rotate(270deg);
-        z-index: 0;
-    }
-
-    .cabbage8{
-        position: absolute;
-        top: 147px;
-        left: 65%;
-        transform: rotate(270deg);
-        z-index: 0;
-    }
-
-    .cabbage9{
-        position: absolute;
-        top: 233px;
-        left: 16%;
-        transform: rotate(90deg);
-        z-index: 0;
-    }
-
-    .cabbage10{
-        position: absolute;
-        bottom: 115px;
-        left: 197px;
-        transform: rotate(270deg);
-        z-index: 0;
-    }
-
-    .shadow1{
-        position: absolute;
-        left: 108px;
-        bottom: 56px;
-    }
-
-    .shadow2{
-        position: absolute;
-        left: 219px;
-        bottom: 72px;
-    }
-
-    .cabbage11{
-        position: absolute;
-        bottom: 123px;
-        right: 88px;
-        transform: rotate(270deg);
-        z-index: 0;
-        display: block;
-    }
-
-    .cabbage12{
-        position: absolute;
-        bottom: 98px;
-        right: 188px;
-        z-index: 0;
-        display: block;
-    }
-
-    .shadow3{
-        position: absolute;
-        right: 88px;
-        bottom: 80px;
-        display: block;
-    }
-
-    .shadow4{
-        position: absolute;
-        right: 199px;
-        bottom: 64px;
         display: block;
     }
 }
@@ -229,182 +110,25 @@
 
     .footer {
         min-height: 268px;
+        background-position: left 230px bottom 50px;
     }
 
-    .shadow3,
-    .shadow4{
-        display: none;
+    .footer__login {
+        background-image: url(./icons/GroupFooter.png);
+        background-position: left 0px bottom 0px;
+        background-repeat: repeat-x;
     }
+
+
 
     .hero__tablet{
         display: none;
     }
 
     .hero__desktop{
+        position: relative;
         display: block;
+        z-index: 1;
     }
 
-    .cabbages__desktop{
-        display: block;
-    }
-
-    .cabbage2{
-        left: 230px;
-        bottom: 84px;
-    }
-
-    .cabbage4{
-        left: 10%;
-    }
-
-    .cabbage5{
-        left: 28%;
-    }
-
-    .cabbage3{
-        left: 48%;
-    }
-
-    .cabbage10{
-        left: 324px;
-        bottom: 109px;
-    }
-
-    .shadow1{
-        left: 235px;
-        bottom: 60px;
-    }
-
-    .shadow2{
-        left: 346px;
-        bottom: 66px;
-    }
-    
-    .cabbage14{
-        position: absolute;
-        top: 84px;
-        left: 70%;
-        transform: rotate(180deg);
-    }
-
-    .cabbage13{
-        position: absolute;
-        top: 84px;
-        left: 92%;
-    }
-
-    .cabbage7{
-        left: 19%;
-    }
-
-    .cabbage8{
-        left: 38%;
-    }
-
-    .cabbage9{
-        left: 11%;
-    }
-
-    .cabbage1{
-        right: 35%;
-    }
-
-    .cabbage15{
-        position: absolute;
-        top: 147px;
-        left: 82%;
-        transform: rotate(270deg);
-
-    }
-
-    .cabbage16{
-        position: absolute;
-        top: 233px;
-        left: 92%;
-        transform: rotate(270deg);
-    }
-
-    .cabbages__desktop__isLogin{
-        display: block;
-    }
-
-    .cabbage11{
-        position: absolute;
-        bottom: 48px;
-        right: -4%;
-    }
-
-    .cabbage12{
-        position: absolute;
-        bottom: 105px;
-        right: 6%;
-    }
-
-    .cabbage17{
-        position: absolute;
-        bottom: 48px;
-        transform: rotate(270deg);
-        left: 5%;
-    }
-
-    .cabbage18{
-        position: absolute;
-        bottom: 48px;
-        transform: rotate(270deg);
-        left: 25%
-    }
-
-    .cabbage19{
-        position: absolute;
-        bottom: 48px;
-        transform: rotate(270deg);
-        left: 45%;
-    }
-
-    .cabbage20{
-        position: absolute;
-        bottom: 48px;
-        transform: rotate(270deg);
-        left: 63%;
-    }
-
-    .cabbage21{
-        position: absolute;
-        bottom: 48px;
-        transform: rotate(270deg);
-        left: 80%;
-    }
-
-    .cabbage22{
-        position: absolute;
-        bottom: -10px;
-        left: 15%;
-        transform: rotate(90deg);
-    }
-
-    .cabbage23{
-        position: absolute;
-        bottom: -16px;
-        left: 35%;
-    }
-
-    .cabbage24{
-        position: absolute;
-        bottom: -16px;
-        left: 55%;
-        transform: rotate(90deg);
-    }
-
-    .cabbage25{
-        position: absolute;
-        bottom: -16px;
-        left: 73%;
-    }
-
-    .cabbage26{
-        position: absolute;
-        bottom: -16px;
-        left: 90%;
-        transform: rotate(90deg);
-    }
 }
