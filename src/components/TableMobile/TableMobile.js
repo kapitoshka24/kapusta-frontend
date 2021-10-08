@@ -6,7 +6,10 @@ export default function TableMobile() {
     <ul className={styles.list}>
       <li className={styles.item}>
         <div className={styles.expense__thumb}>
-          <p className={styles.name}>Метро</p>
+          <p className={styles.name}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
 
           <div className={styles.date__thumb}>
             <span className={styles.date}>05.09.2019</span>
