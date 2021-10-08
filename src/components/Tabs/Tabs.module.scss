@@ -14,7 +14,7 @@
   background-color: $border-white;
   cursor: pointer;
 
-  @include to (tablet) {
+  @include to(tablet) {
     width: 50%;
     height: 53px;
 
@@ -23,40 +23,40 @@
     }
   }
 
-  @include from (tablet) {
+  @include from(tablet) {
     width: 138px;
     height: 40px;
-  
+
     background-color: $border-white;
     border-radius: 20px 20px 0 0;
   }
 
   &__active {
-    @include to (tablet) {
+    @include to(tablet) {
       color: $white;
       background: $background-orange;
     }
 
-    @include from (tablet) {
+    @include from(tablet) {
       color: $background-orange;
       background: $background-white;
     }
   }
 
   &__container {
-    @include to (tablet) {
+    @include to(tablet) {
       position: fixed;
       bottom: 0;
       width: 100%;
     }
 
-    @include from (tablet) {
+    @include from(tablet) {
       max-width: 1060px;
       margin: 0 auto;
       width: 665px;
     }
 
-    @include from (desktop) {
+    @include from(desktop) {
       width: 1060px;
     }
   }

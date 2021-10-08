@@ -4,6 +4,8 @@ import Date from '../Date';
 // import BackToMainPage from '../report/BackToMainPage';
 import styles from './Controls.module.scss';
 import { ReactComponent as Calculator } from '../../icons/calculator.svg';
+import { ReactComponent as GoBack } from '../../icons/go-home.svg';
+import useWindowWidth from '../../helpers/useWindowWidth';
 
 export default function Controls({ closeControls }) {
   const handleBackdropClick = e => {
@@ -12,20 +14,20 @@ export default function Controls({ closeControls }) {
     }
   };
 
-  const mobile = window.screen.width < 768;
+  const windowWidth = useWindowWidth();
 
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.controls__container}>
         <div className={styles.inputs__date__thumb}>
-          {!mobile && <Date />}
+          {windowWidth >= 768 && <Date />}
 
           <button
             className={styles.arrow}
             onClick={closeControls}
             type="button"
           >
-            Стрелка
+            <GoBack />
           </button>
           {/* <BackToMainPage onClick={closeControls} /> */}
           <form className={styles.inputs__container}>

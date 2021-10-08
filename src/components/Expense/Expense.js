@@ -10,33 +10,42 @@ import Table from '../Table';
 import TableMobile from '../TableMobile';
 // import ControlsMobile from '../ControlsMobile';
 import styles from './Expense.module.scss';
+import useWindowWidth from '../../helpers/useWindowWidth';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   const toggleControls = () => {
     setShowControls(prevVal => !prevVal);
   };
 
-  const mobile = window.screen.width < 768;
+  const showEnterButton = () => {
+    setShowButton(true);
+  };
+
+  const windowWidth = useWindowWidth();
 
   return (
     <>
-      {mobile ? <TabsMobile /> : <Tabs />}
+      {windowWidth < 768 ? (
+        <TabsMobile showButton={showEnterButton} />
+      ) : (
+        <Tabs />
+      )}
 
       <TabContainer>
-        {mobile && (
-          <div className={styles.date__mobile_container}>
-            <Date />
-            <EnterButton closeControls={toggleControls} />
-          </div>
-        )}
+        <div className={styles.date__mobile_container}>
+          {windowWidth < 768 && <Date />}
+          {showButton && <EnterButton closeControls={toggleControls} />}
+        </div>
 
-        {mobile ? null : <Controls />}
+        {windowWidth < 768 ? null : <Controls />}
 
         {showControls && <Controls closeControls={toggleControls} />}
 
-        {mobile ? <TableMobile /> : <Table />}
+        {windowWidth < 768 ? null : <Table />}
+        {showButton && <TableMobile />}
       </TabContainer>
     </>
   );
