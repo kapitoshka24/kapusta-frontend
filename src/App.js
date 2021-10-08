@@ -6,9 +6,11 @@ import authSelectors from './redux/selectors/auth-selectors';
 
 import Preloader from './components/Preloader';
 import Header from './components/Header';
+
 // import Login from './components/Login';
 // import Register from './components/Register';
 // import TotalBalance from './components/TotalBalance';
+import Chart from './components/Chart';
 
 const Login = lazy(() => import('./components/Login'));
 const Register = lazy(() => import('./components/Register'));
@@ -37,6 +39,9 @@ export default function App() {
           </Switch>
         )}
       </Suspense>
+
+      <TotalBalance />
+      <Chart />
     </>
   );
 }
