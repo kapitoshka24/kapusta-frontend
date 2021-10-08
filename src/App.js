@@ -7,21 +7,20 @@ import authSelectors from './redux/selectors/auth-selectors';
 import { PublicRoute, PrivateRoute } from './routes';
 import Preloader from './components/Preloader';
 import Header from './components/Header';
+import MainComponent from './components/MainComponent/MainComponent';
 
 const Login = lazy(() => import('./components/Login'));
 const Register = lazy(() => import('./components/Register'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Home = lazy(() => import('./pages/Home'));
 
-import MainComponent from './components/MainComponent/MainComponent';
-
 export default function App() {
   const isLogged = useSelector(authSelectors.selectUserIsLogged);
 
   return (
     <>
-      <MainComponent />
       <Header />
+      <MainComponent />
 
       <Suspense fallback={<Preloader />}>
         <Switch>
