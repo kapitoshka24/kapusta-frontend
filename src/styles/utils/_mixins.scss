@@ -1,0 +1,31 @@
+$breakpoints: (
+  'mobile': 320px,
+  'tablet': 768px,
+  'desktop': 1280px,
+);
+
+@function getRange($point) {
+  @each $device, $range in $breakpoints {
+    @if ($device == $point) {
+      @return $range;
+    }
+  }
+}
+
+@mixin from($point) {
+  @media screen and (min-width: getRange($point)) {
+    @content;
+  }
+}
+
+@mixin to($point) {
+  @media screen and (max-width: getRange($point) - 1) {
+    @content;
+  }
+}
+
+@mixin from-to($pointFrom, $pointTo) {
+  @media screen and (min-width: getRange($pointFrom)) and (max-width: getRange($pointTo) - 1) {
+    @content;
+  }
+}
