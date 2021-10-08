@@ -6,7 +6,7 @@
   height: 342px;
   border-bottom-left-radius: 130px;
 
-  @include from-to(mobile, tablet) {
+  @include to(tablet) {
     background-image: url('../../images/mobile/kapusta-title-mobile.svg'),
       url('../../images/mobile/kapusta-top-mobile.svg');
     background-repeat: no-repeat, no-repeat;
@@ -29,6 +29,16 @@
       url('../../images/desktop/kapusta-title-desktop.svg');
     background-repeat: repeat-x, no-repeat;
     background-position: 0px 84px, 230px 364px;
+  }
+}
+
+.backgroundLoggedIn {
+  background-color: $background-grey;
+  height: 342px;
+  border-bottom-left-radius: 130px;
+
+  @include from(tablet) {
+    height: 582px;
   }
 }
 
@@ -55,16 +65,22 @@
 }
 
 .user__button {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   margin-right: 15px;
   width: 32px;
   height: 32px;
   border: none;
   border-radius: 50%;
-  background-color: $background-grey;
-  color: $black;
-  font-weight: 700;
+  background-color: #f5f6fa;
+
+  font-weight: normal;
   font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: $text-grey;
 }
 
 .logout__mobile {
@@ -78,13 +94,19 @@
   position: relative;
   display: none;
   margin-right: 40px;
+
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: $text-grey;
 }
 
 .user__name::after {
   content: ' ';
   position: absolute;
   right: -20px;
-  top: -8px;
+  top: -12px;
   display: block;
   height: 36px;
   width: 1px;
@@ -93,6 +115,15 @@
 
 .logout {
   display: none;
+
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+  text-decoration-line: underline;
+
+  color: #52555f;
 }
 
 .logout:hover,

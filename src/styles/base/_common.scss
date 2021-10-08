@@ -22,25 +22,15 @@ button {
 }
 
 #root {
-  background-repeat: no-repeat;
-
   @include to(tablet) {
     min-height: 870px;
-
-    background-image: url('../../images/mobile/kapusta-down-mobile.svg');
-    background-position: left 35px bottom 0px;
   }
 
   @include from(tablet) {
     min-height: 1000px;
-
-    background-image: url('../../images/desktop/kapusta-down-desktop.svg');
-    background-position: 103px 826px;
   }
 
   @include from(desktop) {
-    min-height: 800px;
-
-    background-position: 230px 658px;
+    min-height: 900px;
   }
 }
