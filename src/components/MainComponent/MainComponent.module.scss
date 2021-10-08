@@ -1,0 +1,410 @@
+@import '../../styles/utils/variables';
+
+* {
+    box-sizing: border-box;
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.hero__container{
+    height: 286px;
+    padding-top: 86px;
+    padding-left: 49px;
+    background-color: $background-grey;
+    border-radius: 0 0 0 120px;
+}
+
+.hero__tablet{
+    position: relative;
+    display: none;
+    z-index: 2;
+}
+
+.hero__desktop{
+    display: none;
+}
+
+.description{
+    position: relative;
+    margin-left: 11px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.footer{
+    min-height: 225px;
+}
+
+.cabbage1{
+    position: absolute;
+    right: -34px;
+    top: 160px;
+    transform: rotate(180deg);
+}
+
+.cabbage2{
+    position: absolute;
+    bottom: 0;
+    left: 35px;
+}
+
+.cabbages__tablet{
+    display: none;
+}
+
+.img__desktop{
+    display: none;
+}
+
+.cabbages__desktop,
+.cabbage11,
+.cabbage12,
+.shadow3,
+.shadow4,
+.cabbages__desktop__isLogin{
+    display: none;
+}
+
+@media screen and (min-width: 768px){
+    .hero__container{
+        height: 526px;
+        padding-top: 90px;
+        padding-left: 171px;
+    }
+
+    .description {
+        margin-left: 53px;
+        font-size: 16px;
+    }
+
+    .footer{
+        min-height: 442px;
+    }
+
+    .hero{
+        display: none;
+
+    }
+
+    .hero__tablet{
+        display: block;
+    }
+
+    .cabbages__tablet{
+        display: block;
+    }
+
+    .cabbage1{
+        position: absolute;
+        right: -70px;
+        top: 147px;
+        transform: rotate(270deg);
+    }
+
+    .cabbage2{
+        position: absolute;
+        left: 103px;
+        bottom: 90px;
+    }
+    .cabbage3{
+        position: absolute;
+        top: 84px;
+        left: 80%;
+    }
+
+    .cabbage4{
+        position: absolute;
+        top: 84px;
+        left: 20%;
+        z-index: 0;
+    }
+
+    .cabbage5{
+        position: absolute;
+        top: 84px;
+        left: 50%;
+        transform: rotate(180deg);
+        z-index: 0;
+    }
+
+    .cabbage6{
+        position: absolute;
+        top: 147px;
+        left: 3%;
+        transform: rotate(270deg);
+        z-index: 0;
+    }
+    
+    .cabbage7{
+        position: absolute;
+        top: 147px;
+        left: 35%;
+        transform: rotate(270deg);
+        z-index: 0;
+    }
+
+    .cabbage8{
+        position: absolute;
+        top: 147px;
+        left: 65%;
+        transform: rotate(270deg);
+        z-index: 0;
+    }
+
+    .cabbage9{
+        position: absolute;
+        top: 233px;
+        left: 16%;
+        transform: rotate(90deg);
+        z-index: 0;
+    }
+
+    .cabbage10{
+        position: absolute;
+        bottom: 115px;
+        left: 197px;
+        transform: rotate(270deg);
+        z-index: 0;
+    }
+
+    .shadow1{
+        position: absolute;
+        left: 108px;
+        bottom: 56px;
+    }
+
+    .shadow2{
+        position: absolute;
+        left: 219px;
+        bottom: 72px;
+    }
+
+    .cabbage11{
+        position: absolute;
+        bottom: 123px;
+        right: 88px;
+        transform: rotate(270deg);
+        z-index: 0;
+        display: block;
+    }
+
+    .cabbage12{
+        position: absolute;
+        bottom: 98px;
+        right: 188px;
+        z-index: 0;
+        display: block;
+    }
+
+    .shadow3{
+        position: absolute;
+        right: 88px;
+        bottom: 80px;
+        display: block;
+    }
+
+    .shadow4{
+        position: absolute;
+        right: 199px;
+        bottom: 64px;
+        display: block;
+    }
+}
+
+@media screen and ( min-width: 1280px){
+    .hero__container{
+        height: 526px;
+        padding-top: 308px;
+        padding-left: 230px;
+    }
+
+    .footer {
+        min-height: 268px;
+    }
+
+    .shadow3,
+    .shadow4{
+        display: none;
+    }
+
+    .hero__tablet{
+        display: none;
+    }
+
+    .hero__desktop{
+        display: block;
+    }
+
+    .cabbages__desktop{
+        display: block;
+    }
+
+    .cabbage2{
+        left: 230px;
+        bottom: 84px;
+    }
+
+    .cabbage4{
+        left: 10%;
+    }
+
+    .cabbage5{
+        left: 28%;
+    }
+
+    .cabbage3{
+        left: 48%;
+    }
+
+    .cabbage10{
+        left: 324px;
+        bottom: 109px;
+    }
+
+    .shadow1{
+        left: 235px;
+        bottom: 60px;
+    }
+
+    .shadow2{
+        left: 346px;
+        bottom: 66px;
+    }
+    
+    .cabbage14{
+        position: absolute;
+        top: 84px;
+        left: 70%;
+        transform: rotate(180deg);
+    }
+
+    .cabbage13{
+        position: absolute;
+        top: 84px;
+        left: 92%;
+    }
+
+    .cabbage7{
+        left: 19%;
+    }
+
+    .cabbage8{
+        left: 38%;
+    }
+
+    .cabbage9{
+        left: 11%;
+    }
+
+    .cabbage1{
+        right: 35%;
+    }
+
+    .cabbage15{
+        position: absolute;
+        top: 147px;
+        left: 82%;
+        transform: rotate(270deg);
+
+    }
+
+    .cabbage16{
+        position: absolute;
+        top: 233px;
+        left: 92%;
+        transform: rotate(270deg);
+    }
+
+    .cabbages__desktop__isLogin{
+        display: block;
+    }
+
+    .cabbage11{
+        position: absolute;
+        bottom: 48px;
+        right: -4%;
+    }
+
+    .cabbage12{
+        position: absolute;
+        bottom: 105px;
+        right: 6%;
+    }
+
+    .cabbage17{
+        position: absolute;
+        bottom: 48px;
+        transform: rotate(270deg);
+        left: 5%;
+    }
+
+    .cabbage18{
+        position: absolute;
+        bottom: 48px;
+        transform: rotate(270deg);
+        left: 25%
+    }
+
+    .cabbage19{
+        position: absolute;
+        bottom: 48px;
+        transform: rotate(270deg);
+        left: 45%;
+    }
+
+    .cabbage20{
+        position: absolute;
+        bottom: 48px;
+        transform: rotate(270deg);
+        left: 63%;
+    }
+
+    .cabbage21{
+        position: absolute;
+        bottom: 48px;
+        transform: rotate(270deg);
+        left: 80%;
+    }
+
+    .cabbage22{
+        position: absolute;
+        bottom: -10px;
+        left: 15%;
+        transform: rotate(90deg);
+    }
+
+    .cabbage23{
+        position: absolute;
+        bottom: -16px;
+        left: 35%;
+    }
+
+    .cabbage24{
+        position: absolute;
+        bottom: -16px;
+        left: 55%;
+        transform: rotate(90deg);
+    }
+
+    .cabbage25{
+        position: absolute;
+        bottom: -16px;
+        left: 73%;
+    }
+
+    .cabbage26{
+        position: absolute;
+        bottom: -16px;
+        left: 90%;
+        transform: rotate(90deg);
+    }
+}

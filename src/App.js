@@ -13,11 +13,14 @@ const Register = lazy(() => import('./components/Register'));
 const NotFound = lazy(() => import('./components/NotFound'));
 const Home = lazy(() => import('./pages/Home'));
 
+import MainComponent from './components/MainComponent/MainComponent';
+
 export default function App() {
   const isLogged = useSelector(authSelectors.selectUserIsLogged);
 
   return (
     <>
+      <MainComponent />
       <Header />
 
       <Suspense fallback={<Preloader />}>
