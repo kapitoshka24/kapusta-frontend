@@ -21,6 +21,7 @@
     padding: 30px 170px 40px 170px;
   }
 }
+
 .expensesListItem {
   width: 96px;
   display: flex;
@@ -50,6 +51,7 @@
     }
   }
 }
+
 .iconContainer {
   position: relative;
   height: 56px;
@@ -69,9 +71,11 @@
     background-color: $background-grey;
   }
 }
+
 .iconContainer:hover::after {
   background-color: $diagram-light;
 }
+
 .icon {
   height: 100%;
   width: 100%;
@@ -82,6 +86,7 @@
     cursor: pointer;
   }
 }
+
 .amount,
 .name {
   margin: 0;
@@ -94,10 +99,12 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
 .name {
   letter-spacing: 0.02em;
   margin-top: 7px;
 }
+
 .amount {
   margin-bottom: 7px;
 }

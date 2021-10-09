@@ -24,6 +24,7 @@
     width: 1060px;
   }
 }
+
 .slider {
   position: relative;
   padding: 0px 20px;
@@ -50,25 +51,31 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
 .slick-next {
   right: 0;
   background-image: url('../../images/next.svg');
 }
+
 .slick-prev {
   left: 0;
   background-image: url('../../images/previous.svg');
 }
+
 .slick-slider {
   min-width: 0;
 }
+
 .slick-list {
   overflow: hidden;
 }
+
 .slick-track {
   display: flex;
   min-width: 0;
   align-items: flex-start;
 }
+
 .slider__item {
   text-align: center;
   .slider__text {
