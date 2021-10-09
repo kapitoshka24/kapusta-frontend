@@ -7,9 +7,6 @@
   align-items: center;
 }
 
-.GoHomeIcon {
-  margin-right: 18px;
-}
 .TextLink {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -17,6 +14,8 @@
   font-size: 12px;
   line-height: 1.34;
   color: $button-text;
+  margin-left: 18px;
+
   &:hover {
     color: $bright-orange;
   }

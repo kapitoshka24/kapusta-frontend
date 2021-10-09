@@ -10,7 +10,8 @@ export default function Table() {
             <th>Дата</th>
             <th>Описание</th>
             <th>Категория</th>
-            <th colspan="2">Сумма</th>
+            <th>Сумма</th>
+            <th></th>
           </tr>
         </thead>
 

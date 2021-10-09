@@ -22,6 +22,7 @@
 
   td,
   th {
+    padding: 0;
     height: 40px;
     text-align: start;
 
@@ -38,23 +39,20 @@
 
   td:nth-of-type(2),
   th:nth-of-type(2) {
-    width: 255px;
-
     @include from(tablet) {
       width: 195px;
     }
 
     @include from(desktop) {
-      width: 188px;
+      width: 205px;
     }
   }
 
   td:nth-of-type(3),
   th:nth-of-type(3) {
-    width: 170px;
-
     @include from(tablet) {
       width: 130px;
+      text-align: center;
     }
 
     @include from(desktop) {
@@ -63,7 +61,10 @@
   }
 
   td:nth-of-type(4) {
-    width: 115px;
+    @include from(tablet) {
+      width: 115px;
+      text-align: end;
+    }
   }
 
   thead {
@@ -89,8 +90,11 @@
     }
 
     th:nth-of-type(4) {
+      text-align: end;
+    }
+
+    th:nth-of-type(5) {
       border-top-right-radius: 20px;
-      padding-left: 22px;
     }
   }
 }
@@ -107,19 +111,18 @@ tbody {
     border: 2px solid $background-grey;
   }
 }
-.category {
-  // text-align: center;
-}
+// .category {
+//   // text-align: center;
+// }
 
 .sumNegative {
   color: $red;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .sumPositive {
   color: $green;
-  font-weight: bold;
-  text-align: right;
+  font-weight: 700;
 }
 
 .icon__bg {

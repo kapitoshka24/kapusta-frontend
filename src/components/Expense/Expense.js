@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import TabContainer from '../TabContainer';
 import Controls from '../Controls';
@@ -17,6 +17,11 @@ import mainStyles from '../../styles/AppComon.module.scss';
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
   const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.style.overflow = showControls ? 'hidden' : 'auto';
+  }, [showControls]);
 
   const toggleControls = () => {
     setShowControls(prevVal => !prevVal);
