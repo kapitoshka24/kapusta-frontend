@@ -86,19 +86,6 @@
   }
 }
 
-.container {
-  padding-bottom: 51px;
-
-  @include to(tablet) {
-    width: 282px;
-    margin: 40px auto 0 auto;
-  }
-
-  @include from(tablet) {
-    padding-bottom: 74px;
-  }
-}
-
 @keyframes rotateY {
   0% {
     transform: perspective(400px) rotateY(0deg);
