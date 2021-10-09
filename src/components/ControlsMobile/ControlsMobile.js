@@ -1,10 +1,9 @@
 import Select from '../Select';
 
 import Date from '../Date';
-// import BackToMainPage from '../report/BackToMainPage';
+import BackToMainPage from '../BackToMainPage';
 import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../icons/calculator.svg';
-import { ReactComponent as GoBack } from '../../icons/go-home.svg';
 import useWindowWidth from '../../helpers/useWindowWidth';
 
 export default function ControlsMobile({ closeControls }) {
@@ -22,14 +21,8 @@ export default function ControlsMobile({ closeControls }) {
         <div className={styles.inputs__date__thumb}>
           {windowWidth >= 768 && <Date />}
 
-          <button
-            className={styles.arrow}
-            onClick={closeControls}
-            type="button"
-          >
-            <GoBack />
-          </button>
-          {/* <BackToMainPage onClick={closeControls} /> */}
+          <BackToMainPage closeModal={closeControls} />
+
           <form className={styles.inputs__container}>
             <input
               type="text"
