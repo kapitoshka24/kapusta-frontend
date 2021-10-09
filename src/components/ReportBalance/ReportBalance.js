@@ -3,7 +3,8 @@ import { getTotalBalance } from '../../redux/selectors';
 import { changeTotalBalance } from '../../redux/actions';
 import { useFormik } from 'formik';
 import BalanceModal from '../BalanceModal';
-import styles from './TotalBalance.module.scss';
+import BackToMainPage from '../BackToMainPage/';
+import styles from './totalBalance.module.scss';
 
 const validate = values => {
   const errors = {};
@@ -14,7 +15,7 @@ const validate = values => {
   return errors;
 };
 
-const TotalBalance = () => {
+export default function ReportBalance() {
   const balance = useSelector(getTotalBalance);
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const TotalBalance = () => {
   });
   return (
     <div className={styles.balanceContainer}>
+      <BackToMainPage />
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label} htmlFor="balance">
           Баланс:
@@ -55,12 +57,8 @@ const TotalBalance = () => {
           <span className={styles.currency}>UAH</span>
         </div>
       </form>
-      <a className={styles.reports} href="./">
-        Перейти к отчетам
-      </a>
+
       {!balance && <BalanceModal />}
     </div>
   );
-};
-
-export default TotalBalance;
+}
