@@ -4,5 +4,5 @@ import ChartOptional from './ChartOptional';
 
 export default function Chart() {
   const windowWidth = useWindowWidth();
-  return <div>{windowWidth <= 480 ? <ChartMobile /> : <ChartOptional />}</div>;
+  return <div>{windowWidth < 768 ? <ChartMobile /> : <ChartOptional />}</div>;
 }

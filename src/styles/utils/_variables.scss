@@ -23,6 +23,7 @@ $expenses-black: #071f41;
 $expenses-red: #e53935;
 $background-balance-white: #f2f5fc;
 $modalButtonAccent: #ed6a17;
+$gradient-chart: rgba(7, 31, 65, 0.692);
 
 @function transitionFunc($key) {
   @return $key 250ms cubic-bezier(0.4, 0, 0.2, 1);
