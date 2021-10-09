@@ -6,10 +6,6 @@
     width: 100%;
     padding: 0 19px;
   }
-
-  @include to(desktop) {
-    margin-bottom: 40px;
-  }
 }
 
 .table {
@@ -49,7 +45,7 @@
     }
 
     @include from(desktop) {
-      width: 255px;
+      width: 188px;
     }
   }
 
@@ -111,9 +107,19 @@ tbody {
     border: 2px solid $background-grey;
   }
 }
+.category {
+  // text-align: center;
+}
 
-.sum {
+.sumNegative {
   color: $red;
+  font-weight: bold;
+}
+
+.sumPositive {
+  color: $green;
+  font-weight: bold;
+  text-align: right;
 }
 
 .icon__bg {
@@ -136,5 +142,10 @@ tbody {
     border-radius: 50%;
     background-color: $background-grey;
     z-index: -1;
+  }
+
+  &:hover > svg > g,
+  &:focus > svg > g {
+    fill: $red;
   }
 }

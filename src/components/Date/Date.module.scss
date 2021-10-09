@@ -11,16 +11,16 @@
 
   color: $text-grey;
 
-  @media (min-width: 1280px) {
-    margin-right: 23px;
-  }
-
   &__container {
     display: flex;
     align-items: center;
 
     @include to(tablet) {
       justify-content: center;
+    }
+
+    @include from(desktop) {
+      margin-right: 23px;
     }
   }
 }

@@ -18,12 +18,12 @@ export default function Table() {
           <tr>
             <td>05.09.2019</td>
             <td>
-              Метро (Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Iste accusantium quaerat explicabo, recusandae facere sequi
+              Метро (Lorem ipsumNegative dolor sit, amet consectetur adipisicing
+              elit. Iste accusantium quaerat explicabo, recusandae facere sequi
               aperiam hic blanditiis repudiandae ea.{' '}
             </td>
-            <td>Транспорт</td>
-            <td className={styles.sum}>- 30.00 грн.</td>
+            <td className={styles.category}>Транспорт</td>
+            <td className={styles.sumNegative}>- 30.00 грн.</td>
             <td className={styles.icon__bg}>
               <Delete className={styles.icon__delete} />
             </td>
@@ -32,8 +32,8 @@ export default function Table() {
           <tr>
             <td>05.09.2019</td>
             <td>Бананы</td>
-            <td>Продукты</td>
-            <td className={styles.sum}>- 50.00 грн.</td>
+            <td className={styles.category}>Продукты</td>
+            <td className={styles.sumPositive}>50.00 грн.</td>
             <td className={styles.icon__bg}>
               <Delete className={styles.icon__delete} />
             </td>
@@ -42,56 +42,56 @@ export default function Table() {
           <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
             <td></td>
           </tr>
 
           <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
             <td></td>
           </tr>
 
           <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td className={styles.sum}></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
             <td></td>
           </tr>
 
           <tr>
             <td></td>
             <td></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
             <td></td>
-            <td className={styles.sum}></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td className={styles.category}></td>
+            <td className={styles.sumNegative}></td>
             <td></td>
           </tr>
         </tbody>

@@ -52,9 +52,10 @@ export default function Expense() {
           {windowWidth < 768 ? null : <Table />}
           {windowWidth < 768 && showButton && <TableMobile />}
 
-          <MonthlySummary />
+          {windowWidth > 768 && <MonthlySummary />}
         </div>
       </TabContainer>
+      {windowWidth <= 768 && <MonthlySummary />}
     </>
   );
 }

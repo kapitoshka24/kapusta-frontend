@@ -20,7 +20,7 @@
   &:hover {
     color: $bright-orange;
   }
-  @include to(tablet) {
-    display: none;
-  }
+  // @include to(tablet) {
+  //   display: none;
+  // }
 }

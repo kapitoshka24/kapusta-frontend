@@ -6,6 +6,7 @@
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  width: 100%;
 
   @include to(tablet) {
     width: 320px;
@@ -13,13 +14,11 @@
     padding: 35px 35px 40px 35px;
   }
   @include from(tablet) {
-    width: 768px;
     padding: 40px 57px 58px 120px;
     justify-content: space-between;
     align-items: center;
   }
   @include from(desktop) {
-    width: 1280px;
     padding: 40px 115px 9px 460px;
   }
 }

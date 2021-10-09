@@ -7,24 +7,28 @@ function MonthlySummary() {
       <h2 className={styles.SummaryTitle}>Сводка</h2>
       <ul className={styles.MonthList}>
         <li className={styles.MonthItem}>
-          <span>Month1</span>
-          <span>Sum1</span>
+          <span>НОЯБРЬ</span>
+          <span>25 500.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>Month2</span>
-          <span>Sum2</span>
+          <span>ОКТЯБРЬ</span>
+          <span>25 000.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>Month3</span>
-          <span>Sum3</span>
+          <span>СЕНТЯБРЬ</span>
+          <span>25 000.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>Month4</span>
-          <span>Sum4</span>
+          <span>АВГУСТ</span>
+          <span>20 000.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>Month5</span>
-          <span>Sum5</span>
+          <span>ИЮЛЬ</span>
+          <span>20 000.00</span>
+        </li>
+        <li className={styles.MonthItem}>
+          <span>ИЮНЬ</span>
+          <span>18 000.00</span>
         </li>
       </ul>
     </div>
