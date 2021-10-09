@@ -39,6 +39,7 @@ export default function ChartMobile() {
               className={styles.listItem}
               style={{
                 width: itemWidth,
+                animationDelay: `${idx * 100}ms`,
               }}
               key={el.name}
             >

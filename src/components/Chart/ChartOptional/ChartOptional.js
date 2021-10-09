@@ -33,7 +33,11 @@ export default function ChartOptional() {
           });
 
           return (
-            <li className={styles.listItem} key={el.name}>
+            <li
+              className={styles.listItem}
+              style={{ animationDelay: `${idx * 100}ms` }}
+              key={el.name}
+            >
               <p className={styles.label}>{`${el.value} грн`}</p>
               <div
                 style={{
