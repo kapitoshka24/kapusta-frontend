@@ -7,7 +7,6 @@ export default function App() {
   let loggedIn = false;
   return (
     <div className={loggedIn ? styles.loggedInBg : styles.loggedOutBg}>
-      {console.log(styles)}
       {/* <RegisterPage /> */}
       <LoginPage />
     </div>
