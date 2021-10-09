@@ -8,7 +8,7 @@ import { ReactComponent as Logout } from './icons/logout.svg';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const loggedIn = false;
+  const loggedIn = true;
   const user = 'User Name';
 
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,6 @@ export default function Header() {
           loggedIn ? styles.backgroundLoggedIn : styles.backgroundLoggedOut
         }
       >
-        {console.log(styles.backgroundLoggedOut)}
         <div className={styles.wrapper}>
           <header className={styles.header}>
             <Link to="/">

@@ -2,43 +2,55 @@
 @import '../../styles/utils/mixins';
 
 .backgroundLoggedOut {
-  background-color: $background-grey;
-  height: 342px;
-  border-bottom-left-radius: 130px;
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    background-color: $background-grey;
+    height: 342px;
+    width: 100%;
+    border-bottom-left-radius: 130px;
 
-  @include to(tablet) {
-    background-image: url('../../images/mobile/kapusta-title-mobile.svg'),
-      url('../../images/mobile/kapusta-top-mobile.svg');
-    background-repeat: no-repeat, no-repeat;
-    background-position: 49px 142px, right -20px top 160px;
-  }
+    @include from(tablet) {
+      height: 582px;
+    }
 
-  @include from(tablet) {
-    height: 582px;
-  }
+    @include to(tablet) {
+      background-image: url('../../images/mobile/kapusta-title-mobile.svg'),
+        url('../../images/mobile/kapusta-top-mobile.svg');
+      background-repeat: no-repeat, no-repeat;
+      background-position: 49px 86px, right -20px top 104px;
+    }
 
-  @include from-to(tablet, desktop) {
-    background-image: url('../../images/tablet/kapusta-title-tablet.svg'),
-      url('../../images/desktop/kapusta-top-desktop.svg');
-    background-repeat: no-repeat, repeat-x;
-    background-position: 171px 146px, 0px 84px;
-  }
+    @include from-to(tablet, desktop) {
+      background-image: url('../../images/tablet/kapusta-title-tablet.svg'),
+        url('../../images/desktop/kapusta-top-desktop.svg');
+      background-repeat: no-repeat, repeat-x;
+      background-position: 171px 90px, 0px 28px;
+    }
 
-  @include from(desktop) {
-    background-image: url('../../images/desktop/kapusta-top-desktop.svg'),
-      url('../../images/desktop/kapusta-title-desktop.svg');
-    background-repeat: repeat-x, no-repeat;
-    background-position: 0px 84px, 230px 364px;
+    @include from(desktop) {
+      background-image: url('../../images/desktop/kapusta-top-desktop.svg'),
+        url('../../images/desktop/kapusta-title-desktop.svg');
+      background-repeat: repeat-x, no-repeat;
+      background-position: 0px 28px, 230px 308px;
+    }
   }
 }
 
 .backgroundLoggedIn {
-  background-color: $background-grey;
-  height: 342px;
-  border-bottom-left-radius: 130px;
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    background-color: $background-grey;
+    height: 342px;
+    width: 100%;
+    border-bottom-left-radius: 130px;
 
-  @include from(tablet) {
-    height: 582px;
+    @include from(tablet) {
+      height: 582px;
+    }
   }
 }
 
