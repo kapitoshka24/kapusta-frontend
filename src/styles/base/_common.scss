@@ -6,6 +6,7 @@
 
 body {
   font-family: Roboto;
+
   margin: 0;
   padding: 0;
 }
@@ -33,4 +34,12 @@ button {
   @include from(desktop) {
     min-height: 900px;
   }
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
 }

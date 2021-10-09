@@ -1,0 +1,154 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/_mixins.scss';
+
+.table__container {
+  @include to(tablet) {
+    width: 100%;
+    padding: 0 19px;
+  }
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  @include from(tablet) {
+    width: 605px;
+  }
+
+  @include from(desktop) {
+    width: 760px;
+  }
+
+  td,
+  th {
+    padding: 0;
+    height: 40px;
+    text-align: start;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  td:nth-of-type(1),
+  th:nth-of-type(1) {
+    padding-left: 20px;
+    width: 125px;
+  }
+
+  td:nth-of-type(2),
+  th:nth-of-type(2) {
+    @include from(tablet) {
+      width: 195px;
+    }
+
+    @include from(desktop) {
+      width: 205px;
+    }
+  }
+
+  td:nth-of-type(3),
+  th:nth-of-type(3) {
+    @include from(tablet) {
+      width: 130px;
+      text-align: center;
+    }
+
+    @include from(desktop) {
+      width: 170px;
+    }
+  }
+
+  td:nth-of-type(4) {
+    @include from(tablet) {
+      width: 115px;
+      text-align: end;
+    }
+  }
+
+  thead {
+    background-color: $background-grey;
+
+    @include to(tablet) {
+      display: none;
+    }
+
+    th {
+      font-family: 'Roboto';
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.667;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+
+      color: $black;
+    }
+
+    th:nth-of-type(1) {
+      border-top-left-radius: 20px;
+    }
+
+    th:nth-of-type(4) {
+      text-align: end;
+    }
+
+    th:nth-of-type(5) {
+      border-top-right-radius: 20px;
+    }
+  }
+}
+
+tbody {
+  tr {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.667;
+    letter-spacing: 0.04em;
+
+    color: $text-grey;
+    border: 2px solid $background-grey;
+  }
+}
+// .category {
+//   // text-align: center;
+// }
+
+.sumNegative {
+  color: $red;
+  font-weight: 700;
+}
+
+.sumPositive {
+  color: $green;
+  font-weight: 700;
+}
+
+.icon__bg {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover::before,
+  &:focus::before {
+    position: absolute;
+    content: '';
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: $background-grey;
+    z-index: -1;
+  }
+
+  &:hover > svg > g,
+  &:focus > svg > g {
+    fill: $red;
+  }
+}
