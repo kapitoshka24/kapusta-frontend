@@ -4,18 +4,18 @@
   position: absolute;
   width: 282px;
   height: 163px;
-  top: 164px;
+  top: 203px;
   left: 6%;
-  z-index: 1;
+  z-index: 50;
   @include from(tablet) {
     top: 85px;
-    left: 190px;
+    left: 300px;
     height: 163px;
     width: 292px;
   }
   @include from(desktop) {
     top: 85px;
-    left: 546px;
+    left: 450px;
   }
 }
 .contentContainer {

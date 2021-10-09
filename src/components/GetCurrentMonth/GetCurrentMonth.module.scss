@@ -1,9 +1,14 @@
-@import '../../../styles/main.scss';
+@import '../../styles/main.scss';
+@import '../../styles/utils/mixins.scss';
 
 .CurrentPeriodWidget {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+
+  @include to(tablet) {
+    margin-top: 20px;
+  }
 }
 .CurrentMonthSwitcher {
   display: flex;

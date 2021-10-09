@@ -3,8 +3,8 @@ import Select from '../Select';
 import Date from '../Date';
 // import BackToMainPage from '../report/BackToMainPage';
 import styles from '../Controls/Controls.module.scss';
-import { ReactComponent as Calculator } from '../../icons/calculator.svg';
-import { ReactComponent as GoBack } from '../../icons/go-home.svg';
+import { ReactComponent as Calculator } from '../../images/calculator.svg';
+import { ReactComponent as GoBack } from '../../images/go-home.svg';
 import useWindowWidth from '../../helpers/useWindowWidth';
 
 export default function ControlsMobile({ closeControls }) {

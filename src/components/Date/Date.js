@@ -1,5 +1,5 @@
 import styles from './Date.module.scss';
-import { ReactComponent as Calendar } from '../../icons/calendar.svg';
+import { ReactComponent as Calendar } from '../../images/calendar.svg';
 
 export default function DateComponent() {
   const getCurrentDay = () => {

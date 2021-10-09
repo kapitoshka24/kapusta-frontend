@@ -1,6 +1,6 @@
 import React from 'react';
 import expensesCategory from './expensesCategory.json';
-import styles from './sliderExpenses.module.scss';
+import styles from './SliderExpenses.module.scss';
 import sprite from './expenses-sprite.svg';
 
 const SliderExpenses = () => {

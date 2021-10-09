@@ -4,11 +4,6 @@
 .list {
   list-style: none;
 
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
-  overflow: hidden;
-
   &Item {
     min-width: 20px;
     transform: translateX(-200%);

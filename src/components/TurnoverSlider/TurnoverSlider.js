@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import styles from './turnoverSlider.module.scss';
-import Expenses from '../SliderExpenses';
-import Income from '../SliderIncome/SliderIncome';
+import styles from './TurnoverSlider.module.scss';
+import SliderExpenses from '../SliderExpenses';
+import SliderIncome from '../SliderIncome/SliderIncome';
 
 class TurnoverSlider extends Component {
   constructor(props) {
@@ -61,10 +61,10 @@ class TurnoverSlider extends Component {
           ref={slider => (this.slider2 = slider)}
         >
           <div className={styles.slider_big__item}>
-            <Expenses />
+            <SliderExpenses />
           </div>
           <div className={styles.slider_big__item}>
-            <Income />
+            <SliderIncome />
           </div>
         </Slider>
       </div>

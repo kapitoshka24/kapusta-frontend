@@ -1,6 +1,6 @@
-import styles from './BalanceModal.module.scss';
+import styles from './ReportBalanceModal.module.scss';
 
-const BalanceModal = () => {
+export default function ReportBalanceModal() {
   return (
     <div className={styles.modalContainer}>
       <div className={styles.triangle}></div>
@@ -14,6 +14,4 @@ const BalanceModal = () => {
       </div>
     </div>
   );
-};
-
-export default BalanceModal;
+}

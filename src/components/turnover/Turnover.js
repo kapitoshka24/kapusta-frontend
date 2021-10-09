@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './turnover.module.scss';
+import styles from './Turnover.module.scss';
 
 const Turnover = () => {
-  const expenses = '1810000.00';
-  const income = '41144444552100.00';
+  const expenses = '1281.00';
+  const income = '4100.00';
 
   return (
     <div className={styles.turnoverContainer}>

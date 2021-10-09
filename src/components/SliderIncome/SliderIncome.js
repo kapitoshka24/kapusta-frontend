@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './sliderIncome.module.scss';
+import styles from './SliderIncome.module.scss';
 import incomeCategory from './incomeCategory.json';
 import sprite from './income-sprite.svg';
 

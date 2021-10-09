@@ -2,9 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTotalBalance } from '../../redux/selectors';
 import { changeTotalBalance } from '../../redux/actions';
 import { useFormik } from 'formik';
-import BalanceModal from '../BalanceModal';
+import ReportBalanceModal from '../ReportBalanceModal';
 import BackToMainPage from '../BackToMainPage/';
-import styles from './totalBalance.module.scss';
+import GetCurrentMonth from '../GetCurrentMonth/';
+import styles from './ReportBalance.module.scss';
+import useWindowWidth from '../../helpers/useWindowWidth';
 
 const validate = values => {
   const errors = {};
@@ -18,6 +20,7 @@ const validate = values => {
 export default function ReportBalance() {
   const balance = useSelector(getTotalBalance);
   const dispatch = useDispatch();
+  const windowWidth = useWindowWidth();
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
@@ -35,30 +38,61 @@ export default function ReportBalance() {
   return (
     <div className={styles.balanceContainer}>
       <BackToMainPage />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.label} htmlFor="balance">
-          Баланс:
-        </label>
-        <div className={styles.inputContainer}>
-          <input
-            className={styles.input}
-            id="balance"
-            name="balance"
-            type="number"
-            onChange={handleChange}
-            value={values.balance}
-            autoComplete="off"
-          />
+      {windowWidth >= 768 && (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.label} htmlFor="balance">
+            Баланс:
+          </label>
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.input}
+              id="balance"
+              name="balance"
+              type="number"
+              onChange={handleChange}
+              value={values.balance}
+              autoComplete="off"
+            />
 
-          {errors.balance ? <div>{errors.balance}</div> : null}
-          <button className={styles.button} disabled={false} type="submit">
-            Подтвердить
-          </button>
-          <span className={styles.currency}>UAH</span>
-        </div>
-      </form>
+            {errors.balance ? <div>{errors.balance}</div> : null}
+            <span className={styles.currency}>UAH</span>
+            {windowWidth >= 1280 && (
+              <button className={styles.button} disabled={false} type="submit">
+                Подтвердить
+              </button>
+            )}
+          </div>
+        </form>
+      )}
+      <GetCurrentMonth />
+      {windowWidth < 768 && (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.label} htmlFor="balance">
+            Баланс:
+          </label>
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.input}
+              id="balance"
+              name="balance"
+              type="number"
+              onChange={handleChange}
+              value={values.balance}
+              autoComplete="off"
+            />
 
-      {!balance && <BalanceModal />}
+            {errors.balance ? <div>{errors.balance}</div> : null}
+            <span className={styles.currency}>UAH</span>
+            {windowWidth >= 1280 && (
+              <button className={styles.button} disabled={false} type="submit">
+                Подтвердить
+              </button>
+            )}
+          </div>
+        </form>
+      )}
+
+      {!balance && <ReportBalanceModal />}
     </div>
   );
 }
