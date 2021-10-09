@@ -1,4 +1,4 @@
-import { ReactComponent as Delete } from '../../icons/delete.svg';
+import { ReactComponent as Delete } from '../../images/delete.svg';
 import styles from './TableMobile.module.scss';
 
 export default function TableMobile() {

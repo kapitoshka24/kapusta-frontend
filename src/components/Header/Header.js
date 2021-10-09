@@ -36,7 +36,7 @@ export default function Header() {
                   <Logout />
                 </button>
                 <span className={styles.user__name}>{user}</span>
-                <a onClick={toggleModal} className={styles.logout} href="./">
+                <a onClick={toggleModal} className={styles.logout}>
                   Выйти
                 </a>
               </div>

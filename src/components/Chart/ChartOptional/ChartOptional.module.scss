@@ -73,12 +73,29 @@
   background-position: 50% 61%;
   overflow: hidden;
 
+  margin-top: 30px;
+  padding-top: 25px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+
   @include from(desktop) {
     width: 1060px;
     padding: 27px 228px 25px 228px;
-    border-radius: 60px;
     background-size: 758px 314px;
     background-position: 50% 60%;
+  }
+}
+
+.container {
+  padding-bottom: 51px;
+
+  @include to(tablet) {
+    width: 282px;
+    margin: 40px auto 0 auto;
+  }
+
+  @include from(tablet) {
+    padding-bottom: 74px;
   }
 }
 

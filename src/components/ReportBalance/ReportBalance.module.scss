@@ -6,23 +6,27 @@
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  width: 100%;
 
   @include to(tablet) {
+    flex-direction: column;
     width: 320px;
-    flex-direction: column-reverse;
-    padding: 35px 35px 40px 35px;
+    padding: 22px 22px 0 22px;
+    margin-bottom: 40px;
   }
-
-  @include from(tablet) {
-    width: 768px;
-    padding: 40px 57px 58px 120px;
+  @include from-to(tablet, desktop) {
+    width: 668px;
+    padding-top: 40px;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 30px;
   }
-
   @include from(desktop) {
-    width: 1280px;
-    padding: 40px 115px 9px 460px;
+    width: 1060px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    margin-bottom: 30px;
   }
 }
 
@@ -50,7 +54,7 @@
 }
 .form {
   @include to(tablet) {
-    margin-top: 43px;
+    margin-top: 30px;
   }
 
   @include from(tablet) {
@@ -71,7 +75,7 @@
   color: $button-text;
 
   @include to(tablet) {
-    margin-bottom: 6px;
+    margin-bottom: 12px;
   }
   @include from(tablet) {
     margin-right: 21px;
@@ -83,10 +87,15 @@
 .inputContainer {
   position: relative;
   display: flex;
+
+  @include to(tablet) {
+    justify-content: center;
+  }
 }
 
 .input {
   width: 125px;
+  margin-right: 15px;
   height: 44px;
   padding: 15px 45px 15px 23px;
 
@@ -103,9 +112,11 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: $black;
-  @include from(tablet) {
-    border-radius: 16px;
-    margin-right: 15px;
+
+  border-radius: 16px;
+
+  @include to(tablet) {
+    width: 183px;
   }
 }
 .currency {

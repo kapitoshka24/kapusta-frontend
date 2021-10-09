@@ -1,5 +1,9 @@
 @import './utils/fonts';
 @import './utils/variables';
+
 @import './utils/mixins';
 
 @import './base/common';
+
+// SLIDER SLICK STYLES
+@import './../components/TurnoverSlider/TurnoverSlider.module.scss';

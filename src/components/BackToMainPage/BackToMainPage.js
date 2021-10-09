@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './BackToMainPage.module.scss';
-import { ReactComponent as GoHomeIcon } from '../../icons/go-home.svg';
+import { ReactComponent as GoHomeIcon } from '../../images/go-home.svg';
+
 
 function BackToMainPage({ closeModal }) {
   return (

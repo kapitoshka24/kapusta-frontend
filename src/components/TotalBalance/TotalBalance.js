@@ -3,7 +3,7 @@ import { getTotalBalance } from '../../redux/selectors';
 import { changeTotalBalance } from '../../redux/actions';
 import { useFormik } from 'formik';
 import BalanceModal from '../BalanceModal';
-import styles from './totalBalance.module.scss';
+import styles from './TotalBalance.module.scss';
 
 const validate = values => {
   const errors = {};

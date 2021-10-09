@@ -12,6 +12,7 @@ import TableMobile from '../TableMobile';
 import MonthlySummary from '../MonthlySummary';
 import styles from './Expense.module.scss';
 import useWindowWidth from '../../helpers/useWindowWidth';
+import mainStyles from '../../styles/AppComon.module.scss';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
@@ -60,7 +61,9 @@ export default function Expense() {
           {windowWidth >= 1280 && <MonthlySummary />}
         </div>
       </TabContainer>
-      {windowWidth < 1280 && <MonthlySummary />}
+      <div className={mainStyles.container}>
+        {windowWidth < 1280 && <MonthlySummary />}
+      </div>
     </>
   );
 }
