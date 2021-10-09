@@ -8,7 +8,7 @@ import { ReactComponent as Logout } from './icons/logout.svg';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const isLogin = true;
+  const loggedIn = false;
   const user = 'User Name';
 
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +21,7 @@ export default function Header() {
     <>
       <div
         className={
-          isLogin ? styles.backgroundLoggedIn : styles.backgroundLoggedOut
+          loggedIn ? styles.backgroundLoggedIn : styles.backgroundLoggedOut
         }
       >
         {console.log(styles.backgroundLoggedOut)}
@@ -30,7 +30,7 @@ export default function Header() {
             <Link to="/">
               <Logo />
             </Link>
-            {isLogin && (
+            {loggedIn && (
               <div className={styles.user__menu}>
                 <button className={styles.user__button}>{user[0]}</button>
                 <button onClick={toggleModal} className={styles.logout__mobile}>
