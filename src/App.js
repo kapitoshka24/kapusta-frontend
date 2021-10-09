@@ -9,6 +9,11 @@ import Preloader from './components/Preloader';
 import Header from './components/Header';
 import MainComponent from './components/MainComponent/MainComponent';
 
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ExpenceIncomePage from './pages/ExpenseIncomePage';
+import styles from './styles/App.module.scss';
+
 const Login = lazy(() => import('./components/Login'));
 const Register = lazy(() => import('./components/Register'));
 const NotFound = lazy(() => import('./components/NotFound'));
@@ -16,6 +21,12 @@ const Home = lazy(() => import('./pages/Home'));
 
 export default function App() {
   const isLogged = useSelector(authSelectors.selectUserIsLogged);
+
+  // <div className={loggedIn ? styles.loggedInBg : styles.loggedOutBg}>
+  //     {/* <RegisterPage /> */}
+  //     {/* <LoginPage /> */}
+  //     <ExpenceIncomePage />
+  // </div>
 
   return (
     <>
