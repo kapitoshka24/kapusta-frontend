@@ -40,10 +40,8 @@
 .modal {
   z-index: 99;
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   max-width: 300px;
-
+  top: 255px;
   padding: 40px 17px;
   border-radius: 30px;
   background: $white;
@@ -53,8 +51,14 @@
     padding: 40px 18px 53px;
   }
 
+  @include to(desktop) {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+
   @include from(tablet) {
-    top: 295px;
+    top: 297px;
+
     max-width: 436px;
     padding: 50px 86px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
@@ -62,8 +66,16 @@
 
   @include from(desktop) {
     top: 175px;
-    transform: translateX(94px);
+    right: 110px;
   }
+}
+
+.modal::after {
+  position: absolute;
+  content: '';
+  bottom: -50px;
+  height: 50px;
+  width: 1px;
 }
 
 .modalTitle {
