@@ -9,7 +9,7 @@ import Expense from './components/ExpenseIncome/Expense';
 export default function App() {
   return (
     <>
-      <RegisterPage />
+      {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
       <ExpenceIncomePage />
       {/* <ReportPage /> */}
