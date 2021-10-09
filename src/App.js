@@ -4,15 +4,15 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ExpenceIncomePage from './pages/ExpenseIncomePage';
 import ReportPage from './pages/ReportPage';
-import Expense from './components/Expense';
+import Expense from './components/ExpenseIncome/Expense';
 
 export default function App() {
   return (
     <>
-      {/* <RegisterPage /> */}
+      <RegisterPage />
       {/* <LoginPage /> */}
-      {/* <ExpenceIncomePage /> */}
-      <ReportPage />
+      <ExpenceIncomePage />
+      {/* <ReportPage /> */}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import Login from '../components/Login';
+import Login from '../components/Home/Login';
 import styles from '../styles/AppComon.module.scss';
 
 export default function LoginPage() {

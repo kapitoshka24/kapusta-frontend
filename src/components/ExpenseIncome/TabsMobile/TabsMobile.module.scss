@@ -1,0 +1,40 @@
+// @import '../../../styles/utils/variables';
+// @import '../../../styles/utils/_mixins.scss';
+
+// .button {
+//   @include to (tablet) {
+//     width: 50%;
+//     height: 53px;
+
+//     font-family: Roboto;
+//     font-weight: 700;
+//     font-size: 12px;
+//     line-height: 1.1667;
+//     letter-spacing: 0.02em;
+//     text-transform: uppercase;
+
+//     border: none;
+//     color: $black;
+//     background-color: $border-white;
+//     cursor: pointer;
+
+//     &:first-of-type {
+//       border-right: 2px solid $white;
+//     }
+//   }
+
+//   &__active {
+//     @include to (tablet) {
+//       color: $white;
+//       background: $background-orange;
+//     }
+//   }
+
+//   &__container {
+//     @include to (tablet) {
+//       position: fixed;
+//       bottom: 0;
+//       width: 100%;
+//     }
+//   }
+// }
