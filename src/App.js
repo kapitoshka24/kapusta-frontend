@@ -6,11 +6,10 @@ import authSelectors from './redux/selectors/auth-selectors';
 
 import { PublicRoute, PrivateRoute } from './routes';
 import Preloader from './components/Preloader';
-import Header from './components/Header';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
+const ExpenseIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
 // const ReportPage = lazy(() => import('./pages/ReportPage'));
 // const Expense = lazy(() => import('./components/ExpenseIncome/Expense'));
 const NotFound = lazy(() => import('./components/NotFound'));
@@ -30,11 +29,11 @@ export default function App() {
           </PublicRoute>
 
           <PrivateRoute path="/" isLogged={isLogged} exact>
-            <ExpenceIncomePage />
+            <ExpenseIncomePage />
           </PrivateRoute>
 
           <PrivateRoute path="/home" isLogged={isLogged} exact>
-            <ExpenceIncomePage />
+            <ExpenseIncomePage />
           </PrivateRoute>
 
           <Route path="*">

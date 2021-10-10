@@ -6,7 +6,6 @@ import authOperations from '../../../redux/operations/auth-operations.js';
 import authSelectors from '../../../redux/selectors/auth-selectors';
 
 import styles from './Register.module.scss';
-import { useEffect } from 'react';
 
 const validate = values => {
   const errors = {};
