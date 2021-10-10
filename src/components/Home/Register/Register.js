@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import authOperations from '../../redux/operations/auth-operations.js';
-import authSelectors from '../../redux/selectors/auth-selectors';
+import authOperations from '../../../redux/operations/auth-operations.js';
+import authSelectors from '../../../redux/selectors/auth-selectors';
 
 import styles from './Register.module.scss';
 import { useEffect } from 'react';

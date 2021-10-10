@@ -2,8 +2,8 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import authOperations from '../../redux/operations/auth-operations';
-import authSelectors from '../../redux/selectors/auth-selectors';
+import authOperations from '../../../redux/operations/auth-operations';
+import authSelectors from '../../../redux/selectors/auth-selectors';
 
 import googleSymbol from '../../../images/google-symbol.svg';
 import styles from './Login.module.scss';

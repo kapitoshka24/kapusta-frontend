@@ -1,5 +1,5 @@
 import styles from './preloader.module.scss';
-import spiner from '../../icons/spiner.svg';
+import spiner from '../../images/spiner.svg';
 
 export default function Preloader() {
   return (
