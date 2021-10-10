@@ -1,6 +1,6 @@
-import { Component } from 'react';
+// import { Component } from 'react';
 import Select from 'react-select';
-import makeAnimated from 'react-select';
+// import makeAnimated from 'react-select';
 
 import styles from './Select.module.scss';
 
