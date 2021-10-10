@@ -7,12 +7,12 @@
     z-index: -1;
     position: absolute;
     background-color: $background-grey;
-    height: 342px;
+    height: 320px;
     width: 100%;
     border-bottom-left-radius: 130px;
 
     @include from(tablet) {
-      height: 582px;
+      height: 527px;
     }
 
     @include to(tablet) {
@@ -44,12 +44,12 @@
     z-index: -1;
     position: absolute;
     background-color: $background-grey;
-    height: 342px;
+    height: 320px;
     width: 100%;
     border-bottom-left-radius: 130px;
 
     @include from(tablet) {
-      height: 582px;
+      height: 527px;
     }
   }
 }

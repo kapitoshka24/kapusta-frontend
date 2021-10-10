@@ -1,0 +1,259 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+
+.error {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: $text-red;
+  margin-top: 4px;
+}
+
+.errorStar {
+  letter-spacing: 0.04em;
+  color: $text-red;
+  font-size: 12px;
+  line-height: 1.16;
+}
+
+.modal {
+  z-index: 99;
+  position: absolute;
+  max-width: 300px;
+  top: 255px;
+  padding: 40px 17px;
+  border-radius: 30px;
+  background: $white;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+
+  @include to(tablet) {
+    padding: 40px 18px 53px;
+  }
+
+  @include to(desktop) {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+
+  @include from(tablet) {
+    top: 297px;
+
+    max-width: 436px;
+    padding: 50px 86px;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  }
+
+  @include from(desktop) {
+    top: 175px;
+    right: 110px;
+  }
+}
+
+.modal::after {
+  position: absolute;
+  content: '';
+  bottom: -50px;
+  height: 50px;
+  width: 1px;
+}
+
+.modalTitle {
+  margin: 0 0 24px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+
+  @include to(tablet) {
+    &Google {
+      text-align: center;
+    }
+    &:first-child {
+      margin: 0 auto 24px;
+      width: 222px;
+    }
+  }
+
+  @include from(tablet) {
+    margin: 0 0 20px;
+    font-size: 12px;
+    line-height: 1.16;
+  }
+}
+
+.modalBodyFirst {
+  @include to(tablet) {
+    padding: 0 11px;
+  }
+}
+.modalBodySecond {
+  @include to(tablet) {
+    padding-left: 11px;
+  }
+}
+
+.googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  padding: 10px 20px;
+  color: $black;
+  border: none;
+  border-radius: 26px;
+  background-color: $background-grey;
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+
+  @include to(desktop) {
+    min-width: 122px;
+    height: 40px;
+  }
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px $black;
+  }
+}
+
+.googleSymbol {
+  width: 18px;
+  height: 17.5px;
+  margin-right: 10px;
+}
+
+.modalGroup {
+  &:first-child {
+    margin-bottom: 14px;
+  }
+  &:last-child {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+.modalLabel {
+  display: block;
+  margin-bottom: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: $black;
+
+  @include from(tablet) {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
+.modalInput {
+  display: flex;
+  min-width: 253px;
+  height: 52px;
+  padding: 17px 20px;
+  border: none;
+  border-radius: 30px;
+  background: $google-background;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+
+  @include from(tablet) {
+    min-width: 265px;
+  }
+
+  &::placeholder {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.04em;
+
+    color: $email-text;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  align-items: center;
+}
+
+.modalRegister {
+  width: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  background: $background-grey;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
+  border-radius: 16px;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-grey;
+  padding: 0;
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
+
+  &.active {
+    color: $white;
+    background: $background-orange;
+  }
+}
+
+.modalLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 44px;
+  margin-right: 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
+  background: $background-grey;
+  border-radius: 16px;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $text-grey;
+  padding: 0;
+
+  &:hover {
+    color: $white;
+    background: $modalButtonAccent;
+  }
+  &.active {
+    color: $white;
+    background: $background-orange;
+  }
+}

@@ -1,0 +1,110 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/mixins';
+
+.expensesList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin: 0;
+  list-style: none;
+
+  @include to(tablet) {
+    margin-top: 30px;
+  }
+
+  @include from(tablet) {
+    padding: 24px 10px 40px 10px;
+  }
+
+  @include from(desktop) {
+    padding: 30px 170px 40px 170px;
+  }
+}
+
+.expensesListItem {
+  width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include to(tablet) {
+    padding-bottom: 25px;
+    border-bottom: 1px solid $vertical-line;
+
+    &:not(:nth-child(-n + 3)) {
+      margin-top: 25px;
+    }
+  }
+
+  @include from(tablet) {
+    width: 102px;
+
+    &:not(:nth-child(-n + 6)) {
+      margin-top: 51px;
+    }
+  }
+
+  @include from(desktop) {
+    &:not(:last-child) {
+      margin-right: 13px;
+    }
+  }
+}
+
+.iconContainer {
+  position: relative;
+  height: 56px;
+  max-width: 56px;
+  border-radius: 20px;
+
+  &::after {
+    z-index: -1;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: 59px;
+    height: 46px;
+    border-radius: 20px;
+
+    background-color: $background-grey;
+  }
+}
+
+.iconContainer:hover::after {
+  background-color: $diagram-light;
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+  fill: $expenses-black;
+
+  &:hover {
+    fill: $background-orange;
+    cursor: pointer;
+  }
+}
+
+.amount,
+.name {
+  margin: 0;
+
+  text-align: center;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1, 6;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.name {
+  letter-spacing: 0.02em;
+  margin-top: 7px;
+}
+
+.amount {
+  margin-bottom: 7px;
+}

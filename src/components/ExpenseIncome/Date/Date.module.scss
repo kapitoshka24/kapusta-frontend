@@ -1,0 +1,30 @@
+@import '../../../styles/utils/_mixins.scss';
+@import '../../../styles/utils/variables';
+
+.date {
+  display: inline-block;
+
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.1667;
+  letter-spacing: 0.04em;
+
+  color: $text-grey;
+
+  &__container {
+    display: flex;
+    align-items: center;
+
+    @include to(tablet) {
+      justify-content: center;
+    }
+
+    @include from(desktop) {
+      margin-right: 23px;
+    }
+  }
+}
+
+.icon__calendar {
+  margin-right: 10px;
+}
