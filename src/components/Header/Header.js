@@ -13,7 +13,8 @@ export default function Header() {
 
   const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () => {
+  const toggleModal = e => {
+    e.preventDefault();
     setShowModal(prevVal => !prevVal);
   };
 
@@ -36,7 +37,7 @@ export default function Header() {
                   <Logout />
                 </button>
                 <span className={styles.user__name}>{user}</span>
-                <a onClick={toggleModal} className={styles.logout}>
+                <a href="/" onClick={toggleModal} className={styles.logout}>
                   Выйти
                 </a>
               </div>
