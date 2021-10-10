@@ -47,6 +47,7 @@ export default function Register({ location }) {
       password: 'aaaaaa',
       confirm: 'aaaaaa',
     },
+    validateOnChange: false,
     validate,
     onSubmit: values => {
       dispatch(authOperations.register(values));

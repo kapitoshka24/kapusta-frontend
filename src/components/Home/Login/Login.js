@@ -33,6 +33,7 @@ export default function Login({ location }) {
       email: '',
       password: '',
     },
+    validateOnChange: false,
     validate,
     onSubmit: values => {
       dispatch(authOperations.login(values));
