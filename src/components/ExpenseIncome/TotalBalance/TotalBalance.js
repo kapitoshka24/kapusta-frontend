@@ -5,14 +5,14 @@ import { useFormik } from 'formik';
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 
-const validate = values => {
-  const errors = {};
-  if (/\D/.test(values.balance)) {
-    errors.balance = 'Invalid balance';
-  }
+// const validate = values => {
+//   const errors = {};
+//   if (/\D/.test(values.balance)) {
+//     errors.balance = 'Invalid balance';
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
 const TotalBalance = () => {
   const balance = useSelector(getTotalBalance);

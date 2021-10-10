@@ -8,14 +8,14 @@ import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
 import useWindowWidth from '../../../helpers/useWindowWidth';
 
-const validate = values => {
-  const errors = {};
-  if (/\D/.test(values.balance)) {
-    errors.balance = 'Invalid balance';
-  }
+// const validate = values => {
+//   const errors = {};
+//   if (/\D/.test(values.balance)) {
+//     errors.balance = 'Invalid balance';
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
 export default function ReportBalance() {
   const balance = useSelector(getTotalBalance);
