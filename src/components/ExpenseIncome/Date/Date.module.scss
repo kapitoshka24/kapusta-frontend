@@ -14,6 +14,7 @@
   &__container {
     display: flex;
     align-items: center;
+    width: 125px;
 
     @include to(tablet) {
       justify-content: center;
