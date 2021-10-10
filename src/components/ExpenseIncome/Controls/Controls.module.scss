@@ -67,7 +67,7 @@
   @include from(desktop) {
     justify-content: start;
     align-items: center;
-    margin: 0 38px 0 0;
+    margin: 0 30px 0 0;
   }
 }
 
@@ -155,19 +155,20 @@
 }
 
 .input__sum {
-  width: 126px;
   border-radius: 0 16px 16px 0;
 
-  @media (min-width: 768px) {
+  @include from(tablet) {
     width: 104px;
   }
 
-  @media (min-width: 1280px) {
+  @include from(desktop) {
     width: 126px;
   }
 
   @include to(tablet) {
     display: block;
+    width: 126px;
+    text-align: end;
 
     border-radius: 16px 0 0 16px;
 
@@ -262,8 +263,9 @@
     display: block;
 
     position: absolute;
-    top: 27%;
+    top: 50%;
     right: 120%;
+    transform: translateY(-50%);
 
     font-weight: 700;
     font-size: 12px;
