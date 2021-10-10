@@ -19,7 +19,6 @@ const authOperations = {
       }
 
       dispatch(authActions.registerFulfilled());
-      dispatch(authActions.onVerification(true));
     } catch (error) {
       dispatch(authActions.registerRejected(error));
     }
@@ -66,6 +65,10 @@ const authOperations = {
 
   onVerification: is => async dispatch => {
     dispatch(authActions.onVerification(is));
+  },
+
+  clearError: () => async dispatch => {
+    dispatch(authActions.clearError());
   },
 };
 

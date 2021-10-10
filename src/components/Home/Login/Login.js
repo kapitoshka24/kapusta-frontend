@@ -8,6 +8,7 @@ import authSelectors from '../../../redux/selectors/auth-selectors';
 import googleSymbol from '../../../images/google-symbol.svg';
 import styles from './Login.module.scss';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const validate = values => {
   const errors = {};
@@ -40,13 +41,28 @@ export default function Login({ location }) {
     },
   });
 
+  useEffect(
+    () => () => {
+      if (userError) {
+        dispatch(authOperations.clearError());
+      }
+    },
+    [dispatch, userError],
+  );
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalBodyFirst}>
         <p className={`${styles.modalTitle} ${styles.modalTitleGoogle}`}>
           Вы можете авторизоваться с помощью Google Account:
         </p>
-        <button className={styles.googleBtn} onClick={() => {}}>
+        <button
+          className={styles.googleBtn}
+          onClick={() =>
+            (window.location =
+              'https://kapusta-backend.herokuapp.com/api/users/google')
+          }
+        >
           <img
             src={googleSymbol}
             alt="Google Symbol"
@@ -60,7 +76,7 @@ export default function Login({ location }) {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+      <form onSubmit={handleSubmit} noValidate>
         <div className={styles.modalBodySecond}>
           <div className={styles.modalGroup}>
             <label className={styles.modalLabel} htmlFor="inputEmail">

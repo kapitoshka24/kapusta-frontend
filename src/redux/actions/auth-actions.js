@@ -14,6 +14,8 @@ const authActions = {
   logoutRejected: createAction('user/logoutRejected'),
 
   onVerification: createAction('user/onVerification'),
+
+  clearError: createAction('user/clearError'),
 };
 
 export default authActions;

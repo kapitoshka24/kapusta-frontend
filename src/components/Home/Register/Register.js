@@ -6,6 +6,7 @@ import authOperations from '../../../redux/operations/auth-operations.js';
 import authSelectors from '../../../redux/selectors/auth-selectors';
 
 import styles from './Register.module.scss';
+import { useEffect } from 'react';
 
 const validate = values => {
   const errors = {};
@@ -42,10 +43,10 @@ export default function Register({ location }) {
 
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
-      name: 'Aaa',
-      email: 'aa@aa.ua',
-      password: 'aaaaaa',
-      confirm: 'aaaaaa',
+      name: '',
+      email: '',
+      password: '',
+      confirm: '',
     },
     validateOnChange: false,
     validate,
@@ -53,6 +54,15 @@ export default function Register({ location }) {
       dispatch(authOperations.register(values));
     },
   });
+
+  useEffect(
+    () => () => {
+      if (userError) {
+        dispatch(authOperations.clearError());
+      }
+    },
+    [dispatch, userError],
+  );
 
   return (
     <div className={styles.modal}>

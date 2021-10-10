@@ -21,6 +21,7 @@ const user = createReducer(initialUserState, {
     ...state,
     isLoading: false,
     error: null,
+    onVerification: true,
   }),
   [authActions.registerRejected]: (_, { payload }) => ({
     ...initialUserState,
@@ -53,6 +54,11 @@ const user = createReducer(initialUserState, {
   [authActions.onVerification]: (state, { payload }) => ({
     ...state,
     onVerification: payload,
+  }),
+
+  [authActions.clearError]: state => ({
+    ...state,
+    error: null,
   }),
 });
 
