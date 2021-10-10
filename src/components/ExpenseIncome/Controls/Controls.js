@@ -4,16 +4,14 @@ import Date from '../Date';
 import styles from './Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import { ReactComponent as GoBack } from '../../../images/go-home.svg';
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 
 export default function Controls() {
-  const windowWidth = useWindowWidth();
+  const { width } = useWindowDementions();
 
   return (
     <div className={styles.controls__container}>
-      <div className={styles.date__container}>
-        {windowWidth >= 768 && <Date />}
-      </div>
+      <div className={styles.date__container}>{width >= 768 && <Date />}</div>
 
       <button className={styles.arrow} type="button">
         <GoBack />

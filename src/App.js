@@ -11,8 +11,8 @@ export default function App() {
     <>
       {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
-      {/* <ExpenceIncomePage /> */}
-      <ReportPage />
+      <ExpenceIncomePage />
+      {/* <ReportPage /> */}
     </>
   );
 }
