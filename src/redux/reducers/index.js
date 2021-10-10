@@ -1,4 +1,2 @@
-import authReducer from './auth-reducer';
-import kapustaReducer from './kapusta-reducer';
-
-export { authReducer, kapustaReducer };
+export { default as authReducer } from './auth-reducer';
+export { default as kapustaReducer } from './kapusta-reducer';

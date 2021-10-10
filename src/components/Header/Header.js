@@ -8,7 +8,7 @@ import { ReactComponent as Logout } from './icons/logout.svg';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const loggedIn = true;
+  const loggedIn = false;
   const user = 'User Name';
 
   const [showModal, setShowModal] = useState(false);
