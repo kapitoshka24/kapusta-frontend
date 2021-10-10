@@ -1,7 +1,7 @@
 import useWindowWidth from '../../../helpers/useWindowWidth';
 import ChartMobile from './ChartMobile';
 import ChartOptional from './ChartOptional';
-import styles from './ChartOptional/ChartOptional.module.scss';
+import styles from './Chart.module.scss';
 
 export default function Chart() {
   const windowWidth = useWindowWidth();
