@@ -17,6 +17,7 @@
 
     @include to(tablet) {
       justify-content: center;
+      width: 125px;
     }
 
     @include from(desktop) {

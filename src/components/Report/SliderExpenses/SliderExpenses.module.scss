@@ -10,7 +10,19 @@
   list-style: none;
 
   @include to(tablet) {
+    position: relative;
     margin-top: 30px;
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 282px;
+      height: 0.5px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $vertical-line;
+    }
   }
 
   @include from(tablet) {
@@ -23,7 +35,7 @@
 }
 
 .expensesListItem {
-  width: 96px;
+  width: 94px;
   display: flex;
   flex-direction: column;
   align-items: center;

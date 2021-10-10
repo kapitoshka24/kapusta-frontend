@@ -19,7 +19,9 @@ export default function TableMobile() {
 
         <div className={styles.sum__thumb}>
           <span className={styles.sum}>- 30.00 грн.</span>
-          <Delete className={styles.icon__delete} />
+          <div className={styles.icon__thumb}>
+            <Delete className={styles.icon__delete} />
+          </div>
         </div>
       </li>
 
@@ -35,7 +37,9 @@ export default function TableMobile() {
 
         <div className={styles.sum__thumb}>
           <span className={styles.sum}>- 30.00 грн.</span>
-          <Delete className={styles.icon__delete} />
+          <div className={styles.icon__thumb}>
+            <Delete className={styles.icon__delete} />
+          </div>
         </div>
       </li>
 
@@ -51,7 +55,9 @@ export default function TableMobile() {
 
         <div className={styles.sum__thumb}>
           <span className={styles.sum}>- 30.00 грн.</span>
-          <Delete className={styles.icon__delete} />
+          <div className={styles.icon__thumb}>
+            <Delete className={styles.icon__delete} />
+          </div>
         </div>
       </li>
     </ul>

@@ -88,6 +88,10 @@
 .inputContainer {
   position: relative;
   display: flex;
+
+  @include to(tablet) {
+    justify-content: end;
+  }
 }
 
 .input {
@@ -150,6 +154,7 @@
 
   @include to(tablet) {
     border-left: none;
+    width: 125px;
   }
 
   @include from(tablet) {
