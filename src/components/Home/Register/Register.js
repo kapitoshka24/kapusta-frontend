@@ -1,5 +1,13 @@
+// import React, { useState, useCallback } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import styles from './Register.module.scss';
+import auth from '../../../redux/operations/auth-operations';
+import { authSelectors } from '../../../redux/selectors';
+
 const validate = values => {
   const errors = {};
 
@@ -29,6 +37,9 @@ const validate = values => {
 };
 
 export default function Register() {
+  const fetchError = useSelector(authSelectors.getError);
+  const [toLogin, setToLogin] = useState(false);
+  const dispatch = useDispatch();
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: '',
@@ -37,8 +48,11 @@ export default function Register() {
       confirm: '',
     },
     validate,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: ({ name, email, password }, { resetForm }) => {
+      dispatch(auth.register({ name, email, password }));
+      resetForm();
+
+      !fetchError && setToLogin(true);
     },
   });
 
@@ -47,94 +61,93 @@ export default function Register() {
       <p className={styles.modalTitleRegister}>Регистрация</p>
 
       <form onSubmit={handleSubmit} noValidate>
+        {toLogin ? <Redirect to="/login" /> : null}
         <div className={styles.modalBodyFirst}>
           <div className={styles.modalGroup}>
-            <label className={styles.modalLabel} htmlFor="inputName">
+            <label className={styles.modalLabel}>
               {errors.name ? <span className={styles.errorStar}>*</span> : null}
               Имя:
+              <input
+                type="text"
+                name="name"
+                className={styles.modalInput}
+                placeholder="Имя"
+                onChange={handleChange}
+                value={values.name}
+                autoComplete="off"
+              />
+              {errors.name ? (
+                <div className={styles.error}>{errors.name}</div>
+              ) : null}
             </label>
-            <input
-              type="text"
-              id="inputName"
-              name="name"
-              className={styles.modalInput}
-              placeholder="Имя"
-              onChange={handleChange}
-              value={values.name}
-            />
-            {errors.name ? (
-              <div className={styles.error}>{errors.name}</div>
-            ) : null}
           </div>
 
           <div className={styles.modalGroup}>
-            <label className={styles.modalLabel} htmlFor="inputEmail">
+            <label className={styles.modalLabel}>
               {errors.email ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
               Электронная почта:
+              <input
+                type="email"
+                name="email"
+                className={styles.modalInput}
+                placeholder="your@email.com"
+                onChange={handleChange}
+                value={values.email}
+                autoComplete="off"
+              />
+              {errors.email ? (
+                <div className={styles.error}>{errors.email}</div>
+              ) : null}
             </label>
-            <input
-              type="email"
-              id="inputEmail"
-              name="email"
-              className={styles.modalInput}
-              placeholder="your@email.com"
-              onChange={handleChange}
-              value={values.email}
-            />
-            {errors.email ? (
-              <div className={styles.error}>{errors.email}</div>
-            ) : null}
           </div>
 
           <div className={styles.modalGroup}>
-            <label className={styles.modalLabel} htmlFor="inputPassword">
+            <label className={styles.modalLabel}>
               {errors.password ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
               Пароль:
+              <input
+                type="password"
+                name="password"
+                className={styles.modalInput}
+                placeholder="Пароль"
+                onChange={handleChange}
+                value={values.password}
+              />
+              {errors.password ? (
+                <div className={styles.error}>{errors.password}</div>
+              ) : null}
             </label>
-            <input
-              type="password"
-              id="inputPassword"
-              name="password"
-              className={styles.modalInput}
-              placeholder="Пароль"
-              onChange={handleChange}
-              value={values.password}
-            />
-            {errors.password ? (
-              <div className={styles.error}>{errors.password}</div>
-            ) : null}
           </div>
 
           <div className={styles.modalGroup}>
-            <label className={styles.modalLabel} htmlFor="inputConfirm">
+            <label className={styles.modalLabel}>
               {errors.confirm ? (
                 <span className={styles.errorStar}>*</span>
               ) : null}
               Подтверждение пароля:
+              <input
+                type="password"
+                name="confirm"
+                className={styles.modalInput}
+                placeholder="Подтвердите пароль"
+                onChange={handleChange}
+                value={values.confirm}
+              />
+              {errors.confirm ? (
+                <div className={styles.error}>{errors.confirm}</div>
+              ) : null}
             </label>
-            <input
-              type="password"
-              id="inputConfirm"
-              name="confirm"
-              className={styles.modalInput}
-              placeholder="Подтвердите пароль"
-              onChange={handleChange}
-              value={values.confirm}
-            />
-            {errors.confirm ? (
-              <div className={styles.error}>{errors.confirm}</div>
-            ) : null}
           </div>
         </div>
 
         <div className={styles.modalButtons}>
-          <button className={styles.modalLogin} type="button">
+          <Link className={styles.modalLogin} to="/login">
             Войти
-          </button>
+          </Link>
           <button className={`${styles.active} ${styles.modalRegister}`}>
             Регистрация
           </button>

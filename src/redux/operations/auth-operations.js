@@ -2,7 +2,8 @@ import axios from 'axios';
 import { authActions } from '../actions';
 // import { loginSuccess, registerSuccess, authError } from '../../ulits/pnotify';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+// axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -17,8 +18,8 @@ const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
   try {
-    const { data } = await axios.post('/users/register', credentials);
-    token.set(data.token);
+    const { data } = await axios.post('/users/registration', credentials);
+    // token.set(data.token);
     dispatch(authActions.registerSuccess(data));
     // registerSuccess(); //pnotify
   } catch (error) {
@@ -32,8 +33,8 @@ const logIn = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/login', credentials);
-    console.log(data);
-    token.set(data.token);
+
+    token.set(data.data.token);
     dispatch(authActions.loginSuccess(data));
     // loginSuccess();
   } catch (error) {
@@ -68,7 +69,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get('users/current');
-    dispatch(authActions.getCurrentUserSuccess(data));
+
+    dispatch(authActions.getCurrentUserSuccess(data.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
   }
