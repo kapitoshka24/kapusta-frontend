@@ -5,7 +5,7 @@ import { authActions } from '../actions';
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 // axios.defaults.baseURL = 'http://localhost:3000/api';
 
-const token = {
+const accessToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -33,8 +33,8 @@ const logIn = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/login', credentials);
-
-    token.set(data.data.token);
+    // console.log(data.data.headers);
+    accessToken.set(data.data.headers.accessToken);
     dispatch(authActions.loginSuccess(data));
     // loginSuccess();
   } catch (error) {
@@ -48,7 +48,7 @@ const logOut = () => async dispatch => {
 
   try {
     await axios.post('/users/logout');
-    token.unset();
+    accessToken.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
     dispatch(authActions.logoutError(error.message));
@@ -57,14 +57,14 @@ const logOut = () => async dispatch => {
 
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
-    auth: { token: persistedToken },
+    auth: { accessToken: persistedToken },
   } = getState();
 
   if (!persistedToken) {
     return;
   }
 
-  token.set(persistedToken);
+  accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest);
 
   try {

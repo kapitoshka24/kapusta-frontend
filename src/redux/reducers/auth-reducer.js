@@ -11,9 +11,14 @@ const user = createReducer(initialUserState, {
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
 });
 
-const token = createReducer(null, {
-  // [authActions.registerSuccess]: (_, { payload }) => payload.token,
-  [authActions.loginSuccess]: (_, { payload }) => payload.data.token,
+const accessToken = createReducer(null, {
+  [authActions.loginSuccess]: (_, { payload }) =>
+    payload.data.headers.accessToken,
+  [authActions.logoutSuccess]: () => null,
+});
+const refreshToken = createReducer(null, {
+  [authActions.loginSuccess]: (_, { payload }) =>
+    payload.data.headers.refreshToken,
   [authActions.logoutSuccess]: () => null,
 });
 
@@ -39,6 +44,7 @@ const isLoggedIn = createReducer(false, {
 export default combineReducers({
   user,
   isLoggedIn,
-  token,
+  accessToken,
   error,
+  refreshToken,
 });
