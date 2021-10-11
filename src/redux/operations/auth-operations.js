@@ -20,7 +20,6 @@ const accessToken = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
