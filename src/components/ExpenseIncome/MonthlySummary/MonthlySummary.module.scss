@@ -2,6 +2,8 @@
 
 .SummaryWidget {
   width: 230px;
+  // height: 278px;
+  // overflow-y: scroll;
 
   @include from-to(tablet, desktop) {
     margin: 40px 0 0 81px;
@@ -28,6 +30,8 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2px;
+  position: sticky;
+  top: 0;
 
   background-color: $background-grey;
   border-top-left-radius: 20px;
@@ -41,6 +45,9 @@
   font-style: normal;
   font-size: 12px;
   line-height: 1.17;
+
+  height: 240px;
+  overflow-y: scroll;
 }
 
 .MonthItem {
