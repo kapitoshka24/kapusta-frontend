@@ -1,5 +1,5 @@
-@import '../../../styles/utils/mixins';
-@import '../../../styles/utils/variables';
+@import './utils/mixins';
+@import './utils/variables';
 
 .error {
   font-style: normal;
@@ -16,6 +16,25 @@
   color: $text-red;
   font-size: 12px;
   line-height: 1.16;
+}
+
+.modalTitleRegister {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.18;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: $text-grey;
+
+  @include to(tablet) {
+    font-size: 13px;
+    line-height: 1.16;
+    letter-spacing: 0.15em;
+  }
 }
 
 .modal {
@@ -124,7 +143,7 @@
   }
 
   &:active {
-    box-shadow: inset 1px 1px 4px $black;
+    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
   }
 }
 
@@ -135,11 +154,10 @@
 }
 
 .modalGroup {
-  &:first-child {
+  &:not(:last-child) {
     margin-bottom: 14px;
   }
   &:last-child {
-    margin-top: 30px;
     margin-bottom: 40px;
   }
 }
@@ -232,17 +250,16 @@
 }
 
 .modalLogin {
+  margin-right: 15px;
+  width: 125px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 125px;
   height: 44px;
-  margin-right: 15px;
-  cursor: pointer;
-
-  box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
-
   background: $background-grey;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px 1px rgba(34, 60, 80, 0.2);
   border-radius: 16px;
   border: none;
 

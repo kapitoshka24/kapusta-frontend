@@ -1,6 +1,5 @@
 // import { kapustaReducer } from './kapusta';
 import { authReducer, kapustaReducer } from './reducers';
-
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -15,9 +14,9 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 const authPersistConfig = {
-  key: 'token',
+  key: 'accessToken',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken'],
 };
 
 export const store = configureStore({
@@ -31,7 +30,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  //   devTools: process.env.NODE_ENV === 'development',
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);

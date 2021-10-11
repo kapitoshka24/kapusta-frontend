@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import LogoutModal from '../LogoutModal';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/selectors';
 
 import { ReactComponent as Logo } from './icons/logo.svg';
 import { ReactComponent as Logout } from './icons/logout.svg';
@@ -8,7 +10,7 @@ import { ReactComponent as Logout } from './icons/logout.svg';
 import styles from './Header.module.scss';
 
 export default function Header() {
-  const loggedIn = true;
+  const loggedIn = useSelector(authSelectors.getIsLoggedIn);
   const user = 'User Name';
 
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +29,7 @@ export default function Header() {
       >
         <div className={styles.wrapper}>
           <header className={styles.header}>
-            <Link to="/">
+            <Link to="/main-page">
               <Logo />
             </Link>
             {loggedIn && (

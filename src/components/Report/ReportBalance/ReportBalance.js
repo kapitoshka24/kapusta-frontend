@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getTotalBalance } from '../../../redux/selectors';
-import { changeTotalBalance } from '../../../redux/actions';
+import { kapustaSelectors } from '../../../redux/selectors';
+import { kapustaActions } from '../../../redux/actions';
 import { useFormik } from 'formik';
 import ReportBalanceModal from '../ReportBalanceModal';
 import BackToMainPage from '../../BackToMainPage';
@@ -18,7 +18,7 @@ import useWindowWidth from '../../../helpers/useWindowWidth';
 // };
 
 export default function ReportBalance() {
-  const balance = useSelector(getTotalBalance);
+  const balance = useSelector(kapustaSelectors.getTotalBalance);
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
 
@@ -32,7 +32,7 @@ export default function ReportBalance() {
         return;
       }
       //   alert(JSON.stringify(values, null, 2));
-      dispatch(changeTotalBalance(values.balance));
+      dispatch(kapustaActions.changeTotalBalance(values.balance));
     },
   });
   return (

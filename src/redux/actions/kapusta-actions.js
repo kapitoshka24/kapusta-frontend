@@ -1,3 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const changeTotalBalance = createAction('ckapusta/changeTotalBalance');
+const changeTotalBalance = createAction('ckapusta/changeTotalBalance');
+
+const actions = { changeTotalBalance };
+export default actions;

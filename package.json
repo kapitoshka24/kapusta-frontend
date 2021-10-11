@@ -6,14 +6,18 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "jquery": "^3.6.0",
     "classnames": "^2.3.1",
+    "jquery": "^3.6.0",
+    "material-design-icon-fonts": "^3.0.1",
+    "material-design-icons": "^3.0.1",
     "modern-normalize": "^1.1.0",
+    "pnotify": "^5.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-loader-spinner": "^4.0.0",
     "react-scripts": "4.0.3",
-    "react-slick": "^0.28.1",
     "react-select": "^5.1.0",
+    "react-slick": "^0.28.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -44,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@pnotify/bootstrap4": "^5.2.0",
     "@reduxjs/toolkit": "1.6.1",
     "axios": "0.22.0",
     "eslint": "7.32.0",
