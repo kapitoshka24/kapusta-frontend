@@ -25,7 +25,7 @@ export default function Table() {
                 text={
                   'Метро (Lorem ipsum dolor sit, amet consectetur adipisicing  elit. Iste accusantium quaerat explicabo, recusandae facere sequi aperiam hic blanditiis repudiandae ea.'
                 }
-                length={'40'}
+                length={40}
               />
             </td>
             <td className={styles.category}>Транспорт</td>
