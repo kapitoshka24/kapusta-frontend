@@ -9,11 +9,11 @@ function GetCurrentMonth() {
       <p className={styles.PeriodTitle}>Текущий период:</p>
       <div className={styles.CurrentMonthSwitcher}>
         <button type="button" className={styles.MonthSwitcher}>
-          <PreviousIcon width="7" height="12" />
+          <PreviousIcon width="7" height="12" className={styles.ArrowIcon} />
         </button>
         <p className={styles.CurrentPeriod}>НОЯБРЬ 2019</p>
         <button type="button" className={styles.MonthSwitcher}>
-          <NextIcon width="7" height="12" />
+          <NextIcon width="7" height="12" className={styles.ArrowIcon} />
         </button>
       </div>
     </div>
