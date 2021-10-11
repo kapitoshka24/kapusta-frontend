@@ -1,3 +1,5 @@
+import EllipsisText from 'react-ellipsis-text';
+
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from './Table.module.scss';
 
@@ -19,9 +21,12 @@ export default function Table() {
           <tr>
             <td>05.09.2019</td>
             <td>
-              Метро (Lorem ipsumNegative dolor sit, amet consectetur adipisicing
-              elit. Iste accusantium quaerat explicabo, recusandae facere sequi
-              aperiam hic blanditiis repudiandae ea.{' '}
+              <EllipsisText
+                text={
+                  'Метро (Lorem ipsum dolor sit, amet consectetur adipisicing  elit. Iste accusantium quaerat explicabo, recusandae facere sequi aperiam hic blanditiis repudiandae ea.'
+                }
+                length={'40'}
+              />
             </td>
             <td className={styles.category}>Транспорт</td>
             <td className={styles.sumNegative}>- 30.00 грн.</td>

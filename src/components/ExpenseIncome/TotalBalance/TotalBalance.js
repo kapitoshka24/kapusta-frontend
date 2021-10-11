@@ -43,7 +43,6 @@ const TotalBalance = () => {
             className={styles.input}
             id="balance"
             name="balance"
-            type="number"
             onChange={handleChange}
             value={values.balance}
             autoComplete="off"

@@ -6,7 +6,7 @@ import ReportBalanceModal from '../ReportBalanceModal';
 import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 
 // const validate = values => {
 //   const errors = {};
@@ -20,7 +20,8 @@ import useWindowWidth from '../../../helpers/useWindowWidth';
 export default function ReportBalance() {
   const balance = useSelector(kapustaSelectors.getTotalBalance);
   const dispatch = useDispatch();
-  const windowWidth = useWindowWidth();
+
+  const { width } = useWindowDementions();
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
@@ -38,25 +39,27 @@ export default function ReportBalance() {
   return (
     <div className={styles.balanceContainer}>
       <BackToMainPage />
-      {windowWidth >= 768 && (
+      {width >= 768 && (
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label} htmlFor="balance">
             Баланс:
           </label>
           <div className={styles.inputContainer}>
-            <input
-              className={styles.input}
-              id="balance"
-              name="balance"
-              type="number"
-              onChange={handleChange}
-              value={values.balance}
-              autoComplete="off"
-            />
+            <div className={styles.currencyContainer}>
+              <input
+                className={styles.input}
+                id="balance"
+                name="balance"
+                onChange={handleChange}
+                value={values.balance}
+                autoComplete="off"
+              />
+              <span className={styles.currency}>UAH</span>
+            </div>
 
             {errors.balance ? <div>{errors.balance}</div> : null}
-            <span className={styles.currency}>UAH</span>
-            {windowWidth >= 1280 && (
+
+            {width >= 1280 && (
               <button className={styles.button} disabled={false} type="submit">
                 Подтвердить
               </button>
@@ -65,29 +68,31 @@ export default function ReportBalance() {
         </form>
       )}
       <GetCurrentMonth />
-      {windowWidth < 768 && (
+      {width < 768 && (
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label} htmlFor="balance">
             Баланс:
           </label>
           <div className={styles.inputContainer}>
-            <input
-              className={styles.input}
-              id="balance"
-              name="balance"
-              type="number"
-              onChange={handleChange}
-              value={values.balance}
-              autoComplete="off"
-            />
+            <div className={styles.currencyContainer}>
+              <input
+                className={styles.input}
+                id="balance"
+                name="balance"
+                type="number"
+                onChange={handleChange}
+                value={values.balance}
+                autoComplete="off"
+              />
+              <span className={styles.currency}>UAH</span>
+            </div>
 
             {errors.balance ? <div>{errors.balance}</div> : null}
-            <span className={styles.currency}>UAH</span>
-            {windowWidth >= 1280 && (
+            {/* {windowWidth >= 1280 && (
               <button className={styles.button} disabled={false} type="submit">
                 Подтвердить
               </button>
-            )}
+            )} */}
           </div>
         </form>
       )}

@@ -11,7 +11,7 @@ import Table from '../Table';
 import TableMobile from '../TableMobile';
 import MonthlySummary from '../MonthlySummary';
 import styles from './Expense.module.scss';
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 import mainStyles from '../../../styles/AppComon.module.scss';
 
 export default function Expense() {
@@ -31,38 +31,34 @@ export default function Expense() {
     setShowButton(true);
   };
 
-  const windowWidth = useWindowWidth();
+  const { width } = useWindowDementions();
 
   return (
     <>
-      {windowWidth < 768 ? (
-        <TabsMobile showButton={showEnterButton} />
-      ) : (
-        <Tabs />
-      )}
+      {width < 768 ? <TabsMobile showButton={showEnterButton} /> : <Tabs />}
 
       <TabContainer>
         <div className={styles.date__mobile_container}>
-          {windowWidth < 768 && <Date />}
-          {windowWidth < 768 && showButton && (
+          {width < 768 && <Date />}
+          {width < 768 && showButton && (
             <EnterButton closeControls={toggleControls} />
           )}
         </div>
 
-        {windowWidth < 768 ? null : <Controls />}
-        {windowWidth < 768 && showControls && (
+        {width < 768 ? null : <Controls />}
+        {width < 768 && showControls && (
           <ControlsMobile closeControls={toggleControls} />
         )}
 
         <div className={styles.data__container}>
-          {windowWidth < 768 ? null : <Table />}
-          {windowWidth < 768 && showButton && <TableMobile />}
+          {width < 768 ? null : <Table />}
+          {width < 768 && showButton && <TableMobile />}
 
-          {windowWidth >= 1280 && <MonthlySummary />}
+          {width >= 1280 && <MonthlySummary />}
         </div>
       </TabContainer>
       <div className={mainStyles.container}>
-        {windowWidth < 1280 && <MonthlySummary />}
+        {width < 1280 && <MonthlySummary />}
       </div>
     </>
   );

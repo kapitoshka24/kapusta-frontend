@@ -1,4 +1,4 @@
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowWidth from '../../../helpers/useWindowDementions';
 import ChartMobile from './ChartMobile';
 import ChartOptional from './ChartOptional';
 import styles from './Chart.module.scss';

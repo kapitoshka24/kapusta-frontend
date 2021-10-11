@@ -4,7 +4,7 @@ import Date from '../Date';
 import BackToMainPage from '../../BackToMainPage';
 import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 
 export default function ControlsMobile({ closeControls }) {
   const handleBackdropClick = e => {
@@ -13,13 +13,13 @@ export default function ControlsMobile({ closeControls }) {
     }
   };
 
-  const windowWidth = useWindowWidth();
+  const { width } = useWindowDementions();
 
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.controls__container}>
         <div className={styles.inputs__date__thumb}>
-          {windowWidth >= 768 && <Date />}
+          {width >= 768 && <Date />}
 
           <BackToMainPage closeModal={closeControls} />
 
