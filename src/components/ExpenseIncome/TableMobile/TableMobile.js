@@ -1,3 +1,5 @@
+import EllipsisText from 'react-ellipsis-text';
+
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from './TableMobile.module.scss';
 
@@ -7,8 +9,12 @@ export default function TableMobile() {
       <li className={styles.item}>
         <div className={styles.expense__thumb}>
           <p className={styles.name}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <EllipsisText
+              text={
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+              }
+              length={40}
+            />
           </p>
 
           <div className={styles.date__thumb}>
