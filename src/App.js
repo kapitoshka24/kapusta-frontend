@@ -38,21 +38,11 @@ export default function App() {
           <PrivateRoute path="/main-page" restricted redirectTo="/login">
             <ExpenceIncomePage />
           </PrivateRoute>
+          <PrivateRoute path="/report-page" restricted redirectTo="/login">
+            <ReportPage />
+          </PrivateRoute>
         </Switch>
       </Suspense>
     </>
   );
-}
-
-{
-  /* <RegisterPage /> */
-}
-{
-  /* <LoginPage /> */
-}
-{
-  /* <ExpenceIncomePage /> */
-}
-{
-  /* <ReportPage /> */
 }

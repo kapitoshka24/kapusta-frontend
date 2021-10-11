@@ -28,7 +28,7 @@ export default function Header() {
       >
         <div className={styles.wrapper}>
           <header className={styles.header}>
-            <Link to="/">
+            <Link to="/main-page">
               <Logo />
             </Link>
             {loggedIn && (

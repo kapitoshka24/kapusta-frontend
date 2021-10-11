@@ -2,8 +2,11 @@ import axios from 'axios';
 import { authActions } from '../actions';
 import {
   loginSuccess,
+  loginError,
   registerSuccess,
-  authError,
+  registerError,
+  serverError,
+  logoutSuccess,
 } from '../../services/pnotify';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
@@ -25,10 +28,10 @@ const register = credentials => async dispatch => {
     const { data } = await axios.post('/users/registration', credentials);
     // token.set(data.token);
     dispatch(authActions.registerSuccess(data));
-    registerSuccess(); //pnotify
+    registerSuccess(data.data.email); //pnotify
   } catch (error) {
     dispatch(authActions.registerError(error.message));
-    authError(); //pnotify
+    registerError(); //pnotify
   }
 };
 
@@ -43,7 +46,7 @@ const logIn = credentials => async dispatch => {
     loginSuccess();
   } catch (error) {
     dispatch(authActions.loginError(error.message));
-    authError();
+    loginError();
   }
 };
 
@@ -54,8 +57,10 @@ const logOut = () => async dispatch => {
     await axios.post('/users/logout');
     accessToken.unset();
     dispatch(authActions.logoutSuccess());
+    logoutSuccess();
   } catch (error) {
     dispatch(authActions.logoutError(error.message));
+    serverError();
   }
 };
 

@@ -7,71 +7,44 @@ defaults.styling = 'material';
 defaults.icons = 'material';
 
 const settings = {
-  // title: false,
-  // sticker: true,
-  // maxTextHeight: null,
-  // mouseReset: false,
-  // styling: 'material',
-  // icons: 'material',
-  // delay: 2000,
-  // hide: true,
-  // closerHover: true,
-  // stickerHover: true,
-  // width: '300px',
-  // mode: 'light',
-  // addClass: 'material',
-  // maxTextHeight: null,
-  // mouseReset: false,
-  // sticker: false,
-  // width: '300px',
-  // styling: 'angeler',
-  // icons: 'angeler',
+  title: false,
+  maxTextHeight: null,
+  width: '300px',
+  delay: 2000,
 };
-
-// const modules = new Map([
-//   ...defaultModules,
-//   {
-//     title: false,
-//     sticker: false,
-//     maxTextHeight: null,
-//     mouseReset: false,
-//     delay: 2000,
-//     width: '300px',
-//   },
-// ]);
-
-export const existedContactError = (name, number) =>
-  error({
-    text: `Contact ${name}/${number} already exists.`,
-    // modules,
-  });
-
-export const addContactSuccess = (name, number) =>
-  success({
-    text: `You successfully added ${name}/${number} to your phonebook.`,
-    // ...settings,
-  });
 
 export const serverError = () =>
   error({
-    text: `Sorry, something went wrong on a server side. Try again later!`,
-    // modules,
+    text: `Ой, что-то пошло не так на сервере! Попробуйте еще раз немного позже`,
+    ...settings,
   });
 
 export const loginSuccess = () =>
   success({
-    text: `You successfully logged in.`,
-    // ...settings,
+    text: `Вы успешно вошли.`,
+    ...settings,
   });
 
-export const registerSuccess = () =>
+export const registerSuccess = email =>
   success({
-    text: `You successfully registered.`,
-    // ...settings,
+    text: `Проверьте почту ${email} и пройдите верификацию.`,
+    ...settings,
   });
 
-export const authError = () =>
+export const registerError = () =>
   error({
-    text: 'Something went wrong! Try again later.',
+    text: 'Не удалось зарегистрировать. Попробуйте еще раз немного позже.',
+    ...settings,
+  });
+
+export const loginError = () =>
+  error({
+    text: 'Неправильные данные или не пройдена верификация.',
+    ...settings,
+  });
+
+export const logoutSuccess = () =>
+  success({
+    text: 'Вы успешно вышли.',
     ...settings,
   });

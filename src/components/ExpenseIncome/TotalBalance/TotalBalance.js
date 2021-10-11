@@ -4,6 +4,7 @@ import { kapustaActions } from '../../../redux/actions';
 import { useFormik } from 'formik';
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
+import { Link } from 'react-router-dom';
 
 // const validate = values => {
 //   const errors = {};
@@ -55,9 +56,9 @@ const TotalBalance = () => {
           <span className={styles.currency}>UAH</span>
         </div>
       </form>
-      <a className={styles.reports} href="./">
+      <Link className={styles.reports} to="/report-page">
         Перейти к отчетам
-      </a>
+      </Link>
       {!balance && <BalanceModal />}
     </div>
   );
