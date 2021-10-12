@@ -5,7 +5,7 @@ import { authActions } from '../actions';
 const initialUserState = { email: null };
 
 const user = createReducer(initialUserState, {
-  [authActions.registerSuccess]: (_, { payload }) => payload.user,
+  [authActions.registerSuccess]: (_, { payload }) => payload.data,
   [authActions.loginSuccess]: (_, { payload }) => {
     return {
       email: payload.data.email,
@@ -47,10 +47,24 @@ const isLoggedIn = createReducer(false, {
   [authActions.logoutSuccess]: () => false,
 });
 
+const initialEmailVerificationState = {
+  onVerification: false,
+  verificationStart: null,
+};
+const emailVerification = createReducer(initialEmailVerificationState, {
+  [authActions.loginSuccess]: () => initialEmailVerificationState,
+  [authActions.registerSuccess]: () => ({
+    onVerification: true,
+    verificationStart: new Date().toLocaleString(),
+  }),
+  [authActions.registerError]: () => initialEmailVerificationState,
+});
+
 export default combineReducers({
   user,
   isLoggedIn,
   accessToken,
   error,
   refreshToken,
+  emailVerification,
 });

@@ -27,7 +27,9 @@ const register = credentials => async dispatch => {
   try {
     const { data } = await axios.post('/users/registration', credentials);
     // token.set(data.token);
+
     dispatch(authActions.registerSuccess(data));
+    // dispatch(authActions.onVerification(true));
     registerSuccess(data.data.email); //pnotify
   } catch (error) {
     dispatch(authActions.registerError(error.message));
