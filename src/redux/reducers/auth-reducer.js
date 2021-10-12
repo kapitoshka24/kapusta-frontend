@@ -21,10 +21,11 @@ const error = createReducer(null, {
   [authActions.loginError]: setError,
   [authActions.logoutError]: setError,
   [authActions.getCurrentUserError]: setError,
+  [authActions.refreshSessionError]: setError,
 });
 
 const isLoggedIn = createReducer(false, {
-  // [authActions.registerSuccess]: () => true,
+  [authActions.refreshSessionSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
   [authActions.registerError]: () => false,

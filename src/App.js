@@ -5,7 +5,6 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
-import storage from 'redux-persist/lib/storage';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));

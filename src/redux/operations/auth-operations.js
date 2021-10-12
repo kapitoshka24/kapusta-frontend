@@ -8,10 +8,9 @@ import {
   serverError,
   logoutSuccess,
 } from '../../services/pnotify';
-import storage from 'redux-persist/lib/storage';
+import { useParams } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const accessToken = {
   set(token) {
@@ -49,7 +48,6 @@ const logIn = credentials => async dispatch => {
 
 const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
-
   try {
     await axios.post('/users/logout');
     accessToken.unset();
@@ -71,7 +69,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 
   accessToken.set(persistedToken);
-  dispatch(authActions.getCurrentUserRequest);
+  dispatch(authActions.getCurrentUserRequest());
 
   try {
     const { data } = await axios.get('users/current');
@@ -79,14 +77,46 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(data.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
+    loginError();
+  }
+};
+
+const refreshSession = () => async (dispatch, getState) => {
+  const {
+    session: { refreshToken: refToken, sid: id },
+  } = getState();
+  dispatch(authActions.refreshSessionRequest());
+  try {
+    accessToken.set(refToken);
+    const { data } = await axios.post('/users/refresh', { sid: id });
+    dispatch(authActions.refreshSessionSuccess(data));
+    loginSuccess();
+    accessToken.unset();
+  } catch (error) {
+    dispatch(authActions.refreshSessionError(error.message));
+    loginError();
+  }
+};
+
+const loginWithGoogle = () => async dispatch => {
+  dispatch(authActions.loginGoogleRequest());
+  accessToken.unset();
+  try {
+    await axios.get('users/google');
+    const data = useParams();
+    dispatch(authActions.loginGoogleSuccess(data));
+  } catch (error) {
+    dispatch(authActions.loginGoogleError(error.message));
   }
 };
 
 const operations = {
   register,
   logIn,
+  loginWithGoogle,
   logOut,
   getCurrentUser,
+  refreshSession,
 };
 
 export default operations;
