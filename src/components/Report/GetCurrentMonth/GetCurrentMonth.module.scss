@@ -59,3 +59,10 @@
     padding-left: 15px;
   }
 }
+.ArrowIcon {
+  transition: transitionFunc(transform);
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  }
+}
