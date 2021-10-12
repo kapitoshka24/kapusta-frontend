@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getTotalBalance } from '../../../redux/selectors';
-import { changeTotalBalance } from '../../../redux/actions';
+import { kapustaSelectors } from '../../../redux/selectors';
+import { kapustaActions } from '../../../redux/actions';
 import { useFormik } from 'formik';
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
+import { Link } from 'react-router-dom';
 
 // const validate = values => {
 //   const errors = {};
@@ -15,7 +16,7 @@ import styles from './TotalBalance.module.scss';
 // };
 
 const TotalBalance = () => {
-  const balance = useSelector(getTotalBalance);
+  const balance = useSelector(kapustaSelectors.getTotalBalance);
   const dispatch = useDispatch();
 
   const { values, handleChange, handleSubmit, errors } = useFormik({
@@ -28,7 +29,7 @@ const TotalBalance = () => {
         return;
       }
       //   alert(JSON.stringify(values, null, 2));
-      dispatch(changeTotalBalance(values.balance));
+      dispatch(kapustaActions.changeTotalBalance(values.balance));
     },
   });
   return (
@@ -42,7 +43,6 @@ const TotalBalance = () => {
             className={styles.input}
             id="balance"
             name="balance"
-            type="number"
             onChange={handleChange}
             value={values.balance}
             autoComplete="off"
@@ -55,9 +55,9 @@ const TotalBalance = () => {
           <span className={styles.currency}>UAH</span>
         </div>
       </form>
-      <a className={styles.reports} href="./">
+      <Link className={styles.reports} to="/report-page">
         Перейти к отчетам
-      </a>
+      </Link>
       {!balance && <BalanceModal />}
     </div>
   );

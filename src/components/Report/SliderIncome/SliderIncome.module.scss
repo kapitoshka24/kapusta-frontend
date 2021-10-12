@@ -10,7 +10,19 @@
   list-style: none;
 
   @include to(tablet) {
+    position: relative;
+
     margin-top: 20px;
+    &::after {
+      position: absolute;
+      content: '';
+      width: 282px;
+      height: 1px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $vertical-line;
+    }
   }
 
   @include from(tablet) {

@@ -23,3 +23,10 @@
     display: none;
   }
 }
+.GoHomeIcon {
+  transition: transitionFunc(transform);
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  }
+}

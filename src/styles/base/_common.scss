@@ -22,20 +22,6 @@ button {
   margin: 0;
 }
 
-#root {
-  @include to(tablet) {
-    min-height: 870px;
-  }
-
-  @include from(tablet) {
-    min-height: 1000px;
-  }
-
-  @include from(desktop) {
-    min-height: 900px;
-  }
-}
-
 ul {
   list-style: none;
 }
@@ -46,4 +32,8 @@ p {
 
 input {
   outline: none;
+}
+
+a {
+  text-decoration: none;
 }

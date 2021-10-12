@@ -1,24 +1,16 @@
 import Select from '../Select';
 import Date from '../Date';
-// import BackToMainPage from '../report/BackToMainPage';
 import styles from './Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
-import { ReactComponent as GoBack } from '../../../images/go-home.svg';
-import useWindowWidth from '../../../helpers/useWindowWidth';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 
 export default function Controls() {
-  const windowWidth = useWindowWidth();
+  const { width } = useWindowDementions();
 
   return (
     <div className={styles.controls__container}>
-      <div className={styles.date__container}>
-        {windowWidth >= 768 && <Date />}
-      </div>
+      <div className={styles.date__container}>{width >= 768 && <Date />}</div>
 
-      <button className={styles.arrow} type="button">
-        <GoBack />
-      </button>
-      {/* <BackToMainPage onClick={closeControls} /> */}
       <form className={styles.form}>
         <div className={styles.inputs__container}>
           <input

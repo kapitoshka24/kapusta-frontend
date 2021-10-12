@@ -1,5 +1,5 @@
-@import '../../../styles/utils/mixins';
-@import '../../../styles/utils/variables';
+@import '../styles/utils/mixins';
+@import '../styles/utils/variables';
 
 .error {
   font-style: normal;
@@ -16,25 +16,6 @@
   color: $text-red;
   font-size: 12px;
   line-height: 1.16;
-}
-
-.modalTitleRegister {
-  text-align: center;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 1.18;
-
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: $text-grey;
-
-  @include to(tablet) {
-    font-size: 13px;
-    line-height: 1.16;
-    letter-spacing: 0.15em;
-  }
 }
 
 .modal {
@@ -143,7 +124,7 @@
   }
 
   &:active {
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+    box-shadow: inset 1px 1px 4px $black;
   }
 }
 
@@ -154,10 +135,11 @@
 }
 
 .modalGroup {
-  &:not(:last-child) {
+  &:first-child {
     margin-bottom: 14px;
   }
   &:last-child {
+    margin-top: 30px;
     margin-bottom: 40px;
   }
 }

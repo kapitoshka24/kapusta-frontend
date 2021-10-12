@@ -119,8 +119,10 @@
 }
 .currency {
   position: absolute;
-  top: 31%;
-  right: 57%;
+  top: 50%;
+  right: 56%;
+  transform: translateY(-50%);
+
   @include from(tablet) {
     right: 60%;
   }

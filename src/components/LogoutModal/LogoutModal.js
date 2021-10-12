@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './LogoutModal.module.scss';
+import { authOperations } from '../../redux/operations';
+import { useDispatch } from 'react-redux';
 // import closeButton from '../../images/close.svg';
 
 const LogoutModal = ({ massage, closeModal }) => {
@@ -14,6 +16,10 @@ const LogoutModal = ({ massage, closeModal }) => {
       window.removeEventListener('keydown', handleKeyDownEsc);
     };
   }, [closeModal]);
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(authOperations.logOut());
+  };
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -25,7 +31,7 @@ const LogoutModal = ({ massage, closeModal }) => {
       <div className={styles.modalContainer}>
         <p className={styles.massage}>{massage}</p>
         <div className={styles.buttonContainer}>
-          <button className={styles.button} type="button">
+          <button className={styles.button} onClick={onLogout} type="button">
             Да
           </button>
           <button onClick={closeModal} className={styles.button} type="button">
