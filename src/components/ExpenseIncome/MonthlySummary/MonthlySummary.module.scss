@@ -41,6 +41,12 @@
   font-style: normal;
   font-size: 12px;
   line-height: 1.17;
+
+  height: 238px;
+  overflow-y: scroll;
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .MonthItem {
@@ -57,9 +63,5 @@
 
   &:not(:last-child) {
     margin-bottom: 2px;
-  }
-  &:last-child {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
   }
 }

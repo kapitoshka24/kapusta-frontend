@@ -12,8 +12,7 @@ import styles from './Header.module.scss';
 
 export default function Header() {
   const loggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const user = 'User Name';
-
+  const user = useSelector(authSelectors.getUsername);
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = e => {
