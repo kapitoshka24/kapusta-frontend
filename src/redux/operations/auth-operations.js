@@ -8,6 +8,7 @@ import {
   serverError,
   logoutSuccess,
 } from '../../services/pnotify';
+import storage from 'redux-persist/lib/storage';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 // axios.defaults.baseURL = 'http://localhost:3000/api';
@@ -22,10 +23,8 @@ const accessToken = {
 };
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
-
   try {
     const { data } = await axios.post('/users/registration', credentials);
-    // token.set(data.token);
     dispatch(authActions.registerSuccess(data));
     registerSuccess(data.data.email); //pnotify
   } catch (error) {
@@ -39,7 +38,6 @@ const logIn = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/login', credentials);
-    // console.log(data.data.headers);
     accessToken.set(data.data.headers.accessToken);
     dispatch(authActions.loginSuccess(data));
     loginSuccess();
@@ -65,7 +63,7 @@ const logOut = () => async dispatch => {
 
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
-    auth: { accessToken: persistedToken },
+    session: { accessToken: persistedToken },
   } = getState();
 
   if (!persistedToken) {

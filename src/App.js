@@ -11,9 +11,7 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
 const ReportPage = lazy(() => import('./pages/ReportPage'));
-storage
-  .getItem('persist:session')
-  .then(r => console.log(JSON.parse(r).accessToken));
+
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
