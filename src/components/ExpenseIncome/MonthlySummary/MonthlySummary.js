@@ -31,11 +31,11 @@ function MonthlySummary() {
           <span>18 000.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>ИЮНЬ</span>
+          <span>МАЙ</span>
           <span>18 000.00</span>
         </li>
         <li className={styles.MonthItem}>
-          <span>ИЮНЬ</span>
+          <span>АПРЕЛЬ</span>
           <span>18 000.00</span>
         </li>
       </ul>
