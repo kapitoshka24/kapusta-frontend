@@ -1,13 +1,22 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const changeTotalBalance = createAction('kapusta/changeTotalBalance');
+const changeTotalBalance = createAction('kapusta/changeTotalBalance');
 
-export const fetchMonthlySummaryRequest = createAction(
+const fetchMonthlySummaryRequest = createAction(
   'kapusta/fetchMonthlySummaryRequest',
 );
-export const fetchMonthlySummarySuccess = createAction(
+const fetchMonthlySummarySuccess = createAction(
   'kapusta/fetchMonthlySummarySuccess',
 );
-export const fetchMonthlySummaryError = createAction(
+const fetchMonthlySummaryError = createAction(
   'kapusta/fetchMonthlySummaryError',
 );
+
+const actions = {
+  changeTotalBalance,
+  fetchMonthlySummaryRequest,
+  fetchMonthlySummarySuccess,
+  fetchMonthlySummaryError,
+};
+
+export default actions;

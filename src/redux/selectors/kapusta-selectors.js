@@ -1,3 +1,6 @@
-export const getTotalBalance = state => state.kapusta.totalBalance;
+const getTotalBalance = state => state.kapusta.totalBalance;
 
-export const getMonthlySummary = state => state.kapusta.monthlySummary;
+const getMonthlySummary = state => state.kapusta.monthlySummary;
+
+const selectors = { getTotalBalance, getMonthlySummary };
+export default selectors;

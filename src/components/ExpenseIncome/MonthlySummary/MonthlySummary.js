@@ -1,15 +1,15 @@
-import React, { useEffect, useCallback }  from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './MonthlySummary.module.scss';
-import {getMonthlySummary} from '../../../redux/selectors/kapusta-selectors'
-import {fetchMonthlySummary} from '../../../redux/operations/kapusta-operations'
+import { kapustaSelectors } from '../../../redux/selectors/';
+import { kapustaOperations } from '../../../redux/operations/';
 
 function MonthlySummary() {
   const dispatch = useDispatch();
-  const list = useSelector(getMonthlySummary);
+  const list = useSelector(kapustaSelectors.getMonthlySummary);
 
   const onFetchMonthlySummary = useCallback(
-    () => dispatch(fetchMonthlySummary()),
+    () => dispatch(kapustaOperations.fetchMonthlySummary()),
     [dispatch],
   );
   useEffect(() => onFetchMonthlySummary(), [onFetchMonthlySummary]);
@@ -18,12 +18,12 @@ function MonthlySummary() {
     <div className={styles.SummaryWidget}>
       <h2 className={styles.SummaryTitle}>Сводка</h2>
       <ul className={styles.MonthList}>
-        {list.map(({_id,total})=> (
+        {list.map(({ _id, total }) => (
           <li key={_id} className={styles.MonthItem}>
             <span>{_id}</span>
-          <span>{total}</span>
+            <span>{total}</span>
           </li>
-        )) }
+        ))}
         {/* <li className={styles.MonthItem}>
           <span>НОЯБРЬ</span>
           <span>25 500.00</span>
