@@ -3,7 +3,7 @@ import { authActions } from '../actions';
 import {
   loginSuccess,
   loginError,
-  registerSuccess,
+  // registerSuccess,
   registerError,
   serverError,
   logoutSuccess,
@@ -27,8 +27,10 @@ const register = credentials => async dispatch => {
   try {
     const { data } = await axios.post('/users/registration', credentials);
     // token.set(data.token);
+
     dispatch(authActions.registerSuccess(data));
-    registerSuccess(data.data.email); //pnotify
+    // dispatch(authActions.onVerification(true));
+    // registerSuccess(data.data.email); //pnotify
   } catch (error) {
     dispatch(authActions.registerError(error.message));
     registerError(); //pnotify
@@ -85,11 +87,22 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
+const resendEmailVerification = email => async dispatch => {
+  try {
+    const { data } = await axios.post('users/verify', { email });
+    console.log(data);
+    dispatch(authActions.resendEmailVerification);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const operations = {
   register,
   logIn,
   logOut,
   getCurrentUser,
+  resendEmailVerification,
 };
 
 export default operations;

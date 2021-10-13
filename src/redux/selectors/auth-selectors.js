@@ -1,7 +1,9 @@
-const getIsLoggedIn = state => state.auth.isLoggedIn;
-const getUsername = state => state.auth.user.name;
-const getIsFetching = state => state.auth.isFetching;
-const getError = state => state.auth.error;
+const selectors = {
+  getIsLoggedIn: state => state.auth.isLoggedIn,
+  getUsername: state => state.auth.user.name,
+  getIsFetching: state => state.auth.isFetching,
+  getError: state => state.auth.error,
+  getEmailVerification: state => state.auth.emailVerification,
+};
 
-const selectors = { getIsLoggedIn, getUsername, getIsFetching, getError };
 export default selectors;
