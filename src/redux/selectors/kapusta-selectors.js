@@ -1,4 +1,5 @@
 const getTotalBalance = state => state.kapusta.totalBalance;
+const getLoading = state => state.kapusta.loading;
 
-const selectors = { getTotalBalance };
+const selectors = { getTotalBalance, getLoading };
 export default selectors;

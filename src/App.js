@@ -6,6 +6,9 @@ import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
 
+import styles from './styles/Loader.module.scss';
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
@@ -19,11 +22,12 @@ export default function App() {
       <Suspense
         fallback={
           <Loader
-            className="Loader-main"
-            type="Bars"
-            color="#45a049"
-            height={50}
-            width={50}
+            className={styles.LoaderMain}
+            type="Circles"
+            color="#ff751d"
+            height={80}
+            width={80}
+            timeout={8000}
           />
         }
       >
