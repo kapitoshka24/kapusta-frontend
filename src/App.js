@@ -1,4 +1,5 @@
 import React, { Suspense, lazy, useEffect } from 'react';
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import { Switch } from 'react-router';
 import PublicRoute from './components/PublicRoute';
@@ -7,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
 
 import styles from './styles/Loader.module.scss';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -27,7 +27,6 @@ export default function App() {
             color="#ff751d"
             height={80}
             width={80}
-            timeout={8000}
           />
         }
       >
