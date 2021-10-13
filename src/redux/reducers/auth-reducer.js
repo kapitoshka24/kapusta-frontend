@@ -57,6 +57,10 @@ const emailVerification = createReducer(initialEmailVerificationState, {
     onVerification: true,
     verificationStart: new Date().toLocaleString(),
   }),
+  [authActions.resendEmailVerification]: () => ({
+    onVerification: true,
+    verificationStart: new Date().toLocaleString(),
+  }),
   [authActions.registerError]: () => initialEmailVerificationState,
 });
 

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import appStyles from '../styles/AppComon.module.scss';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import registerStyles from '../styles/Register.module.scss';
 import auth from '../redux/operations/auth-operations';
 import { authSelectors } from '../redux/selectors';
+import axios from 'axios';
 
 const validate = values => {
   const errors = {};
@@ -40,7 +41,7 @@ export default function RegisterPage({ location }) {
   // const fetchError = useSelector(authSelectors.getError);
   // const {onVerification, verificationStart} = useSelector(authSelectors.getEmailVerification);
   const { onVerification } = useSelector(authSelectors.getEmailVerification);
-  // const [timer, setTimer] = useState(59);
+  const [timer, setTimer] = useState(59);
 
   const dispatch = useDispatch();
   const { errors, values, handleSubmit, handleChange } = useFormik({
@@ -54,22 +55,27 @@ export default function RegisterPage({ location }) {
     validate,
     onSubmit: ({ name, email, password }, { resetForm }) => {
       dispatch(auth.register({ name, email, password }));
-      resetForm();
+      resetForm({ values });
     },
   });
 
-  // useEffect(() => {
-  //   if (onVerification) {
-  //     const intervalId = setInterval(() => setTimer(timer - 1), 1000);
+  const resendEmailVerificationHandler = async () => {
+    dispatch(auth.resendEmailVerification(values.email));
+    setTimer(59);
+  };
 
-  //     if (timer === 0) {
-  //       clearInterval(intervalId);
-  //     }
-  //     return () => {
-  //       clearInterval(intervalId);
-  //     };
-  //   }
-  // }, [onVerification, timer]);
+  useEffect(() => {
+    if (onVerification) {
+      const intervalId = setInterval(() => setTimer(timer - 1), 1000);
+
+      if (timer === 0) {
+        clearInterval(intervalId);
+      }
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, [onVerification, timer]);
 
   return (
     <div className={appStyles.loggedOutBg}>
@@ -78,10 +84,20 @@ export default function RegisterPage({ location }) {
         <div className={registerStyles.modal}>
           <div className={registerStyles.modalBodyFirst}>
             <p className={registerStyles.modalTitleVerification}>
-              На Ваш email было отправлено письмо с дальнейшими инструкциями.
+              На Ваш email <span>{values.email}</span> было отправлено письмо с
+              дальнейшими инструкциями.
             </p>
             <p className={registerStyles.modalTitleVerification}>
-              Не пришло письмо? <a href="#">Отправить повторно</a>.
+              {timer ? (
+                `Не пришло письмо? Отправить повторно через (${timer})`
+              ) : (
+                <button
+                  className={registerStyles.btnResendVerification}
+                  onClick={resendEmailVerificationHandler}
+                >
+                  Отправить письмо повторно
+                </button>
+              )}
             </p>
 
             <div className={registerStyles.modalContinueBtn}>

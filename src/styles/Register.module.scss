@@ -307,3 +307,11 @@
     background: $background-orange;
   }
 }
+
+.btnResendVerification {
+  color: $modalButtonAccent;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

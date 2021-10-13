@@ -25,11 +25,11 @@ export const loginSuccess = () =>
     ...settings,
   });
 
-export const registerSuccess = email =>
-  success({
-    text: `Проверьте почту ${email} и пройдите верификацию.`,
-    ...settings,
-  });
+// export const registerSuccess = email =>
+//   success({
+//     text: `Проверьте почту ${email} и пройдите верификацию.`,
+//     ...settings,
+//   });
 
 export const registerError = () =>
   error({
