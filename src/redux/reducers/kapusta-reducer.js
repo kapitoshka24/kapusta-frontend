@@ -9,6 +9,17 @@ const totalBalance = createReducer('', {
   [kapustaActions.addTotalBalanceSuccess]: (_, { payload }) => payload,
 });
 
+const monthlySummary = createReducer([], {
+  [kapustaActions.fetchMonthlySummarySuccess]: (_, { payload }) => payload,
+});
+
+const error = createReducer(null, {
+  [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) =>
+    console.log(payload),
+});
+
 export default combineReducers({
   totalBalance,
+  monthlySummary,
+  error,
 });

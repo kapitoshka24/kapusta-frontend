@@ -4,7 +4,7 @@ import { kapustaActions } from '../actions';
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 
 const fetchTotalBalance = () => async dispatch => {
-  dispatch(kapustaActions.totalBalanceRequest);
+  dispatch(kapustaActions.totalBalanceRequest());
   try {
     const { data } = await axios.get('/currencymovements/balance');
 
@@ -22,7 +22,7 @@ const addTotalBalance = balance => async dispatch => {
     sum: balance,
   };
 
-  dispatch(kapustaActions.addTotalBalanceRequest);
+  dispatch(kapustaActions.addTotalBalanceRequest());
   try {
     await axios.post('/currencymovements/create', balanceObj);
     dispatch(kapustaActions.addTotalBalanceSuccess(balance));
@@ -31,9 +31,23 @@ const addTotalBalance = balance => async dispatch => {
   }
 };
 
+const fetchMonthlySummary = () => async dispatch => {
+  dispatch(kapustaActions.fetchMonthlySummaryRequest());
+
+  try {
+    const response = await axios.get(
+      '/currencymovements/summaryExpenses?year=2021',
+    );
+    dispatch(kapustaActions.fetchMonthlySummarySuccess(response.data.result));
+  } catch (error) {
+    dispatch(kapustaActions.fetchMonthlySummaryError(error));
+  }
+};
+
 const operations = {
   fetchTotalBalance,
   addTotalBalance,
+  fetchMonthlySummary,
 };
 
 export default operations;
