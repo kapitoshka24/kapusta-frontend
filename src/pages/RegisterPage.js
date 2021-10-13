@@ -81,11 +81,12 @@ export default function RegisterPage({ location }) {
     <div className={appStyles.loggedOutBg}>
       <Header />
       {onVerification ? (
-        <div className={registerStyles.modal}>
+        <div className={registerStyles.modalVerification}>
           <div className={registerStyles.modalBodyFirst}>
             <p className={registerStyles.modalTitleVerification}>
-              На Ваш email <span>{values.email}</span> было отправлено письмо с
-              дальнейшими инструкциями.
+              На Ваш email (
+              <span style={{ 'font-weight': 'bold' }}>{values.email}</span>)
+              было отправлено письмо с дальнейшими инструкциями.
             </p>
             <p className={registerStyles.modalTitleVerification}>
               {timer ? (
@@ -95,7 +96,7 @@ export default function RegisterPage({ location }) {
                   className={registerStyles.btnResendVerification}
                   onClick={resendEmailVerificationHandler}
                 >
-                  Отправить письмо повторно
+                  Отправить письмо повторно.
                 </button>
               )}
             </p>

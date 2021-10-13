@@ -10,7 +10,7 @@ const settings = {
   title: false,
   maxTextHeight: null,
   width: '300px',
-  delay: 2000,
+  delay: 2500,
 };
 
 export const serverError = () =>
@@ -33,7 +33,7 @@ export const loginSuccess = () =>
 
 export const registerError = () =>
   error({
-    text: 'Не удалось зарегистрировать. Попробуйте еще раз немного позже.',
+    text: 'Не удалось зарегистрировать. Возможно, вы уже?:) Если нет, повторите запрос позже.',
     ...settings,
   });
 
