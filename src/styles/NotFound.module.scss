@@ -8,57 +8,50 @@
     height: 100vh;
   }
 
-  @include from-to(tablet, desktop) {
-    min-height: 1000px;
+  //   @include from-to(tablet, desktop) {
+  //     min-height: 100vh;
 
-    background-image: url('../images/desktop/kapusta-down-desktop.svg');
-    background-position: right 88px bottom 64px;
-  }
-
-  @include from(desktop) {
-    min-height: 100vh;
-
-    background-image: url('../images/desktop/kapusta-top-desktop.svg');
-
-    background-repeat: repeat-x;
-    background-position: bottom -38px left 0;
-    padding-bottom: 83px;
-  }
+  //     // background-image: url('../images/desktop/kapusta-down-desktop.svg');
+  //     // background-position: right 88px bottom 64px;
+  //   }
 }
 
 .loggedOutBg {
   background-repeat: no-repeat;
 
   @include to(tablet) {
-    height: 870px;
+    min-height: 100vh;
 
     background-image: url('../images/mobile/kapusta-down-mobile.svg');
     background-position: left 35px bottom 0px;
   }
 
   @include from(tablet) {
-    min-height: 1000px;
+    min-height: 100vh;
 
     background-image: url('../images/desktop/kapusta-down-desktop.svg');
     background-position: 103px 826px;
   }
 
   @include from(desktop) {
-    min-height: 850px;
+    min-height: 100vh;
 
     background-position: 230px 658px;
   }
 }
 
 .container {
-  padding-top: 175px;
+  padding-top: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @include from(tablet) {
     padding-top: 275px;
   }
 
   @include from(desktop) {
-    padding-top: 295px;
+    padding-top: 210px;
   }
 }
 
@@ -75,10 +68,12 @@
     font-size: 115px;
   }
 }
+
 .oops {
   font-size: 12px;
   text-align: center;
   color: $text-grey;
+  margin-bottom: 20px;
 
   @include from(tablet) {
     font-size: 14px;
