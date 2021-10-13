@@ -5,6 +5,7 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
+import NotFound from './pages/NotFoundPage';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -41,6 +42,9 @@ export default function App() {
           <PrivateRoute path="/report-page" restricted redirectTo="/login">
             <ReportPage />
           </PrivateRoute>
+          <PublicRoute>
+            <NotFound />
+          </PublicRoute>
         </Switch>
       </Suspense>
     </>
