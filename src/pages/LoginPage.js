@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import Header from '../components/Header';
 // import Login from '../components/Home/Login';
 import appStyles from '../styles/AppComon.module.scss';

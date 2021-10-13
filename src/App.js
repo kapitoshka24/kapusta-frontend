@@ -14,6 +14,7 @@ const ReportPage = lazy(() => import('./pages/ReportPage'));
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
+
   return (
     <>
       <Suspense

@@ -10,8 +10,8 @@ import {
 } from '../../services/pnotify';
 import { useParams } from 'react-router-dom';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
-
+// axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 const accessToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,6 +20,7 @@ const accessToken = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
   try {
@@ -63,32 +64,33 @@ const getCurrentUser = () => async (dispatch, getState) => {
   const {
     session: { accessToken: persistedToken },
   } = getState();
-
   if (!persistedToken) {
     return;
   }
-
   accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
-
   try {
     const { data } = await axios.get('users/current');
-
     dispatch(authActions.getCurrentUserSuccess(data.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
-    loginError();
+    refreshSession(dispatch, getState);
   }
 };
 
-const refreshSession = () => async (dispatch, getState) => {
+const refreshSession = async (dispatch, getState) => {
   const {
     session: { refreshToken: refToken, sid: id },
   } = getState();
+
   dispatch(authActions.refreshSessionRequest());
+
+  const credentials = { sid: id };
+  accessToken.set(refToken);
+
   try {
-    accessToken.set(refToken);
-    const { data } = await axios.post('/users/refresh', { sid: id });
+    const data = await axios.post('/users/refresh', credentials);
+    console.log(data);
     dispatch(authActions.refreshSessionSuccess(data));
     loginSuccess();
     accessToken.unset();
