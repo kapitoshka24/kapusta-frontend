@@ -76,7 +76,7 @@
   color: $text-grey;
 }
 
-.user__button {
+.user__avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,12 +87,6 @@
   border: none;
   border-radius: 50%;
   background-color: #f5f6fa;
-
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 1.16;
-  letter-spacing: 0.04em;
-  color: $text-grey;
 }
 
 .logout__mobile {

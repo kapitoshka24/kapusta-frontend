@@ -1,13 +1,13 @@
-import useWindowWidth from '../../../helpers/useWindowDementions';
+import useWindowDementions from '../../../helpers/useWindowDementions';
 import ChartMobile from './ChartMobile';
 import ChartOptional from './ChartOptional';
 import styles from './Chart.module.scss';
 
 export default function Chart() {
-  const windowWidth = useWindowWidth();
+  const { width } = useWindowDementions();
   return (
     <div className={styles.container}>
-      {windowWidth < 768 ? <ChartMobile /> : <ChartOptional />}
+      {width < 768 ? <ChartMobile /> : <ChartOptional />}
     </div>
   );
 }

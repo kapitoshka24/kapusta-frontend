@@ -4,49 +4,21 @@
 .dropdown {
   width: 188px;
   height: 44px;
-  border: 2px solid $background-grey;
 
   font-weight: 400;
   font-size: 12px;
   line-height: 1.1667;
   letter-spacing: 0.02em;
 
+  border-top: 2px solid $background-grey;
+  border-bottom: 2px solid $background-grey;
   color: $text-description;
 
   @include to(tablet) {
     width: 100%;
 
+    border: 2px solid $background-grey;
     border-bottom-right-radius: 16px;
     border-top: 0;
   }
 }
-
-// @keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//     transform: translateY(-30px);
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
-
-// @keyframes fadeOut {
-//   0% {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-//   100% {
-//     opacity: 0;
-//     transform: translateY(-30px);
-//   }
-// }
-
-// .menu {
-//   animation: fadeIn 250ms ease-in-out;
-// }
-
-// .menu__close {
-//   animation: fadeOut 0.2s ease-in-out;
-// }
