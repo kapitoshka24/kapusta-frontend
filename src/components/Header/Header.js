@@ -10,7 +10,7 @@ import defaultAvatar from './icons/user.png';
 
 import styles from './Header.module.scss';
 
-export default function Header() {
+export default function Header({ notFound }) {
   const loggedIn = useSelector(authSelectors.getIsLoggedIn);
   const user = useSelector(authSelectors.getUsername);
   const [showModal, setShowModal] = useState(false);
@@ -20,13 +20,14 @@ export default function Header() {
     setShowModal(prevVal => !prevVal);
   };
 
+  const className = notFound
+    ? styles.backgroundNotFound
+    : loggedIn
+    ? styles.backgroundLoggedIn
+    : styles.backgroundLoggedOut;
   return (
     <>
-      <div
-        className={
-          loggedIn ? styles.backgroundLoggedIn : styles.backgroundLoggedOut
-        }
-      >
+      <div className={className}>
         <div className={styles.wrapper}>
           <header className={styles.header}>
             <Link to="/main-page">
