@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './LogoutModal.module.scss';
 import { authOperations } from '../../redux/operations';
 import { useDispatch } from 'react-redux';
-// import closeButton from '../../images/close.svg';
+import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
 const LogoutModal = ({ massage, closeModal }) => {
   useEffect(() => {
@@ -23,7 +23,7 @@ const LogoutModal = ({ massage, closeModal }) => {
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      closeModal();
+      closeModal(e);
     }
   };
   return (
@@ -38,11 +38,7 @@ const LogoutModal = ({ massage, closeModal }) => {
             Нет
           </button>
         </div>
-        <button
-          onClick={closeModal}
-          className={styles.closeButton}
-          type="button"
-        ></button>
+        <CloseIcon onClick={closeModal} className={styles.closeButton} />
       </div>
     </div>
   );

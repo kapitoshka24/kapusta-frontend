@@ -1,5 +1,4 @@
 import Header from '../components/Header';
-// import Login from '../components/Home/Login';
 import appStyles from '../styles/AppComon.module.scss';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/operations';
@@ -37,6 +36,7 @@ export default function LoginPage() {
       email: '',
       password: '',
     },
+    validateOnChange: false,
     validate,
     onSubmit: ({ email, password }) => {
       onLogin({ email, password });

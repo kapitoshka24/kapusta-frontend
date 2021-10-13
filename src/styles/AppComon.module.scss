@@ -21,6 +21,7 @@
 
     background-repeat: repeat-x;
     background-position: bottom -38px left 0;
+    padding-bottom: 83px;
   }
 }
 
@@ -42,7 +43,7 @@
   }
 
   @include from(desktop) {
-    min-height: 900px;
+    min-height: 850px;
 
     background-position: 230px 658px;
   }

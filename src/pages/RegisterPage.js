@@ -47,6 +47,7 @@ export default function RegisterPage() {
       password: '',
       confirm: '',
     },
+    validateOnChange: false,
     validate,
     onSubmit: ({ name, email, password }, { resetForm }) => {
       dispatch(auth.register({ name, email, password }));
