@@ -10,8 +10,8 @@ import {
 } from '../../services/pnotify';
 import { useParams } from 'react-router-dom';
 
-// axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+
 const accessToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -90,7 +90,6 @@ const refreshSession = async (dispatch, getState) => {
 
   try {
     const data = await axios.post('/users/refresh', credentials);
-    console.log(data);
     dispatch(authActions.refreshSessionSuccess(data));
     loginSuccess();
     accessToken.unset();

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { authActions } from '../actions';
 
-const initialUserState = { id: null, name: null, email: null };
+const initialUserState = { id: null, name: null, email: null, createdAt: null };
 
 const user = createReducer(initialUserState, {
   [authActions.loginSuccess]: (_, { payload }) => ({
@@ -22,6 +22,7 @@ const error = createReducer(null, {
   [authActions.logoutError]: setError,
   [authActions.getCurrentUserError]: setError,
   [authActions.refreshSessionError]: setError,
+  [authActions.loginGoogleError]: setError,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -32,6 +33,7 @@ const isLoggedIn = createReducer(false, {
   [authActions.loginError]: () => false,
   [authActions.getCurrentUserError]: () => false,
   [authActions.logoutSuccess]: () => false,
+  [authActions.refreshSessionError]: () => false,
 });
 
 export default combineReducers({
