@@ -5,5 +5,4 @@ const selectors = {
   getError: state => state.auth.error,
   getEmailVerification: state => state.auth.emailVerification,
 };
-
 export default selectors;
