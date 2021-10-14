@@ -1,4 +1,5 @@
 // import { Component } from 'react';
+import { useState } from 'react';
 import Select from 'react-select';
 // import makeAnimated from 'react-select';
 
@@ -52,7 +53,12 @@ const customStyles = {
   }),
 };
 
-export default function Dropdown() {
+export default function Dropdown({ setCategory }) {
+  const [option, setOption] = useState({});
+
+  setCategory(option.value);
+  // const handleChange = setCategory;
+
   return (
     <>
       <Select
@@ -61,7 +67,7 @@ export default function Dropdown() {
         className={styles.dropdown}
         styles={customStyles}
         placeholder="Категория товара"
-        // isClearable={false}
+        onChange={setOption}
         isClearable
       />
     </>
