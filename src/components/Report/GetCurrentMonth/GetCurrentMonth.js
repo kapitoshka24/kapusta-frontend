@@ -19,28 +19,39 @@ const MONTHS = [
   'Декабрь',
 ];
 
-const years = [
-  2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025,
-];
-
 function GetCurrentMonth() {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+
   const [calendarIsOpen, setCalendarIsOpen] = useState(false);
-  const [month, setMonth] = useState('Октябрь');
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
+
+  const getYears = (fromYear, toYear) => {
+    const years = [fromYear];
+
+    while (years[years.length - 1] !== toYear) {
+      years.push(years[years.length - 1] + 1);
+    }
+
+    return years;
+  };
+
+  const years = getYears(2019, currentYear);
 
   const handleCalendarOpen = () => {
     setCalendarIsOpen(prevCalendarIsOpen => !prevCalendarIsOpen);
   };
 
   const onListClick = e => {
-    const data = e.target.dataset.name;
-    setMonth(data);
+    const pickedMonth = e.target.dataset.name;
+    setMonth(MONTHS.findIndex(month => month === pickedMonth));
     setCalendarIsOpen(false);
   };
 
   const handleIncrementMonth = () => {
-    const currentMonthIndex = MONTHS.findIndex(el => el === month);
-    if (currentMonthIndex !== MONTHS.length - 1) {
-      setMonth(MONTHS[currentMonthIndex + 1]);
+    if (month !== MONTHS.length - 1) {
+      setMonth(prevMonth => prevMonth + 1);
       return;
     }
 
@@ -48,7 +59,7 @@ function GetCurrentMonth() {
       return;
     }
 
-    setMonth(MONTHS[0]);
+    setMonth(0);
 
     setYear(prevYear => {
       return prevYear === years[years.length - 1] ? prevYear : prevYear + 1;
@@ -56,10 +67,8 @@ function GetCurrentMonth() {
   };
 
   const handleDecrementMonth = () => {
-    const currentMonthIndex = MONTHS.findIndex(el => el === month);
-
-    if (currentMonthIndex !== 0) {
-      setMonth(MONTHS[currentMonthIndex - 1]);
+    if (month !== 0) {
+      setMonth(prevMonth => prevMonth - 1);
       return;
     }
 
@@ -67,14 +76,12 @@ function GetCurrentMonth() {
       return;
     }
 
-    setMonth(MONTHS[MONTHS.length - 1]);
+    setMonth(MONTHS.length - 1);
 
     setYear(prevYear => {
       return prevYear === years[0] ? prevYear : prevYear - 1;
     });
   };
-
-  const [year, setYear] = useState(2021);
 
   const handleIncrementYear = () => {
     const currentYearIndex = years.findIndex(el => el === year);
@@ -104,7 +111,7 @@ function GetCurrentMonth() {
           <PreviousIcon width="7" height="12" />
         </button>
         <p onClick={handleCalendarOpen} className={styles.CurrentPeriod}>
-          {`${month} ${year}`}
+          {`${MONTHS[month]} ${year}`}
         </p>
         <button
           type="button"
@@ -121,7 +128,8 @@ function GetCurrentMonth() {
           years={years}
           handleIncrementYear={handleIncrementYear}
           handleDecrementYear={handleDecrementYear}
-          currentYear={year}
+          pickedYear={year}
+          pickedMonth={month}
         />
       )}
     </div>
