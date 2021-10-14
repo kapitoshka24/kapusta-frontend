@@ -10,6 +10,7 @@ const user = createReducer(initialUserState, {
     name: payload.data.name,
     email: payload.data.email,
   }),
+  [authActions.registerSuccess]: (_, { payload }) => payload.data,
   [authActions.logoutSuccess]: () => initialUserState,
   [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
 });
@@ -36,8 +37,27 @@ const isLoggedIn = createReducer(false, {
   [authActions.refreshSessionError]: () => false,
 });
 
+const initialEmailVerificationState = {
+  onVerification: false,
+  verificationStart: null,
+};
+const emailVerification = createReducer(initialEmailVerificationState, {
+  [authActions.loginSuccess]: () => initialEmailVerificationState,
+  [authActions.registerSuccess]: () => ({
+    onVerification: true,
+    verificationStart: new Date().toLocaleString(),
+  }),
+  [authActions.resendEmailVerification]: () => ({
+    onVerification: true,
+    verificationStart: new Date().toLocaleString(),
+  }),
+  [authActions.registerError]: () => initialEmailVerificationState,
+});
+
 export default combineReducers({
   user,
   isLoggedIn,
   error,
+  refreshToken,
+  emailVerification,
 });

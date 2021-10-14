@@ -24,6 +24,8 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const resendEmailVerification = createAction('auth/resendEmailVerification');
+
 const actions = {
   registerRequest,
   registerSuccess,
@@ -43,6 +45,7 @@ const actions = {
   refreshSessionRequest,
   refreshSessionSuccess,
   refreshSessionError,
+  resendEmailVerification,
 };
 
 export default actions;
