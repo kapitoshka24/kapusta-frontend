@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import appStyles from '../styles/AppComon.module.scss';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import registerStyles from '../styles/Register.module.scss';
-import auth from '../redux/operations/auth-operations';
 import { authSelectors } from '../redux/selectors';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import auth from '../redux/operations/auth-operations';
+
+import Header from '../components/Header';
+
+import registerStyles from '../styles/Register.module.scss';
+import appStyles from '../styles/AppComon.module.scss';
 
 const validate = values => {
   const errors = {};
@@ -38,9 +40,9 @@ const validate = values => {
 };
 
 export default function RegisterPage({ location }) {
-  // const fetchError = useSelector(authSelectors.getError);
-  // const {onVerification, verificationStart} = useSelector(authSelectors.getEmailVerification);
-  const { onVerification } = useSelector(authSelectors.getEmailVerification);
+  const { onVerification, email } = useSelector(
+    authSelectors.getEmailVerification,
+  );
   const [timer, setTimer] = useState(59);
 
   const dispatch = useDispatch();
@@ -55,12 +57,11 @@ export default function RegisterPage({ location }) {
     validate,
     onSubmit: ({ name, email, password }, { resetForm }) => {
       dispatch(auth.register({ name, email, password }));
-      resetForm({ values });
     },
   });
 
   const resendEmailVerificationHandler = async () => {
-    dispatch(auth.resendEmailVerification(values.email));
+    dispatch(auth.resendEmailVerification(email));
     setTimer(59);
   };
 
@@ -84,9 +85,8 @@ export default function RegisterPage({ location }) {
         <div className={registerStyles.modalVerification}>
           <div className={registerStyles.modalBodyFirst}>
             <p className={registerStyles.modalTitleVerification}>
-              На Ваш email (
-              <span style={{ 'font-weight': 'bold' }}>{values.email}</span>)
-              было отправлено письмо с дальнейшими инструкциями.
+              На Ваш email (<span>{email}</span>) было отправлено письмо с
+              дальнейшими инструкциями.
             </p>
             <p className={registerStyles.modalTitleVerification}>
               {timer ? (
@@ -211,6 +211,7 @@ export default function RegisterPage({ location }) {
                 Войти
               </Link>
               <button
+                type="submit"
                 className={`${registerStyles.active} ${registerStyles.modalRegister}`}
               >
                 Регистрация

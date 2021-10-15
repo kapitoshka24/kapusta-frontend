@@ -115,9 +115,9 @@ const loginWithGoogle = () => async dispatch => {
 
 const resendEmailVerification = email => async dispatch => {
   try {
-    const { data } = await axios.post('users/verify', { email });
-    console.log(data);
-    dispatch(authActions.resendEmailVerification);
+    await axios.post('users/verify', { email });
+
+    dispatch(authActions.resendEmailVerification({ email }));
   } catch (error) {
     console.log(error);
   }
