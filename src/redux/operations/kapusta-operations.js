@@ -48,7 +48,7 @@ const fetchMonthlySummary = () => async dispatch => {
 
   try {
     const response = await axios.get(
-      '/currencymovements/summaryExpenses?year=2021',
+      '/currency-movements/summary-expenses?year=2021',
     );
     dispatch(kapustaActions.fetchMonthlySummarySuccess(response.data.result));
   } catch (error) {
