@@ -24,6 +24,7 @@ const error = createReducer(null, {
   [authActions.getCurrentUserError]: setError,
   [authActions.refreshSessionError]: setError,
   [authActions.loginGoogleError]: setError,
+  [authActions.clearErrors]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -61,6 +62,5 @@ export default combineReducers({
   user,
   isLoggedIn,
   error,
-  // refreshToken,
   emailVerification,
 });

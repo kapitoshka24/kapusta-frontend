@@ -23,15 +23,19 @@ const accessToken = {
 
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
+
   try {
     const { data } = await axios.post('/users/registration', credentials);
-    // token.set(data.token);
+
     dispatch(authActions.registerSuccess(data));
-    // dispatch(authActions.onVerification(true));
-    // registerSuccess(data.data.email); //pnotify
   } catch (error) {
-    dispatch(authActions.registerError(error.message));
-    registerError(); //pnotify
+    if (error.response.data.code === 409) {
+      dispatch(
+        authActions.registerError({ email: 'Email уже зарегистрирован' }),
+      );
+    } else {
+      registerError();
+    }
   }
 };
 
@@ -123,6 +127,10 @@ const resendEmailVerification = email => async dispatch => {
   }
 };
 
+const clearErrors = () => dispatch => {
+  dispatch(authActions.clearErrors());
+};
+
 const operations = {
   register,
   logIn,
@@ -131,6 +139,7 @@ const operations = {
   getCurrentUser,
   refreshSession,
   resendEmailVerification,
+  clearErrors,
 };
 
 export default operations;

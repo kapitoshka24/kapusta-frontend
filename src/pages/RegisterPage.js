@@ -16,18 +16,28 @@ const validate = values => {
 
   if (!values.name) {
     errors.name = 'Это обязательное поле';
+  } else if (values.name.length < 3 || values.name.length > 40) {
+    errors.name = 'Имя должно быть от 3 до 40 символов';
+  } else if (!/^[A-ZА-Я]+$/i.test(values.name)) {
+    errors.name = 'Недопустимые символы в имени';
   }
 
   if (!values.email) {
     errors.email = 'Это обязательное поле';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Неправильный email';
+  } else if (
+    !/[com]{3}$/i.test(values.email) &&
+    !/[ua]{2}$/i.test(values.email) &&
+    !/[net]{3}$/i.test(values.email)
+  ) {
+    errors.email = 'Неправильный домен';
   }
 
   if (!values.password) {
     errors.password = 'Это обязательное поле';
-  } else if (values.password.length < 6) {
-    errors.password = 'Пароль должен содержать не меньше 6 символов';
+  } else if (values.password.length < 6 || values.password.length > 30) {
+    errors.password = 'Пароль должен содержать от 6 до 30 символов';
   }
 
   if (!values.confirm) {
@@ -40,12 +50,13 @@ const validate = values => {
 };
 
 export default function RegisterPage({ location }) {
+  const dispatch = useDispatch();
+  const fetchError = useSelector(authSelectors.getError);
   const { onVerification, email } = useSelector(
     authSelectors.getEmailVerification,
   );
   const [timer, setTimer] = useState(59);
 
-  const dispatch = useDispatch();
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: '',
@@ -57,11 +68,14 @@ export default function RegisterPage({ location }) {
     validate,
     onSubmit: ({ name, email, password }, { resetForm }) => {
       dispatch(auth.register({ name, email, password }));
+
+      resetForm({ values });
     },
   });
 
   const resendEmailVerificationHandler = async () => {
     dispatch(auth.resendEmailVerification(email));
+
     setTimer(59);
   };
 
@@ -108,7 +122,6 @@ export default function RegisterPage({ location }) {
                   pathname: `/login`,
                   state: { from: location },
                 }}
-                // onClick={() => dispatch(auth.onVerification(false))}
               >
                 Продолжить
               </Link>
@@ -159,6 +172,11 @@ export default function RegisterPage({ location }) {
                   />
                   {errors.email ? (
                     <div className={registerStyles.error}>{errors.email}</div>
+                  ) : null}
+                  {fetchError?.email ? (
+                    <div className={registerStyles.error}>
+                      {fetchError.email}
+                    </div>
                   ) : null}
                 </label>
               </div>
@@ -213,6 +231,7 @@ export default function RegisterPage({ location }) {
               <button
                 type="submit"
                 className={`${registerStyles.active} ${registerStyles.modalRegister}`}
+                onClick={() => dispatch(auth.clearErrors())}
               >
                 Регистрация
               </button>
