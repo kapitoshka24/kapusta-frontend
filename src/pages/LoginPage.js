@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import Header from '../components/Header';
 import appStyles from '../styles/AppComon.module.scss';
 import { useDispatch } from 'react-redux';
@@ -27,6 +26,7 @@ const validate = values => {
 export default function LoginPage() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
+  const onGoogle = () => dispatch(authOperations.loginWithGoogle());
 
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
@@ -59,7 +59,7 @@ export default function LoginPage() {
           >
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button className={loginStyles.googleBtn} onClick={() => {}}>
+          <button className={loginStyles.googleBtn} onClick={onGoogle}>
             <img
               src={googleSymbol}
               alt="Google Symbol"

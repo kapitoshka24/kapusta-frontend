@@ -6,7 +6,7 @@ import TurnoverSlider from '../components/Report/TurnoverSlider';
 import Chart from '../components/ExpenseIncome/Chart';
 import styles from '../styles/AppReport.module.scss';
 
-export default function LoginPage() {
+export default function ReportPage() {
   let loggedIn = true;
   return (
     <div className={loggedIn ? styles.loggedInBg : styles.loggedOutBg}>

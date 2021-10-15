@@ -1,14 +1,22 @@
 import { createAction } from '@reduxjs/toolkit';
 
-// const changeTotalBalance = createAction('ckapusta/changeTotalBalance');
+const fetchMonthlySummaryRequest = createAction(
+  'kapusta/fetchMonthlySummaryRequest',
+);
+const fetchMonthlySummarySuccess = createAction(
+  'kapusta/fetchMonthlySummarySuccess',
+);
+const fetchMonthlySummaryError = createAction(
+  'kapusta/fetchMonthlySummaryError',
+);
 
-const totalBalanceRequest = createAction('ckapusta/totalBalanceRequest');
-const totalBalanceSuccess = createAction('ckapusta/totalBalanceSuccess');
-const totalBalanceError = createAction('ckapusta/totalBalanceError');
+const totalBalanceRequest = createAction('kapusta/totalBalanceRequest');
+const totalBalanceSuccess = createAction('kapusta/totalBalanceSuccess');
+const totalBalanceError = createAction('kapusta/totalBalanceError');
 
-const addTotalBalanceRequest = createAction('ckapusta/addTotalBalanceRequest');
-const addTotalBalanceSuccess = createAction('ckapusta/addTotalBalanceSuccess');
-const addTotalBalanceError = createAction('ckapusta/addTotalBalanceError');
+const addTotalBalanceRequest = createAction('kapusta/addTotalBalanceRequest');
+const addTotalBalanceSuccess = createAction('kapusta/addTotalBalanceSuccess');
+const addTotalBalanceError = createAction('kapusta/addTotalBalanceError');
 
 const incrementReportYear = createAction('kapusta/incrementReportYear');
 const decrementReportYear = createAction('kapusta/decrementReportYear');
@@ -18,7 +26,6 @@ const decrementReportMonth = createAction('kapusta/decrementReportMonth');
 const changeReportYears = createAction('kapusta/changeReportYears');
 
 const actions = {
-  //   changeTotalBalance,
   totalBalanceRequest,
   totalBalanceSuccess,
   totalBalanceError,
@@ -31,5 +38,9 @@ const actions = {
   incrementReportMonth,
   decrementReportMonth,
   changeReportYears,
+  fetchMonthlySummaryRequest,
+  fetchMonthlySummarySuccess,
+  fetchMonthlySummaryError,
 };
+
 export default actions;
