@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { kapustaActions } from '../actions';
+import getYears from '../../helpers/getYears';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 
@@ -28,6 +29,24 @@ const addTotalBalance = balance => async dispatch => {
     dispatch(kapustaActions.addTotalBalanceSuccess(balance));
   } catch (error) {
     dispatch(kapustaActions.addTotalBalanceError(error));
+  }
+};
+
+const calculateAvailableYears = () => async dispatch => {
+  try {
+    const { data: response } = await axios.get(
+      '/currency-movements/total-months',
+    );
+
+    const currentYear = new Date().getFullYear();
+    const firstYear = Object.keys(response.data.totalMonths).sort(
+      (a, b) => a - b,
+    )[0];
+
+    const years = getYears(Number(firstYear), currentYear);
+    dispatch(kapustaActions.changeReportYears(years));
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -61,6 +80,7 @@ const fetchMonthlySummary = () => async dispatch => {
 const operations = {
   fetchTotalBalance,
   addTotalBalance,
+  calculateAvailableYears,
   fetchSumCategory,
   fetchMonthlySummary,
 };
