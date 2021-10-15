@@ -51,7 +51,7 @@ const calculateAvailableYears = () => async dispatch => {
 };
 
 const fetchSumCategory = () => async dispatch => {
-  dispatch(kapustaActions.getSumCategoryRequest);
+  dispatch(kapustaActions.getSumCategoryRequest());
 
   try {
     const { data } = await axios.get(
