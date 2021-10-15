@@ -1,0 +1,161 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.backgroundLoggedOut {
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    background-color: $background-grey;
+    height: 320px;
+    width: 100%;
+    border-bottom-left-radius: 130px;
+
+    @include from(tablet) {
+      height: 527px;
+    }
+
+    @include to(tablet) {
+      background-image: url('../../images/mobile/kapusta-title-mobile.svg'),
+        url('../../images/mobile/kapusta-top-mobile.svg');
+      background-repeat: no-repeat, no-repeat;
+      background-position: 49px 86px, right -20px top 104px;
+    }
+
+    @include from-to(tablet, desktop) {
+      background-image: url('../../images/tablet/kapusta-title-tablet.svg'),
+        url('../../images/desktop/kapusta-top-desktop.svg');
+      background-repeat: no-repeat, repeat-x;
+      background-position: 171px 90px, 0px 28px;
+    }
+
+    @include from(desktop) {
+      background-image: url('../../images/desktop/kapusta-top-desktop.svg'),
+        url('../../images/desktop/kapusta-title-desktop.svg');
+      background-repeat: repeat-x, no-repeat;
+      background-position: 0px 28px, 230px 308px;
+    }
+  }
+}
+
+.backgroundLoggedIn {
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    background-color: $background-grey;
+    height: 320px;
+    width: 100%;
+    border-bottom-left-radius: 130px;
+
+    @include from(tablet) {
+      height: 527px;
+    }
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 56px;
+  background-color: $white;
+}
+
+.header {
+  display: flex;
+  height: 56px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  padding: 12px 20px;
+  margin: 0 auto;
+}
+
+.user__menu {
+  display: flex;
+  align-items: center;
+  color: $text-grey;
+}
+
+.user__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f5f6fa;
+}
+
+.logout__mobile {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: none;
+}
+
+.user__name {
+  position: relative;
+  display: none;
+  margin-right: 40px;
+
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+}
+
+.user__name::after {
+  content: ' ';
+  position: absolute;
+  right: -20px;
+  top: -12px;
+  display: block;
+  height: 36px;
+  width: 1px;
+  background-color: $vertical-line;
+}
+
+.logout {
+  display: none;
+
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: $text-grey;
+  text-decoration-line: underline;
+
+  color: #52555f;
+}
+
+.logout:hover,
+.logout:focus {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+  .header {
+    padding: 12px 26px;
+  }
+
+  .logout__mobile {
+    display: none;
+  }
+
+  .user__button {
+    margin-right: 10px;
+  }
+
+  .user__name {
+    display: inline-block;
+  }
+
+  .logout {
+    display: inline-block;
+  }
+}

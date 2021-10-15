@@ -1,0 +1,21 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/_mixins.scss';
+
+.button {
+  @include to(tablet) {
+    width: 125px;
+    height: 44px;
+
+    font-family: Roboto;
+    font-size: 12px;
+    line-height: 1.1667;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: $white;
+    background-color: $background-orange;
+    border-radius: 0px 22px 22px 0px;
+    border: none;
+    cursor: pointer;
+  }
+}

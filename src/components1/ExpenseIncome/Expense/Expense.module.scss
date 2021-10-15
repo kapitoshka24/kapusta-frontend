@@ -1,0 +1,21 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/_mixins.scss';
+
+.date__mobile_container {
+  @include to(tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 85px auto;
+
+    width: 320px;
+    padding: 0 35px;
+  }
+}
+
+.data__container {
+  @include from(desktop) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

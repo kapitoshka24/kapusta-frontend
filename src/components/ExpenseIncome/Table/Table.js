@@ -37,6 +37,14 @@ export default function Table() {
     [dispatch],
   );
 
+  const convertDate = date => {
+    const year = date.slice(0, 4);
+    const month = date.slice(5, 7);
+    const day = date.slice(8, 10);
+
+    return `${day}.${month}.${year}`;
+  };
+
   return (
     <div className={styles.table__container}>
       <table className={styles.table}>
@@ -53,7 +61,7 @@ export default function Table() {
         <tbody>
           {expense.map(({ date, name, sum, category, _id }) => (
             <tr key={_id}>
-              <td>{date}</td>
+              <td>{convertDate(date)}</td>
               <td>
                 <EllipsisText text={name} length={40} />
               </td>
