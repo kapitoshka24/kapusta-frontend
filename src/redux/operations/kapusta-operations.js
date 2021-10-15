@@ -25,7 +25,7 @@ const addTotalBalance = balance => async dispatch => {
 
   dispatch(kapustaActions.addTotalBalanceRequest());
   try {
-    await axios.post('/currencymovements/create', balanceObj);
+    await axios.post('/currency-movements/create', balanceObj);
     dispatch(kapustaActions.addTotalBalanceSuccess(balance));
   } catch (error) {
     dispatch(kapustaActions.addTotalBalanceError(error));
@@ -34,7 +34,9 @@ const addTotalBalance = balance => async dispatch => {
 
 const calculateAvailableYears = () => async dispatch => {
   try {
-    const response = await axios.get('/currency-movements/total-months');
+    const { data: response } = await axios.get(
+      '/currency-movements/total-months',
+    );
 
     const currentYear = new Date().getFullYear();
     const firstYear = Object.keys(response.data.totalMonths).sort(
@@ -48,12 +50,26 @@ const calculateAvailableYears = () => async dispatch => {
   }
 };
 
+const fetchSumCategory = () => async dispatch => {
+  dispatch(kapustaActions.getSumCategoryRequest);
+
+  try {
+    const { data } = await axios.get(
+      '/currency-movements/sum-category?date=01/2021',
+    );
+
+    dispatch(kapustaActions.getSumCategorySuccess(data.summary));
+  } catch (error) {
+    dispatch(kapustaActions.getSumCategoryError(error));
+  }
+};
+
 const fetchMonthlySummary = () => async dispatch => {
   dispatch(kapustaActions.fetchMonthlySummaryRequest());
 
   try {
     const response = await axios.get(
-      '/currencymovements/summaryExpenses?year=2021',
+      '/currency-movements/summary-expenses?year=2021',
     );
     dispatch(kapustaActions.fetchMonthlySummarySuccess(response.data.result));
   } catch (error) {
@@ -65,6 +81,7 @@ const operations = {
   fetchTotalBalance,
   addTotalBalance,
   calculateAvailableYears,
+  fetchSumCategory,
   fetchMonthlySummary,
 };
 

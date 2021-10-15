@@ -41,6 +41,7 @@ const initialEmailVerificationState = {
   onVerification: false,
   verificationStart: null,
 };
+
 const emailVerification = createReducer(initialEmailVerificationState, {
   [authActions.loginSuccess]: () => initialEmailVerificationState,
   [authActions.registerSuccess]: () => ({
@@ -58,6 +59,6 @@ export default combineReducers({
   user,
   isLoggedIn,
   error,
-  refreshToken,
+  // refreshToken,
   emailVerification,
 });

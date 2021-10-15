@@ -24,6 +24,13 @@ const reportYears = createReducer([], {
   [kapustaActions.changeReportYears]: (_state, { payload }) => payload,
 });
 
+const reportSummary = createReducer(
+  {},
+  {
+    [kapustaActions.getSumCategorySuccess]: (_, { payload }) => payload,
+  },
+);
+
 const monthlySummary = createReducer([], {
   [kapustaActions.fetchMonthlySummarySuccess]: (_, { payload }) => payload,
 });
@@ -38,6 +45,7 @@ export default combineReducers({
   reportYear,
   reportMonth,
   reportYears,
+  reportSummary,
   monthlySummary,
   error,
 });
