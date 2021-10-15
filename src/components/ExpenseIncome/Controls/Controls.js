@@ -15,7 +15,6 @@ export default function Controls() {
   });
 
   const [category, setCategory] = useState({ category: '' });
-  console.log(category);
 
   const { name, sum } = expense;
 
@@ -42,7 +41,6 @@ export default function Controls() {
       };
 
       dispatch(kapustaOperations.addExpense(data));
-      console.log(data);
       resetForm();
     },
     [dispatch, name, sum, category],

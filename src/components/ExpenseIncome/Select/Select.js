@@ -1,4 +1,3 @@
-// import { Component } from 'react';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 // import makeAnimated from 'react-select';
@@ -55,11 +54,9 @@ const customStyles = {
 
 export default function Dropdown({ setCategory }) {
   const [option, setOption] = useState({});
-  // setCategory(option.value);
 
   useEffect(() => {
     setCategory(option.value);
-    console.log(option);
   }, [setCategory, option]);
 
   return (
