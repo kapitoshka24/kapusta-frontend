@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import registerStyles from '../styles/Register.module.scss';
 import auth from '../redux/operations/auth-operations';
 import { authSelectors } from '../redux/selectors';
-import axios from 'axios';
+// import axios from 'axios';
 
 const validate = values => {
   const errors = {};
