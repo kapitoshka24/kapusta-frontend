@@ -43,6 +43,7 @@ const initialEmailVerificationState = {
   onVerification: false,
   verificationStart: null,
 };
+
 const emailVerification = createReducer(initialEmailVerificationState, {
   [authActions.loginSuccess]: () => initialEmailVerificationState,
   [authActions.registerSuccess]: (_, { payload }) => ({

@@ -16,6 +16,10 @@ const actions = {
   addTotalBalanceRequest: createAction('kapusta/addTotalBalanceRequest'),
   addTotalBalanceSuccess: createAction('kapusta/addTotalBalanceSuccess'),
   addTotalBalanceError: createAction('kapusta/addTotalBalanceError'),
-};
+
+  getSumCategoryRequest: createAction('kapusta/sumCategoryRequest'),
+  getSumCategorySuccess: createAction('kapusta/sumCategorySuccess'),
+  getSumCategoryError: createAction('kapusta/sumCategoryError'),
+}
 
 export default actions;
