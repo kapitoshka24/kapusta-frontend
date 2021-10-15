@@ -34,9 +34,7 @@ const addTotalBalance = balance => async dispatch => {
 
 const calculateAvailableYears = () => async dispatch => {
   try {
-    const { data: response } = await axios.get(
-      '/currency-movements/total-months',
-    );
+    const response = await axios.get('/currency-movements/total-months');
 
     const currentYear = new Date().getFullYear();
     const firstYear = Object.keys(response.data.totalMonths).sort(
