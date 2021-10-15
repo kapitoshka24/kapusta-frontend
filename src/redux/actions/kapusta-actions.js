@@ -1,5 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
+// const changeTotalBalance = createAction('kapusta/changeTotalBalance');
+
 const fetchMonthlySummaryRequest = createAction(
   'kapusta/fetchMonthlySummaryRequest',
 );
@@ -18,6 +20,10 @@ const addTotalBalanceRequest = createAction('kapusta/addTotalBalanceRequest');
 const addTotalBalanceSuccess = createAction('kapusta/addTotalBalanceSuccess');
 const addTotalBalanceError = createAction('kapusta/addTotalBalanceError');
 
+const getSumCategoryRequest = createAction('kapusta/sumCategoryRequest');
+const getSumCategorySuccess = createAction('kapusta/sumCategorySuccess');
+const getSumCategoryError = createAction('kapusta/sumCategoryError');
+
 const actions = {
   totalBalanceRequest,
   totalBalanceSuccess,
@@ -25,6 +31,9 @@ const actions = {
   addTotalBalanceRequest,
   addTotalBalanceSuccess,
   addTotalBalanceError,
+  getSumCategoryRequest,
+  getSumCategorySuccess,
+  getSumCategoryError,
   fetchMonthlySummaryRequest,
   fetchMonthlySummarySuccess,
   fetchMonthlySummaryError,

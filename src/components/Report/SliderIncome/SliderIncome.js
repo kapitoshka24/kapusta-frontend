@@ -1,26 +1,22 @@
-import React from 'react';
-import styles from './SliderIncome.module.scss';
-import incomeCategory from './incomeCategory.json';
-import sprite from './income-sprite.svg';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { kapustaSelectors } from '../../../redux/selectors';
+import { kapustaOperations } from '../../../redux/operations';
+import SliderIncomeList from './SliderIncomeList';
 
 const SliderIncome = () => {
-  return (
-    <ul className={styles.incomeList}>
-      {incomeCategory.map(({ id, amount, name, type }) => {
-        return (
-          <li key={id} className={styles.incomeListItem}>
-            <p className={styles.amount}>{amount.toFixed(2)}</p>
-            <div className={styles.iconContainer}>
-              <svg className={styles.icon}>
-                <use href={`${sprite}#${type}`}></use>
-              </svg>
-            </div>
-            <p className={styles.name}>{name}</p>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  const getIncome = useSelector(kapustaSelectors.getCategoryIncome);
+  const dispatch = useDispatch();
+  const [income, setIncome] = useState(getIncome);
+
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchSumCategory());
+  }, [dispatch]);
+  useEffect(() => {
+    setIncome(getIncome);
+  }, [getIncome]);
+
+  return income ? <SliderIncomeList income={income} /> : <p>Spiner</p>;
 };
 
 export default SliderIncome;
