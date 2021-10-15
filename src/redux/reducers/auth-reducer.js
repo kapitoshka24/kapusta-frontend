@@ -24,6 +24,7 @@ const error = createReducer(null, {
   [authActions.getCurrentUserError]: setError,
   [authActions.refreshSessionError]: setError,
   [authActions.loginGoogleError]: setError,
+  [authActions.clearErrors]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -38,19 +39,22 @@ const isLoggedIn = createReducer(false, {
 });
 
 const initialEmailVerificationState = {
+  email: null,
   onVerification: false,
   verificationStart: null,
 };
 
 const emailVerification = createReducer(initialEmailVerificationState, {
   [authActions.loginSuccess]: () => initialEmailVerificationState,
-  [authActions.registerSuccess]: () => ({
+  [authActions.registerSuccess]: (_, { payload }) => ({
+    email: payload.data.email,
     onVerification: true,
-    verificationStart: new Date().toLocaleString(),
+    verificationStart: Date.parse(new Date()),
   }),
-  [authActions.resendEmailVerification]: () => ({
+  [authActions.resendEmailVerification]: (_, { payload }) => ({
+    email: payload.email,
     onVerification: true,
-    verificationStart: new Date().toLocaleString(),
+    verificationStart: Date.parse(new Date()),
   }),
   [authActions.registerError]: () => initialEmailVerificationState,
 });
@@ -59,6 +63,5 @@ export default combineReducers({
   user,
   isLoggedIn,
   error,
-  // refreshToken,
   emailVerification,
 });
