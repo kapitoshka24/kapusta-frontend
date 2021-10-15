@@ -18,7 +18,9 @@ const validate = values => {
     errors.name = 'Это обязательное поле';
   } else if (values.name.length < 3 || values.name.length > 40) {
     errors.name = 'Имя должно быть от 3 до 40 символов';
-  } else if (!/^[A-ZА-Я]+$/i.test(values.name)) {
+  } else if (
+    !/^[A-z]+(?:\s+[A-z]+)*$|^[А-я]+(?:\s+[А-я]+)*$/.test(values.name)
+  ) {
     errors.name = 'Недопустимые символы в имени';
   }
 
