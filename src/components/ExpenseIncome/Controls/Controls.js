@@ -15,6 +15,7 @@ export default function Controls() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  console.log(category);
 
   const { name, sum } = expense;
 
@@ -53,7 +54,7 @@ export default function Controls() {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    setCategory({ category: '' });
+    // setCategory({ category: '' });
   };
 
   const { width } = useWindowDementions();

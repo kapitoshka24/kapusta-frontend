@@ -14,7 +14,7 @@ const expense = createReducer([], {
     ...state,
   ],
   [kapustaActions.deleteExpenseSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
+    state.filter(({ _id }) => _id !== payload),
 });
 
 export default combineReducers({

@@ -1,12 +1,26 @@
 import EllipsisText from 'react-ellipsis-text';
 import { useSelector, useDispatch } from 'react-redux';
-import { useCallback } from 'react';
-import { useEffect } from 'react';
+
+import { useEffect, useCallback } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from './Table.module.scss';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
+
+const expenseOptions = {
+  products: 'Продукты',
+  alcohol: 'Алкоголь',
+  entertainment: 'Развлечения',
+  health: 'Здоровье',
+  transport: 'Транспорт',
+  housing: 'Всё для дома',
+  technique: 'Техника',
+  utilityCommunication: 'Коммуналка, связь',
+  sportsHobbies: 'Спорт, хобби',
+  education: 'Образование',
+  other: 'Прочее',
+};
 
 export default function Table() {
   const expense = useSelector(kapustaSelectors.getExpense);
@@ -14,7 +28,7 @@ export default function Table() {
 
   useEffect(() => {
     dispatch(kapustaOperations.fetchExpense());
-  }, [dispatch, expense]);
+  }, [dispatch]);
 
   const onDeleteExpense = useCallback(
     id => {
@@ -43,7 +57,7 @@ export default function Table() {
               <td>
                 <EllipsisText text={name} length={40} />
               </td>
-              <td className={styles.category}>{category}</td>
+              <td className={styles.category}>{expenseOptions[category]}</td>
               <td className={styles.sumNegative}>- {sum} грн</td>
               <td
                 className={styles.icon__bg}
@@ -54,7 +68,7 @@ export default function Table() {
             </tr>
           ))}
 
-          <tr>
+          {/* <tr>
             <td>05.09.2019</td>
             <td>
               <EllipsisText
@@ -69,73 +83,17 @@ export default function Table() {
             <td className={styles.icon__bg}>
               <Delete className={styles.icon__delete} />
             </td>
-          </tr>
+          </tr> */}
 
-          <tr>
-            <td>05.09.2019</td>
-            <td>Бананы</td>
-            <td className={styles.category}>Продукты</td>
-            <td className={styles.sumPositive}>50.00 грн.</td>
-            <td className={styles.icon__bg}>
-              <Delete className={styles.icon__delete} />
-            </td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td className={styles.category}></td>
-            <td className={styles.sumNegative}></td>
-            <td></td>
-          </tr>
+          {/* // <tr>
+          //   <td>05.09.2019</td>
+          //   <td>Бананы</td>
+          //   <td className={styles.category}>Продукты</td>
+          //   <td className={styles.sumPositive}>50.00 грн.</td>
+          //   <td className={styles.icon__bg}>
+          //     <Delete className={styles.icon__delete} />
+          //   </td>
+          // </tr> */}
         </tbody>
       </table>
     </div>

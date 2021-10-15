@@ -1,5 +1,5 @@
 // import { Component } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Select from 'react-select';
 // import makeAnimated from 'react-select';
 
@@ -13,8 +13,8 @@ const options = [
   { value: 'entertainment', label: 'Развлечения' },
   { value: 'housing', label: 'Всё для дома' },
   { value: 'technique', label: 'Техника' },
-  { value: 'utility-communication', label: 'Коммуналка, связь' },
-  { value: 'sports-hobbies', label: 'Спорт, хобби' },
+  { value: 'utilityCommunication', label: 'Коммуналка, связь' },
+  { value: 'sportsHobbies', label: 'Спорт, хобби' },
   { value: 'education', label: 'Образование' },
   { value: 'other', label: 'Прочее' },
 ];
@@ -55,8 +55,12 @@ const customStyles = {
 
 export default function Dropdown({ setCategory }) {
   const [option, setOption] = useState({});
+  // setCategory(option.value);
 
-  setCategory(option.value);
+  useEffect(() => {
+    setCategory(option.value);
+    console.log(option);
+  }, [setCategory, option]);
 
   return (
     <>
@@ -67,7 +71,7 @@ export default function Dropdown({ setCategory }) {
         styles={customStyles}
         placeholder="Категория товара"
         onChange={setOption}
-        isClearable
+        // isClearable
       />
     </>
   );
