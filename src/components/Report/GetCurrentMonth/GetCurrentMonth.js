@@ -1,57 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import styles from './GetCurrentMonth.module.scss';
+import MONTHS from '../../../helpers/months';
+import selectors from '../../../redux/selectors/kapusta-selectors';
+import actions from '../../../redux/actions/kapusta-actions';
+import operations from '../../../redux/operations/kapusta-operations';
 import { ReactComponent as NextIcon } from '../../../images/next.svg';
 import { ReactComponent as PreviousIcon } from '../../../images/previous.svg';
 import Calendar from '../Calendar';
 
-const MONTHS = [
-  'Январь',
-  'Февраль',
-  'Март',
-  'Апрель',
-  'Май',
-  'Июнь',
-  'Июль',
-  'Август',
-  'Сентябрь',
-  'Октябрь',
-  'Ноябрь',
-  'Декабрь',
-];
-
 function GetCurrentMonth() {
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.calculateAvailableYears());
+  }, [dispatch]);
 
   const [calendarIsOpen, setCalendarIsOpen] = useState(false);
-  const [month, setMonth] = useState(currentMonth);
-  const [year, setYear] = useState(currentYear);
+  const month = useSelector(selectors.getReportMonth);
+  const year = useSelector(selectors.getReportYear);
+  const years = useSelector(selectors.getReportYears);
 
-  const getYears = (fromYear, toYear) => {
-    const years = [fromYear];
-
-    while (years[years.length - 1] !== toYear) {
-      years.push(years[years.length - 1] + 1);
-    }
-
-    return years;
-  };
-
-  const years = getYears(2019, currentYear);
-
-  const handleCalendarOpen = () => {
+  const handleCalendarToggle = () => {
     setCalendarIsOpen(prevCalendarIsOpen => !prevCalendarIsOpen);
-  };
-
-  const onListClick = e => {
-    const pickedMonth = e.target.dataset.name;
-    setMonth(MONTHS.findIndex(month => month === pickedMonth));
-    setCalendarIsOpen(false);
   };
 
   const handleIncrementMonth = () => {
     if (month !== MONTHS.length - 1) {
-      setMonth(prevMonth => prevMonth + 1);
+      dispatch(actions.incrementReportMonth());
       return;
     }
 
@@ -59,16 +36,13 @@ function GetCurrentMonth() {
       return;
     }
 
-    setMonth(0);
-
-    setYear(prevYear => {
-      return prevYear === years[years.length - 1] ? prevYear : prevYear + 1;
-    });
+    dispatch(actions.incrementReportYear());
+    dispatch(actions.changeReportMonth(0));
   };
 
   const handleDecrementMonth = () => {
     if (month !== 0) {
-      setMonth(prevMonth => prevMonth - 1);
+      dispatch(actions.decrementReportMonth());
       return;
     }
 
@@ -76,27 +50,8 @@ function GetCurrentMonth() {
       return;
     }
 
-    setMonth(MONTHS.length - 1);
-
-    setYear(prevYear => {
-      return prevYear === years[0] ? prevYear : prevYear - 1;
-    });
-  };
-
-  const handleIncrementYear = () => {
-    const currentYearIndex = years.findIndex(el => el === year);
-    if (currentYearIndex === years.length - 1) {
-      return;
-    }
-    setYear(years[currentYearIndex + 1]);
-  };
-
-  const handleDecrementYear = () => {
-    const currentYearIndex = years.findIndex(el => el === year);
-    if (currentYearIndex === 0) {
-      return;
-    }
-    setYear(years[currentYearIndex - 1]);
+    dispatch(actions.decrementReportYear());
+    dispatch(actions.changeReportMonth(MONTHS.length - 1));
   };
 
   return (
@@ -110,7 +65,7 @@ function GetCurrentMonth() {
         >
           <PreviousIcon width="7" height="12" />
         </button>
-        <p onClick={handleCalendarOpen} className={styles.CurrentPeriod}>
+        <p onClick={handleCalendarToggle} className={styles.CurrentPeriod}>
           {`${MONTHS[month]} ${year}`}
         </p>
         <button
@@ -123,13 +78,9 @@ function GetCurrentMonth() {
       </div>
       {calendarIsOpen && (
         <Calendar
-          handleClick={onListClick}
-          months={MONTHS}
-          years={years}
-          handleIncrementYear={handleIncrementYear}
-          handleDecrementYear={handleDecrementYear}
-          pickedYear={year}
-          pickedMonth={month}
+          handleCalendarToggle={handleCalendarToggle}
+          calendarIsOpen={calendarIsOpen}
+          setCalendarIsOpen={setCalendarIsOpen}
         />
       )}
     </div>

@@ -10,6 +10,13 @@ const addTotalBalanceRequest = createAction('ckapusta/addTotalBalanceRequest');
 const addTotalBalanceSuccess = createAction('ckapusta/addTotalBalanceSuccess');
 const addTotalBalanceError = createAction('ckapusta/addTotalBalanceError');
 
+const incrementReportYear = createAction('kapusta/incrementReportYear');
+const decrementReportYear = createAction('kapusta/decrementReportYear');
+const changeReportMonth = createAction('kapusta/changeReportMonth');
+const incrementReportMonth = createAction('kapusta/incrementReportMonth');
+const decrementReportMonth = createAction('kapusta/decrementReportMonth');
+const changeReportYears = createAction('kapusta/changeReportYears');
+
 const actions = {
   //   changeTotalBalance,
   totalBalanceRequest,
@@ -18,5 +25,11 @@ const actions = {
   addTotalBalanceRequest,
   addTotalBalanceSuccess,
   addTotalBalanceError,
+  incrementReportYear,
+  decrementReportYear,
+  changeReportMonth,
+  incrementReportMonth,
+  decrementReportMonth,
+  changeReportYears,
 };
 export default actions;
