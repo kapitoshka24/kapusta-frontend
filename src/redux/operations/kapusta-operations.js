@@ -42,7 +42,9 @@ const fetchSumCategory = () => async dispatch => {
     dispatch(kapustaActions.getSumCategorySuccess(data.summary));
   } catch (error) {
     dispatch(kapustaActions.getSumCategoryError(error));
-    
+  }
+};
+
 const fetchMonthlySummary = () => async dispatch => {
   dispatch(kapustaActions.fetchMonthlySummaryRequest());
 
