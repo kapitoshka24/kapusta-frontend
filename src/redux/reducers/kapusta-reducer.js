@@ -8,10 +8,13 @@ const totalBalance = createReducer(0, {
 });
 
 const expense = createReducer([], {
+  [kapustaActions.fetchExpenseSuccess]: (_, { payload }) => payload,
   [kapustaActions.addExpenseSuccess]: (state, { payload }) => [
     payload,
     ...state,
   ],
+  [kapustaActions.deleteExpenseSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 export default combineReducers({

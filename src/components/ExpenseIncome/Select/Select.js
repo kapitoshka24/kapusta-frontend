@@ -57,7 +57,6 @@ export default function Dropdown({ setCategory }) {
   const [option, setOption] = useState({});
 
   setCategory(option.value);
-  // const handleChange = setCategory;
 
   return (
     <>

@@ -1,9 +1,28 @@
 import EllipsisText from 'react-ellipsis-text';
+import { useSelector, useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import { useEffect } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from './Table.module.scss';
+import { kapustaSelectors } from '../../../redux/selectors';
+import { kapustaOperations } from '../../../redux/operations';
 
 export default function Table() {
+  const expense = useSelector(kapustaSelectors.getExpense);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchExpense());
+  }, [dispatch, expense]);
+
+  const onDeleteExpense = useCallback(
+    id => {
+      dispatch(kapustaOperations.deleteExpense(id));
+    },
+    [dispatch],
+  );
+
   return (
     <div className={styles.table__container}>
       <table className={styles.table}>
@@ -18,6 +37,23 @@ export default function Table() {
         </thead>
 
         <tbody>
+          {expense.map(({ date, name, sum, category, _id }) => (
+            <tr key={_id}>
+              <td>{date}</td>
+              <td>
+                <EllipsisText text={name} length={40} />
+              </td>
+              <td className={styles.category}>{category}</td>
+              <td className={styles.sumNegative}>- {sum} грн</td>
+              <td
+                className={styles.icon__bg}
+                onClick={() => onDeleteExpense(_id)}
+              >
+                <Delete className={styles.icon__delete} />
+              </td>
+            </tr>
+          ))}
+
           <tr>
             <td>05.09.2019</td>
             <td>
