@@ -1,14 +1,18 @@
 import { createAction } from '@reduxjs/toolkit';
 
-// const changeTotalBalance = createAction('ckapusta/changeTotalBalance');
+// const changeTotalBalance = createAction('kapusta/changeTotalBalance');
 
-const totalBalanceRequest = createAction('ckapusta/totalBalanceRequest');
-const totalBalanceSuccess = createAction('ckapusta/totalBalanceSuccess');
-const totalBalanceError = createAction('ckapusta/totalBalanceError');
+const totalBalanceRequest = createAction('kapusta/totalBalanceRequest');
+const totalBalanceSuccess = createAction('kapusta/totalBalanceSuccess');
+const totalBalanceError = createAction('kapusta/totalBalanceError');
 
-const addTotalBalanceRequest = createAction('ckapusta/addTotalBalanceRequest');
-const addTotalBalanceSuccess = createAction('ckapusta/addTotalBalanceSuccess');
-const addTotalBalanceError = createAction('ckapusta/addTotalBalanceError');
+const addTotalBalanceRequest = createAction('kapusta/addTotalBalanceRequest');
+const addTotalBalanceSuccess = createAction('kapusta/addTotalBalanceSuccess');
+const addTotalBalanceError = createAction('kapusta/addTotalBalanceError');
+
+const getSumCategoryRequest = createAction('kapusta/sumCategoryRequest');
+const getSumCategorySuccess = createAction('kapusta/sumCategorySuccess');
+const getSumCategoryError = createAction('kapusta/sumCategoryError');
 
 const actions = {
   //   changeTotalBalance,
@@ -18,5 +22,8 @@ const actions = {
   addTotalBalanceRequest,
   addTotalBalanceSuccess,
   addTotalBalanceError,
+  getSumCategoryRequest,
+  getSumCategorySuccess,
+  getSumCategoryError,
 };
 export default actions;
