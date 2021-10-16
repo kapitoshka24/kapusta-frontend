@@ -8,7 +8,6 @@ import {
   serverError,
   logoutSuccess,
 } from '../../services/pnotify';
-import { useParams } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 
@@ -105,13 +104,10 @@ const refreshSession = async (dispatch, getState) => {
   }
 };
 
-const loginWithGoogle = () => async dispatch => {
+const loginWithGoogle = data => async dispatch => {
   dispatch(authActions.loginGoogleRequest());
-  accessToken.unset();
   try {
-    await axios.get('users/google');
-    const data = useParams();
-    dispatch(authActions.loginGoogleSuccess(data));
+    await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
     dispatch(authActions.loginGoogleError(error.message));
   }

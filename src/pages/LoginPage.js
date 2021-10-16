@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import appStyles from '../styles/AppComon.module.scss';
 import { useDispatch } from 'react-redux';
@@ -26,7 +27,20 @@ const validate = values => {
 export default function LoginPage() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
-  const onGoogle = () => dispatch(authOperations.loginWithGoogle());
+
+  useEffect(() => {
+    const windowUrl = window.location.search;
+    const params = new URLSearchParams(windowUrl);
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
+    const sid = params.get('sid');
+    if (accessToken && refreshToken && sid) {
+      dispatch(
+        authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
+      );
+    }
+  }, [dispatch]);
+  // const onGoogle = () => dispatch(authOperations.loginWithGoogle());
 
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
@@ -59,14 +73,17 @@ export default function LoginPage() {
           >
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button className={loginStyles.googleBtn} onClick={onGoogle}>
+          <a
+            className={loginStyles.googleBtn}
+            href="https://kapusta-backend.herokuapp.com/api/users/google"
+          >
             <img
               src={googleSymbol}
               alt="Google Symbol"
               className={loginStyles.googleSymbol}
             />
             Google
-          </button>
+          </a>
           <p className={loginStyles.modalTitle}>
             Или зайти с помощью e-mail и пароля, предварительно
             зарегистрировавшись:
