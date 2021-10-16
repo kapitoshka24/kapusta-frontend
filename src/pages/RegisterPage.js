@@ -52,10 +52,14 @@ const validate = values => {
 export default function RegisterPage({ location }) {
   const dispatch = useDispatch();
   const fetchError = useSelector(authSelectors.getError);
-  const { onVerification, email } = useSelector(
+  const { onVerification, verificationStart, email } = useSelector(
     authSelectors.getEmailVerification,
   );
-  const [timer, setTimer] = useState(59);
+  const [timer, setTimer] = useState(
+    verificationStart
+      ? 60 - (Date.parse(new Date()) - verificationStart) / 1000
+      : 60,
+  );
 
   const { errors, values, handleSubmit, setFieldError, setFieldValue } =
     useFormik({
@@ -84,7 +88,8 @@ export default function RegisterPage({ location }) {
     if (onVerification) {
       const intervalId = setInterval(() => setTimer(timer - 1), 1000);
 
-      if (timer === 0) {
+      if (timer <= 0) {
+        setTimer(null);
         clearInterval(intervalId);
       }
       return () => {
