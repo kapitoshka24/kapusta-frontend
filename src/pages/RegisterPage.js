@@ -100,7 +100,7 @@ export default function RegisterPage({ location }) {
 
   const [onValidation, setOnValidation] = useState();
 
-  const debounce = useDebounce(onValidation, 500);
+  const debounce = useDebounce(onValidation, 800);
 
   useEffect(() => {
     if (debounce) {
