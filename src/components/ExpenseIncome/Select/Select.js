@@ -4,20 +4,6 @@ import Select from 'react-select';
 
 import styles from './Select.module.scss';
 
-const options = [
-  { value: 'transport', label: 'Транспорт' },
-  { value: 'products', label: 'Продукты' },
-  { value: 'health', label: 'Здоровье' },
-  { value: 'alcohol', label: 'Алкоголь' },
-  { value: 'entertainment', label: 'Развлечения' },
-  { value: 'housing', label: 'Всё для дома' },
-  { value: 'technique', label: 'Техника' },
-  { value: 'utilityCommunication', label: 'Коммуналка, связь' },
-  { value: 'sportsHobbies', label: 'Спорт, хобби' },
-  { value: 'education', label: 'Образование' },
-  { value: 'other', label: 'Прочее' },
-];
-
 function customTheme(theme) {
   return {
     ...theme,
@@ -52,7 +38,7 @@ const customStyles = {
   }),
 };
 
-export default function Dropdown({ setCategory }) {
+export default function Dropdown({ setCategory, options }) {
   const [option, setOption] = useState({});
 
   useEffect(() => {

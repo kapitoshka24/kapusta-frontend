@@ -2,7 +2,7 @@
 // @import '../../../styles/utils/_mixins.scss';
 
 // .button {
-//   @include to (tablet) {
+//   @include to(tablet) {
 //     width: 50%;
 //     height: 53px;
 
@@ -24,14 +24,14 @@
 //   }
 
 //   &__active {
-//     @include to (tablet) {
+//     @include to(tablet) {
 //       color: $white;
 //       background: $background-orange;
 //     }
 //   }
 
 //   &__container {
-//     @include to (tablet) {
+//     @include to(tablet) {
 //       position: fixed;
 //       bottom: 0;
 //       width: 100%;

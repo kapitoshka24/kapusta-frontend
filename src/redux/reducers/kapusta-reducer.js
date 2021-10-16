@@ -17,7 +17,18 @@ const expense = createReducer([], {
     state.filter(({ _id }) => _id !== payload),
 });
 
+const income = createReducer([], {
+  [kapustaActions.fetchIncomeSuccess]: (_, { payload }) => payload,
+  [kapustaActions.addIncomeSuccess]: (state, { payload }) => [
+    payload,
+    ...state,
+  ],
+  [kapustaActions.deleteIncomeSuccess]: (state, { payload }) =>
+    state.filter(({ _id }) => _id !== payload),
+});
+
 export default combineReducers({
   totalBalance,
   expense,
+  income,
 });
