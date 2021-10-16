@@ -1,12 +1,11 @@
 import React, { Suspense, lazy, useEffect } from 'react';
-import Loader from 'react-loader-spinner';
 import { Switch } from 'react-router';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
 import NotFound from './pages/NotFoundPage';
-import styles from './styles/Loader.module.scss';
+import Loader from './components/Loader/';
 // import { useState } from 'react';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -34,18 +33,7 @@ export default function App() {
 
   return (
     <>
-      <Suspense
-        fallback={
-          <Loader
-            visible={true}
-            className={styles.LoaderMain}
-            type="Triangle"
-            color="#ff751d"
-            height={80}
-            width={80}
-          />
-        }
-      >
+      <Suspense fallback={<Loader />}>
         <Switch>
           <PrivateRoute exact path="/" redirectTo="/login" />
           <PublicRoute path="/login" restricted redirectTo="/main-page">
