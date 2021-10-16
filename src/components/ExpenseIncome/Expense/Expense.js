@@ -34,7 +34,7 @@ export default function Expense() {
   const { width } = useWindowDementions();
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {width < 768 ? <TabsMobile showButton={showEnterButton} /> : <Tabs />}
 
       <TabContainer>
@@ -60,6 +60,6 @@ export default function Expense() {
       <div className={mainStyles.container}>
         {width < 1280 && <MonthlySummary />}
       </div>
-    </>
+    </div>
   );
 }

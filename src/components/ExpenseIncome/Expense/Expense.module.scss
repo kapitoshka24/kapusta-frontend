@@ -1,6 +1,10 @@
 @import '../../../styles/utils/variables';
 @import '../../../styles/utils/_mixins.scss';
 
+.wrapper {
+  padding-bottom: 83px;
+}
+
 .date__mobile_container {
   @include to(tablet) {
     display: flex;
