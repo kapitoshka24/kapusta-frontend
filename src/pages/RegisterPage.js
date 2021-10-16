@@ -4,7 +4,10 @@ import { authSelectors } from '../redux/selectors';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../redux/operations/auth-operations';
+import Header from '../components/Header';
 import registerStyles from '../styles/Register.module.scss';
+import appStyles from '../styles/AppComon.module.scss';
+import useDebounce from '../helpers/useDebounce';
 
 const validate = values => {
   const errors = {};
@@ -49,26 +52,31 @@ const validate = values => {
 export default function RegisterPage({ location }) {
   const dispatch = useDispatch();
   const fetchError = useSelector(authSelectors.getError);
-  const { onVerification, email } = useSelector(
+  const { onVerification, verificationStart, email } = useSelector(
     authSelectors.getEmailVerification,
   );
-  const [timer, setTimer] = useState(59);
+  const [timer, setTimer] = useState(
+    verificationStart
+      ? 60 - (Date.parse(new Date()) - verificationStart) / 1000
+      : 60,
+  );
 
-  const { errors, values, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirm: '',
-    },
-    validateOnChange: false,
-    validate,
-    onSubmit: ({ name, email, password }, { resetForm }) => {
-      dispatch(auth.register({ name, email, password }));
+  const { errors, values, handleSubmit, setFieldError, setFieldValue } =
+    useFormik({
+      initialValues: {
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+      },
+      validateOnChange: false,
+      validate,
+      onSubmit: ({ name, email, password }, { resetForm }) => {
+        dispatch(auth.register({ name, email, password }));
 
-      resetForm({ values });
-    },
-  });
+        resetForm({ values });
+      },
+    });
 
   const resendEmailVerificationHandler = async () => {
     dispatch(auth.resendEmailVerification(email));
@@ -80,7 +88,8 @@ export default function RegisterPage({ location }) {
     if (onVerification) {
       const intervalId = setInterval(() => setTimer(timer - 1), 1000);
 
-      if (timer === 0) {
+      if (timer <= 0) {
+        setTimer(null);
         clearInterval(intervalId);
       }
       return () => {
@@ -89,144 +98,172 @@ export default function RegisterPage({ location }) {
     }
   }, [onVerification, timer]);
 
-  return onVerification ? (
-    <div className={registerStyles.modalVerification}>
-      <div className={registerStyles.modalBodyFirst}>
-        <p className={registerStyles.modalTitleVerification}>
-          На Ваш email (<span>{email}</span>) было отправлено письмо с
-          дальнейшими инструкциями.
-        </p>
-        <p className={registerStyles.modalTitleVerification}>
-          {timer ? (
-            `Не пришло письмо? Отправить повторно через (${timer})`
-          ) : (
-            <button
-              className={registerStyles.btnResendVerification}
-              onClick={resendEmailVerificationHandler}
-            >
-              Отправить письмо повторно.
-            </button>
-          )}
-        </p>
+  const [onValidation, setOnValidation] = useState();
 
-        <div className={registerStyles.modalContinueBtn}>
-          <Link
-            className={`${registerStyles.modalLogin} ${registerStyles.active}`}
-            to={{
-              pathname: `/login`,
-              state: { from: location },
-            }}
-          >
-            Продолжить
-          </Link>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className={registerStyles.modal}>
-      <p className={registerStyles.modalTitleRegister}>Регистрация</p>
+  const debounce = useDebounce(onValidation, 800);
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div className={registerStyles.modalBodyFirst}>
-          <div className={registerStyles.modalGroup}>
-            <label className={registerStyles.modalLabel}>
-              {errors.name ? (
-                <span className={registerStyles.errorStar}>*</span>
-              ) : null}
-              Имя:
-              <input
-                type="text"
-                name="name"
-                className={registerStyles.modalInput}
-                placeholder="Имя"
-                onChange={handleChange}
-                value={values.name}
-                autoComplete="off"
-              />
-              {errors.name ? (
-                <div className={registerStyles.error}>{errors.name}</div>
-              ) : null}
-            </label>
-          </div>
+  useEffect(() => {
+    if (debounce) {
+      const error = validate(values);
 
-          <div className={registerStyles.modalGroup}>
-            <label className={registerStyles.modalLabel}>
-              {errors.email ? (
-                <span className={registerStyles.errorStar}>*</span>
-              ) : null}
-              Электронная почта:
-              <input
-                type="email"
-                name="email"
-                className={registerStyles.modalInput}
-                placeholder="your@email.com"
-                onChange={handleChange}
-                value={values.email}
-                autoComplete="off"
-              />
-              {errors.email ? (
-                <div className={registerStyles.error}>{errors.email}</div>
-              ) : null}
-              {fetchError?.email ? (
-                <div className={registerStyles.error}>{fetchError.email}</div>
-              ) : null}
-            </label>
-          </div>
+      setFieldError(debounce[0], error[debounce[0]]);
+      setOnValidation();
+    }
+  }, [debounce, setFieldError, values]);
 
-          <div className={registerStyles.modalGroup}>
-            <label className={registerStyles.modalLabel}>
-              {errors.password ? (
-                <span className={registerStyles.errorStar}>*</span>
-              ) : null}
-              Пароль:
-              <input
-                type="password"
-                name="password"
-                className={registerStyles.modalInput}
-                placeholder="Пароль"
-                onChange={handleChange}
-                value={values.password}
-              />
-              {errors.password ? (
-                <div className={registerStyles.error}>{errors.password}</div>
-              ) : null}
-            </label>
-          </div>
+  const handleChange = ({ target: { name, value } }) => {
+    setOnValidation([name, value]);
 
-          <div className={registerStyles.modalGroup}>
-            <label className={registerStyles.modalLabel}>
-              {errors.confirm ? (
-                <span className={registerStyles.errorStar}>*</span>
-              ) : null}
-              Подтверждение пароля:
-              <input
-                type="password"
-                name="confirm"
-                className={registerStyles.modalInput}
-                placeholder="Подтвердите пароль"
-                onChange={handleChange}
-                value={values.confirm}
-              />
-              {errors.confirm ? (
-                <div className={registerStyles.error}>{errors.confirm}</div>
-              ) : null}
-            </label>
+    setFieldValue(name, value);
+  };
+
+  return (
+    <div className={appStyles.loggedOutBg}>
+      <Header />
+      {onVerification ? (
+        <div className={registerStyles.modalVerification}>
+          <div className={registerStyles.modalBodyFirst}>
+            <p className={registerStyles.modalTitleVerification}>
+              На Ваш email (<span>{email}</span>) было отправлено письмо с
+              дальнейшими инструкциями.
+            </p>
+            <p className={registerStyles.modalTitleVerification}>
+              {timer ? (
+                `Не пришло письмо? Отправить повторно через (${timer})`
+              ) : (
+                <button
+                  className={registerStyles.btnResendVerification}
+                  onClick={resendEmailVerificationHandler}
+                >
+                  Отправить письмо повторно.
+                </button>
+              )}
+            </p>
+
+            <div className={registerStyles.modalContinueBtn}>
+              <Link
+                className={`${registerStyles.modalLogin} ${registerStyles.active}`}
+                to={{
+                  pathname: `/login`,
+                  state: { from: location },
+                }}
+              >
+                Продолжить
+              </Link>
+            </div>
           </div>
         </div>
+      ) : (
+        <div className={registerStyles.modal}>
+          <p className={registerStyles.modalTitleRegister}>Регистрация</p>
 
-        <div className={registerStyles.modalButtons}>
-          <Link className={registerStyles.modalLogin} to="/login">
-            Войти
-          </Link>
-          <button
-            type="submit"
-            className={`${registerStyles.active} ${registerStyles.modalRegister}`}
-            onClick={() => dispatch(auth.clearErrors())}
-          >
-            Регистрация
-          </button>
+          <form onSubmit={handleSubmit} noValidate>
+            <div className={registerStyles.modalBodyFirst}>
+              <div className={registerStyles.modalGroup}>
+                <label className={registerStyles.modalLabel}>
+                  {errors.name ? (
+                    <span className={registerStyles.errorStar}>*</span>
+                  ) : null}
+                  Имя:
+                  <input
+                    type="text"
+                    name="name"
+                    className={registerStyles.modalInput}
+                    placeholder="Имя"
+                    onChange={handleChange}
+                    value={values.name}
+                    autoComplete="off"
+                  />
+                  {errors.name ? (
+                    <div className={registerStyles.error}>{errors.name}</div>
+                  ) : null}
+                </label>
+              </div>
+
+              <div className={registerStyles.modalGroup}>
+                <label className={registerStyles.modalLabel}>
+                  {errors.email ? (
+                    <span className={registerStyles.errorStar}>*</span>
+                  ) : null}
+                  Электронная почта:
+                  <input
+                    type="email"
+                    name="email"
+                    className={registerStyles.modalInput}
+                    placeholder="your@email.com"
+                    onChange={handleChange}
+                    value={values.email}
+                    autoComplete="off"
+                  />
+                  {errors.email ? (
+                    <div className={registerStyles.error}>{errors.email}</div>
+                  ) : null}
+                  {fetchError?.email ? (
+                    <div className={registerStyles.error}>
+                      {fetchError.email}
+                    </div>
+                  ) : null}
+                </label>
+              </div>
+
+              <div className={registerStyles.modalGroup}>
+                <label className={registerStyles.modalLabel}>
+                  {errors.password ? (
+                    <span className={registerStyles.errorStar}>*</span>
+                  ) : null}
+                  Пароль:
+                  <input
+                    type="password"
+                    name="password"
+                    className={registerStyles.modalInput}
+                    placeholder="Пароль"
+                    onChange={handleChange}
+                    value={values.password}
+                  />
+                  {errors.password ? (
+                    <div className={registerStyles.error}>
+                      {errors.password}
+                    </div>
+                  ) : null}
+                </label>
+              </div>
+
+              <div className={registerStyles.modalGroup}>
+                <label className={registerStyles.modalLabel}>
+                  {errors.confirm ? (
+                    <span className={registerStyles.errorStar}>*</span>
+                  ) : null}
+                  Подтверждение пароля:
+                  <input
+                    type="password"
+                    name="confirm"
+                    className={registerStyles.modalInput}
+                    placeholder="Подтвердите пароль"
+                    onChange={handleChange}
+                    value={values.confirm}
+                  />
+                  {errors.confirm ? (
+                    <div className={registerStyles.error}>{errors.confirm}</div>
+                  ) : null}
+                </label>
+              </div>
+            </div>
+
+            <div className={registerStyles.modalButtons}>
+              <Link className={registerStyles.modalLogin} to="/login">
+                Войти
+              </Link>
+              <button
+                type="submit"
+                className={`${registerStyles.active} ${registerStyles.modalRegister}`}
+                onClick={() => dispatch(auth.clearErrors())}
+              >
+                Регистрация
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      )}
     </div>
   );
 }
