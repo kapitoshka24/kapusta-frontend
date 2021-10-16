@@ -50,13 +50,16 @@ const calculateAvailableYears = () => async dispatch => {
   }
 };
 
-const fetchSumCategory = () => async dispatch => {
+const fetchSumCategory = (month, year) => async dispatch => {
   dispatch(kapustaActions.getSumCategoryRequest());
+  const correctMonth = month < 10 ? '0'.concat(month) : month;
 
   try {
     const { data } = await axios.get(
-      '/currency-movements/sum-category?date=01/2021',
+      `/currency-movements/sum-category?date=${correctMonth}/${year}`,
     );
+
+    console.log(`${month}/${year}`, data.summary);
 
     dispatch(kapustaActions.getSumCategorySuccess(data.summary));
   } catch (error) {

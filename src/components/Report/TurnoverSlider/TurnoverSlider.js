@@ -3,6 +3,9 @@ import Slider from 'react-slick';
 import styles from './TurnoverSlider.module.scss';
 import SliderExpenses from '../SliderExpenses';
 import SliderIncome from '../SliderIncome/SliderIncome';
+import { connect } from 'react-redux';
+import { kapustaOperations } from '../../../redux/operations';
+import { kapustaSelectors } from '../../../redux/selectors';
 
 class TurnoverSlider extends Component {
   constructor(props) {
@@ -18,6 +21,11 @@ class TurnoverSlider extends Component {
       nav1: this.slider1,
       nav2: this.slider2,
     });
+  }
+
+  componentDidUpdate() {
+    const { month, year, fetchSumCategory } = this.props;
+    fetchSumCategory(month + 1, year);
   }
   render() {
     const settingsSmall = {
@@ -72,4 +80,14 @@ class TurnoverSlider extends Component {
   }
 }
 
-export default TurnoverSlider;
+const mapStateToProps = state => ({
+  month: kapustaSelectors.getReportMonth(state),
+  year: kapustaSelectors.getReportYear(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchSumCategory: (month, year) =>
+    dispatch(kapustaOperations.fetchSumCategory(month, year)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TurnoverSlider);

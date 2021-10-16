@@ -1,22 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
-import { kapustaOperations } from '../../../redux/operations';
 import SliderIncomeList from './SliderIncomeList';
+import SliderNotification from '../SliderNotification';
 
 const SliderIncome = () => {
-  const getIncome = useSelector(kapustaSelectors.getCategoryIncome);
-  const dispatch = useDispatch();
-  const [income, setIncome] = useState(getIncome);
+  const income = useSelector(kapustaSelectors.getCategoryIncome);
 
-  useEffect(() => {
-    dispatch(kapustaOperations.fetchSumCategory());
-  }, [dispatch]);
-  useEffect(() => {
-    setIncome(getIncome);
-  }, [getIncome]);
-
-  return income ? <SliderIncomeList income={income} /> : <p>Spiner</p>;
+  return income && income.length > 0 ? (
+    <SliderIncomeList income={income} />
+  ) : (
+    <SliderNotification category="доходов" />
+  );
 };
 
 export default SliderIncome;

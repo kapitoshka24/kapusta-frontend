@@ -1,22 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
-import { kapustaOperations } from '../../../redux/operations';
 import SliderExpensesList from './SliderExpensesList';
+import SliderNotification from '../SliderNotification';
 
 const SliderExpenses = () => {
-  const getExpenses = useSelector(kapustaSelectors.getCategoryExpenses);
-  const dispatch = useDispatch();
-  const [expenses, setExpenses] = useState(getExpenses);
+  const expenses = useSelector(kapustaSelectors.getCategoryExpenses);
 
-  useEffect(() => {
-    dispatch(kapustaOperations.fetchSumCategory());
-  }, [dispatch]);
-  useEffect(() => {
-    setExpenses(getExpenses);
-  }, [getExpenses]);
-
-  return expenses ? <SliderExpensesList expenses={expenses} /> : <p>Spiner</p>;
+  return expenses && expenses.length > 0 ? (
+    <SliderExpensesList expenses={expenses} />
+  ) : (
+    <SliderNotification category="расходов" />
+  );
 };
 
 export default SliderExpenses;
