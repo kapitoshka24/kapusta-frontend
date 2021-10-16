@@ -7,6 +7,7 @@ import auth from '../redux/operations/auth-operations';
 import Header from '../components/Header';
 import registerStyles from '../styles/Register.module.scss';
 import appStyles from '../styles/AppComon.module.scss';
+import useDebounce from '../helpers/useDebounce';
 
 const validate = values => {
   const errors = {};
@@ -56,21 +57,22 @@ export default function RegisterPage({ location }) {
   );
   const [timer, setTimer] = useState(59);
 
-  const { errors, values, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirm: '',
-    },
-    validateOnChange: false,
-    validate,
-    onSubmit: ({ name, email, password }, { resetForm }) => {
-      dispatch(auth.register({ name, email, password }));
+  const { errors, values, handleSubmit, setFieldError, setFieldValue } =
+    useFormik({
+      initialValues: {
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+      },
+      validateOnChange: false,
+      validate,
+      onSubmit: ({ name, email, password }, { resetForm }) => {
+        dispatch(auth.register({ name, email, password }));
 
-      resetForm({ values });
-    },
-  });
+        resetForm({ values });
+      },
+    });
 
   const resendEmailVerificationHandler = async () => {
     dispatch(auth.resendEmailVerification(email));
@@ -90,6 +92,25 @@ export default function RegisterPage({ location }) {
       };
     }
   }, [onVerification, timer]);
+
+  const [onValidation, setOnValidation] = useState();
+
+  const debounce = useDebounce(onValidation, 500);
+
+  useEffect(() => {
+    if (debounce) {
+      const error = validate(values);
+
+      setFieldError(debounce[0], error[debounce[0]]);
+      setOnValidation();
+    }
+  }, [debounce, setFieldError, values]);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setOnValidation([name, value]);
+
+    setFieldValue(name, value);
+  };
 
   return (
     <div className={appStyles.loggedOutBg}>
