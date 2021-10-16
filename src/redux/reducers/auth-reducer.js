@@ -30,6 +30,7 @@ const error = createReducer(null, {
 const isLoggedIn = createReducer(false, {
   [authActions.refreshSessionSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
+  [authActions.loginGoogleSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
   [authActions.registerError]: () => false,
   [authActions.loginError]: () => false,
