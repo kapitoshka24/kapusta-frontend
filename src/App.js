@@ -1,5 +1,4 @@
 import React, { Suspense, lazy, useEffect } from 'react';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import { Switch } from 'react-router';
 import PublicRoute from './components/PublicRoute';
@@ -7,8 +6,8 @@ import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
 import NotFound from './pages/NotFoundPage';
-
 import styles from './styles/Loader.module.scss';
+// import { useState } from 'react';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -16,16 +15,31 @@ const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
 const ReportPage = lazy(() => import('./pages/ReportPage'));
 
 export default function App() {
+  // const [location, setLocation] = useState('/');
+  // const [redirectTo, setRedirectTo] = useState(false);
   const dispatch = useDispatch();
-  useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
+
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+
+    // setLocation(localStorage.getItem('pathname'));
+
+    // if (location) setRedirectTo(true);
+  }, [dispatch]);
+
+  // if (redirectTo) {
+  //   console.log(location);
+  //   return <Redirect to={location} />;
+  // }
 
   return (
     <>
       <Suspense
         fallback={
           <Loader
+            visible={true}
             className={styles.LoaderMain}
-            type="Circles"
+            type="Triangle"
             color="#ff751d"
             height={80}
             width={80}
