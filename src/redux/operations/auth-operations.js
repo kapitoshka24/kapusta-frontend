@@ -75,8 +75,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
   accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
-    const { data } = await axios.get('users/current');
-    dispatch(authActions.getCurrentUserSuccess(data.data));
+    const { data } = await axios.get('/users/current');
+    dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
     refreshSession(dispatch, getState);
