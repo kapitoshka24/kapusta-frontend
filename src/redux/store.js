@@ -1,5 +1,5 @@
 // import { kapustaReducer } from './kapusta';
-import { authReducer, kapustaReducer } from './reducers';
+import { authReducer, kapustaReducer, session } from './reducers';
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -14,14 +14,15 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 const authPersistConfig = {
-  key: 'accessToken',
+  key: 'session',
   storage,
-  whitelist: ['accessToken'],
+  whitelist: ['accessToken', 'refreshToken', 'sid'],
 };
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    session: persistReducer(authPersistConfig, session),
+    auth: authReducer,
     kapusta: kapustaReducer,
   },
   middleware: getDefaultMiddleware =>

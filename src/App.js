@@ -6,6 +6,7 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { authOperations } from './redux/operations';
+import NotFound from './pages/NotFoundPage';
 
 import styles from './styles/Loader.module.scss';
 
@@ -17,6 +18,7 @@ const ReportPage = lazy(() => import('./pages/ReportPage'));
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
+
   return (
     <>
       <Suspense
@@ -44,6 +46,9 @@ export default function App() {
           <PrivateRoute path="/report-page" restricted redirectTo="/login">
             <ReportPage />
           </PrivateRoute>
+          <PublicRoute>
+            <NotFound />
+          </PublicRoute>
         </Switch>
       </Suspense>
     </>
