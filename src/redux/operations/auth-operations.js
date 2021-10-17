@@ -48,7 +48,13 @@ const registerWithGoogle = credentials => async dispatch => {
 
     await dispatch(authActions.registerGoogleSuccess(data));
   } catch (error) {
-    dispatch(authActions.registerGoogleError(error));
+    if (error.response.data.code === 409) {
+      dispatch(
+        authActions.registerGoogleError({ email: 'Email уже зарегистрирован' }),
+      );
+    } else {
+      registerError();
+    }
   }
 };
 
@@ -122,9 +128,8 @@ const loginWithGoogle = data => async dispatch => {
   dispatch(authActions.loginGoogleRequest());
   try {
     await dispatch(authActions.loginGoogleSuccess(data));
-  } catch (error) {
-    dispatch(authActions.loginGoogleError(error.message));
-    registerError();
+  } catch (e) {
+    dispatch(authActions.loginGoogleError(e));
   }
 };
 
