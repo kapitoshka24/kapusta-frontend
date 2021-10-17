@@ -1,12 +1,18 @@
-import { useEffect } from 'react';
-import Header from '../components/Header';
-import appStyles from '../styles/AppComon.module.scss';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/operations';
-import { useFormik } from 'formik';
-import googleSymbol from '../images/google-symbol.svg';
-import loginStyles from '../styles/Login.module.scss';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import useDebounce from '../helpers/useDebounce';
+
+import { authOperations } from '../redux/operations';
+
+import googleSymbol from '../images/google-symbol.svg';
+
+import loginStyles from '../styles/Login.module.scss';
+
+import appStyles from '../styles/AppComon.module.scss';
+import Header from '../components/Header';
 
 const validate = values => {
   const errors = {};
@@ -42,15 +48,35 @@ export default function LoginPage() {
     }
   }, [dispatch]);
 
-  const { errors, values, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validateOnChange: false,
-    validate,
-    onSubmit: ({ email, password }) => onLogin({ email, password }),
-  });
+  const { errors, values, handleSubmit, setFieldError, setFieldValue } =
+    useFormik({
+      initialValues: {
+        email: '',
+        password: '',
+      },
+      validateOnChange: false,
+      validate,
+      onSubmit: ({ email, password }) => onLogin({ email, password }),
+    });
+
+  const [onValidation, setOnValidation] = useState();
+
+  const debounce = useDebounce(onValidation, 800);
+
+  useEffect(() => {
+    if (debounce) {
+      const error = validate(values);
+
+      setFieldError(debounce[0], error[debounce[0]]);
+      setOnValidation();
+    }
+  }, [debounce, setFieldError, values]);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setOnValidation([name, value]);
+
+    setFieldValue(name, value);
+  };
 
   return (
     <div className={appStyles.loggedOutBg}>
