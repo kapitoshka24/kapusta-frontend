@@ -17,8 +17,9 @@ export default function Table() {
   }, [dispatch]);
 
   const onDeleteExpense = useCallback(
-    id => {
-      dispatch(kapustaOperations.deleteExpense(id));
+    async id => {
+      await dispatch(kapustaOperations.deleteExpense(id));
+      await dispatch(kapustaOperations.fetchTotalBalance());
     },
     [dispatch],
   );
