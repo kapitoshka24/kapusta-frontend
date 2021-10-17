@@ -145,7 +145,6 @@ export default function RegisterPage({ location }) {
                 className={`${registerStyles.modalLogin} ${registerStyles.active}`}
                 to={{
                   pathname: `/login`,
-                  state: { from: location },
                 }}
               >
                 Продолжить
@@ -199,9 +198,18 @@ export default function RegisterPage({ location }) {
                     <div className={registerStyles.error}>{errors.email}</div>
                   ) : null}
                   {fetchError?.email ? (
-                    <div className={registerStyles.error}>
-                      {fetchError.email}
-                    </div>
+                    <>
+                      <span className={registerStyles.error}>
+                        {fetchError.email}
+                      </span>
+                      <Link
+                        to="/forgotten"
+                        className={registerStyles.btnResendVerification}
+                        onClick={() => dispatch(auth.clearErrors())}
+                      >
+                        Забыли пароль?
+                      </Link>
+                    </>
                   ) : null}
                 </label>
               </div>

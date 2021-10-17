@@ -47,7 +47,7 @@ const logIn = credentials => async dispatch => {
     dispatch(authActions.loginSuccess(data));
     loginSuccess();
   } catch (error) {
-    dispatch(authActions.loginError(error.message));
+    dispatch(authActions.loginError({ login: error.message }));
     loginError();
   }
 };
@@ -134,7 +134,7 @@ const loginWithGoogle = data => async dispatch => {
 
 const resendEmailVerification = email => async dispatch => {
   try {
-    await axios.post('users/verify', { email });
+    await axios.post('/users/verify', { email });
 
     dispatch(authActions.resendEmailVerification({ email }));
   } catch (error) {
@@ -146,6 +146,41 @@ const clearErrors = () => dispatch => {
   dispatch(authActions.clearErrors());
 };
 
+const forgotten = email => async dispatch => {
+  dispatch(authActions.forgottenPending());
+
+  try {
+    await axios.post('/users/forgotten', { email });
+
+    dispatch(authActions.forgottenFulfilled({ email }));
+  } catch (error) {
+    if (error.response.data.code === 404) {
+      dispatch(authActions.forgottenRejected({ email: 'Email ненайден' }));
+    } else {
+      registerError();
+    }
+  }
+};
+
+const resetPassword = (password, verifyToken) => async dispatch => {
+  dispatch(authActions.resetPasswordPending());
+
+  try {
+    await axios.post('/users/resetPassword', {
+      password,
+      verifyToken,
+    });
+
+    dispatch(authActions.resetPasswordFulfilled(true));
+  } catch (error) {
+    if (error.response.data.code === 404) {
+      dispatch(authActions.resetPasswordRejected({ email: 'Email ненайден' }));
+    } else {
+      registerError();
+    }
+  }
+};
+
 const operations = {
   register,
   logIn,
@@ -155,6 +190,8 @@ const operations = {
   refreshSession,
   resendEmailVerification,
   clearErrors,
+  forgotten,
+  resetPassword,
 };
 
 export default operations;

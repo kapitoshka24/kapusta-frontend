@@ -10,6 +10,8 @@ import Loader from './components/Loader/';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const ForgottenPage = lazy(() => import('./pages/ForgottenPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
 const ReportPage = lazy(() => import('./pages/ReportPage'));
 
@@ -42,6 +44,14 @@ export default function App() {
           <PublicRoute path="/register" restricted>
             <RegisterPage />
           </PublicRoute>
+          <PublicRoute path="/forgotten" restricted>
+            <ForgottenPage />
+          </PublicRoute>
+          <PublicRoute
+            path="/resetPassword/:verificationToken"
+            restricted
+            component={ResetPasswordPage}
+          />
           <PrivateRoute path="/main-page" restricted redirectTo="/login">
             <ExpenceIncomePage />
           </PrivateRoute>

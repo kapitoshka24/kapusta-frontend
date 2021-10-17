@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import useDebounce from '../helpers/useDebounce';
@@ -13,6 +13,7 @@ import loginStyles from '../styles/Login.module.scss';
 
 import appStyles from '../styles/AppComon.module.scss';
 import Header from '../components/Header';
+import { authSelectors } from '../redux/selectors';
 
 const validate = values => {
   const errors = {};
@@ -32,6 +33,7 @@ const validate = values => {
 
 export default function LoginPage() {
   const dispatch = useDispatch();
+  const fetchError = useSelector(authSelectors.getError);
   const onLogin = user => dispatch(authOperations.logIn(user));
 
   useEffect(() => {
@@ -123,7 +125,16 @@ export default function LoginPage() {
                   autoComplete="off"
                 />
                 {errors.email ? (
-                  <div className={loginStyles.error}>{errors.email}</div>
+                  <span className={loginStyles.error}>{errors.email}</span>
+                ) : null}
+                {fetchError?.login ? (
+                  <Link
+                    to="/forgotten"
+                    className={loginStyles.forgottenLink}
+                    onClick={() => dispatch(authOperations.clearErrors())}
+                  >
+                    Забыли пароль?
+                  </Link>
                 ) : null}
               </label>
             </div>

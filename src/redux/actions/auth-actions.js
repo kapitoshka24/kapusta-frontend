@@ -28,6 +28,14 @@ const actions = {
   resendEmailVerification: createAction('auth/resendEmailVerification'),
 
   clearErrors: createAction('auth/clearErrors'),
+
+  forgottenPending: createAction('auth/forgottenPending'),
+  forgottenFulfilled: createAction('auth/forgottenFulfilled'),
+  forgottenRejected: createAction('auth/forgottenRejected'),
+
+  resetPasswordPending: createAction('auth/resetPasswordPending'),
+  resetPasswordFulfilled: createAction('auth/resetPasswordFulfilled'),
+  resetPasswordRejected: createAction('auth/resetPasswordRejected'),
 };
 
 export default actions;

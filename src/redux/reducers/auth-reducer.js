@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { authActions } from '../actions';
+import { loginSuccess } from '../../services/pnotify';
 
 const initialUserState = { id: null, name: null, email: null, createdAt: null };
 
@@ -25,6 +26,9 @@ const error = createReducer(null, {
   [authActions.refreshSessionError]: setError,
   [authActions.loginGoogleError]: setError,
   [authActions.clearErrors]: () => null,
+  [authActions.forgottenRejected]: setError,
+  [authActions.resetPasswordRejected]: setError,
+  [authActions.loginSuccess]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -60,9 +64,40 @@ const emailVerification = createReducer(initialEmailVerificationState, {
   [authActions.registerError]: () => initialEmailVerificationState,
 });
 
+const initialForgottenState = {
+  email: null,
+  onReset: false,
+  resetStart: null,
+};
+
+const forgotten = createReducer(initialForgottenState, {
+  [authActions.forgottenPending]: () => {},
+  [authActions.forgottenFulfilled]: (_, { payload }) => ({
+    email: payload.email,
+    onReset: true,
+    resetStart: Date.parse(new Date()),
+  }),
+  [authActions.forgottenRejected]: (_, { payload }) => initialForgottenState,
+});
+
+const initialResetPasswordState = {
+  success: false,
+};
+const resetPassword = createReducer(initialResetPasswordState, {
+  [authActions.resetPasswordFulfilled]: (_, { payload }) => ({
+    success: payload,
+  }),
+  [authActions.resetPasswordRejected]: (_, { payload }) =>
+    initialResetPasswordState,
+  [authActions.loginGoogleSuccess]: () => initialResetPasswordState,
+  [authActions.forgottenFulfilled]: () => initialResetPasswordState,
+});
+
 export default combineReducers({
   user,
   isLoggedIn,
   error,
   emailVerification,
+  forgotten,
+  resetPassword,
 });
