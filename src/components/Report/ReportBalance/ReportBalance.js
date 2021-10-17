@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-// import { kapustaActions } from '../../../redux/actions';
-// import { useFormik } from 'formik';
 import ReportBalanceModal from '../ReportBalanceModal';
 import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
@@ -49,7 +47,6 @@ export default function ReportBalance() {
       setBalanceValue(0);
     }
   };
-  // ---------------------------------
   const { width } = useWindowDementions();
 
   return (

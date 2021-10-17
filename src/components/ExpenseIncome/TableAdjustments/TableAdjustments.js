@@ -3,22 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useCallback } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
-import styles from './Table.module.scss';
+import styles from '../Table/Table.module.scss';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-import { expenseOptions } from '../../../helpers/expenseOptions';
+import { adjustmentsOptions } from '../../../helpers/adjustmentsOptions';
 
-export default function Table() {
-  const expense = useSelector(kapustaSelectors.getExpense);
+export default function TableAdjustments() {
+  const adjustments = useSelector(kapustaSelectors.getAdjustments);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(kapustaOperations.fetchExpense());
+    dispatch(kapustaOperations.fetchAdjustments());
   }, [dispatch]);
 
-  const onDeleteExpense = useCallback(
+  const onDeleteAdjustments = useCallback(
     async id => {
-      await dispatch(kapustaOperations.deleteExpense(id));
+      await dispatch(kapustaOperations.deleteAdjustments(id));
       await dispatch(kapustaOperations.fetchTotalBalance());
     },
     [dispatch],
@@ -46,17 +46,23 @@ export default function Table() {
         </thead>
 
         <tbody>
-          {expense.map(({ date, name, sum, category, _id }) => (
+          {adjustments.map(({ date, name, sum, category, _id }) => (
             <tr key={_id}>
               <td>{convertDate(date)}</td>
               <td>
                 <EllipsisText text={name} length={40} />
               </td>
-              <td className={styles.category}>{expenseOptions[category]}</td>
-              <td className={styles.sumNegative}>- {sum} грн</td>
+              <td className={styles.category}>
+                {adjustmentsOptions[category]}
+              </td>
+              <td
+                className={sum >= 0 ? styles.sumPositive : styles.sumNegative}
+              >
+                {Number.parseInt(sum, 10)} грн
+              </td>
               <td
                 className={styles.icon__bg}
-                onClick={() => onDeleteExpense(_id)}
+                onClick={() => onDeleteAdjustments(_id)}
               >
                 <Delete className={styles.icon__delete} />
               </td>

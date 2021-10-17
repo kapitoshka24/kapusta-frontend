@@ -11,12 +11,18 @@
     width: 320px;
     padding: 0 35px;
   }
+  &_adjustment {
+    margin: 0 auto 129px auto;
+  }
 }
 
 .data__container {
   @include from(desktop) {
     display: flex;
     justify-content: space-between;
+  }
+  &_adjustment {
+    justify-content: center;
   }
 }
 

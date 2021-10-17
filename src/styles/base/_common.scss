@@ -37,3 +37,9 @@ input {
 a {
   text-decoration: none;
 }
+
+.react-tabs {
+  @include from(desktop) {
+    padding-bottom: 75px;
+  }
+}

@@ -8,7 +8,7 @@
   }
 
   @include from-to(tablet, desktop) {
-    min-height: 1000px;
+    min-height: 100vh;
 
     background-image: url('../images/desktop/kapusta-down-desktop.svg');
     background-position: right 88px top 1033px;
@@ -21,7 +21,6 @@
 
     background-repeat: repeat-x;
     background-position: bottom -38px left 0;
-    padding-bottom: 75px;
   }
 }
 
@@ -32,14 +31,14 @@
     min-height: 900px;
 
     background-image: url('../images/mobile/kapusta-down-mobile.svg');
-    background-position: left 35px top 767px;
+    background-position: left 35px top 800px;
   }
 
   @include from(tablet) {
-    min-height: 1000px;
+    min-height: 1050px;
 
     background-image: url('../images/desktop/kapusta-down-desktop.svg');
-    background-position: 103px 826px;
+    background-position: 103px 870px;
   }
 
   @include from(desktop) {
