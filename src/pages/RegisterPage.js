@@ -4,7 +4,7 @@ import { authSelectors } from '../redux/selectors';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../redux/operations/auth-operations';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import registerStyles from '../styles/Register.module.scss';
 // import appStyles from '../styles/AppCommon.module.scss';
 import useDebounce from '../helpers/useDebounce';
