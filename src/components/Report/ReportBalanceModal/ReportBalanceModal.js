@@ -6,6 +6,9 @@ export default function ReportBalanceModal({ closeModal }) {
 
   useEffect(() => {
     const handleCloseModal = e => {
+      if (!modalContainer.current) {
+        return;
+      }
       if (modalContainer.current.contains(e.target)) {
         return;
       }

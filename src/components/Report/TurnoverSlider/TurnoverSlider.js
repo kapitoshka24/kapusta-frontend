@@ -34,6 +34,7 @@ class TurnoverSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       asNavFor: '.slider__big',
+      // adaptiveHeight: true,
     };
     const settingsBig = {
       infinite: true,
