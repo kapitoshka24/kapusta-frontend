@@ -19,8 +19,11 @@ const TotalBalance = () => {
 
   useEffect(() => {
     dispatch(kapustaOperations.fetchTotalBalance());
+  }, [dispatch]);
+
+  useEffect(() => {
     setBalanceValue(getBalance);
-  }, [dispatch, getBalance]);
+  }, [getBalance]);
 
   const numberBalanceValue = Number(balanceValue);
 
@@ -57,7 +60,6 @@ const TotalBalance = () => {
             id="balance"
             name="balance"
             onChange={handleChange}
-            // value={Number(balanceValue).toFixed(2)}
             value={balanceValue}
             autoComplete="off"
           />

@@ -1,7 +1,15 @@
 import React from 'react';
 import styles from './Turnover.module.scss';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { kapustaOperations } from '../../../redux/operations';
 
 const Turnover = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchSumCategory());
+  }, [dispatch]);
+
   const expenses = '1281.00';
   const income = '4100.00';
 

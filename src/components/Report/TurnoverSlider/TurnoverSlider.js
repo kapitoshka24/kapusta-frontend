@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Slider from 'react-slick';
 import styles from './TurnoverSlider.module.scss';
 import SliderExpenses from '../SliderExpenses';
