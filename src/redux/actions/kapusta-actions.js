@@ -28,6 +28,30 @@ const actions = {
   decrementReportMonth: createAction('kapusta/decrementReportMonth'),
   changeReportYears: createAction('kapusta/changeReportYears'),
   fetchCategoryDetails: createAction('kapusta/fetchCategoryDetails'),
+
+  fetchExpenseRequest: createAction('kapusta/fetchExpenseRequest'),
+  fetchExpenseSuccess: createAction('kapusta/fetchExpenseSuccess'),
+  fetchExpenseError: createAction('kapusta/fetchExpenseError'),
+
+  addExpenseRequest: createAction('kapusta/addExpenseRequest'),
+  addExpenseSuccess: createAction('kapusta/addExpenseSuccess'),
+  addExpenseError: createAction('kapusta/addExpenseError'),
+
+  deleteExpenseRequest: createAction('kapusta/deleteExpenseRequest'),
+  deleteExpenseSuccess: createAction('kapusta/deleteExpenseSuccess'),
+  deleteExpenseError: createAction('kapusta/deleteExpenseError'),
+
+  fetchIncomeRequest: createAction('kapusta/fetchIncomeRequest'),
+  fetchIncomeSuccess: createAction('kapusta/fetchIncomeSuccess'),
+  fetchIncomeError: createAction('kapusta/fetchIncomeError'),
+
+  addIncomeRequest: createAction('kapusta/addIncomeRequest'),
+  addIncomeSuccess: createAction('kapusta/addIncomeSuccess'),
+  addIncomeError: createAction('kapusta/addIncomeError'),
+
+  deleteIncomeRequest: createAction('kapusta/deleteIncomeRequest'),
+  deleteIncomeSuccess: createAction('kapusta/deleteIncomeSuccess'),
+  deleteIncomeError: createAction('kapusta/deleteIncomeError'),
 };
 
 export default actions;

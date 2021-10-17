@@ -55,7 +55,19 @@
   margin-right: 20px;
 }
 
-.sum {
+// .sum {
+//   margin-right: 21px;
+
+//   font-weight: 700;
+//   font-size: 12px;
+//   line-height: 1.1667;
+//   letter-spacing: 0.04em;
+//   text-align: right;
+
+//   color: $red;
+// }
+
+.sumNegative {
   margin-right: 21px;
 
   font-weight: 700;
@@ -65,6 +77,18 @@
   text-align: right;
 
   color: $red;
+}
+
+.sumPositive {
+  margin-right: 21px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.1667;
+  letter-spacing: 0.04em;
+  text-align: right;
+
+  color: $green;
 }
 
 .icon__thumb {

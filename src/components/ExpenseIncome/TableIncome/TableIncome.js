@@ -3,22 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useCallback } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
-import styles from './Table.module.scss';
+import styles from '../Table/Table.module.scss';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-import { expenseOptions } from '../../../helpers/expenseOptions';
+import { incomeOptions } from '../../../helpers/incomeOptions';
 
 export default function Table() {
-  const expense = useSelector(kapustaSelectors.getExpense);
+  const income = useSelector(kapustaSelectors.getIncome);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(kapustaOperations.fetchExpense());
+    dispatch(kapustaOperations.fetchIncome());
   }, [dispatch]);
 
-  const onDeleteExpense = useCallback(
+  const onDeleteIncome = useCallback(
     id => {
-      dispatch(kapustaOperations.deleteExpense(id));
+      dispatch(kapustaOperations.deleteIncome(id));
     },
     [dispatch],
   );
@@ -45,17 +45,17 @@ export default function Table() {
         </thead>
 
         <tbody>
-          {expense.map(({ date, name, sum, category, _id }) => (
+          {income.map(({ date, name, sum, category, _id }) => (
             <tr key={_id}>
               <td>{convertDate(date)}</td>
               <td>
                 <EllipsisText text={name} length={40} />
               </td>
-              <td className={styles.category}>{expenseOptions[category]}</td>
-              <td className={styles.sumNegative}>- {sum} грн</td>
+              <td className={styles.category}>{incomeOptions[category]}</td>
+              <td className={styles.sumPositive}>{sum} грн</td>
               <td
                 className={styles.icon__bg}
-                onClick={() => onDeleteExpense(_id)}
+                onClick={() => onDeleteIncome(_id)}
               >
                 <Delete className={styles.icon__delete} />
               </td>

@@ -1,11 +1,18 @@
-import Header from '../components/Header';
-import appStyles from '../styles/AppComon.module.scss';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/operations';
-import { useFormik } from 'formik';
-import googleSymbol from '../images/google-symbol.svg';
-import loginStyles from '../styles/Login.module.scss';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import useDebounce from '../helpers/useDebounce';
+
+import { authOperations } from '../redux/operations';
+
+import googleSymbol from '../images/google-symbol.svg';
+
+import loginStyles from '../styles/Login.module.scss';
+
+import appStyles from '../styles/AppComon.module.scss';
+import Header from '../components/Header';
 
 const validate = values => {
   const errors = {};
@@ -26,28 +33,50 @@ const validate = values => {
 export default function LoginPage() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
-  const onGoogle = () => dispatch(authOperations.loginWithGoogle());
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  useEffect(() => {
+    const windowUrl = window.location.search;
+    const params = new URLSearchParams(windowUrl);
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
+    const sid = params.get('sid');
 
-  const { errors, values, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validateOnChange: false,
-    validate,
-    onSubmit: ({ email, password }) => {
-      onLogin({ email, password });
-      // reset();
-    },
-  });
+    if (accessToken && refreshToken && sid) {
+      dispatch(
+        authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
+      );
+    }
+  }, [dispatch]);
 
-  // const reset = () => {
-  //   setEmail('');
-  //   setPassword('');
-  // };
+  const { errors, values, handleSubmit, setFieldError, setFieldValue } =
+    useFormik({
+      initialValues: {
+        email: '',
+        password: '',
+      },
+      validateOnChange: false,
+      validate,
+      onSubmit: ({ email, password }) => onLogin({ email, password }),
+    });
+
+  const [onValidation, setOnValidation] = useState();
+
+  const debounce = useDebounce(onValidation, 800);
+
+  useEffect(() => {
+    if (debounce) {
+      const error = validate(values);
+
+      setFieldError(debounce[0], error[debounce[0]]);
+      setOnValidation();
+    }
+  }, [debounce, setFieldError, values]);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setOnValidation([name, value]);
+
+    setFieldValue(name, value);
+  };
 
   return (
     <div className={appStyles.loggedOutBg}>
@@ -59,14 +88,17 @@ export default function LoginPage() {
           >
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button className={loginStyles.googleBtn} onClick={onGoogle}>
+          <a
+            className={loginStyles.googleBtn}
+            href="https://kapusta-backend.herokuapp.com/api/users/google"
+          >
             <img
               src={googleSymbol}
               alt="Google Symbol"
               className={loginStyles.googleSymbol}
             />
             Google
-          </button>
+          </a>
           <p className={loginStyles.modalTitle}>
             Или зайти с помощью e-mail и пароля, предварительно
             зарегистрировавшись:

@@ -1,9 +1,26 @@
+import React, { useEffect, useRef } from 'react';
 import styles from './BalanceModal.module.scss';
-import { ReactComponent as CloseIcon } from '../../../images/close.svg';
+// import { ReactComponent as CloseIcon } from '../../../images/close.svg';
 
 const BalanceModal = ({ closeModal }) => {
+  const modalContainer = useRef();
+
+  useEffect(() => {
+    const handleCloseModal = e => {
+      if (modalContainer.current.contains(e.target)) {
+        return;
+      }
+      closeModal();
+    };
+    window.addEventListener('click', handleCloseModal);
+
+    return () => {
+      window.removeEventListener('click', handleCloseModal);
+    };
+  }, [closeModal]);
+
   return (
-    <div className={styles.modalContainer}>
+    <div className={styles.modalContainer} ref={modalContainer}>
       <div className={styles.triangle}></div>
       <div className={styles.contentContainer}>
         <p className={styles.content}>
@@ -12,7 +29,7 @@ const BalanceModal = ({ closeModal }) => {
         <p className={styles.content}>
           {`Ты не можешь тратить деньги, пока их у тебя нет :)`}
         </p>
-        <CloseIcon onClick={closeModal} className={styles.closeButton} />
+        {/* <CloseIcon onClick={closeModal} className={styles.closeButton} /> */}
       </div>
     </div>
   );

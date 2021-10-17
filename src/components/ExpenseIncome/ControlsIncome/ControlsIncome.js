@@ -3,42 +3,33 @@ import { useDispatch } from 'react-redux';
 import Select from '../Select';
 
 import DateComponent from '../Date';
-import styles from './Controls.module.scss';
+import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
 
 const options = [
-  { value: 'transport', label: 'Транспорт' },
-  { value: 'products', label: 'Продукты' },
-  { value: 'health', label: 'Здоровье' },
-  { value: 'alcohol', label: 'Алкоголь' },
-  { value: 'entertainment', label: 'Развлечения' },
-  { value: 'housing', label: 'Всё для дома' },
-  { value: 'technique', label: 'Техника' },
-  { value: 'utilityCommunication', label: 'Коммуналка, связь' },
-  { value: 'sportsHobbies', label: 'Спорт, хобби' },
-  { value: 'education', label: 'Образование' },
-  { value: 'other', label: 'Прочее' },
+  { value: 'salary', label: 'ЗП' },
+  { value: 'otherIncome', label: 'Доп. доход' },
 ];
 
-export default function Controls() {
-  const [expense, setExpense] = useState({
+export default function ControlsIncome() {
+  const [income, setIncome] = useState({
     name: '',
     sum: '',
   });
 
   const [category, setCategory] = useState({ category: '' });
 
-  const { name, sum } = expense;
+  const { name, sum } = income;
 
   const dispatch = useDispatch();
 
   const handleChange = useCallback(e => {
     const { name, value } = e.currentTarget;
 
-    setExpense(prevExpense => ({
-      ...prevExpense,
+    setIncome(prevIncome => ({
+      ...prevIncome,
       [name]: value,
     }));
   }, []);
@@ -54,7 +45,7 @@ export default function Controls() {
         category,
       };
 
-      dispatch(kapustaOperations.addExpense(data));
+      dispatch(kapustaOperations.addIncome(data));
       resetForm();
     },
     [dispatch, name, sum, category],
@@ -65,7 +56,7 @@ export default function Controls() {
   };
 
   const resetForm = () => {
-    setExpense({ name: '', sum: '' });
+    setIncome({ name: '', sum: '' });
     // setCategory({ category: '' });
   };
 
