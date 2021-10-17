@@ -1,22 +1,8 @@
-// import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import Select from 'react-select';
 // import makeAnimated from 'react-select';
 
 import styles from './Select.module.scss';
-
-const options = [
-  { value: 'transport', label: 'Транспорт' },
-  { value: 'products', label: 'Продукты' },
-  { value: 'health', label: 'Здоровье' },
-  { value: 'alcohol', label: 'Алкоголь' },
-  { value: 'fun', label: 'Развлечения' },
-  { value: 'house', label: 'Всё для дома' },
-  { value: 'machinery', label: 'Техника' },
-  { value: 'utils', label: 'Коммуналка, связь' },
-  { value: 'sport', label: 'Спорт, хобби' },
-  { value: 'education', label: 'Образование' },
-  { value: 'other', label: 'Прочее' },
-];
 
 function customTheme(theme) {
   return {
@@ -52,7 +38,13 @@ const customStyles = {
   }),
 };
 
-export default function Dropdown() {
+export default function Dropdown({ setCategory, options }) {
+  const [option, setOption] = useState({});
+
+  useEffect(() => {
+    setCategory(option.value);
+  }, [setCategory, option]);
+
   return (
     <>
       <Select
@@ -61,8 +53,8 @@ export default function Dropdown() {
         className={styles.dropdown}
         styles={customStyles}
         placeholder="Категория товара"
-        // isClearable={false}
-        isClearable
+        onChange={setOption}
+        // isClearable
       />
     </>
   );
