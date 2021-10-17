@@ -19,6 +19,7 @@ import mainStyles from '../../../styles/AppComon.module.scss';
 import TableAdjustments from '../TableAdjustments';
 import TableMobileAdjustments from '../TableMobileAdjustments';
 
+
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
 

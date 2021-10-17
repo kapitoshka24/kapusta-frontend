@@ -2,7 +2,7 @@
 // import { authSelectors } from '../redux/selectors';
 // import Header from '../components/Header';
 import notFoundstyles from '../styles/NotFound.module.scss';
-// import appStyles from '../styles/AppComon.module.scss';
+// import appStyles from '../styles/AppCommon.module.scss';
 import BackToMainPage from '../components/BackToMainPage';
 
 export default function NotFoundPage() {

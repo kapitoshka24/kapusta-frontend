@@ -1,14 +1,16 @@
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import TotalBalance from '../components/ExpenseIncome/TotalBalance';
 import Expense from '../components/ExpenseIncome/Expense';
-import styles from '../styles/AppComon.module.scss';
+// import styles from '../styles/AppCommon.module.scss';
 
-export default function ExpenceIncomePage() {
+export default function ExpenseIncomePage() {
   return (
-    <div className={styles.loggedInBg}>
-      <Header />
+    // <div className={styles.loggedInBg}>
+    // <Header />
+    <>
       <TotalBalance />
       <Expense />
-    </div>
+      {/* </div> */}
+    </>
   );
 }
