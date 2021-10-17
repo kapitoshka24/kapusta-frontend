@@ -58,7 +58,7 @@ const fetchSumCategory = () => async dispatch => {
       '/currency-movements/sum-category?date=01/2021',
     );
 
-    dispatch(kapustaActions.getSumCategorySuccess(data.summary));
+    dispatch(kapustaActions.getSumCategorySuccess(data));
   } catch (error) {
     dispatch(kapustaActions.getSumCategoryError(error));
   }

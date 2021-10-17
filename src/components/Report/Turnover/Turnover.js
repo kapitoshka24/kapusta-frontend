@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './Turnover.module.scss';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { kapustaOperations } from '../../../redux/operations';
+import { kapustaSelectors } from '../../../redux/selectors';
 
 const Turnover = () => {
   const dispatch = useDispatch();
+  const totalIncome = useSelector(kapustaSelectors.getTotalIncome);
+  const totalExpenses = useSelector(kapustaSelectors.getTotalExpenses);
+
   useEffect(() => {
     dispatch(kapustaOperations.fetchSumCategory());
   }, [dispatch]);
-
-  const expenses = '1281.00';
-  const income = '4100.00';
 
   return (
     <div className={styles.turnoverContainer}>
@@ -19,7 +20,9 @@ const Turnover = () => {
         <p className={styles.expenses}>
           Расходы:
           <span className={styles.expensesContent}>{`- ${
-            expenses.length > 8 ? `${expenses.substring(0, 7)}...` : expenses
+            totalExpenses.length > 8
+              ? `${totalExpenses.substring(0, 7)}...`
+              : totalExpenses
           } грн.`}</span>
         </p>
       </div>
@@ -29,7 +32,9 @@ const Turnover = () => {
           Доходы:
           <span className={styles.incomeContent}>
             {`+ ${
-              income.length > 8 ? `${income.substring(0, 7)}...` : income
+              totalIncome.length > 8
+                ? `${totalIncome.substring(0, 7)}...`
+                : totalIncome
             } грн.`}
           </span>
         </p>
