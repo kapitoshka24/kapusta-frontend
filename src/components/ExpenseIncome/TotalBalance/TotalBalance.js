@@ -24,22 +24,27 @@ const TotalBalance = () => {
     }
   }, [balanceValue]);
 
-  const numberBalanceValue = Number(balanceValue);
+  const balanceValueWithoutSpaces = (balanceValue) => {
+      return balanceValue.split(' ').join('')
+    
+  };
 
   const toggleModal = () => {
     setShowModal(prevVal => !prevVal);
   };
 
-  const validBalanceToNumber = (enteredBalanceByUser) => {
-    const regexForBalance = /[1-9]\.?/g;
-    const balanceWithoutSpacesAndPeriod = enteredBalanceByUser.match(regexForBalance)?.join('')
-    return parseFloat(balanceWithoutSpacesAndPeriod)
+  const balanceWithSpacesAndPeriod = (enteredBalanceByUser) => {
+    const regexForBalance = /[0-9\\ ]+[\\.]*[0-9]*/g;
+    if(enteredBalanceByUser.match(regexForBalance)) { 
+      return enteredBalanceByUser.match(regexForBalance)[0]
+    } else {
+      return ''}
   }
 
   const handleChange = e => {
-    const validBalance = validBalanceToNumber(e.target.value)
-    setBalanceValue(validBalance);
-    if (validBalance === 0) {
+    const validatedBalance = balanceWithSpacesAndPeriod(e.target.value)
+    setBalanceValue(validatedBalance);
+    if (!validatedBalance || e.target.value === '') {
       setShowModal(true);
     } else {
       setShowModal(false);
@@ -47,7 +52,7 @@ const TotalBalance = () => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    dispatch(kapustaOperations.addTotalBalance(balanceValueWithoutSpaces(balanceValue)));
     if (balanceValue === '') {
       setBalanceValue(0);
     }
