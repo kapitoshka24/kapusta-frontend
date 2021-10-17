@@ -66,7 +66,6 @@ export default function Controls() {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const { width } = useWindowDementions();

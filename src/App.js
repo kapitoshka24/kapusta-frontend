@@ -9,7 +9,6 @@ import Loader from './components/Loader/';
 import Header from './components/Header';
 import { authSelectors } from './redux/selectors';
 import appStyles from './styles/AppCommon.module.scss';
-// import { useState } from 'react';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
