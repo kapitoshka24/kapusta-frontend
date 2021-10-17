@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 import { kapustaOperations } from '../../../redux/operations';
 import { kapustaSelectors } from '../../../redux/selectors';
 
+//* tesing start
+import Chart from '../../ExpenseIncome/Chart';
+//* testing end
 class TurnoverSlider extends Component {
   constructor(props) {
     super(props);
@@ -48,35 +51,62 @@ class TurnoverSlider extends Component {
     };
 
     return (
-      <div className={styles.sliderContainer}>
-        <Slider
-          {...settingsSmall}
-          className={styles.slider}
-          asNavFor={this.state.nav2}
-          ref={slider => (this.slider1 = slider)}
-        >
-          <div className={styles.slider__item}>
-            <h2 className={styles.slider__text}>Расходы</h2>
-          </div>
-          <div className={styles.slider__item}>
-            <h2 className={styles.slider__text}>Доходы</h2>
-          </div>
-        </Slider>
+      <>
+        <div className={styles.sliderContainer}>
+          <Slider
+            {...settingsSmall}
+            className={styles.slider}
+            asNavFor={this.state.nav2}
+            ref={slider => (this.slider1 = slider)}
+          >
+            <div className={styles.slider__item}>
+              <h2 className={styles.slider__text}>Расходы</h2>
+            </div>
+            <div className={styles.slider__item}>
+              <h2 className={styles.slider__text}>Доходы</h2>
+            </div>
+          </Slider>
 
+          <Slider
+            {...settingsBig}
+            className={styles.slider__big}
+            asNavFor={this.state.nav1}
+            ref={slider => (this.slider2 = slider)}
+          >
+            <div className={styles.slider_big__item}>
+              <SliderExpenses />
+            </div>
+            <div className={styles.slider_big__item}>
+              <SliderIncome />
+            </div>
+          </Slider>
+        </div>
+        {/* testing start */}
         <Slider
           {...settingsBig}
           className={styles.slider__big}
           asNavFor={this.state.nav1}
-          ref={slider => (this.slider2 = slider)}
+          ref={slider => (this.slider1 = slider)}
         >
           <div className={styles.slider_big__item}>
-            <SliderExpenses />
+            <Chart
+              data={[
+                { _id: 'goods', sum: 1000 },
+                { _id: 'sport', sum: 500 },
+              ]}
+            />
           </div>
           <div className={styles.slider_big__item}>
-            <SliderIncome />
+            <Chart
+              data={[
+                { _id: 'events', sum: 5000 },
+                { _id: 'health', sum: 999 },
+              ]}
+            />
           </div>
         </Slider>
-      </div>
+        {/* testing end */}
+      </>
     );
   }
 }
