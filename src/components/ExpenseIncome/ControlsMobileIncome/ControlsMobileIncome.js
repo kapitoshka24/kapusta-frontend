@@ -10,36 +10,27 @@ import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
 
 const options = [
-  { value: 'transport', label: 'Транспорт' },
-  { value: 'products', label: 'Продукты' },
-  { value: 'health', label: 'Здоровье' },
-  { value: 'alcohol', label: 'Алкоголь' },
-  { value: 'entertainment', label: 'Развлечения' },
-  { value: 'housing', label: 'Всё для дома' },
-  { value: 'technique', label: 'Техника' },
-  { value: 'utilityCommunication', label: 'Коммуналка, связь' },
-  { value: 'sportsHobbies', label: 'Спорт, хобби' },
-  { value: 'education', label: 'Образование' },
-  { value: 'other', label: 'Прочее' },
+  { value: 'salary', label: 'ЗП' },
+  { value: 'otherIncome', label: 'Доп. доход' },
 ];
 
 export default function ControlsMobile({ closeControls }) {
-  const [expense, setExpense] = useState({
+  const [income, setIncome] = useState({
     name: '',
     sum: '',
   });
 
   const [category, setCategory] = useState({ category: '' });
 
-  const { name, sum } = expense;
+  const { name, sum } = income;
 
   const dispatch = useDispatch();
 
   const handleChange = useCallback(e => {
     const { name, value } = e.currentTarget;
 
-    setExpense(prevExpense => ({
-      ...prevExpense,
+    setIncome(prevIncome => ({
+      ...prevIncome,
       [name]: value,
     }));
   }, []);
@@ -55,7 +46,7 @@ export default function ControlsMobile({ closeControls }) {
         category,
       };
 
-      dispatch(kapustaOperations.addExpense(data));
+      dispatch(kapustaOperations.addIncome(data));
       e.target.reset();
       resetForm();
     },
@@ -67,7 +58,7 @@ export default function ControlsMobile({ closeControls }) {
   };
 
   const resetForm = () => {
-    setExpense({ name: '', sum: '' });
+    setIncome({ name: '', sum: '' });
     // setCategory({ category: '' });
   };
 

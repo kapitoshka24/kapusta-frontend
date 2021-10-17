@@ -26,7 +26,7 @@ const TotalBalance = () => {
 
   const numberBalanceValue = Number(balanceValue);
 
-  const toggleModal = e => {
+  const toggleModal = () => {
     setShowModal(prevVal => !prevVal);
   };
 

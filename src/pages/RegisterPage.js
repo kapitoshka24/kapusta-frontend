@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Google from '../components/google.register';
 import registerStyles from '../styles/Register.module.scss';
 import appStyles from '../styles/AppComon.module.scss';
+import useDebounce from '../helpers/useDebounce';
 
 const validate = values => {
   const errors = {};
@@ -52,26 +53,31 @@ const validate = values => {
 export default function RegisterPage({ location }) {
   const dispatch = useDispatch();
   const fetchError = useSelector(authSelectors.getError);
-  const { onVerification, email } = useSelector(
+  const { onVerification, verificationStart, email } = useSelector(
     authSelectors.getEmailVerification,
   );
-  const [timer, setTimer] = useState(59);
+  const [timer, setTimer] = useState(
+    verificationStart
+      ? 60 - (Date.parse(new Date()) - verificationStart) / 1000
+      : 60,
+  );
 
-  const { errors, values, handleSubmit, handleChange } = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirm: '',
-    },
-    validateOnChange: false,
-    validate,
-    onSubmit: ({ name, email, password }, { resetForm }) => {
-      dispatch(auth.register({ name, email, password }));
+  const { errors, values, handleSubmit, setFieldError, setFieldValue } =
+    useFormik({
+      initialValues: {
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+      },
+      validateOnChange: false,
+      validate,
+      onSubmit: ({ name, email, password }, { resetForm }) => {
+        dispatch(auth.register({ name, email, password }));
 
-      resetForm({ values });
-    },
-  });
+        resetForm({ values });
+      },
+    });
 
   const resendEmailVerificationHandler = async () => {
     dispatch(auth.resendEmailVerification(email));
@@ -83,7 +89,8 @@ export default function RegisterPage({ location }) {
     if (onVerification) {
       const intervalId = setInterval(() => setTimer(timer - 1), 1000);
 
-      if (timer === 0) {
+      if (timer <= 0) {
+        setTimer(null);
         clearInterval(intervalId);
       }
       return () => {
@@ -91,6 +98,25 @@ export default function RegisterPage({ location }) {
       };
     }
   }, [onVerification, timer]);
+
+  const [onValidation, setOnValidation] = useState();
+
+  const debounce = useDebounce(onValidation, 800);
+
+  useEffect(() => {
+    if (debounce) {
+      const error = validate(values);
+
+      setFieldError(debounce[0], error[debounce[0]]);
+      setOnValidation();
+    }
+  }, [debounce, setFieldError, values]);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setOnValidation([name, value]);
+
+    setFieldValue(name, value);
+  };
 
   return (
     <div className={appStyles.loggedOutBg}>
