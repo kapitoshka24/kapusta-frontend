@@ -41,7 +41,6 @@ const fetchIncome = () => async dispatch => {
 
   try {
     const { data } = await axios.get('/currency-movements/incomes');
-    console.log(data);
     dispatch(kapustaActions.fetchIncomeSuccess(data.data.incomes));
   } catch (error) {
     dispatch(kapustaActions.fetchIncomeError(error.message));

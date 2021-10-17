@@ -6,8 +6,6 @@ import Controls from '../Controls';
 import ControlsMobile from '../ControlsMobile';
 import ControlsIncome from '../ControlsIncome';
 import ControlsMobileIncome from '../ControlsMobileIncome';
-// import TabsComponent from '../Tabs';
-// import TabsMobile from '../TabsMobile';
 import Date from '../Date';
 import EnterButton from '../../Report/EnterButton';
 import Table from '../Table';
@@ -21,7 +19,6 @@ import mainStyles from '../../../styles/AppComon.module.scss';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
-  // const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -32,17 +29,12 @@ export default function Expense() {
     setShowControls(prevVal => !prevVal);
   };
 
-  // const showEnterButton = () => {
-  //   setShowButton(true);
-  // };
-
   const { width } = useWindowDementions();
 
   return (
     <>
       {width >= 768 ? (
         <Tabs>
-          {/* <TabsComponent /> */}
           <TabList className={styles.tab__container}>
             <Tab className={styles.tab} selectedClassName={styles.tab__active}>
               Расход
@@ -80,7 +72,6 @@ export default function Expense() {
         </Tabs>
       ) : (
         <Tabs>
-          {/* <TabsMobile showButton={showEnterButton} /> */}
           <TabList className={styles.tab__container}>
             <Tab className={styles.tab} selectedClassName={styles.tab__active}>
               Расход
@@ -101,7 +92,6 @@ export default function Expense() {
               )}
               <div className={styles.data__container}>
                 <TableMobile />
-                {/* {showButton && <TableMobile />} */}
               </div>
             </TabContainer>
           </TabPanel>
@@ -117,21 +107,9 @@ export default function Expense() {
               )}
               <div className={styles.data__container}>
                 <TableMobileIncome />
-                {/* {showButton && <TableMobile />} */}
               </div>
             </TabContainer>
           </TabPanel>
-
-          {/* <TabContainer>
-              <div className={styles.date__mobile_container}>
-                <Date />
-                {showButton && <EnterButton closeControls={toggleControls} />}
-              </div>
-              {showControls && <ControlsMobile closeControls={toggleControls} />}
-              <div className={styles.data__container}>
-                {showButton && <TableMobile />}
-              </div>
-            </TabContainer> */}
         </Tabs>
       )}
     </>
