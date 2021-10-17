@@ -1,11 +1,12 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Switch } from 'react-router';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from './redux/operations';
 import NotFound from './pages/NotFoundPage';
 import Loader from './components/Loader/';
+import { authSelectors } from './redux/selectors';
 // import { useState } from 'react';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -18,13 +19,19 @@ export default function App() {
   // const [redirectTo, setRedirectTo] = useState(false);
   const dispatch = useDispatch();
 
+  const isFetching = useSelector(authSelectors.getIsFetching);
+  const [inProgress, setInProgress] = useState(true);
   useEffect(() => {
-    dispatch(authOperations.getCurrentUser());
-
-    // setLocation(localStorage.getItem('pathname'));
-
-    // if (location) setRedirectTo(true);
+    const getCurrentUser = async () => {
+      dispatch(await authOperations.getCurrentUser());
+      setInProgress(false);
+    };
+    getCurrentUser();
   }, [dispatch]);
+
+  if (inProgress || isFetching) {
+    return <Loader />;
+  }
 
   // if (redirectTo) {
   //   console.log(location);

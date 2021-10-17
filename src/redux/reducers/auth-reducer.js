@@ -12,7 +12,11 @@ const user = createReducer(initialUserState, {
   }),
   [authActions.registerSuccess]: (_, { payload }) => payload.data,
   [authActions.logoutSuccess]: () => initialUserState,
-  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => ({
+    id: payload.data.id,
+    name: payload.data.name,
+    email: payload.data.email,
+  }),
 });
 
 const setError = (_, { payload }) => payload;
@@ -39,6 +43,12 @@ const isLoggedIn = createReducer(false, {
   [authActions.refreshSessionError]: () => false,
 });
 
+const isFetching = createReducer(false, {
+  [authActions.getCurrentUserRequest]: () => true,
+  [authActions.getCurrentUserSuccess]: () => false,
+  [authActions.getCurrentUserError]: () => false,
+});
+
 const initialEmailVerificationState = {
   email: null,
   onVerification: false,
@@ -63,6 +73,7 @@ const emailVerification = createReducer(initialEmailVerificationState, {
 export default combineReducers({
   user,
   isLoggedIn,
+  isFetching,
   error,
   emailVerification,
 });
