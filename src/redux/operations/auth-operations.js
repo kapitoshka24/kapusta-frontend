@@ -66,17 +66,27 @@ const logOut = () => async dispatch => {
 };
 
 const getCurrentUser = () => async (dispatch, getState) => {
-  const {
-    session: { accessToken: persistedToken },
-  } = getState();
+  // const {
+  //   session: { accessToken: persistedToken },
+  // } = getState();
 
-  if (!persistedToken) {
-    return;
-  }
+  // if (!persistedToken) {
+  //   return;
+  // }
 
-  accessToken.set(persistedToken);
+  // accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
+    const {
+      session: { accessToken: persistedToken },
+    } = getState();
+
+    if (!persistedToken) {
+      return;
+    }
+
+    accessToken.set(persistedToken);
+
     const { data } = await axios.get('/users/current');
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
@@ -86,16 +96,23 @@ const getCurrentUser = () => async (dispatch, getState) => {
 };
 
 const refreshSession = async (dispatch, getState) => {
-  const {
-    session: { refreshToken: refToken, sid: id },
-  } = getState();
-
   dispatch(authActions.refreshSessionRequest());
 
-  const credentials = { sid: id };
-  accessToken.set(refToken);
+  // const {
+  //   session: { refreshToken: refToken, sid: id },
+  // } = getState();
+
+  // const credentials = { sid: id };
+  // accessToken.set(refToken);
 
   try {
+    const {
+      session: { refreshToken: refToken, sid: id },
+    } = getState();
+
+    const credentials = { sid: id };
+    accessToken.set(refToken);
+
     const data = await axios.post('/users/refresh', credentials);
     dispatch(authActions.refreshSessionSuccess(data));
     loginSuccess();
