@@ -3,7 +3,6 @@ import { authActions } from '../actions';
 import {
   loginSuccess,
   loginError,
-  // registerSuccess,
   registerError,
   serverError,
   logoutSuccess,
@@ -129,8 +128,8 @@ const loginWithGoogle = data => async dispatch => {
   dispatch(authActions.loginGoogleRequest());
   try {
     await dispatch(authActions.loginGoogleSuccess(data));
-  } catch (e) {
-    dispatch(authActions.loginGoogleError(e));
+  } catch (error) {
+    dispatch(authActions.loginGoogleError(error));
   }
 };
 
