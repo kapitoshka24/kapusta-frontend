@@ -25,7 +25,9 @@ const SliderExpensesList = ({ expenses }) => {
 
   const handleExpensesClick = e => {
     const category = e.currentTarget.dataset.value;
-    dispatch(kapustaOperations.fetchCategoryDetails(month + 1, year, category));
+    dispatch(
+      kapustaOperations.fetchCategoryExpensesDetails(month + 1, year, category),
+    );
   };
   return (
     <ul className={styles.expensesList}>

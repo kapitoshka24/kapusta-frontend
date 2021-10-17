@@ -3,13 +3,11 @@ import Slider from 'react-slick';
 import styles from './TurnoverSlider.module.scss';
 import SliderExpenses from '../SliderExpenses';
 import SliderIncome from '../SliderIncome/SliderIncome';
+import Chart from '../../Report/Chart';
 import { connect } from 'react-redux';
 import { kapustaOperations } from '../../../redux/operations';
 import { kapustaSelectors } from '../../../redux/selectors';
 
-//* tesing start
-import Chart from '../../Report/Chart';
-//* testing end
 class TurnoverSlider extends Component {
   constructor(props) {
     super(props);
@@ -26,12 +24,21 @@ class TurnoverSlider extends Component {
       nav2: this.slider2,
       nav3: this.slider3,
     });
+
+    const { month, year, fetchCategoryesChartData } = this.props;
+    fetchCategoryesChartData(month + 1, year);
   }
 
-  componentDidUpdate() {
-    const { month, year, fetchSumCategory } = this.props;
+  componentDidUpdate(prevProps) {
+    const { month, year, fetchSumCategory, fetchCategoryesChartData } =
+      this.props;
     fetchSumCategory(month + 1, year);
+
+    if (month !== prevProps.month || year !== prevProps.year) {
+      fetchCategoryesChartData(month + 1, year);
+    }
   }
+
   render() {
     const settingsSmall = {
       infinite: true,
@@ -51,6 +58,8 @@ class TurnoverSlider extends Component {
       centerPadding: '3px',
       // adaptiveHeight: true,
     };
+
+    const { expensesChartData, incomeChartData } = this.props;
 
     return (
       <>
@@ -83,7 +92,6 @@ class TurnoverSlider extends Component {
             </div>
           </Slider>
         </div>
-        {/* testing start */}
         <Slider
           {...settingsBig}
           className={styles.slider__big}
@@ -91,23 +99,12 @@ class TurnoverSlider extends Component {
           ref={slider => (this.slider3 = slider)}
         >
           <div className={styles.slider_big__item}>
-            <Chart
-              data={[
-                { _id: 'goods', sum: 1000 },
-                { _id: 'sport', sum: 500 },
-              ]}
-            />
+            <Chart data={expensesChartData} />
           </div>
           <div className={styles.slider_big__item}>
-            <Chart
-              data={[
-                { _id: 'events', sum: 5000 },
-                { _id: 'health', sum: 999 },
-              ]}
-            />
+            <Chart data={incomeChartData} />
           </div>
         </Slider>
-        {/* testing end */}
       </>
     );
   }
@@ -116,11 +113,15 @@ class TurnoverSlider extends Component {
 const mapStateToProps = state => ({
   month: kapustaSelectors.getReportMonth(state),
   year: kapustaSelectors.getReportYear(state),
+  expensesChartData: kapustaSelectors.getExpensesChartData(state),
+  incomeChartData: kapustaSelectors.getIncomeChartData(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchSumCategory: (month, year) =>
     dispatch(kapustaOperations.fetchSumCategory(month, year)),
+  fetchCategoryesChartData: (month, year) =>
+    dispatch(kapustaOperations.fetchCategoryesChartData(month, year)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TurnoverSlider);
