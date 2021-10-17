@@ -23,14 +23,22 @@ export default function DateComponent({ setDate }) {
       {value}
     </button>
   ));
-
   useEffect(() => {
-    setDate(startDate);
+    setDate(
+      `${
+        startDate.getMonth() +
+        1 +
+        '.' +
+        startDate.getDate() +
+        '.' +
+        startDate.getFullYear()
+      }`,
+    );
   }, [startDate, setDate]);
 
   return (
-    <div className={styles.date__container}>
-      <label htmlFor="datePicker">
+    <>
+      <label htmlFor="datePicker" className={styles.lableCursor}>
         <Calendar className={styles.icon__calendar} />
       </label>
 
@@ -43,6 +51,6 @@ export default function DateComponent({ setDate }) {
         onChange={date => setStartDate(date)}
         dateFormat="dd/MM/yyyy"
       />
-    </div>
+    </>
   );
 }

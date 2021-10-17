@@ -58,7 +58,6 @@ export default function ControlsIncome() {
 
   const resetForm = () => {
     setIncome({ name: '', sum: '' });
-    setDate({ date: '' });
   };
 
   const { width } = useWindowDementions();

@@ -53,7 +53,6 @@ export default function Controls() {
         sum,
         category,
       };
-
       dispatch(kapustaOperations.addExpense(data));
       resetForm();
     },
@@ -66,7 +65,6 @@ export default function Controls() {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    setDate({ date: '' });
   };
 
   const { width } = useWindowDementions();

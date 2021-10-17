@@ -106,7 +106,6 @@ export default function Expense() {
                 <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
-              {console.log(date)}
               {showControls && (
                 <ControlsMobileIncome
                   propDate={date}
