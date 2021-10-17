@@ -1,37 +1,50 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
-import { kapustaActions } from '../../../redux/actions';
-import { useFormik } from 'formik';
+import { kapustaOperations } from '../../../redux/operations';
+
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 import { Link } from 'react-router-dom';
 
-// const validate = values => {
-//   const errors = {};
-//   if (/\D/.test(values.balance)) {
-//     errors.balance = 'Invalid balance';
-//   }
-
-//   return errors;
-// };
-
 const TotalBalance = () => {
-  const balance = useSelector(kapustaSelectors.getTotalBalance);
+  const getBalance = useSelector(kapustaSelectors.getTotalBalance);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [balanceValue, setBalanceValue] = useState(getBalance);
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
-    initialValues: {
-      balance,
-    },
-    // validate,
-    onSubmit: values => {
-      if (values.balance === balance) {
-        return;
-      }
-      //   alert(JSON.stringify(values, null, 2));
-      dispatch(kapustaActions.changeTotalBalance(values.balance));
-    },
-  });
+  if (balanceValue === 0) {
+    setShowModal(true);
+  }
+
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchTotalBalance());
+    setBalanceValue(getBalance);
+  }, [dispatch, getBalance]);
+
+  const numberBalanceValue = Number(balanceValue);
+
+  const toggleModal = () => {
+    setShowModal(prevVal => !prevVal);
+  };
+
+  const handleChange = e => {
+    const reg = /[A-Za-zА-Яа-яЁё]/g;
+    setBalanceValue(e.target.value.replace(reg, ''));
+    if (Number(e.target.value) === 0) {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    if (balanceValue === '') {
+      setBalanceValue(0);
+    }
+  };
+
   return (
     <div className={styles.balanceContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -44,11 +57,10 @@ const TotalBalance = () => {
             id="balance"
             name="balance"
             onChange={handleChange}
-            value={values.balance}
+            // value={Number(balanceValue).toFixed(2)}
+            value={balanceValue}
             autoComplete="off"
           />
-
-          {errors.balance ? <div>{errors.balance}</div> : null}
           <button className={styles.button} disabled={false} type="submit">
             Подтвердить
           </button>
@@ -58,7 +70,8 @@ const TotalBalance = () => {
       <Link className={styles.reports} to="/report-page">
         Перейти к отчетам
       </Link>
-      {!balance && <BalanceModal />}
+
+      {showModal && <BalanceModal closeModal={toggleModal} />}
     </div>
   );
 };

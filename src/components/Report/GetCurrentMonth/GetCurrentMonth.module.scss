@@ -2,6 +2,7 @@
 @import '../../../styles/utils/mixins.scss';
 
 .CurrentPeriodWidget {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +14,9 @@
 .CurrentMonthSwitcher {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 158px;
+  cursor: pointer;
 }
 .PeriodTitle {
   font-family: 'Roboto', sans-serif;
@@ -25,6 +29,7 @@
   margin-top: 0;
   margin-bottom: 5px;
 }
+
 .CurrentPeriod {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -36,6 +41,7 @@
 
   margin: 0;
 }
+
 .MonthSwitcher {
   margin: 0;
   padding: 0;
@@ -43,10 +49,20 @@
   width: auto;
   border-color: transparent;
   background-color: transparent;
+  cursor: pointer;
+
   &:first-child {
     padding-right: 15px;
   }
+
   &:last-child {
     padding-left: 15px;
+  }
+}
+.ArrowIcon {
+  transition: transitionFunc(transform);
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
   }
 }

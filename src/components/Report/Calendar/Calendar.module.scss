@@ -1,0 +1,99 @@
+@import '../../../styles/utils/mixins.scss';
+@import '../../../styles/utils/variables';
+
+.calendarWrapper {
+  width: 300px;
+  position: absolute;
+  bottom: -250px;
+  left: -14px;
+  z-index: 999;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 3px 2px rgba(34, 60, 80, 0.11);
+  animation: show 500ms cubic-bezier(0.4, 0, 0.2, 1) 1;
+
+  @include from-to(tablet, desktop) {
+    bottom: -360px;
+    left: -4px;
+    width: 170px;
+  }
+
+  @include from(desktop) {
+    left: -72px;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.monthContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 7px;
+  background-color: $background-orange;
+
+  @include from-to(tablet, desktop) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.monthItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 5px;
+  cursor: pointer;
+  transition: transitionFunc(all);
+
+  &_current,
+  &:hover {
+    background-color: #ffdac180;
+    border-radius: 10px;
+  }
+}
+
+.monthName {
+  color: $white;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.currentYearSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 70px;
+  width: 100%;
+  background-color: $white;
+
+  @include from-to(tablet, desktop) {
+    padding: 0px 20px;
+  }
+}
+
+.yearSwitcher {
+  margin: 0;
+  padding: 5px 12px;
+  height: inherit;
+  width: auto;
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.currentYear {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.17;
+  color: $black;
+}

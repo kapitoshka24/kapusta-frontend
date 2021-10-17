@@ -35,7 +35,7 @@ class TurnoverSlider extends Component {
       arrows: false,
       asNavFor: '.slider',
       centerPadding: '3px',
-      adaptiveHeight: true,
+      // adaptiveHeight: true,
     };
 
     return (

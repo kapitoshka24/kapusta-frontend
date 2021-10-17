@@ -1,51 +1,56 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const changeTotalBalance = createAction('ckapusta/changeTotalBalance');
-
-const fetchExpenseRequest = createAction('kapusta/fetchExpenseRequest');
-const fetchExpenseSuccess = createAction('kapusta/fetchExpenseSuccess');
-const fetchExpenseError = createAction('kapusta/fetchExpenseError');
-
-const addExpenseRequest = createAction('kapusta/addExpenseRequest');
-const addExpenseSuccess = createAction('kapusta/addExpenseSuccess');
-const addExpenseError = createAction('kapusta/addExpenseError');
-
-const deleteExpenseRequest = createAction('kapusta/deleteExpenseRequest');
-const deleteExpenseSuccess = createAction('kapusta/deleteExpenseSuccess');
-const deleteExpenseError = createAction('kapusta/deleteExpenseError');
-
-const fetchIncomeRequest = createAction('kapusta/fetchIncomeRequest');
-const fetchIncomeSuccess = createAction('kapusta/fetchIncomeSuccess');
-const fetchIncomeError = createAction('kapusta/fetchIncomeError');
-
-const addIncomeRequest = createAction('kapusta/addIncomeRequest');
-const addIncomeSuccess = createAction('kapusta/addIncomeSuccess');
-const addIncomeError = createAction('kapusta/addIncomeError');
-
-const deleteIncomeRequest = createAction('kapusta/deleteIncomeRequest');
-const deleteIncomeSuccess = createAction('kapusta/deleteIncomeSuccess');
-const deleteIncomeError = createAction('kapusta/deleteIncomeError');
-
 const actions = {
-  changeTotalBalance,
-  fetchExpenseRequest,
-  fetchExpenseSuccess,
-  fetchExpenseError,
-  addExpenseRequest,
-  addExpenseSuccess,
-  addExpenseError,
-  deleteExpenseRequest,
-  deleteExpenseSuccess,
-  deleteExpenseError,
-  fetchIncomeRequest,
-  fetchIncomeSuccess,
-  fetchIncomeError,
-  addIncomeRequest,
-  addIncomeSuccess,
-  addIncomeError,
-  deleteIncomeRequest,
-  deleteIncomeSuccess,
-  deleteIncomeError,
+  fetchMonthlySummaryRequest: createAction(
+    'kapusta/fetchMonthlySummaryRequest',
+  ),
+  fetchMonthlySummarySuccess: createAction(
+    'kapusta/fetchMonthlySummarySuccess',
+  ),
+  fetchMonthlySummaryError: createAction('kapusta/fetchMonthlySummaryError'),
+
+  totalBalanceRequest: createAction('kapusta/totalBalanceRequest'),
+  totalBalanceSuccess: createAction('kapusta/totalBalanceSuccess'),
+  totalBalanceError: createAction('kapusta/totalBalanceError'),
+
+  addTotalBalanceRequest: createAction('kapusta/addTotalBalanceRequest'),
+  addTotalBalanceSuccess: createAction('kapusta/addTotalBalanceSuccess'),
+  addTotalBalanceError: createAction('kapusta/addTotalBalanceError'),
+
+  getSumCategoryRequest: createAction('kapusta/sumCategoryRequest'),
+  getSumCategorySuccess: createAction('kapusta/sumCategorySuccess'),
+  getSumCategoryError: createAction('kapusta/sumCategoryError'),
+
+  incrementReportYear: createAction('kapusta/incrementReportYear'),
+  decrementReportYear: createAction('kapusta/decrementReportYear'),
+  changeReportMonth: createAction('kapusta/changeReportMonth'),
+  incrementReportMonth: createAction('kapusta/incrementReportMonth'),
+  decrementReportMonth: createAction('kapusta/decrementReportMonth'),
+  changeReportYears: createAction('kapusta/changeReportYears'),
+
+  fetchExpenseRequest: createAction('kapusta/fetchExpenseRequest'),
+  fetchExpenseSuccess: createAction('kapusta/fetchExpenseSuccess'),
+  fetchExpenseError: createAction('kapusta/fetchExpenseError'),
+
+  addExpenseRequest: createAction('kapusta/addExpenseRequest'),
+  addExpenseSuccess: createAction('kapusta/addExpenseSuccess'),
+  addExpenseError: createAction('kapusta/addExpenseError'),
+
+  deleteExpenseRequest: createAction('kapusta/deleteExpenseRequest'),
+  deleteExpenseSuccess: createAction('kapusta/deleteExpenseSuccess'),
+  deleteExpenseError: createAction('kapusta/deleteExpenseError'),
+
+  fetchIncomeRequest: createAction('kapusta/fetchIncomeRequest'),
+  fetchIncomeSuccess: createAction('kapusta/fetchIncomeSuccess'),
+  fetchIncomeError: createAction('kapusta/fetchIncomeError'),
+
+  addIncomeRequest: createAction('kapusta/addIncomeRequest'),
+  addIncomeSuccess: createAction('kapusta/addIncomeSuccess'),
+  addIncomeError: createAction('kapusta/addIncomeError'),
+
+  deleteIncomeRequest: createAction('kapusta/deleteIncomeRequest'),
+  deleteIncomeSuccess: createAction('kapusta/deleteIncomeSuccess'),
+  deleteIncomeError: createAction('kapusta/deleteIncomeError'),
 };
 
 export default actions;

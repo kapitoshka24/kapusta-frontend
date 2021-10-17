@@ -1,6 +1,5 @@
-// import React, { useState } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/Header';
-// import Login from '../components/Home/Login';
 import appStyles from '../styles/AppComon.module.scss';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/operations';
@@ -29,25 +28,29 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  useEffect(() => {
+    const windowUrl = window.location.search;
+    const params = new URLSearchParams(windowUrl);
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
+    const sid = params.get('sid');
+
+    if (accessToken && refreshToken && sid) {
+      dispatch(
+        authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
+      );
+    }
+  }, [dispatch]);
 
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
+    validateOnChange: false,
     validate,
-    onSubmit: ({ email, password }) => {
-      onLogin({ email, password });
-      // reset();
-    },
+    onSubmit: ({ email, password }) => onLogin({ email, password }),
   });
-
-  // const reset = () => {
-  //   setEmail('');
-  //   setPassword('');
-  // };
 
   return (
     <div className={appStyles.loggedOutBg}>
@@ -59,14 +62,17 @@ export default function LoginPage() {
           >
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button className={loginStyles.googleBtn} onClick={() => {}}>
+          <a
+            className={loginStyles.googleBtn}
+            href="https://kapusta-backend.herokuapp.com/api/users/google"
+          >
             <img
               src={googleSymbol}
               alt="Google Symbol"
               className={loginStyles.googleSymbol}
             />
             Google
-          </button>
+          </a>
           <p className={loginStyles.modalTitle}>
             Или зайти с помощью e-mail и пароля, предварительно
             зарегистрировавшись:

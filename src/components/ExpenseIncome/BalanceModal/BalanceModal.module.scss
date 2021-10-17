@@ -54,3 +54,21 @@
     left: 22%;
   }
 }
+.closeButton {
+  position: absolute;
+  top: 11%;
+  right: 7%;
+
+  height: 15px;
+  width: 15px;
+  stroke: #fff;
+
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 250ms linear;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 250ms linear;
+  }
+}

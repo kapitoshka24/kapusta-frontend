@@ -6,13 +6,13 @@ import { authSelectors } from '../../redux/selectors';
 
 import { ReactComponent as Logo } from './icons/logo.svg';
 import { ReactComponent as Logout } from './icons/logout.svg';
+import defaultAvatar from './icons/user.png';
 
 import styles from './Header.module.scss';
 
 export default function Header() {
   const loggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const user = 'User Name';
-
+  const user = useSelector(authSelectors.getUsername);
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = e => {
@@ -34,7 +34,12 @@ export default function Header() {
             </Link>
             {loggedIn && (
               <div className={styles.user__menu}>
-                <button className={styles.user__button}>{user[0]}</button>
+                <img
+                  src={defaultAvatar}
+                  alt="user avatar"
+                  className={styles.user__avatar}
+                />
+
                 <button onClick={toggleModal} className={styles.logout__mobile}>
                   <Logout />
                 </button>
