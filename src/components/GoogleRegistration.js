@@ -23,7 +23,7 @@ export default function GoogleRegistration() {
   };
 
   return (
-    <>
+    <div>
       <GoogleLogin
         clientId="634735810645-al9bj1ogo2dc2nbahur71e0t35kin088.apps.googleusercontent.com"
         onSuccess={responseGoogle}
@@ -44,6 +44,6 @@ export default function GoogleRegistration() {
         )}
         buttonText="Login"
       />
-    </>
+    </div>
   );
 }

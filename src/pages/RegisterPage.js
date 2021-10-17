@@ -159,9 +159,7 @@ export default function RegisterPage({ location }) {
             >
               Вы можете зарегистрироваться с помощью Google Account:
             </p>
-            <div>
-              <GoogleRegistration />
-            </div>
+            <GoogleRegistration />
             <p className={registerStyles.modalTitle}>Или с помощью e-mail:</p>
           </div>
 
