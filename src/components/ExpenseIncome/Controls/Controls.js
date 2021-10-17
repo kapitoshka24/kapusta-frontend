@@ -47,7 +47,6 @@ export default function Controls() {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log(date);
       const data = {
         date,
         name,

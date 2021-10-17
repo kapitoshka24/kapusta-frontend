@@ -23,7 +23,7 @@ const options = [
   { value: 'other', label: 'Прочее' },
 ];
 
-export default function ControlsMobile({ closeControls }) {
+export default function ControlsMobile({ closeControls, propDate }) {
   const [expense, setExpense] = useState({
     name: '',
     sum: '',
@@ -49,7 +49,7 @@ export default function ControlsMobile({ closeControls }) {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date: propDate,
         name,
         sum,
         category,
@@ -59,7 +59,7 @@ export default function ControlsMobile({ closeControls }) {
       e.target.reset();
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, propDate],
   );
 
   const handleReset = () => {

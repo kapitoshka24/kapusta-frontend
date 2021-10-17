@@ -14,13 +14,14 @@ const options = [
   { value: 'otherIncome', label: 'Доп. доход' },
 ];
 
-export default function ControlsMobile({ closeControls }) {
+export default function ControlsMobile({ closeControls, propDate }) {
   const [income, setIncome] = useState({
     name: '',
     sum: '',
   });
-
+  console.log(propDate);
   const [category, setCategory] = useState({ category: '' });
+  // const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = income;
 
@@ -40,7 +41,7 @@ export default function ControlsMobile({ closeControls }) {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date: propDate,
         name,
         sum,
         category,
@@ -50,7 +51,7 @@ export default function ControlsMobile({ closeControls }) {
       e.target.reset();
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, propDate],
   );
 
   const handleReset = () => {
@@ -73,7 +74,11 @@ export default function ControlsMobile({ closeControls }) {
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.controls__container}>
         <div className={styles.inputs__date__thumb}>
-          {width >= 768 && <DateComponent />}
+          {width >= 768 && (
+            <DateComponent
+            // setDate={setDate}
+            />
+          )}
 
           <BackToMainPage closeModal={closeControls} />
 

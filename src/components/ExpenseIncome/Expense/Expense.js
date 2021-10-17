@@ -19,6 +19,7 @@ import mainStyles from '../../../styles/AppCommon.module.scss';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
+  const [date, setDate] = useState({ date: '' });
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -84,11 +85,14 @@ export default function Expense() {
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
               {showControls && (
-                <ControlsMobile closeControls={toggleControls} />
+                <ControlsMobile
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobile />
@@ -99,11 +103,15 @@ export default function Expense() {
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
+              {console.log(date)}
               {showControls && (
-                <ControlsMobileIncome closeControls={toggleControls} />
+                <ControlsMobileIncome
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobileIncome />
