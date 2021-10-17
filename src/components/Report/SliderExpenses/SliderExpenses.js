@@ -1,26 +1,22 @@
-import React from 'react';
-import expensesCategory from './expensesCategory.json';
-import styles from './SliderExpenses.module.scss';
-import sprite from './expenses-sprite.svg';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { kapustaSelectors } from '../../../redux/selectors';
+import { kapustaOperations } from '../../../redux/operations';
+import SliderExpensesList from './SliderExpensesList';
 
 const SliderExpenses = () => {
-  return (
-    <ul className={styles.expensesList}>
-      {expensesCategory.map(({ id, amount, name, type }) => {
-        return (
-          <li key={id} className={styles.expensesListItem}>
-            <p className={styles.amount}>{amount.toFixed(2)}</p>
-            <div className={styles.iconContainer}>
-              <svg className={styles.icon}>
-                <use href={`${sprite}#${type}`}></use>
-              </svg>
-            </div>
-            <p className={styles.name}>{name}</p>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  const getExpenses = useSelector(kapustaSelectors.getCategoryExpenses);
+  const dispatch = useDispatch();
+  const [expenses, setExpenses] = useState(getExpenses);
+
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchSumCategory());
+  }, [dispatch]);
+  useEffect(() => {
+    setExpenses(getExpenses);
+  }, [getExpenses]);
+
+  return expenses ? <SliderExpensesList expenses={expenses} /> : <p>Spiner</p>;
 };
 
 export default SliderExpenses;

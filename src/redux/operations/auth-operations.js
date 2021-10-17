@@ -10,7 +10,6 @@ import {
 } from '../../services/pnotify';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const accessToken = {
   set(token) {
@@ -26,14 +25,16 @@ const register = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/registration', credentials);
-    // token.set(data.token);
 
     dispatch(authActions.registerSuccess(data));
-    // dispatch(authActions.onVerification(true));
-    // registerSuccess(data.data.email); //pnotify
   } catch (error) {
-    dispatch(authActions.registerError(error.message));
-    registerError(); //pnotify
+    if (error.response.data.code === 409) {
+      dispatch(
+        authActions.registerError({ email: 'Email уже зарегистрирован' }),
+      );
+    } else {
+      registerError();
+    }
   }
 };
 
@@ -42,7 +43,6 @@ const logIn = credentials => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/login', credentials);
-    // console.log(data.data.headers);
     accessToken.set(data.data.headers.accessToken);
     dispatch(authActions.loginSuccess(data));
     loginSuccess();
@@ -54,7 +54,6 @@ const logIn = credentials => async dispatch => {
 
 const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
-
   try {
     await axios.post('/users/logout');
     accessToken.unset();
@@ -68,7 +67,7 @@ const logOut = () => async dispatch => {
 
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
-    auth: { accessToken: persistedToken },
+    session: { accessToken: persistedToken },
   } = getState();
 
   if (!persistedToken) {
@@ -76,33 +75,69 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 
   accessToken.set(persistedToken);
-  dispatch(authActions.getCurrentUserRequest);
-
+  dispatch(authActions.getCurrentUserRequest());
   try {
-    const { data } = await axios.get('users/current');
-
-    dispatch(authActions.getCurrentUserSuccess(data.data));
+    const { data } = await axios.get('/users/current');
+    dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
+    refreshSession(dispatch, getState);
+  }
+};
+
+const refreshSession = async (dispatch, getState) => {
+  const {
+    session: { refreshToken: refToken, sid: id },
+  } = getState();
+
+  dispatch(authActions.refreshSessionRequest());
+
+  const credentials = { sid: id };
+  accessToken.set(refToken);
+
+  try {
+    const data = await axios.post('/users/refresh', credentials);
+    dispatch(authActions.refreshSessionSuccess(data));
+    loginSuccess();
+    accessToken.unset();
+  } catch (error) {
+    dispatch(authActions.refreshSessionError(error.message));
+    loginError();
+  }
+};
+
+const loginWithGoogle = data => async dispatch => {
+  dispatch(authActions.loginGoogleRequest());
+  try {
+    await dispatch(authActions.loginGoogleSuccess(data));
+  } catch (error) {
+    dispatch(authActions.loginGoogleError(error.message));
   }
 };
 
 const resendEmailVerification = email => async dispatch => {
   try {
-    const { data } = await axios.post('users/verify', { email });
-    console.log(data);
-    dispatch(authActions.resendEmailVerification);
+    await axios.post('users/verify', { email });
+
+    dispatch(authActions.resendEmailVerification({ email }));
   } catch (error) {
     console.log(error);
   }
 };
 
+const clearErrors = () => dispatch => {
+  dispatch(authActions.clearErrors());
+};
+
 const operations = {
   register,
   logIn,
+  loginWithGoogle,
   logOut,
   getCurrentUser,
+  refreshSession,
   resendEmailVerification,
+  clearErrors,
 };
 
 export default operations;

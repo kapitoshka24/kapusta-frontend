@@ -1,33 +1,32 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const fetchMonthlySummaryRequest = createAction(
-  'kapusta/fetchMonthlySummaryRequest',
-);
-const fetchMonthlySummarySuccess = createAction(
-  'kapusta/fetchMonthlySummarySuccess',
-);
-const fetchMonthlySummaryError = createAction(
-  'kapusta/fetchMonthlySummaryError',
-);
-
-const totalBalanceRequest = createAction('kapusta/totalBalanceRequest');
-const totalBalanceSuccess = createAction('kapusta/totalBalanceSuccess');
-const totalBalanceError = createAction('kapusta/totalBalanceError');
-
-const addTotalBalanceRequest = createAction('kapusta/addTotalBalanceRequest');
-const addTotalBalanceSuccess = createAction('kapusta/addTotalBalanceSuccess');
-const addTotalBalanceError = createAction('kapusta/addTotalBalanceError');
-
 const actions = {
-  totalBalanceRequest,
-  totalBalanceSuccess,
-  totalBalanceError,
-  addTotalBalanceRequest,
-  addTotalBalanceSuccess,
-  addTotalBalanceError,
-  fetchMonthlySummaryRequest,
-  fetchMonthlySummarySuccess,
-  fetchMonthlySummaryError,
+  fetchMonthlySummaryRequest: createAction(
+    'kapusta/fetchMonthlySummaryRequest',
+  ),
+  fetchMonthlySummarySuccess: createAction(
+    'kapusta/fetchMonthlySummarySuccess',
+  ),
+  fetchMonthlySummaryError: createAction('kapusta/fetchMonthlySummaryError'),
+
+  totalBalanceRequest: createAction('kapusta/totalBalanceRequest'),
+  totalBalanceSuccess: createAction('kapusta/totalBalanceSuccess'),
+  totalBalanceError: createAction('kapusta/totalBalanceError'),
+
+  addTotalBalanceRequest: createAction('kapusta/addTotalBalanceRequest'),
+  addTotalBalanceSuccess: createAction('kapusta/addTotalBalanceSuccess'),
+  addTotalBalanceError: createAction('kapusta/addTotalBalanceError'),
+
+  getSumCategoryRequest: createAction('kapusta/sumCategoryRequest'),
+  getSumCategorySuccess: createAction('kapusta/sumCategorySuccess'),
+  getSumCategoryError: createAction('kapusta/sumCategoryError'),
+
+  incrementReportYear: createAction('kapusta/incrementReportYear'),
+  decrementReportYear: createAction('kapusta/decrementReportYear'),
+  changeReportMonth: createAction('kapusta/changeReportMonth'),
+  incrementReportMonth: createAction('kapusta/incrementReportMonth'),
+  decrementReportMonth: createAction('kapusta/decrementReportMonth'),
+  changeReportYears: createAction('kapusta/changeReportYears'),
 };
 
 export default actions;

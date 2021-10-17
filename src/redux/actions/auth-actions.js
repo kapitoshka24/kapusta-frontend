@@ -1,37 +1,33 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const registerRequest = createAction('auth/registerRequest');
-const registerSuccess = createAction('auth/registerSuccess');
-const registerError = createAction('auth/registerError');
-
-const loginRequest = createAction('auth/loginRequest');
-const loginSuccess = createAction('auth/loginSuccess');
-const loginError = createAction('auth/loginError');
-
-const logoutRequest = createAction('auth/logoutRequest');
-const logoutSuccess = createAction('auth/logoutSuccess');
-const logoutError = createAction('auth/logoutError');
-
-const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
-const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
-const getCurrentUserError = createAction('auth/getCurrentUserError');
-
-const resendEmailVerification = createAction('auth/resendEmailVerification');
-
 const actions = {
-  registerRequest,
-  registerSuccess,
-  registerError,
-  logoutRequest,
-  logoutSuccess,
-  logoutError,
-  loginRequest,
-  loginSuccess,
-  loginError,
-  getCurrentUserRequest,
-  getCurrentUserSuccess,
-  getCurrentUserError,
-  resendEmailVerification,
+  registerRequest: createAction('auth/registerRequest'),
+  registerSuccess: createAction('auth/registerSuccess'),
+  registerError: createAction('auth/registerError'),
+
+  loginRequest: createAction('auth/loginRequest'),
+  loginSuccess: createAction('auth/loginSuccess'),
+  loginError: createAction('auth/loginError'),
+
+  loginGoogleRequest: createAction('auth/loginGoogleRequest'),
+  loginGoogleSuccess: createAction('auth/loginGoogleSuccess'),
+  loginGoogleError: createAction('auth/loginGoogleError'),
+
+  logoutRequest: createAction('auth/logoutRequest'),
+  logoutSuccess: createAction('auth/logoutSuccess'),
+  logoutError: createAction('auth/logoutError'),
+
+  refreshSessionRequest: createAction('auth/refreshSessionRequest'),
+  refreshSessionSuccess: createAction('auth/refreshSessionSuccess'),
+  refreshSessionError: createAction('auth/refreshSessionError'),
+
+  getCurrentUserRequest: createAction('auth/getCurrentUserRequest'),
+  getCurrentUserSuccess: createAction('auth/getCurrentUserSuccess'),
+  getCurrentUserError: createAction('auth/getCurrentUserError'),
+
+  resendEmailVerification: createAction('auth/resendEmailVerification'),
+
+  clearErrors: createAction('auth/clearErrors'),
 };
 
 export default actions;
