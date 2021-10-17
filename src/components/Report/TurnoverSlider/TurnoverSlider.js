@@ -8,7 +8,7 @@ import { kapustaOperations } from '../../../redux/operations';
 import { kapustaSelectors } from '../../../redux/selectors';
 
 //* tesing start
-import Chart from '../../ExpenseIncome/Chart';
+import Chart from '../../Report/Chart';
 //* testing end
 class TurnoverSlider extends Component {
   constructor(props) {
