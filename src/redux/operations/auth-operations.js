@@ -69,9 +69,11 @@ const getCurrentUser = () => async (dispatch, getState) => {
   const {
     session: { accessToken: persistedToken },
   } = getState();
+
   if (!persistedToken) {
     return;
   }
+
   accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {

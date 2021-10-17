@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-
-import { authActions, kapustaActions } from '../actions';
+import { kapustaActions } from '../actions';
 
 const totalBalance = createReducer('', {
   [kapustaActions.totalBalanceSuccess]: (_, { payload }) =>
@@ -16,9 +15,6 @@ const loading = createReducer(false, {
   [kapustaActions.totalBalanceSuccess]: () => true,
   [kapustaActions.totalBalanceRequest]: () => false,
   [kapustaActions.totalBalanceError]: () => false,
-  [authActions.getCurrentUserRequest]: () => false,
-  [authActions.getCurrentUserSuccess]: () => true,
-  [authActions.getCurrentUserError]: () => false,
 });
 
 const reportYear = createReducer(new Date().getFullYear(), {

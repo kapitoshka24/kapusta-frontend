@@ -34,16 +34,13 @@ export default function LoginPage() {
     const accessToken = params.get('accessToken');
     const refreshToken = params.get('refreshToken');
     const sid = params.get('sid');
+
     if (accessToken && refreshToken && sid) {
       dispatch(
         authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
       );
     }
   }, [dispatch]);
-  // const onGoogle = () => dispatch(authOperations.loginWithGoogle());
-
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
 
   const { errors, values, handleSubmit, handleChange } = useFormik({
     initialValues: {
@@ -52,16 +49,8 @@ export default function LoginPage() {
     },
     validateOnChange: false,
     validate,
-    onSubmit: ({ email, password }) => {
-      onLogin({ email, password });
-      // reset();
-    },
+    onSubmit: ({ email, password }) => onLogin({ email, password }),
   });
-
-  // const reset = () => {
-  //   setEmail('');
-  //   setPassword('');
-  // };
 
   return (
     <div className={appStyles.loggedOutBg}>
