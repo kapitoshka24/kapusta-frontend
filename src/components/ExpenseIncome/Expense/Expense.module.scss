@@ -21,6 +21,9 @@
     display: flex;
     justify-content: space-between;
   }
+  &_adjustment {
+    justify-content: center;
+  }
 }
 
 .tab {

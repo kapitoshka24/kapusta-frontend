@@ -76,7 +76,9 @@ export default function Expense() {
           </TabPanel>
           <TabPanel>
             <TabContainer>
-              <div className={styles.data__container}>
+              <div
+                className={`${styles.data__container} ${styles.data__container_adjustment}`}
+              >
                 <TableAdjustments />
               </div>
             </TabContainer>
