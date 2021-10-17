@@ -3,7 +3,7 @@ import React from 'react';
 import ReportBalance from '../components/Report/ReportBalance';
 import Turnover from '../components/Report/Turnover';
 import TurnoverSlider from '../components/Report/TurnoverSlider';
-import Chart from '../components/ExpenseIncome/Chart';
+import Chart from '../components/Report/Chart';
 // import styles from '../styles/AppCommon.module.scss';
 // import { useLocation } from 'react-router';
 // import { useEffect } from 'react';
