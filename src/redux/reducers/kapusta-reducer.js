@@ -48,9 +48,31 @@ const error = createReducer(null, {
     console.log(payload),
 });
 
+const expense = createReducer([], {
+  [kapustaActions.fetchExpenseSuccess]: (_, { payload }) => payload,
+  [kapustaActions.addExpenseSuccess]: (state, { payload }) => [
+    payload,
+    ...state,
+  ],
+  [kapustaActions.deleteExpenseSuccess]: (state, { payload }) =>
+    state.filter(({ _id }) => _id !== payload),
+});
+
+const income = createReducer([], {
+  [kapustaActions.fetchIncomeSuccess]: (_, { payload }) => payload,
+  [kapustaActions.addIncomeSuccess]: (state, { payload }) => [
+    payload,
+    ...state,
+  ],
+  [kapustaActions.deleteIncomeSuccess]: (state, { payload }) =>
+    state.filter(({ _id }) => _id !== payload),
+});
+
 export default combineReducers({
   loading,
   totalBalance,
+  expense,
+  income,
   reportYear,
   reportMonth,
   reportYears,
