@@ -1,9 +1,10 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { kapustaSelectors } from '../../../redux/selectors';
 import styles from './Turnover.module.scss';
 
 const Turnover = () => {
-  const expenses = '1281.00';
-  const income = '4100.00';
+  const totalIncome = useSelector(kapustaSelectors.getTotalIncome);
+  const totalExpenses = useSelector(kapustaSelectors.getTotalExpenses);
 
   return (
     <div className={styles.turnoverContainer}>
@@ -11,7 +12,9 @@ const Turnover = () => {
         <p className={styles.expenses}>
           Расходы:
           <span className={styles.expensesContent}>{`- ${
-            expenses.length > 8 ? `${expenses.substring(0, 7)}...` : expenses
+            totalExpenses.length > 8
+              ? `${totalExpenses.substring(0, 7)}...`
+              : totalExpenses
           } грн.`}</span>
         </p>
       </div>
@@ -21,7 +24,9 @@ const Turnover = () => {
           Доходы:
           <span className={styles.incomeContent}>
             {`+ ${
-              income.length > 8 ? `${income.substring(0, 7)}...` : income
+              totalIncome.length > 8
+                ? `${totalIncome.substring(0, 7)}...`
+                : totalIncome
             } грн.`}
           </span>
         </p>

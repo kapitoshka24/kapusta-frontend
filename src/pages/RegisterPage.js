@@ -4,10 +4,8 @@ import { authSelectors } from '../redux/selectors';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../redux/operations/auth-operations';
-import Header from '../components/Header';
 import GoogleRegistration from '../components/GoogleRegistration';
 import registerStyles from '../styles/Register.module.scss';
-import appStyles from '../styles/AppComon.module.scss';
 import useDebounce from '../helpers/useDebounce';
 
 const validate = values => {
@@ -119,8 +117,7 @@ export default function RegisterPage({ location }) {
   };
 
   return (
-    <div className={appStyles.loggedOutBg}>
-      <Header />
+    <>
       {onVerification ? (
         <div className={registerStyles.modalVerification}>
           <div className={registerStyles.modalBodyFirst}>
@@ -275,6 +272,6 @@ export default function RegisterPage({ location }) {
           </form>
         </div>
       )}
-    </div>
+    </>
   );
 }
