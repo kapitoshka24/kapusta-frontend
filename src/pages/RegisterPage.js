@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../redux/operations/auth-operations';
 import Header from '../components/Header';
-import Google from '../components/google.register';
+import GoogleRegistration from '../components/GoogleRegistration';
 import registerStyles from '../styles/Register.module.scss';
 import appStyles from '../styles/AppComon.module.scss';
 import useDebounce from '../helpers/useDebounce';
@@ -156,15 +156,18 @@ export default function RegisterPage({ location }) {
         </div>
       ) : (
         <div className={registerStyles.modal}>
-          <p
-            style={{ marginBottom: 15 }}
-            className={registerStyles.modalTitleRegister}
-          >
-            Регистрация
-          </p>
-          <div>
-            <Google />
+          <div className={registerStyles.modalBodyFirst}>
+            <p
+              className={`${registerStyles.modalTitle} ${registerStyles.modalTitleGoogle}`}
+            >
+              Вы можете зарегистрироваться с помощью Google Account:
+            </p>
+            <div>
+              <GoogleRegistration />
+            </div>
+            <p className={registerStyles.modalTitle}>Или с помощью e-mail:</p>
           </div>
+
           <form onSubmit={handleSubmit} noValidate>
             <div className={registerStyles.modalBodyFirst}>
               <div className={registerStyles.modalGroup}>

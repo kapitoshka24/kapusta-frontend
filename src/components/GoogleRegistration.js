@@ -4,7 +4,7 @@ import GoogleLogin from 'react-google-login';
 import googleSymbol from '../images/google-symbol.svg';
 import loginStyles from '../styles/Login.module.scss';
 
-export default function Google() {
+export default function GoogleRegistration() {
   const dispatch = useDispatch();
   let user = {};
   const responseGoogle = res => {
@@ -18,8 +18,8 @@ export default function Google() {
       dispatch(authOperations.registerWithGoogle(user));
     }
   };
-  const responseError = res => {
-    console.log(res.message);
+  const responseError = error => {
+    console.log(error.message);
   };
 
   return (
@@ -34,7 +34,6 @@ export default function Google() {
             onClick={renderProps.onClick}
             className={loginStyles.googleBtn}
           >
-            {' '}
             <img
               src={googleSymbol}
               alt="Google Symbol"
