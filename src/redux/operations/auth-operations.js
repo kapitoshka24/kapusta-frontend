@@ -124,6 +124,7 @@ const loginWithGoogle = data => async dispatch => {
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
     dispatch(authActions.loginGoogleError(error.message));
+    registerError();
   }
 };
 

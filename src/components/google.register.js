@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/operations';
 import GoogleLogin from 'react-google-login';
+import googleSymbol from '../images/google-symbol.svg';
+import loginStyles from '../styles/Login.module.scss';
 
 export default function Google() {
   const dispatch = useDispatch();
@@ -24,10 +26,24 @@ export default function Google() {
     <>
       <GoogleLogin
         clientId="634735810645-al9bj1ogo2dc2nbahur71e0t35kin088.apps.googleusercontent.com"
-        buttonText="SingIn"
         onSuccess={responseGoogle}
         onFailure={responseError}
         cookiePolicy={'single_host_origin'}
+        render={renderProps => (
+          <button
+            onClick={renderProps.onClick}
+            className={loginStyles.googleBtn}
+          >
+            {' '}
+            <img
+              src={googleSymbol}
+              alt="Google Symbol"
+              className={loginStyles.googleSymbol}
+            />
+            Google
+          </button>
+        )}
+        buttonText="Login"
       />
     </>
   );

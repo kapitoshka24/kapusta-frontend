@@ -130,9 +130,15 @@ export default function RegisterPage({ location }) {
         </div>
       ) : (
         <div className={registerStyles.modal}>
-          <Google />
-          <p className={registerStyles.modalTitleRegister}>Регистрация</p>
-
+          <p
+            style={{ marginBottom: 15 }}
+            className={registerStyles.modalTitleRegister}
+          >
+            Регистрация
+          </p>
+          <div>
+            <Google />
+          </div>
           <form onSubmit={handleSubmit} noValidate>
             <div className={registerStyles.modalBodyFirst}>
               <div className={registerStyles.modalGroup}>
