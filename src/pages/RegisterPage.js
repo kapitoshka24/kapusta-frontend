@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../redux/operations/auth-operations';
 import Header from '../components/Header';
+import Google from '../components/google.register';
 import registerStyles from '../styles/Register.module.scss';
 import appStyles from '../styles/AppComon.module.scss';
 
@@ -129,6 +130,7 @@ export default function RegisterPage({ location }) {
         </div>
       ) : (
         <div className={registerStyles.modal}>
+          <Google />
           <p className={registerStyles.modalTitleRegister}>Регистрация</p>
 
           <form onSubmit={handleSubmit} noValidate>
