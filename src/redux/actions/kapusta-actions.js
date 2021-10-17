@@ -27,6 +27,7 @@ const actions = {
   incrementReportMonth: createAction('kapusta/incrementReportMonth'),
   decrementReportMonth: createAction('kapusta/decrementReportMonth'),
   changeReportYears: createAction('kapusta/changeReportYears'),
+  fetchCategoryDetails: createAction('kapusta/fetchCategoryDetails'),
 };
 
 export default actions;

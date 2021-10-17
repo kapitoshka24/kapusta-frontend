@@ -59,8 +59,6 @@ const fetchSumCategory = (month, year) => async dispatch => {
       `/currency-movements/sum-category?date=${correctMonth}/${year}`,
     );
 
-    console.log(`${month}/${year}`, data.summary);
-
     dispatch(kapustaActions.getSumCategorySuccess(data.summary));
   } catch (error) {
     dispatch(kapustaActions.getSumCategoryError(error));
@@ -80,12 +78,27 @@ const fetchMonthlySummary = () => async dispatch => {
   }
 };
 
+const fetchCategoryDetails = (month, year, category) => async dispatch => {
+  const correctMonth = month < 10 ? '0'.concat(month) : month;
+
+  try {
+    const { data } = await axios.get(
+      `/currency-movements/detailed-categories?date=${correctMonth}/${year}&category=${category}`,
+    );
+    const sortedData = data.response.sort((a, b) => (a.sum < b.sum ? 1 : -1));
+    dispatch(kapustaActions.fetchCategoryDetails(sortedData));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const operations = {
   fetchTotalBalance,
   addTotalBalance,
   calculateAvailableYears,
   fetchSumCategory,
   fetchMonthlySummary,
+  fetchCategoryDetails,
 };
 
 export default operations;
