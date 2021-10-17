@@ -30,10 +30,17 @@ const TotalBalance = () => {
     setShowModal(prevVal => !prevVal);
   };
 
+  const validBalanceToNumber = (enteredBalanceByUser) => {
+    const regexForBalance = /[1-9]\.?/g;
+    const balanceWithoutSpacesAndPeriod = enteredBalanceByUser.match(regexForBalance)?.join('')
+    return parseFloat(balanceWithoutSpacesAndPeriod)
+    // return balanceWithoutSpacesAndPeriod
+  }
+
   const handleChange = e => {
-    const reg = /[A-Za-zА-Яа-яЁё]/g;
-    setBalanceValue(e.target.value.replace(reg, ''));
-    if (Number(e.target.value) === 0) {
+    const validBalance = validBalanceToNumber(e.target.value)
+    setBalanceValue(validBalance);
+    if (validBalance === 0) {
       setShowModal(true);
     } else {
       setShowModal(false);
