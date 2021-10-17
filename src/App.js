@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Loader from 'react-loader-spinner';
 import { Switch } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import NotFound from './pages/NotFoundPage';
+import Loader from './components/Loader/';
 
 import appStyles from './styles/AppCommon.module.scss';
 
@@ -21,8 +23,22 @@ const ReportPage = lazy(() => import('./pages/ReportPage'));
 export default function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
+  // const [location, setLocation] = useState('/');
+  // const [redirectTo, setRedirectTo] = useState(false);
   const dispatch = useDispatch();
-  useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
+
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+
+    // setLocation(localStorage.getItem('pathname'));
+
+    // if (location) setRedirectTo(true);
+  }, [dispatch]);
+
+  // if (redirectTo) {
+  //   console.log(location);
+  //   return <Redirect to={location} />;
+  // }
 
   return (
     <div className={isLoggedIn ? appStyles.loggedInBg : appStyles.loggedOutBg}>
@@ -39,6 +55,7 @@ export default function App() {
           />
         }
       >
+
         <Switch>
           <PrivateRoute exact path="/" redirectTo="/login" />
           <PublicRoute path="/login" restricted redirectTo="/main-page">

@@ -32,6 +32,7 @@ export default function LoginPage() {
     const accessToken = params.get('accessToken');
     const refreshToken = params.get('refreshToken');
     const sid = params.get('sid');
+
     if (accessToken && refreshToken && sid) {
       dispatch(
         authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
