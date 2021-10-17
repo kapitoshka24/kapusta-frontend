@@ -3,12 +3,10 @@
 
 .date {
   display: inline-block;
-
   font-weight: 900;
   font-size: 12px;
   line-height: 1.1667;
   letter-spacing: 0.04em;
-
   color: $text-grey;
 
   &__container {
@@ -28,4 +26,17 @@
 
 .icon__calendar {
   margin-right: 10px;
+  margin-bottom: -3px;
+}
+
+.DatePicker {
+  background: transparent;
+  border: none;
+  width: 75px;
+  height: 40px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #52555f;
+  padding: 0px;
+  cursor: pointer;
 }

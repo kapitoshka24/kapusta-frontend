@@ -46,7 +46,7 @@
 .date__container {
   @include from-to(tablet, desktop) {
     position: absolute;
-    top: 40px;
+    top: 32px;
     left: 0;
   }
 }
