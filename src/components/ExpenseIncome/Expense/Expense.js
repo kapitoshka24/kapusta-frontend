@@ -15,7 +15,7 @@ import TableMobileIncome from '../TableMobileIncome';
 import MonthlySummary from '../MonthlySummary';
 import styles from './Expense.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
-import mainStyles from '../../../styles/AppComon.module.scss';
+import mainStyles from '../../../styles/AppCommon.module.scss';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);

@@ -9,8 +9,6 @@ import { authOperations } from '../redux/operations';
 
 import forgottenStyles from '../styles/Forgotten.module.scss';
 
-import appStyles from '../styles/AppComon.module.scss';
-import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 
 const validate = values => {
@@ -82,91 +80,85 @@ export default function ForgottenPage() {
   }, [onReset, timer]);
 
   return (
-    <div className={appStyles.loggedOutBg}>
-      <Header />
-
-      <div className={forgottenStyles.modal}>
-        {onReset ? (
-          <div className={forgottenStyles.modalVerification}>
-            <div className={forgottenStyles.modalBodyFirst}>
-              <p className={forgottenStyles.modalTitleVerification}>
-                На Ваш email (<span>{email}</span>) было отправлено письмо с
-                дальнейшими инструкциями.
-              </p>
-              <p className={forgottenStyles.modalTitleVerification}>
-                {timer ? (
-                  `Не пришло письмо? Отправить повторно через (${timer})`
-                ) : (
-                  <button
-                    className={forgottenStyles.btnResendVerification}
-                    onClick={resendResetEmail}
-                  >
-                    Отправить письмо повторно.
-                  </button>
-                )}
-              </p>
-
-              <Link
-                className={`${forgottenStyles.modalContinueBtn} ${forgottenStyles.active}`}
-                to={{
-                  pathname: `/login`,
-                }}
-              >
-                Продолжить
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className={forgottenStyles.modalBodyFirst}>
-              <p className={forgottenStyles.modalTitle}>
-                Введите email для сброса пароля.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} autoComplete="off" noValidate>
-              <div className={forgottenStyles.modalBodySecond}>
-                <div className={forgottenStyles.modalGroup}>
-                  <label className={forgottenStyles.modalLabel}>
-                    {errors.email ? (
-                      <span className={forgottenStyles.errorStar}>*</span>
-                    ) : null}
-                    Электронная почта:
-                    <input
-                      type="email"
-                      name="email"
-                      className={forgottenStyles.modalInput}
-                      placeholder="your@email.com"
-                      onChange={handleChange}
-                      value={values.email}
-                      autoComplete="off"
-                    />
-                    {errors.email ? (
-                      <div className={forgottenStyles.error}>
-                        {errors.email}
-                      </div>
-                    ) : null}
-                    {fetchError?.email ? (
-                      <div className={forgottenStyles.error}>
-                        {fetchError.email}
-                      </div>
-                    ) : null}
-                  </label>
-                </div>
-              </div>
-
-              <div className={forgottenStyles.modalButtons}>
+    <div className={forgottenStyles.modal}>
+      {onReset ? (
+        <div className={forgottenStyles.modalVerification}>
+          <div className={forgottenStyles.modalBodyFirst}>
+            <p className={forgottenStyles.modalTitleVerification}>
+              На Ваш email (<span>{email}</span>) было отправлено письмо с
+              дальнейшими инструкциями.
+            </p>
+            <p className={forgottenStyles.modalTitleVerification}>
+              {timer ? (
+                `Не пришло письмо? Отправить повторно через (${timer})`
+              ) : (
                 <button
-                  type="submit"
-                  className={forgottenStyles.modalContinueBtn}
+                  className={forgottenStyles.btnResendVerification}
+                  onClick={resendResetEmail}
                 >
-                  Отправить
+                  Отправить письмо повторно.
                 </button>
+              )}
+            </p>
+
+            <Link
+              className={`${forgottenStyles.modalContinueBtn} ${forgottenStyles.active}`}
+              to={{
+                pathname: `/login`,
+              }}
+            >
+              Продолжить
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className={forgottenStyles.modalBodyFirst}>
+            <p className={forgottenStyles.modalTitle}>
+              Введите email для сброса пароля.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+            <div className={forgottenStyles.modalBodySecond}>
+              <div className={forgottenStyles.modalGroup}>
+                <label className={forgottenStyles.modalLabel}>
+                  {errors.email ? (
+                    <span className={forgottenStyles.errorStar}>*</span>
+                  ) : null}
+                  Электронная почта:
+                  <input
+                    type="email"
+                    name="email"
+                    className={forgottenStyles.modalInput}
+                    placeholder="your@email.com"
+                    onChange={handleChange}
+                    value={values.email}
+                    autoComplete="off"
+                  />
+                  {errors.email ? (
+                    <div className={forgottenStyles.error}>{errors.email}</div>
+                  ) : null}
+                  {fetchError?.email ? (
+                    <div className={forgottenStyles.error}>
+                      {fetchError.email}
+                    </div>
+                  ) : null}
+                </label>
               </div>
-            </form>
-          </>
-        )}
-      </div>
+            </div>
+
+            <div className={forgottenStyles.modalButtons}>
+              <button
+                type="submit"
+                className={forgottenStyles.modalContinueBtn}
+              >
+                Отправить
+              </button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 }

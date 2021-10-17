@@ -9,8 +9,6 @@ import { authOperations } from '../redux/operations';
 
 import forgottenStyles from '../styles/Forgotten.module.scss';
 
-import appStyles from '../styles/AppComon.module.scss';
-import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 
 const validate = values => {
@@ -66,95 +64,89 @@ export default function ResetPasswordPage({ match: { params } }) {
   }, [debounce, setFieldError, values]);
 
   return (
-    <div className={appStyles.loggedOutBg}>
-      <Header />
+    <div className={forgottenStyles.modal}>
+      {success ? (
+        <div className={forgottenStyles.modalVerification}>
+          <div className={forgottenStyles.modalBodyFirst}>
+            <p className={forgottenStyles.modalTitleReset}>
+              Пароль успешно изменён.
+            </p>
 
-      <div className={forgottenStyles.modal}>
-        {success ? (
-          <div className={forgottenStyles.modalVerification}>
-            <div className={forgottenStyles.modalBodyFirst}>
-              <p className={forgottenStyles.modalTitleReset}>
-                Пароль успешно изменён.
-              </p>
-
-              <Link
-                className={`${forgottenStyles.modalContinueBtn} ${forgottenStyles.active}`}
-                to={{
-                  pathname: `/login`,
-                }}
-              >
-                Продолжить
-              </Link>
-            </div>
+            <Link
+              className={`${forgottenStyles.modalContinueBtn} ${forgottenStyles.active}`}
+              to={{
+                pathname: `/login`,
+              }}
+            >
+              Продолжить
+            </Link>
           </div>
-        ) : (
-          <>
-            <div className={forgottenStyles.modalBodyFirst}>
-              <p className={forgottenStyles.modalTitle}>
-                Введите новый пароль.
-              </p>
+        </div>
+      ) : (
+        <>
+          <div className={forgottenStyles.modalBodyFirst}>
+            <p className={forgottenStyles.modalTitle}>Введите новый пароль.</p>
+          </div>
+
+          <form onSubmit={handleSubmit} autoComplete="off" noValidate>
+            <div className={forgottenStyles.modalBodySecond}>
+              <div className={forgottenStyles.modalGroup}>
+                <label className={forgottenStyles.modalLabel}>
+                  {errors.password ? (
+                    <span className={forgottenStyles.errorStar}>*</span>
+                  ) : null}
+                  Пароль:
+                  <input
+                    type="password"
+                    name="password"
+                    className={forgottenStyles.modalInput}
+                    placeholder="Введите пароль"
+                    onChange={handleChange}
+                    value={values.password}
+                    autoComplete="off"
+                  />
+                  {errors.password ? (
+                    <div className={forgottenStyles.error}>
+                      {errors.password}
+                    </div>
+                  ) : null}
+                </label>
+              </div>
+              <div className={forgottenStyles.modalGroup}>
+                <label className={forgottenStyles.modalLabel}>
+                  {errors.confirm ? (
+                    <span className={forgottenStyles.errorStar}>*</span>
+                  ) : null}
+                  Подтверждение:
+                  <input
+                    type="password"
+                    name="confirm"
+                    className={forgottenStyles.modalInput}
+                    placeholder="Введите подтверждение"
+                    onChange={handleChange}
+                    value={values.confirm}
+                    autoComplete="off"
+                  />
+                  {errors.confirm ? (
+                    <div className={forgottenStyles.error}>
+                      {errors.confirm}
+                    </div>
+                  ) : null}
+                </label>
+              </div>
             </div>
 
-            <form onSubmit={handleSubmit} autoComplete="off" noValidate>
-              <div className={forgottenStyles.modalBodySecond}>
-                <div className={forgottenStyles.modalGroup}>
-                  <label className={forgottenStyles.modalLabel}>
-                    {errors.password ? (
-                      <span className={forgottenStyles.errorStar}>*</span>
-                    ) : null}
-                    Пароль:
-                    <input
-                      type="password"
-                      name="password"
-                      className={forgottenStyles.modalInput}
-                      placeholder="Введите пароль"
-                      onChange={handleChange}
-                      value={values.password}
-                      autoComplete="off"
-                    />
-                    {errors.password ? (
-                      <div className={forgottenStyles.error}>
-                        {errors.password}
-                      </div>
-                    ) : null}
-                  </label>
-                </div>
-                <div className={forgottenStyles.modalGroup}>
-                  <label className={forgottenStyles.modalLabel}>
-                    {errors.confirm ? (
-                      <span className={forgottenStyles.errorStar}>*</span>
-                    ) : null}
-                    Подтверждение:
-                    <input
-                      type="password"
-                      name="confirm"
-                      className={forgottenStyles.modalInput}
-                      placeholder="Введите подтверждение"
-                      onChange={handleChange}
-                      value={values.confirm}
-                      autoComplete="off"
-                    />
-                    {errors.confirm ? (
-                      <div className={forgottenStyles.error}>
-                        {errors.confirm}
-                      </div>
-                    ) : null}
-                  </label>
-                </div>
-              </div>
-
-              <div className={forgottenStyles.modalButtons}>
-                <button
-                  type="submit"
-                  className={forgottenStyles.modalContinueBtn}
-                >
-                  Сохранить
-                </button>
-              </div>
-            </form>
-          </>
-        )}
-      </div>
+            <div className={forgottenStyles.modalButtons}>
+              <button
+                type="submit"
+                className={forgottenStyles.modalContinueBtn}
+              >
+                Сохранить
+              </button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 }

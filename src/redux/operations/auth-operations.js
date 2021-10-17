@@ -3,13 +3,12 @@ import { authActions } from '../actions';
 import {
   loginSuccess,
   loginError,
-  // registerSuccess,
   registerError,
   serverError,
   logoutSuccess,
 } from '../../services/pnotify';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api/';
 
 const accessToken = {
   set(token) {
@@ -31,6 +30,23 @@ const register = credentials => async dispatch => {
     if (error.response.data.code === 409) {
       dispatch(
         authActions.registerError({ email: 'Email уже зарегистрирован' }),
+      );
+    } else {
+      registerError();
+    }
+  }
+};
+
+const registerWithGoogle = credentials => async dispatch => {
+  dispatch(authActions.registerGoogleRequest());
+  try {
+    const { data } = await axios.post('/users/google/v1', credentials);
+
+    await dispatch(authActions.registerGoogleSuccess(data));
+  } catch (error) {
+    if (error.response.data.code === 409) {
+      dispatch(
+        authActions.registerGoogleError({ email: 'Email уже зарегистрирован' }),
       );
     } else {
       registerError();
@@ -66,25 +82,17 @@ const logOut = () => async dispatch => {
 };
 
 const getCurrentUser = () => async (dispatch, getState) => {
-  // const {
-  //   session: { accessToken: persistedToken },
-  // } = getState();
+  const {
+    session: { accessToken: persistedToken },
+  } = getState();
 
-  // if (!persistedToken) {
-  //   return;
-  // }
+  if (!persistedToken) {
+    return;
+  }
 
-  // accessToken.set(persistedToken);
+  accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
-    const {
-      session: { accessToken: persistedToken },
-    } = getState();
-
-    if (!persistedToken) {
-      return;
-    }
-
     accessToken.set(persistedToken);
 
     const { data } = await axios.get('/users/current');
@@ -96,23 +104,16 @@ const getCurrentUser = () => async (dispatch, getState) => {
 };
 
 const refreshSession = async (dispatch, getState) => {
+  const {
+    session: { refreshToken: refToken, sid: id },
+  } = getState();
+
+  const credentials = { sid: id };
+  accessToken.set(refToken);
+
   dispatch(authActions.refreshSessionRequest());
 
-  // const {
-  //   session: { refreshToken: refToken, sid: id },
-  // } = getState();
-
-  // const credentials = { sid: id };
-  // accessToken.set(refToken);
-
   try {
-    const {
-      session: { refreshToken: refToken, sid: id },
-    } = getState();
-
-    const credentials = { sid: id };
-    accessToken.set(refToken);
-
     const data = await axios.post('/users/refresh', credentials);
     dispatch(authActions.refreshSessionSuccess(data));
     loginSuccess();
@@ -128,7 +129,7 @@ const loginWithGoogle = data => async dispatch => {
   try {
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
-    dispatch(authActions.loginGoogleError(error.message));
+    dispatch(authActions.loginGoogleError(error));
   }
 };
 
@@ -183,6 +184,7 @@ const resetPassword = (password, verifyToken) => async dispatch => {
 
 const operations = {
   register,
+  registerWithGoogle,
   logIn,
   loginWithGoogle,
   logOut,
