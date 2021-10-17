@@ -2,17 +2,10 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-
 import useDebounce from '../helpers/useDebounce';
-
 import { authOperations } from '../redux/operations';
-
 import googleSymbol from '../images/google-symbol.svg';
-
 import loginStyles from '../styles/Login.module.scss';
-
-import appStyles from '../styles/AppComon.module.scss';
-import Header from '../components/Header';
 
 const validate = values => {
   const errors = {};
@@ -79,8 +72,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className={appStyles.loggedOutBg}>
-      <Header />
+    <>
       <div className={loginStyles.modal}>
         <div className={loginStyles.modalBodyFirst}>
           <p
@@ -162,6 +154,6 @@ export default function LoginPage() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,41 +1,54 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
-import { kapustaActions } from '../../../redux/actions';
-import { useFormik } from 'formik';
+import { kapustaOperations } from '../../../redux/operations';
 import ReportBalanceModal from '../ReportBalanceModal';
 import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 
-// const validate = values => {
-//   const errors = {};
-//   if (/\D/.test(values.balance)) {
-//     errors.balance = 'Invalid balance';
-//   }
-
-//   return errors;
-// };
-
 export default function ReportBalance() {
-  const balance = useSelector(kapustaSelectors.getTotalBalance);
+  const getBalance = useSelector(kapustaSelectors.getTotalBalance);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [balanceValue, setBalanceValue] = useState(getBalance);
 
+  useEffect(() => {
+    dispatch(kapustaOperations.fetchTotalBalance());
+    setBalanceValue(getBalance);
+  }, [dispatch, getBalance]);
+
+  useEffect(() => {
+    if (balanceValue === 0) {
+      setShowModal(true);
+    }
+  }, [balanceValue]);
+
+  const numberBalanceValue = Number(balanceValue);
+
+  const toggleModal = () => {
+    setShowModal(prevVal => !prevVal);
+  };
+
+  const handleChange = e => {
+    const reg = /[A-Za-zА-Яа-яЁё]/g;
+    setBalanceValue(e.target.value.replace(reg, ''));
+    if (Number(e.target.value) === 0) {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    if (balanceValue === '') {
+      setBalanceValue(0);
+    }
+  };
   const { width } = useWindowDementions();
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
-    initialValues: {
-      balance,
-    },
-    // validate,
-    onSubmit: values => {
-      if (values.balance === balance) {
-        return;
-      }
-      //   alert(JSON.stringify(values, null, 2));
-      dispatch(kapustaActions.changeTotalBalance(values.balance));
-    },
-  });
   return (
     <div className={styles.balanceContainer}>
       <BackToMainPage />
@@ -51,13 +64,11 @@ export default function ReportBalance() {
                 id="balance"
                 name="balance"
                 onChange={handleChange}
-                value={values.balance}
+                value={balanceValue}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
             </div>
-
-            {errors.balance ? <div>{errors.balance}</div> : null}
 
             {width >= 1280 && (
               <button className={styles.button} disabled={false} type="submit">
@@ -81,13 +92,11 @@ export default function ReportBalance() {
                 name="balance"
                 type="number"
                 onChange={handleChange}
-                value={values.balance}
+                value={balanceValue}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
             </div>
-
-            {errors.balance ? <div>{errors.balance}</div> : null}
             {/* {windowWidth >= 1280 && (
               <button className={styles.button} disabled={false} type="submit">
                 Подтвердить
@@ -97,7 +106,7 @@ export default function ReportBalance() {
         </form>
       )}
 
-      {!balance && <ReportBalanceModal />}
+      {showModal && <ReportBalanceModal closeModal={toggleModal} />}
     </div>
   );
 }

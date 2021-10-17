@@ -10,9 +10,19 @@ const user = createReducer(initialUserState, {
     name: payload.data.name,
     email: payload.data.email,
   }),
+  [authActions.registerGoogleSuccess]: (_, { payload }) => ({
+    id: payload.data.id,
+    name: payload.data.name,
+    email: payload.data.email,
+    createdAt: payload.data.createdAt,
+  }),
   [authActions.registerSuccess]: (_, { payload }) => payload.data,
   [authActions.logoutSuccess]: () => initialUserState,
-  [authActions.getCurrentUserSuccess]: (_, { payload }) => payload,
+  [authActions.getCurrentUserSuccess]: (_, { payload }) => ({
+    id: payload.data.id,
+    name: payload.data.name,
+    email: payload.data.email,
+  }),
 });
 
 const setError = (_, { payload }) => payload;
@@ -24,6 +34,7 @@ const error = createReducer(null, {
   [authActions.getCurrentUserError]: setError,
   [authActions.refreshSessionError]: setError,
   [authActions.loginGoogleError]: setError,
+  [authActions.registerGoogleError]: setError,
   [authActions.clearErrors]: () => null,
 });
 
@@ -31,12 +42,19 @@ const isLoggedIn = createReducer(false, {
   [authActions.refreshSessionSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
   [authActions.loginGoogleSuccess]: () => true,
+  [authActions.registerGoogleSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
   [authActions.registerError]: () => false,
   [authActions.loginError]: () => false,
   [authActions.getCurrentUserError]: () => false,
   [authActions.logoutSuccess]: () => false,
   [authActions.refreshSessionError]: () => false,
+});
+
+const isFetching = createReducer(false, {
+  [authActions.getCurrentUserRequest]: () => true,
+  [authActions.getCurrentUserSuccess]: () => false,
+  [authActions.getCurrentUserError]: () => false,
 });
 
 const initialEmailVerificationState = {
@@ -63,6 +81,7 @@ const emailVerification = createReducer(initialEmailVerificationState, {
 export default combineReducers({
   user,
   isLoggedIn,
+  isFetching,
   error,
   emailVerification,
 });

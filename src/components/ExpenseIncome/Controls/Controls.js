@@ -67,7 +67,6 @@ export default function Controls() {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    // setCategory({ category: '' });
     setDate({ date: '' });
   };
 

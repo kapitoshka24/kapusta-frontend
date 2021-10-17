@@ -35,9 +35,19 @@ const reportYears = createReducer([], {
 const reportSummary = createReducer(
   {},
   {
-    [kapustaActions.getSumCategorySuccess]: (_, { payload }) => payload,
+    [kapustaActions.getSumCategorySuccess]: (_, { payload }) => payload.summary,
   },
 );
+
+const totalIncome = createReducer('', {
+  [kapustaActions.getSumCategorySuccess]: (_, { payload }) =>
+    payload.totalIncome,
+});
+
+const totalExpenses = createReducer('', {
+  [kapustaActions.getSumCategorySuccess]: (_, { payload }) =>
+    payload.totalExpenses,
+});
 
 const monthlySummary = createReducer([], {
   [kapustaActions.fetchMonthlySummarySuccess]: (_, { payload }) => payload,
@@ -46,6 +56,10 @@ const monthlySummary = createReducer([], {
 const error = createReducer(null, {
   [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) =>
     console.log(payload),
+});
+
+const categoryDetails = createReducer([], {
+  [kapustaActions.fetchCategoryDetails]: (_state, { payload }) => payload,
 });
 
 const expense = createReducer([], {
@@ -79,4 +93,7 @@ export default combineReducers({
   reportSummary,
   monthlySummary,
   error,
+  categoryDetails,
+  totalIncome,
+  totalExpenses,
 });
