@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-import Loader from 'react-loader-spinner';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Switch } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Suspense, lazy, useEffect } from 'react';
-
 import { authOperations } from './redux/operations';
 import { authSelectors } from './redux/selectors';
-
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 import NotFound from './pages/NotFoundPage';
 import Loader from './components/Loader/';
-
 import appStyles from './styles/AppCommon.module.scss';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -27,13 +22,19 @@ export default function App() {
   // const [redirectTo, setRedirectTo] = useState(false);
   const dispatch = useDispatch();
 
+  const isFetching = useSelector(authSelectors.getIsFetching);
+  const [inProgress, setInProgress] = useState(true);
   useEffect(() => {
-    dispatch(authOperations.getCurrentUser());
-
-    // setLocation(localStorage.getItem('pathname'));
-
-    // if (location) setRedirectTo(true);
+    const getCurrentUser = async () => {
+      dispatch(await authOperations.getCurrentUser());
+      setInProgress(false);
+    };
+    getCurrentUser();
   }, [dispatch]);
+
+  if (inProgress || isFetching) {
+    return <Loader />;
+  }
 
   // if (redirectTo) {
   //   console.log(location);
@@ -44,18 +45,7 @@ export default function App() {
     <div className={isLoggedIn ? appStyles.loggedInBg : appStyles.loggedOutBg}>
       <Header />
 
-      <Suspense
-        fallback={
-          <Loader
-            className="Loader-main"
-            type="Bars"
-            color="#45a049"
-            height={50}
-            width={50}
-          />
-        }
-      >
-
+      <Suspense fallback={<Loader />}>
         <Switch>
           <PrivateRoute exact path="/" redirectTo="/login" />
           <PublicRoute path="/login" restricted redirectTo="/main-page">

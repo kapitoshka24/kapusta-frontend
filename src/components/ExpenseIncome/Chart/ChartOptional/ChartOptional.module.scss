@@ -9,6 +9,7 @@
   margin: 0;
 
   &Item {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -26,8 +27,13 @@
       );
     }
 
+    &:hover .label:last-child {
+      transform: translateY(calc(100% + 5px));
+      color: $expenses-black;
+    }
+
     &:hover .label {
-      transform: scale(1.2);
+      transform: translateY(calc(5px));
       color: $expenses-black;
     }
 
@@ -39,7 +45,6 @@
 
 .bar {
   width: 100%;
-  margin-bottom: 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   transition: transitionFunc(all);
@@ -57,6 +62,14 @@
 
   &:not(:last-child) {
     margin-bottom: 10px;
+  }
+
+  &:last-child {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(100% + 10px));
+    max-width: 70px;
+    white-space: pre-wrap;
   }
 }
 
