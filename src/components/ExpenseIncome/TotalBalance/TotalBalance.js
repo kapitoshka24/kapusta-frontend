@@ -60,7 +60,6 @@ const TotalBalance = () => {
             id="balance"
             name="balance"
             onChange={handleChange}
-            // value={Number(balanceValue).toFixed(2)}
             value={balanceValue}
             autoComplete="off"
           />
