@@ -58,7 +58,6 @@ export default function ControlsIncome() {
 
   const resetForm = () => {
     setIncome({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const { width } = useWindowDementions();

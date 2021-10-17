@@ -60,7 +60,6 @@ export default function ControlsMobile({ closeControls }) {
 
   const resetForm = () => {
     setIncome({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const handleBackdropClick = e => {
