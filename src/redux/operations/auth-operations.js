@@ -41,10 +41,7 @@ const register = credentials => async dispatch => {
 const registerWithGoogle = credentials => async dispatch => {
   dispatch(authActions.registerGoogleRequest());
   try {
-    const { data } = await axios.post(
-      'http://localhost:3000/api/users/google/v1',
-      credentials,
-    );
+    const { data } = await axios.post('/users/google/v1', credentials);
 
     await dispatch(authActions.registerGoogleSuccess(data));
   } catch (error) {
