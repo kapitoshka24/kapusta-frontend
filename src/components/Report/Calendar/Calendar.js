@@ -19,6 +19,9 @@ export default function Calendar({ handleCalendarToggle, setCalendarIsOpen }) {
 
   useEffect(() => {
     const onClickOutsideHandler = e => {
+      if (!calendarContainer.current) {
+        return;
+      }
       if (
         !calendarContainer.current ||
         e.target.nodeName === 'LI' ||

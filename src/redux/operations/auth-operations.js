@@ -3,13 +3,12 @@ import { authActions } from '../actions';
 import {
   loginSuccess,
   loginError,
-  // registerSuccess,
   registerError,
   serverError,
   logoutSuccess,
 } from '../../services/pnotify';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api/';
 
 const accessToken = {
   set(token) {
@@ -31,6 +30,23 @@ const register = credentials => async dispatch => {
     if (error.response.data.code === 409) {
       dispatch(
         authActions.registerError({ email: 'Email уже зарегистрирован' }),
+      );
+    } else {
+      registerError();
+    }
+  }
+};
+
+const registerWithGoogle = credentials => async dispatch => {
+  dispatch(authActions.registerGoogleRequest());
+  try {
+    const { data } = await axios.post('/users/google/v1', credentials);
+
+    await dispatch(authActions.registerGoogleSuccess(data));
+  } catch (error) {
+    if (error.response.data.code === 409) {
+      dispatch(
+        authActions.registerGoogleError({ email: 'Email уже зарегистрирован' }),
       );
     } else {
       registerError();
@@ -113,7 +129,7 @@ const loginWithGoogle = data => async dispatch => {
   try {
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
-    dispatch(authActions.loginGoogleError(error.message));
+    dispatch(authActions.loginGoogleError(error));
   }
 };
 
@@ -133,6 +149,7 @@ const clearErrors = () => dispatch => {
 
 const operations = {
   register,
+  registerWithGoogle,
   logIn,
   loginWithGoogle,
   logOut,

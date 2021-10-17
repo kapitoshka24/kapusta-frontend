@@ -18,8 +18,9 @@ const LogoutModal = ({ massage, closeModal }) => {
   }, [closeModal]);
   const dispatch = useDispatch();
 
-  const onLogout = () => {
+  const onLogout = e => {
     dispatch(authOperations.logOut());
+    closeModal(e);
   };
 
   const handleBackdropClick = e => {

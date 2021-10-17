@@ -9,7 +9,6 @@ import Loader from './components/Loader/';
 import Header from './components/Header';
 import { authSelectors } from './redux/selectors';
 import appStyles from './styles/AppCommon.module.scss';
-// import { useState } from 'react';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -42,7 +41,7 @@ export default function App() {
           <PublicRoute path="/login" restricted redirectTo="/main-page">
             <LoginPage />
           </PublicRoute>
-          <PublicRoute path="/register" restricted>
+          <PublicRoute path="/register" restricted redirectTo="/main-page">
             <RegisterPage />
           </PublicRoute>
           <PrivateRoute path="/main-page" restricted redirectTo="/login">
