@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import ReportBalance from '../components/Report/ReportBalance';
 import Turnover from '../components/Report/Turnover';
 import TurnoverSlider from '../components/Report/TurnoverSlider';
 import Chart from '../components/ExpenseIncome/Chart';
-import styles from '../styles/AppReport.module.scss';
+// import styles from '../styles/AppCommon.module.scss';
 // import { useLocation } from 'react-router';
 // import { useEffect } from 'react';
 // import localStorage from 'redux-persist/es/storage';
@@ -18,12 +18,14 @@ export default function ReportPage() {
   // );
 
   return (
-    <div className={styles.loggedInBg}>
-      <Header />
+    // <div className={styles.loggedInBg}>
+    // {/* <Header /> */ }
+    <>
       <ReportBalance />
       <Turnover />
       <TurnoverSlider />
       <Chart />
-    </div>
+    </>
+    // </div>
   );
 }
