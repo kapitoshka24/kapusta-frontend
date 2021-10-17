@@ -23,6 +23,7 @@ export default function Calendar({ handleCalendarToggle, setCalendarIsOpen }) {
         return;
       }
       if (
+        !calendarContainer.current ||
         e.target.nodeName === 'LI' ||
         calendarContainer.current.contains(e.target)
       ) {
