@@ -93,7 +93,8 @@
   width: 100%;
   fill: $expenses-black;
 
-  &:hover {
+  &:hover,
+  &:focus {
     fill: $background-orange;
     cursor: pointer;
   }

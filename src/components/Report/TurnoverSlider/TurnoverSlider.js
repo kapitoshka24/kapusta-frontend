@@ -16,6 +16,7 @@ class TurnoverSlider extends Component {
     this.state = {
       nav1: null,
       nav2: null,
+      nav3: null,
     };
   }
 
@@ -23,6 +24,7 @@ class TurnoverSlider extends Component {
     this.setState({
       nav1: this.slider1,
       nav2: this.slider2,
+      nav3: this.slider3,
     });
   }
 
@@ -56,7 +58,7 @@ class TurnoverSlider extends Component {
           <Slider
             {...settingsSmall}
             className={styles.slider}
-            asNavFor={this.state.nav2}
+            asNavFor={this.state.nav3}
             ref={slider => (this.slider1 = slider)}
           >
             <div className={styles.slider__item}>
@@ -85,8 +87,8 @@ class TurnoverSlider extends Component {
         <Slider
           {...settingsBig}
           className={styles.slider__big}
-          asNavFor={this.state.nav1}
-          ref={slider => (this.slider1 = slider)}
+          asNavFor={this.state.nav2}
+          ref={slider => (this.slider3 = slider)}
         >
           <div className={styles.slider_big__item}>
             <Chart
