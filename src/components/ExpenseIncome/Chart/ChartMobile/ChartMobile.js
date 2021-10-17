@@ -1,28 +1,20 @@
 import styles from './ChartMobile.module.scss';
 
-const data = [
-  { name: 'Свинина', value: 5000 },
-  { name: 'Говядина', value: 4500 },
-  { name: 'Курица', value: 3200 },
-  { name: 'Рыба', value: 2100 },
-  { name: 'Панини', value: 1800 },
-  { name: 'Кофе', value: 1700 },
-  { name: 'Спагетти', value: 1500 },
-  { name: 'Шоколад', value: 800 },
-  { name: 'Маслины', value: 500 },
-  { name: 'Зелень', value: 300 },
-];
+// const data = [
+//   { _id: 'Свинина', sum: 5000 },
+//   { _id: 'Говядина', sum: 4500 },
+// ];
 
 const calculateWidth = ({ data, size, idx }) => {
-  const values = data.map(el => el.value);
+  const values = data.map(el => el.sum);
   const maxValue = Math.max(...values);
-  const width = Math.round((size * data[idx].value) / maxValue);
+  const width = Math.round((size * data[idx].sum) / maxValue);
   const itemWidth = width <= size - 30 ? width + 20 : width;
   const barWidth = itemWidth === size ? itemWidth - 20 : itemWidth - 10;
   return [itemWidth, barWidth];
 };
 
-export default function ChartMobile() {
+export default function ChartMobile({ data }) {
   return (
     <>
       <ul className={styles.list}>
@@ -41,11 +33,11 @@ export default function ChartMobile() {
                 width: itemWidth,
                 animationDelay: `${idx * 100}ms`,
               }}
-              key={el.name}
+              key={el._id}
             >
               <div className={styles.labelWrapper}>
-                <p className={styles.label}>{el.name}</p>
-                <p className={styles.label}>{`${el.value} грн`}</p>
+                <p className={styles.label}>{el._id}</p>
+                <p className={styles.label}>{`${el.sum} грн`}</p>
               </div>
               <div
                 className={styles.bar}

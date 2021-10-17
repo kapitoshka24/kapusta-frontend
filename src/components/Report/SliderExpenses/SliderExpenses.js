@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
-import { kapustaOperations } from '../../../redux/operations';
 import SliderExpensesList from './SliderExpensesList';
+import SliderNotification from '../SliderNotification';
+// import Loader from 'react-loader-spinner';
 
 const SliderExpenses = () => {
-  const getExpenses = useSelector(kapustaSelectors.getCategoryExpenses);
-  const dispatch = useDispatch();
-  const [expenses, setExpenses] = useState(getExpenses);
+  const expenses = useSelector(kapustaSelectors.getCategoryExpenses);
 
-  useEffect(() => {
-    dispatch(kapustaOperations.fetchSumCategory());
-  }, [dispatch]);
-  useEffect(() => {
-    setExpenses(getExpenses);
-  }, [getExpenses]);
+  return (
+    <>
+      {expenses && expenses.length > 0 ? (
+        <SliderExpensesList expenses={expenses} />
+      ) : (
+        <SliderNotification category="расходов" />
+      )}
 
-  return expenses ? <SliderExpensesList expenses={expenses} /> : <p>Spiner</p>;
+      {/* {true && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
+          <Loader type="ThreeDots" color="#FF751D" height={50} width={50} />
+        </div>
+      )} */}
+    </>
+  );
 };
 
 export default SliderExpenses;
