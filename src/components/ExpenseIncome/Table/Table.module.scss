@@ -190,3 +190,7 @@ tbody::-webkit-scrollbar-thumb {
     fill: $red;
   }
 }
+
+.disabled-delete {
+  pointer-events: none;
+}

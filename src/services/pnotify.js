@@ -62,3 +62,9 @@ export const enterError = () =>
     text: `Заполните описание и выберите категорию.`,
     ...settings,
   });
+
+export const enterBalance = () =>
+  info({
+    text: `Новое значение баланса должно отличаться от текущего.`,
+    ...settings,
+  });

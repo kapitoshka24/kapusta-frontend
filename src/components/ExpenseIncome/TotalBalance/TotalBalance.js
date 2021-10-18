@@ -6,6 +6,7 @@ import { kapustaOperations } from '../../../redux/operations';
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 import { Link } from 'react-router-dom';
+import { enterBalance } from '../../../services/pnotify';
 
 const TotalBalance = () => {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -41,6 +42,10 @@ const TotalBalance = () => {
   };
   const handleSubmit = async e => {
     e.preventDefault();
+    if (getBalance === balanceValue) {
+      enterBalance();
+      return;
+    }
     await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
     await dispatch(kapustaOperations.fetchAdjustments());
     if (balanceValue === '') {

@@ -1,6 +1,6 @@
 import EllipsisText from 'react-ellipsis-text';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from '../Table/Table.module.scss';
@@ -10,6 +10,7 @@ import { adjustmentsOptions } from '../../../helpers/adjustmentsOptions';
 
 export default function TableAdjustments() {
   const adjustments = useSelector(kapustaSelectors.getAdjustments);
+  const [disabledDelete, setDisabledDelete] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,8 +19,10 @@ export default function TableAdjustments() {
 
   const onDeleteAdjustments = useCallback(
     async id => {
+      setDisabledDelete(true);
       await dispatch(kapustaOperations.deleteAdjustments(id));
       await dispatch(kapustaOperations.fetchTotalBalance());
+      setDisabledDelete(false);
     },
     [dispatch],
   );
@@ -61,7 +64,9 @@ export default function TableAdjustments() {
                 {Number.parseInt(sum, 10)} грн
               </td>
               <td
-                className={styles.icon__bg}
+                className={`${styles.icon__bg} ${
+                  disabledDelete ? styles['disabled-delete'] : ''
+                }`}
                 onClick={() => onDeleteAdjustments(_id)}
               >
                 <Delete className={styles.icon__delete} />
