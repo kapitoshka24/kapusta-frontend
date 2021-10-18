@@ -24,7 +24,7 @@ function MonthlySummary() {
             <span>{total}</span>
           </li>
         ))}
-        {/* <li className={styles.MonthItem}>
+        <li className={styles.MonthItem}>
           <span>НОЯБРЬ</span>
           <span>25 500.00</span>
         </li>
@@ -55,7 +55,7 @@ function MonthlySummary() {
         <li className={styles.MonthItem}>
           <span>АПРЕЛЬ</span>
           <span>18 000.00</span>
-        </li>*/}
+        </li>
       </ul>
     </div>
   );

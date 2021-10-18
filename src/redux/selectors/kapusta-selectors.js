@@ -4,6 +4,7 @@ const getReportYear = state => state.kapusta.reportYear;
 const getReportMonth = state => state.kapusta.reportMonth;
 const getReportYears = state => state.kapusta.reportYears;
 const getMonthlySummary = state => state.kapusta.monthlySummary;
+const getMonthlySummaryIncome = state => state.kapusta.monthlySummaryIncome;
 const getCategoryExpenses = state => state.kapusta.reportSummary.expenses;
 const getCategoryIncome = state => state.kapusta.reportSummary.income;
 const getCategotyDetails = state => state.kapusta.categoryDetails;
@@ -22,6 +23,7 @@ const selectors = {
   getReportMonth,
   getReportYears,
   getMonthlySummary,
+  getMonthlySummaryIncome,
   getCategoryExpenses,
   getCategoryIncome,
   getCategotyDetails,

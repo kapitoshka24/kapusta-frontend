@@ -43,10 +43,24 @@
   line-height: 1.17;
 
   height: 238px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+}
+
+.MonthList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.MonthList::-webkit-scrollbar-track {
+  background-color: $background-grey;
+  border-radius: 100px;
+}
+
+.MonthList::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-clip: content-box;
+  background-color: $background-orange;
 }
 
 .MonthItem {

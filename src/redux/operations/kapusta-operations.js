@@ -3,6 +3,7 @@ import { kapustaActions } from '../actions';
 import getYears from '../../helpers/getYears';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+const currentYear = new Date().getFullYear();
 
 const fetchExpense = () => async dispatch => {
   dispatch(kapustaActions.fetchExpenseRequest());
@@ -158,11 +159,26 @@ const fetchMonthlySummary = () => async dispatch => {
 
   try {
     const response = await axios.get(
-      '/currency-movements/summary-expenses?year=2021',
+      `/currency-movements/summary-expenses?year=${currentYear}`,
     );
     dispatch(kapustaActions.fetchMonthlySummarySuccess(response.data.result));
   } catch (error) {
     dispatch(kapustaActions.fetchMonthlySummaryError(error));
+  }
+};
+
+const fetchMonthlySummaryIncome = () => async dispatch => {
+  dispatch(kapustaActions.fetchMonthlySummaryIncomeRequest());
+
+  try {
+    const response = await axios.get(
+      `/currency-movements/summary-income?year=${currentYear}`,
+    );
+    dispatch(
+      kapustaActions.fetchMonthlySummaryIncomeSuccess(response.data.result),
+    );
+  } catch (error) {
+    dispatch(kapustaActions.fetchMonthlySummaryIncomeError(error));
   }
 };
 
@@ -280,6 +296,7 @@ const operations = {
   calculateAvailableYears,
   fetchSumCategory,
   fetchMonthlySummary,
+  fetchMonthlySummaryIncome,
   fetchCategoryDetails,
   fetchCategoryesChartData,
   fetchCategoryExpensesDetails,
