@@ -16,7 +16,9 @@ const SliderIncomeList = ({ income }) => {
 
   const handleIncomeClick = e => {
     const category = e.currentTarget.dataset.value;
-    dispatch(kapustaOperations.fetchCategoryDetails(month + 1, year, category));
+    dispatch(
+      kapustaOperations.fetchCategoryIncomeDetails(month + 1, year, category),
+    );
   };
   return (
     <ul className={styles.incomeList}>

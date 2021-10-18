@@ -25,7 +25,9 @@ const SliderExpensesList = ({ expenses }) => {
 
   const handleExpensesClick = e => {
     const category = e.currentTarget.dataset.value;
-    dispatch(kapustaOperations.fetchCategoryDetails(month + 1, year, category));
+    dispatch(
+      kapustaOperations.fetchCategoryExpensesDetails(month + 1, year, category),
+    );
   };
   return (
     <ul className={styles.expensesList}>
@@ -38,7 +40,7 @@ const SliderExpensesList = ({ expenses }) => {
             data-value={_id}
           >
             <p className={styles.amount}>{total.toFixed(2)}</p>
-            <div className={styles.iconContainer}>
+            <div tabIndex="0" className={styles.iconContainer}>
               <svg className={styles.icon}>
                 <use href={`${sprite}#${_id}`}></use>
               </svg>

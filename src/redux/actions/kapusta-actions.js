@@ -64,6 +64,24 @@ const actions = {
   deleteAdjustmentsRequest: createAction('kapusta/deleteAdjustmentsRequest'),
   deleteAdjustmentsSuccess: createAction('kapusta/deleteAdjustmentsSuccess'),
   deleteAdjustmentsError: createAction('kapusta/deleteAdjustmentsError'),
+
+  fetchExpensesChartDataRequest: createAction(
+    'kapusta/fetchExpensesChartDataRequest',
+  ),
+  fetchExpensesChartDataSuccess: createAction(
+    'kapusta/fetchExpensesChartDataSuccess',
+  ),
+  fetchExpensesChartDataError: createAction(
+    'kapusta/fetchExpensesChartDataError',
+  ),
+
+  fetchIncomeChartDataRequest: createAction(
+    'kapusta/fetchIncomeChartDataRequest',
+  ),
+  fetchIncomeChartDataSuccess: createAction(
+    'kapusta/fetchIncomeChartDataSuccess',
+  ),
+  fetchIncomeChartDataError: createAction('kapusta/fetchIncomeChartDataError'),
 };
 
 export default actions;
