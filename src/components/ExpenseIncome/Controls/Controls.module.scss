@@ -14,7 +14,7 @@
 }
 
 .controls__container {
-  padding: 28px 0 48px 0;
+  padding: 0 0 48px 0;
 
   @include to(tablet) {
     position: absolute;
@@ -39,14 +39,14 @@
   @include from(desktop) {
     display: flex;
     align-items: center;
-    padding: 33px 0 59px 0;
+    padding: 0 0 59px 0;
   }
 }
 
 .date__container {
   @include from-to(tablet, desktop) {
     position: absolute;
-    top: 40px;
+    top: 12px;
     left: 0;
   }
 }

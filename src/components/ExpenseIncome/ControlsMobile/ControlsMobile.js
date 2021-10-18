@@ -45,7 +45,7 @@ export default function ControlsMobile({ closeControls }) {
   }, []);
 
   const handleSubmit = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
 
       const data = {
@@ -55,7 +55,8 @@ export default function ControlsMobile({ closeControls }) {
         category,
       };
 
-      dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.fetchTotalBalance());
       e.target.reset();
       resetForm();
     },
