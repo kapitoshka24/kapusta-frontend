@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { kapustaActions } from '../actions';
 import getYears from '../../helpers/getYears';
+import { enterError } from '../../services/pnotify';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 
@@ -23,6 +24,7 @@ const addExpense = expense => async dispatch => {
     dispatch(kapustaActions.addExpenseSuccess(data.data.createdLine));
   } catch (error) {
     dispatch(kapustaActions.addExpenseError(error.message));
+    enterError();
   }
 };
 
@@ -56,6 +58,7 @@ const addIncome = income => async dispatch => {
     dispatch(kapustaActions.addIncomeSuccess(data.data.createdLine));
   } catch (error) {
     dispatch(kapustaActions.addIncomeError(error.message));
+    enterError();
   }
 };
 

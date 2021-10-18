@@ -8,6 +8,7 @@ import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+import { enterError } from '../../../services/pnotify';
 
 const options = [
   { value: 'salary', label: 'ЗП' },
@@ -47,8 +48,14 @@ export default function ControlsMobile({ closeControls, propDate }) {
         category,
       };
 
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
+
       await dispatch(kapustaOperations.addIncome(data));
       await dispatch(kapustaOperations.fetchTotalBalance());
+
       e.target.reset();
       resetForm();
     },
