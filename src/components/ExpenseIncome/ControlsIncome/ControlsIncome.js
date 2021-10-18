@@ -20,6 +20,7 @@ export default function ControlsIncome() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = income;
 
@@ -39,7 +40,7 @@ export default function ControlsIncome() {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date,
         name,
         sum,
         category,
@@ -49,7 +50,7 @@ export default function ControlsIncome() {
       await dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, date],
   );
 
   const handleReset = () => {
@@ -65,7 +66,7 @@ export default function ControlsIncome() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.date__container}>
-        {width >= 768 && <DateComponent />}
+        {width >= 768 && <DateComponent setDate={setDate} />}
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>

@@ -29,6 +29,7 @@ export default function Controls() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = expense;
 
@@ -46,19 +47,18 @@ export default function Controls() {
   const handleSubmit = useCallback(
     async e => {
       e.preventDefault();
-
       const data = {
-        date: new Date(),
+        date,
         name,
         sum,
         category,
       };
-
+      
       await dispatch(kapustaOperations.addExpense(data));
       await dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, date],
   );
 
   const handleReset = () => {
@@ -74,7 +74,7 @@ export default function Controls() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.date__container}>
-        {width >= 768 && <DateComponent />}
+        {width >= 768 && <DateComponent setDate={setDate} />}
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
