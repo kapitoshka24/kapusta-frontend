@@ -146,14 +146,26 @@ const calculateAvailableYears = () => async dispatch => {
 const fetchSumCategory = (month, year) => async dispatch => {
   dispatch(kapustaActions.getSumCategoryRequest());
   const correctMonth = month < 10 ? '0'.concat(month) : month;
-  console.log(month, year);
-
   try {
     const { data } = await axios.get(
       `/currency-movements/sum-category?date=${correctMonth}/${year}`,
     );
-
-    dispatch(kapustaActions.getSumCategorySuccess(data));
+    if (
+      (data.summary || data.summary === 0) &&
+      (data.totalIncome || data.totalIncome === 0) &&
+      (data.totalExpenses || data.totalExpenses === 0)
+    ) {
+      dispatch(kapustaActions.getSumCategorySuccess(data));
+    } else {
+      dispatch(
+        kapustaActions.getSumCategorySuccess({
+          ...data,
+          summary: 0,
+          totalIncome: 0,
+          totalExpenses: 0,
+        }),
+      );
+    }
   } catch (error) {
     console.log(error.message);
     dispatch(kapustaActions.getSumCategoryError(error));
@@ -184,14 +196,14 @@ const fetchCategoryesChartData = (month, year) => async dispatch => {
       `/currency-movements/sum-category?date=${correctMonth}/${year}`,
     );
 
-    const expenses = data.summary.expenses
+    const expenses = data?.summary?.expenses
       .map(data => ({
         _id: expenseOptions[data._id],
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
 
-    const income = data.summary.income
+    const income = data?.summary?.income
       .map(data => ({
         _id: incomeOptions[data._id],
         sum: data.total,

@@ -12,7 +12,8 @@ import styles from './Header.module.scss';
 
 export default function Header() {
   const loggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const user = useSelector(authSelectors.getUsername);
+  const userName = useSelector(authSelectors.getUsername);
+  const userPicture = useSelector(authSelectors.getUserPicture);
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = e => {
@@ -35,7 +36,7 @@ export default function Header() {
             {loggedIn && (
               <div className={styles.user__menu}>
                 <img
-                  src={defaultAvatar}
+                  src={userPicture ? userPicture : defaultAvatar}
                   alt="user avatar"
                   className={styles.user__avatar}
                 />
@@ -43,7 +44,7 @@ export default function Header() {
                 <button onClick={toggleModal} className={styles.logout__mobile}>
                   <Logout />
                 </button>
-                <span className={styles.user__name}>{user}</span>
+                <span className={styles.user__name}>{userName}</span>
                 <a href="/" onClick={toggleModal} className={styles.logout}>
                   Выйти
                 </a>
