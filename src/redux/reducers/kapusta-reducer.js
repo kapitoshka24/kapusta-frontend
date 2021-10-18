@@ -82,11 +82,18 @@ const income = createReducer([], {
     state.filter(({ _id }) => _id !== payload),
 });
 
+const adjustments = createReducer([], {
+  [kapustaActions.fetchAdjustmentsSuccess]: (_, { payload }) => payload,
+  [kapustaActions.deleteAdjustmentsSuccess]: (state, { payload }) =>
+    state.filter(({ _id }) => _id !== payload),
+});
+
 export default combineReducers({
   loading,
   totalBalance,
   expense,
   income,
+  adjustments,
   reportYear,
   reportMonth,
   reportYears,

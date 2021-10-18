@@ -1,6 +1,6 @@
 import useWindowDementions from '../../../helpers/useWindowDementions';
-import ChartMobile from './ChartMobile';
-import ChartOptional from './ChartOptional';
+import ChartMobile from '../../Report/Chart/ChartMobile';
+import ChartOptional from '../../Report/Chart/ChartOptional';
 import styles from './Chart.module.scss';
 import { useSelector } from 'react-redux';
 import kapustaSelectors from '../../../redux/selectors/kapusta-selectors';

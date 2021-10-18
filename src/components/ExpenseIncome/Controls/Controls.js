@@ -45,7 +45,7 @@ export default function Controls() {
   }, []);
 
   const handleSubmit = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
       const data = {
         date,
@@ -53,7 +53,9 @@ export default function Controls() {
         sum,
         category,
       };
-      dispatch(kapustaOperations.addExpense(data));
+      
+      await dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
     [dispatch, name, sum, category, date],
