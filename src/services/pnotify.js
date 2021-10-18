@@ -1,4 +1,4 @@
-import { defaults, error, success } from '@pnotify/core';
+import { defaults, error, success, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/Material.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -46,5 +46,11 @@ export const loginError = () =>
 export const logoutSuccess = () =>
   success({
     text: 'Вы успешно вышли.',
+    ...settings,
+  });
+
+export const enterError = () =>
+  info({
+    text: `Заполните описание и выберите категорию.`,
     ...settings,
   });

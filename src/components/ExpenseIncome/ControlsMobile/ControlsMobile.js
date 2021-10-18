@@ -8,10 +8,13 @@ import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+
 import {
   inputChangeHandler,
   inputBlurHandler,
 } from '../../../helpers/priceInputParser';
+
+import { enterError } from '../../../services/pnotify';
 
 const options = [
   { value: 'transport', label: 'Транспорт' },
@@ -27,7 +30,7 @@ const options = [
   { value: 'other', label: 'Прочее' },
 ];
 
-export default function ControlsMobile({ closeControls }) {
+export default function ControlsMobile({ closeControls, propDate }) {
   const [expense, setExpense] = useState({
     name: '',
     sum: '',
@@ -67,18 +70,24 @@ export default function ControlsMobile({ closeControls }) {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date: propDate,
         name,
         sum,
         category,
       };
 
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
+
       dispatch(kapustaOperations.addExpense(data));
       dispatch(kapustaOperations.fetchTotalBalance());
+
       e.target.reset();
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, propDate],
   );
 
   const handleReset = () => {

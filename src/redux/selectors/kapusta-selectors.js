@@ -12,6 +12,8 @@ const getIncome = state => state.kapusta.income;
 const getTotalExpenses = state => state.kapusta.totalExpenses;
 const getTotalIncome = state => state.kapusta.totalIncome;
 const getAdjustments = state => state.kapusta.adjustments;
+const getIncomeChartData = state => state.kapusta.incomeChartData;
+const getExpensesChartData = state => state.kapusta.expensesChartData;
 
 const selectors = {
   getTotalBalance,
@@ -28,6 +30,8 @@ const selectors = {
   getTotalExpenses,
   getTotalIncome,
   getAdjustments,
+  getIncomeChartData,
+  getExpensesChartData,
 };
 
 export default selectors;

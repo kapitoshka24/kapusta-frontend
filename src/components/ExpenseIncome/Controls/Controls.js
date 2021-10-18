@@ -7,6 +7,7 @@ import styles from './Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+import { enterError } from '../../../services/pnotify';
 
 import {
   inputChangeHandler,
@@ -34,6 +35,7 @@ export default function Controls() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = expense;
 
@@ -73,19 +75,23 @@ export default function Controls() {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-
       const data = {
-        date: new Date(),
+        date,
         name,
         sum,
         category,
       };
 
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
+
       dispatch(kapustaOperations.addExpense(data));
       dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, date],
   );
 
   const handleReset = () => {
@@ -101,7 +107,7 @@ export default function Controls() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.date__container}>
-        {width >= 768 && <DateComponent />}
+        {width >= 768 && <DateComponent setDate={setDate} />}
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
