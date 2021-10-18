@@ -20,7 +20,6 @@ export default function ControlsMobile({ closeControls, propDate }) {
     name: '',
     sum: '',
   });
-  console.log(propDate);
   const [category, setCategory] = useState({ category: '' });
   // const [date, setDate] = useState({ date: '' });
 
@@ -58,8 +57,9 @@ export default function ControlsMobile({ closeControls, propDate }) {
 
       e.target.reset();
       resetForm();
+      closeControls();
     },
-    [dispatch, name, sum, category, propDate],
+    [dispatch, name, sum, category, propDate, closeControls],
   );
 
   const handleReset = () => {
