@@ -70,6 +70,28 @@ const deleteIncome = id => async dispatch => {
   }
 };
 
+const fetchAdjustments = () => async dispatch => {
+  dispatch(kapustaActions.fetchAdjustmentsRequest());
+
+  try {
+    const { data } = await axios.get('/currency-movements/adjustments');
+    dispatch(kapustaActions.fetchAdjustmentsSuccess(data.data.adjustments));
+  } catch (error) {
+    dispatch(kapustaActions.fetchAdjustmentsError(error.message));
+  }
+};
+
+const deleteAdjustments = id => async dispatch => {
+  dispatch(kapustaActions.deleteAdjustmentsRequest());
+
+  try {
+    await axios.delete(`/currency-movements/${id}`);
+    dispatch(kapustaActions.deleteAdjustmentsSuccess(id));
+  } catch (error) {
+    dispatch(kapustaActions.deleteAdjustmentsError);
+  }
+};
+
 const fetchTotalBalance = () => async dispatch => {
   dispatch(kapustaActions.totalBalanceRequest());
   try {
@@ -125,7 +147,7 @@ const fetchSumCategory = (month, year) => async dispatch => {
       `/currency-movements/sum-category?date=${correctMonth}/${year}`,
     );
 
-    dispatch(kapustaActions.getSumCategorySuccess(data.summary));
+    dispatch(kapustaActions.getSumCategorySuccess(data));
   } catch (error) {
     dispatch(kapustaActions.getSumCategoryError(error));
   }
@@ -165,6 +187,8 @@ const operations = {
   fetchIncome,
   addIncome,
   deleteIncome,
+  fetchAdjustments,
+  deleteAdjustments,
   fetchTotalBalance,
   addTotalBalance,
   calculateAvailableYears,

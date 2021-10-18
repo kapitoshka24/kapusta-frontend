@@ -5,6 +5,10 @@ const actions = {
   registerSuccess: createAction('auth/registerSuccess'),
   registerError: createAction('auth/registerError'),
 
+  registerGoogleRequest: createAction('auth/registerGoogleRequest'),
+  registerGoogleSuccess: createAction('auth/registerGoogleSuccess'),
+  registerGoogleError: createAction('auth/registerGoogleError'),
+
   loginRequest: createAction('auth/loginRequest'),
   loginSuccess: createAction('auth/loginSuccess'),
   loginError: createAction('auth/loginError'),

@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
 import SliderIncomeList from './SliderIncomeList';
 import SliderNotification from '../SliderNotification';
-// import Loader from 'react-loader-spinner';
 
 const SliderIncome = () => {
   const income = useSelector(kapustaSelectors.getCategoryIncome);

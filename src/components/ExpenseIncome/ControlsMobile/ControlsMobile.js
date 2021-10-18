@@ -45,7 +45,7 @@ export default function ControlsMobile({ closeControls }) {
   }, []);
 
   const handleSubmit = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
 
       const data = {
@@ -55,7 +55,8 @@ export default function ControlsMobile({ closeControls }) {
         category,
       };
 
-      dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.fetchTotalBalance());
       e.target.reset();
       resetForm();
     },
@@ -68,7 +69,6 @@ export default function ControlsMobile({ closeControls }) {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const handleBackdropClick = e => {

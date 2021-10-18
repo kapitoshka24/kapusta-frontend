@@ -52,6 +52,18 @@ const actions = {
   deleteIncomeRequest: createAction('kapusta/deleteIncomeRequest'),
   deleteIncomeSuccess: createAction('kapusta/deleteIncomeSuccess'),
   deleteIncomeError: createAction('kapusta/deleteIncomeError'),
+
+  fetchAdjustmentsRequest: createAction('kapusta/fetchAdjustmentsRequest'),
+  fetchAdjustmentsSuccess: createAction('kapusta/fetchAdjustmentsSuccess'),
+  fetchAdjustmentsError: createAction('kapusta/fetchAdjustmentsError'),
+
+  addAdjustmentsRequest: createAction('kapusta/addAdjustmentsRequest'),
+  addAdjustmentsSuccess: createAction('kapusta/addAdjustmentsSuccess'),
+  addAdjustmentsError: createAction('kapusta/addAdjustmentsError'),
+
+  deleteAdjustmentsRequest: createAction('kapusta/deleteAdjustmentsRequest'),
+  deleteAdjustmentsSuccess: createAction('kapusta/deleteAdjustmentsSuccess'),
+  deleteAdjustmentsError: createAction('kapusta/deleteAdjustmentsError'),
 };
 
 export default actions;
