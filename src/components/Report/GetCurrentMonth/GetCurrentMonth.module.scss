@@ -16,7 +16,6 @@
   align-items: center;
   justify-content: space-between;
   width: 158px;
-  cursor: pointer;
 }
 .PeriodTitle {
   font-family: 'Roboto', sans-serif;
@@ -38,6 +37,7 @@
   font-size: 14px;
   line-height: 1.17;
   color: $black;
+  cursor: pointer;
 
   margin: 0;
 }

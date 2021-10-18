@@ -26,12 +26,11 @@ export default function DateComponent({ setDate }) {
   useEffect(() => {
     setDate(
       `${
-        startDate.getMonth() +
-        1 +
-        '.' +
-        startDate.getDate() +
-        '.' +
-        startDate.getFullYear()
+        startDate.getFullYear() +
+        '-' +
+        ('0' + (startDate.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + startDate.getDate()).slice(-2)
       }`,
     );
   }, [startDate, setDate]);
@@ -49,7 +48,7 @@ export default function DateComponent({ setDate }) {
         maxDate={new Date()}
         selected={startDate}
         onChange={date => setStartDate(date)}
-        dateFormat="dd/MM/yyyy"
+        dateFormat="dd.MM.yyyy"
       />
     </>
   );
