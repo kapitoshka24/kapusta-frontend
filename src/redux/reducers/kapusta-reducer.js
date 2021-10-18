@@ -53,6 +53,11 @@ const monthlySummary = createReducer([], {
   [kapustaActions.fetchMonthlySummarySuccess]: (_, { payload }) => payload,
 });
 
+const monthlySummaryIncome = createReducer([], {
+  [kapustaActions.fetchMonthlySummaryIncomeSuccess]: (_, { payload }) =>
+    payload,
+});
+
 const error = createReducer(null, {
   [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) =>
     console.log(payload),
@@ -108,6 +113,7 @@ export default combineReducers({
   reportYears,
   reportSummary,
   monthlySummary,
+  monthlySummaryIncome,
   error,
   categoryDetails,
   totalIncome,

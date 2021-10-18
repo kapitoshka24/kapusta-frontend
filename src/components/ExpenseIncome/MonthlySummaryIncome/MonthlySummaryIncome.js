@@ -1,18 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './MonthlySummary.module.scss';
+import styles from '../MonthlySummary/MonthlySummary.module.scss';
 import { kapustaSelectors } from '../../../redux/selectors/';
 import { kapustaOperations } from '../../../redux/operations/';
 
 function MonthlySummary() {
   const dispatch = useDispatch();
-  const list = useSelector(kapustaSelectors.getMonthlySummary);
+  const list = useSelector(kapustaSelectors.getMonthlySummaryIncome);
 
-  const onFetchMonthlySummary = useCallback(
-    () => dispatch(kapustaOperations.fetchMonthlySummary()),
+  const onFetchMonthlySummaryIncome = useCallback(
+    () => dispatch(kapustaOperations.fetchMonthlySummaryIncome()),
     [dispatch],
   );
-  useEffect(() => onFetchMonthlySummary(), [onFetchMonthlySummary]);
+  useEffect(() => onFetchMonthlySummaryIncome(), [onFetchMonthlySummaryIncome]);
 
   return (
     <div className={styles.SummaryWidget}>
