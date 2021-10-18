@@ -69,6 +69,12 @@
   height: 56px;
   max-width: 56px;
   border-radius: 20px;
+  &:hover,
+  &:focus {
+    fill: $background-orange;
+    background-color: $diagram-light;
+    cursor: pointer;
+  }
 
   &::after {
     z-index: -1;
@@ -84,10 +90,6 @@
   }
 }
 
-.iconContainer:hover::after {
-  background-color: $diagram-light;
-}
-
 .icon {
   height: 100%;
   width: 100%;
@@ -96,7 +98,6 @@
   &:hover,
   &:focus {
     fill: $background-orange;
-    cursor: pointer;
   }
 }
 

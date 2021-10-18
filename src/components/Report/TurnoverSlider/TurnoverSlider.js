@@ -46,7 +46,6 @@ class TurnoverSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       asNavFor: '.slider__big',
-      // adaptiveHeight: true,
     };
     const settingsBig = {
       infinite: true,
@@ -56,6 +55,7 @@ class TurnoverSlider extends Component {
       arrows: false,
       asNavFor: '.slider',
       centerPadding: '3px',
+
       // adaptiveHeight: true,
     };
 
@@ -92,19 +92,21 @@ class TurnoverSlider extends Component {
             </div>
           </Slider>
         </div>
-        <Slider
-          {...settingsBig}
-          className={styles.slider__big}
-          asNavFor={this.state.nav2}
-          ref={slider => (this.slider3 = slider)}
-        >
-          <div className={styles.slider_big__item}>
-            <Chart data={expensesChartData} />
-          </div>
-          <div className={styles.slider_big__item}>
-            <Chart data={incomeChartData} />
-          </div>
-        </Slider>
+        <div className={styles.sliderContainerBottom}>
+          <Slider
+            {...settingsBig}
+            className={styles.slider__big}
+            asNavFor={this.state.nav2}
+            ref={slider => (this.slider3 = slider)}
+          >
+            <div className={styles.slider_big__item}>
+              <Chart data={expensesChartData} />
+            </div>
+            <div className={styles.slider_big__item}>
+              <Chart data={incomeChartData} />
+            </div>
+          </Slider>
+        </div>
       </>
     );
   }

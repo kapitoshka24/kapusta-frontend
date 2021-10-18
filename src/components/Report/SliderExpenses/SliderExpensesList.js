@@ -40,7 +40,7 @@ const SliderExpensesList = ({ expenses }) => {
             data-value={_id}
           >
             <p className={styles.amount}>{total.toFixed(2)}</p>
-            <div className={styles.iconContainer}>
+            <div tabIndex="0" className={styles.iconContainer}>
               <svg className={styles.icon}>
                 <use href={`${sprite}#${_id}`}></use>
               </svg>
