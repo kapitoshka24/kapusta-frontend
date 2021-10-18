@@ -7,6 +7,7 @@ import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+import { enterError } from '../../../services/pnotify';
 
 const options = [
   { value: 'salary', label: 'ЗП' },
@@ -44,6 +45,11 @@ export default function ControlsIncome() {
         sum,
         category,
       };
+
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
 
       dispatch(kapustaOperations.addIncome(data));
       resetForm();

@@ -48,3 +48,9 @@ export const logoutSuccess = () =>
     text: 'Вы успешно вышли.',
     ...settings,
   });
+
+export const enterError = () =>
+  error({
+    text: `Все поля обязательны и должы быть заполнены`,
+    ...settings,
+  });
