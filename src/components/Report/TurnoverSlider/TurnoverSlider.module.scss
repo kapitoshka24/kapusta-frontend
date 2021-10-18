@@ -95,3 +95,25 @@
   width: 100%;
   margin: 0 auto;
 }
+.sliderContainerBottom {
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+
+  @include from(tablet) {
+    width: 666px;
+
+    margin-top: 30px;
+    margin-bottom: 40px;
+    // padding-top: 25px;
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+
+    background: $white;
+  }
+
+  @include from(desktop) {
+    width: 1060px;
+  }
+}

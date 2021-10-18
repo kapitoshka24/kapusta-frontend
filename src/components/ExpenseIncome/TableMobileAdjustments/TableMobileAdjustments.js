@@ -3,22 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useCallback } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
-import styles from './TableMobile.module.scss';
+import styles from '../TableMobile/TableMobile.module.scss';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-import { expenseOptions } from '../../../helpers/expenseOptions';
+import { adjustmentsOptions } from '../../../helpers/adjustmentsOptions';
 
 export default function TableMobile() {
-  const expense = useSelector(kapustaSelectors.getExpense);
+  const adjustments = useSelector(kapustaSelectors.getAdjustments);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(kapustaOperations.fetchExpense());
+    dispatch(kapustaOperations.fetchAdjustments());
   }, [dispatch]);
 
-  const onDeleteExpense = useCallback(
+  const onDeleteAdjustments = useCallback(
     async id => {
-      await dispatch(kapustaOperations.deleteExpense(id));
+      await dispatch(kapustaOperations.deleteAdjustments(id));
       await dispatch(kapustaOperations.fetchTotalBalance());
     },
     [dispatch],
@@ -34,7 +34,7 @@ export default function TableMobile() {
 
   return (
     <ul className={styles.list}>
-      {expense.map(({ date, name, sum, category, _id }) => (
+      {adjustments.map(({ date, name, sum, category, _id }) => (
         <li className={styles.item} key={_id}>
           <div className={styles.expense__thumb}>
             <p className={styles.name}>
@@ -43,16 +43,20 @@ export default function TableMobile() {
 
             <div className={styles.date__thumb}>
               <span className={styles.date}>{convertDate(date)}</span>
-              <p className={styles.category}>{expenseOptions[category]}</p>
+              <p className={styles.category}>{adjustmentsOptions[category]}</p>
             </div>
           </div>
 
           <div className={styles.sum__thumb}>
-            <span className={styles.sumNegative}>- {sum} грн.</span>
+            <span
+              className={sum >= 0 ? styles.sumPositive : styles.sumNegative}
+            >
+              {Number.parseInt(sum, 10)} грн.
+            </span>
             <div className={styles.icon__thumb}>
               <Delete
                 className={styles.icon__delete}
-                onClick={() => onDeleteExpense(_id)}
+                onClick={() => onDeleteAdjustments(_id)}
               />
             </div>
           </div>

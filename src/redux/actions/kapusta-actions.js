@@ -27,6 +27,7 @@ const actions = {
   incrementReportMonth: createAction('kapusta/incrementReportMonth'),
   decrementReportMonth: createAction('kapusta/decrementReportMonth'),
   changeReportYears: createAction('kapusta/changeReportYears'),
+  fetchCategoryDetails: createAction('kapusta/fetchCategoryDetails'),
 
   fetchExpenseRequest: createAction('kapusta/fetchExpenseRequest'),
   fetchExpenseSuccess: createAction('kapusta/fetchExpenseSuccess'),
@@ -51,6 +52,36 @@ const actions = {
   deleteIncomeRequest: createAction('kapusta/deleteIncomeRequest'),
   deleteIncomeSuccess: createAction('kapusta/deleteIncomeSuccess'),
   deleteIncomeError: createAction('kapusta/deleteIncomeError'),
+
+  fetchAdjustmentsRequest: createAction('kapusta/fetchAdjustmentsRequest'),
+  fetchAdjustmentsSuccess: createAction('kapusta/fetchAdjustmentsSuccess'),
+  fetchAdjustmentsError: createAction('kapusta/fetchAdjustmentsError'),
+
+  addAdjustmentsRequest: createAction('kapusta/addAdjustmentsRequest'),
+  addAdjustmentsSuccess: createAction('kapusta/addAdjustmentsSuccess'),
+  addAdjustmentsError: createAction('kapusta/addAdjustmentsError'),
+
+  deleteAdjustmentsRequest: createAction('kapusta/deleteAdjustmentsRequest'),
+  deleteAdjustmentsSuccess: createAction('kapusta/deleteAdjustmentsSuccess'),
+  deleteAdjustmentsError: createAction('kapusta/deleteAdjustmentsError'),
+
+  fetchExpensesChartDataRequest: createAction(
+    'kapusta/fetchExpensesChartDataRequest',
+  ),
+  fetchExpensesChartDataSuccess: createAction(
+    'kapusta/fetchExpensesChartDataSuccess',
+  ),
+  fetchExpensesChartDataError: createAction(
+    'kapusta/fetchExpensesChartDataError',
+  ),
+
+  fetchIncomeChartDataRequest: createAction(
+    'kapusta/fetchIncomeChartDataRequest',
+  ),
+  fetchIncomeChartDataSuccess: createAction(
+    'kapusta/fetchIncomeChartDataSuccess',
+  ),
+  fetchIncomeChartDataError: createAction('kapusta/fetchIncomeChartDataError'),
 };
 
 export default actions;

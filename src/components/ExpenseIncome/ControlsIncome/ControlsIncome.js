@@ -21,6 +21,7 @@ export default function ControlsIncome() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = income;
 
@@ -36,11 +37,11 @@ export default function ControlsIncome() {
   }, []);
 
   const handleSubmit = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date,
         name,
         sum,
         category,
@@ -51,10 +52,11 @@ export default function ControlsIncome() {
         return;
       }
 
-      dispatch(kapustaOperations.addIncome(data));
+      await dispatch(kapustaOperations.addIncome(data));
+      await dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, date],
   );
 
   const handleReset = () => {
@@ -63,7 +65,6 @@ export default function ControlsIncome() {
 
   const resetForm = () => {
     setIncome({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const { width } = useWindowDementions();
@@ -71,7 +72,7 @@ export default function ControlsIncome() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.date__container}>
-        {width >= 768 && <DateComponent />}
+        {width >= 768 && <DateComponent setDate={setDate} />}
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>

@@ -1,55 +1,6 @@
 @import './utils/mixins';
 @import './utils/variables';
 
-// .loggedInBg {
-//   background-repeat: no-repeat;
-
-//   @include to(tablet) {
-//     height: 100vh;
-//   }
-
-//   @include from-to(tablet, desktop) {
-//     min-height: 1000px;
-
-//     background-image: url('../images/desktop/kapusta-down-desktop.svg');
-//     background-position: right 88px bottom 64px;
-//   }
-
-//   @include from(desktop) {
-//     min-height: 100vh;
-
-//     background-image: url('../images/desktop/kapusta-top-desktop.svg');
-
-//     background-repeat: repeat-x;
-//     background-position: bottom -38px left 0;
-//     padding-bottom: 83px;
-//   }
-// }
-
-// .loggedOutBg {
-//   background-repeat: no-repeat;
-
-//   @include to(tablet) {
-//     height: 870px;
-
-//     background-image: url('../images/mobile/kapusta-down-mobile.svg');
-//     background-position: left 35px bottom 0px;
-//   }
-
-//   @include from(tablet) {
-//     min-height: 1000px;
-
-//     background-image: url('../images/desktop/kapusta-down-desktop.svg');
-//     background-position: 103px 826px;
-//   }
-
-//   @include from(desktop) {
-//     min-height: 850px;
-
-//     background-position: 230px 658px;
-//   }
-// }
-
 .container {
   position: absolute;
   top: 35%;

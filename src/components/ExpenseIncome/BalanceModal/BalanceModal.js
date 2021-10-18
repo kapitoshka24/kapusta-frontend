@@ -7,6 +7,9 @@ const BalanceModal = ({ closeModal }) => {
 
   useEffect(() => {
     const handleCloseModal = e => {
+      if (!modalContainer.current) {
+        return;
+      }
       if (modalContainer.current.contains(e.target)) {
         return;
       }

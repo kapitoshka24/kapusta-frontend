@@ -1,49 +1,51 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Switch } from 'react-router';
 import PublicRoute from './components/PublicRoute';
 import PrivateRoute from './components/PrivateRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from './redux/operations';
 import NotFound from './pages/NotFoundPage';
 import Loader from './components/Loader/';
-// import { useState } from 'react';
+import Header from './components/Header';
+import { authSelectors } from './redux/selectors';
+import appStyles from './styles/AppCommon.module.scss';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const ExpenceIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
+const ExpenseIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
 const ReportPage = lazy(() => import('./pages/ReportPage'));
 
 export default function App() {
-  // const [location, setLocation] = useState('/');
-  // const [redirectTo, setRedirectTo] = useState(false);
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isFetching = useSelector(authSelectors.getIsFetching);
+  const [inProgress, setInProgress] = useState(true);
   useEffect(() => {
-    dispatch(authOperations.getCurrentUser());
-
-    // setLocation(localStorage.getItem('pathname'));
-
-    // if (location) setRedirectTo(true);
+    const getCurrentUser = async () => {
+      dispatch(await authOperations.getCurrentUser());
+      setInProgress(false);
+    };
+    getCurrentUser();
   }, [dispatch]);
 
-  // if (redirectTo) {
-  //   console.log(location);
-  //   return <Redirect to={location} />;
-  // }
+  if (inProgress || isFetching) {
+    return <Loader />;
+  }
 
   return (
-    <>
+    <div className={isLoggedIn ? appStyles.loggedInBg : appStyles.loggedOutBg}>
+      <Header />
       <Suspense fallback={<Loader />}>
         <Switch>
           <PrivateRoute exact path="/" redirectTo="/login" />
           <PublicRoute path="/login" restricted redirectTo="/main-page">
             <LoginPage />
           </PublicRoute>
-          <PublicRoute path="/register" restricted>
+          <PublicRoute path="/register" restricted redirectTo="/main-page">
             <RegisterPage />
           </PublicRoute>
           <PrivateRoute path="/main-page" restricted redirectTo="/login">
-            <ExpenceIncomePage />
+            <ExpenseIncomePage />
           </PrivateRoute>
           <PrivateRoute path="/report-page" restricted redirectTo="/login">
             <ReportPage />
@@ -53,6 +55,6 @@ export default function App() {
           </PublicRoute>
         </Switch>
       </Suspense>
-    </>
+    </div>
   );
 }

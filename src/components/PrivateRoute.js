@@ -8,7 +8,11 @@ export default function PrivateRoute({ redirectTo, children, ...routeProps }) {
 
   return (
     <Route {...routeProps}>
-      {isLoggedIn ? children : <Redirect to={redirectTo} />}
+      {isLoggedIn && routeProps.restricted ? (
+        children
+      ) : (
+        <Redirect to={redirectTo} />
+      )}
     </Route>
   );
 }
