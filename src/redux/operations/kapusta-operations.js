@@ -6,6 +6,7 @@ import { expenseOptions } from '../../helpers/expenseOptions';
 import { incomeOptions } from '../../helpers/incomeOptions';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+const currentYear = new Date().getFullYear();
 
 const fetchExpense = () => async dispatch => {
   dispatch(kapustaActions.fetchExpenseRequest());
@@ -177,11 +178,40 @@ const fetchMonthlySummary = () => async dispatch => {
 
   try {
     const response = await axios.get(
-      '/currency-movements/summary-expenses?year=2021',
+      `/currency-movements/summary-expenses?year=${currentYear}`,
     );
     dispatch(kapustaActions.fetchMonthlySummarySuccess(response.data.result));
   } catch (error) {
     dispatch(kapustaActions.fetchMonthlySummaryError(error));
+  }
+};
+
+const fetchMonthlySummaryIncome = () => async dispatch => {
+  dispatch(kapustaActions.fetchMonthlySummaryIncomeRequest());
+
+  try {
+    const response = await axios.get(
+      `/currency-movements/summary-income?year=${currentYear}`,
+    );
+    dispatch(
+      kapustaActions.fetchMonthlySummaryIncomeSuccess(response.data.result),
+    );
+  } catch (error) {
+    dispatch(kapustaActions.fetchMonthlySummaryIncomeError(error));
+  }
+};
+
+const fetchCategoryDetails = (month, year, category) => async dispatch => {
+  const correctMonth = month < 10 ? '0'.concat(month) : month;
+
+  try {
+    const { data } = await axios.get(
+      `/currency-movements/detailed-categories?date=${correctMonth}/${year}&category=${category}`,
+    );
+    const sortedData = data.response.sort((a, b) => (a.sum < b.sum ? 1 : -1));
+    dispatch(kapustaActions.fetchCategoryDetails(sortedData));
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -268,6 +298,8 @@ const operations = {
   calculateAvailableYears,
   fetchSumCategory,
   fetchMonthlySummary,
+  fetchMonthlySummaryIncome,
+  fetchCategoryDetails,
   fetchCategoryesChartData,
   fetchCategoryExpensesDetails,
   fetchCategoryIncomeDetails,

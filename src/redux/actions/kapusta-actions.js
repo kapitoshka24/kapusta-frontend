@@ -9,6 +9,16 @@ const actions = {
   ),
   fetchMonthlySummaryError: createAction('kapusta/fetchMonthlySummaryError'),
 
+  fetchMonthlySummaryIncomeRequest: createAction(
+    'kapusta/fetchMonthlySummaryIncomeRequest',
+  ),
+  fetchMonthlySummaryIncomeSuccess: createAction(
+    'kapusta/fetchMonthlySummaryIncomeSuccess',
+  ),
+  fetchMonthlySummaryIncomeError: createAction(
+    'kapusta/fetchMonthlySummaryIncomeError',
+  ),
+
   totalBalanceRequest: createAction('kapusta/totalBalanceRequest'),
   totalBalanceSuccess: createAction('kapusta/totalBalanceSuccess'),
   totalBalanceError: createAction('kapusta/totalBalanceError'),

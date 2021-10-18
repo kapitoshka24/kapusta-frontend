@@ -13,6 +13,7 @@ import TableMobile from '../TableMobile';
 import TableIncome from '../TableIncome';
 import TableMobileIncome from '../TableMobileIncome';
 import MonthlySummary from '../MonthlySummary';
+import MonthlySummaryIncome from '../MonthlySummaryIncome';
 import styles from './Expense.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import mainStyles from '../../../styles/AppCommon.module.scss';
@@ -68,11 +69,11 @@ export default function Expense() {
               <ControlsIncome />
               <div className={styles.data__container}>
                 <TableIncome />
-                {width >= 1280 && <MonthlySummary />}
+                {width >= 1280 && <MonthlySummaryIncome />}
               </div>
             </TabContainer>
             <div className={mainStyles.container}>
-              {width < 1280 && <MonthlySummary />}
+              {width < 1280 && <MonthlySummaryIncome />}
             </div>
           </TabPanel>
           <TabPanel>
