@@ -2,6 +2,8 @@ import axios from 'axios';
 import { kapustaActions } from '../actions';
 import getYears from '../../helpers/getYears';
 import { enterError } from '../../services/pnotify';
+import { expenseOptions } from '../../helpers/expenseOptions';
+import { incomeOptions } from '../../helpers/incomeOptions';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 
@@ -144,6 +146,7 @@ const calculateAvailableYears = () => async dispatch => {
 const fetchSumCategory = (month, year) => async dispatch => {
   dispatch(kapustaActions.getSumCategoryRequest());
   const correctMonth = month < 10 ? '0'.concat(month) : month;
+  console.log(month, year);
 
   try {
     const { data } = await axios.get(
@@ -152,6 +155,7 @@ const fetchSumCategory = (month, year) => async dispatch => {
 
     dispatch(kapustaActions.getSumCategorySuccess(data));
   } catch (error) {
+    console.log(error.message);
     dispatch(kapustaActions.getSumCategoryError(error));
   }
 };
@@ -169,39 +173,6 @@ const fetchMonthlySummary = () => async dispatch => {
   }
 };
 
-const fetchCategoryDetails = (month, year, category) => async dispatch => {
-  const correctMonth = month < 10 ? '0'.concat(month) : month;
-
-  try {
-    const { data } = await axios.get(
-      `/currency-movements/detailed-categories?date=${correctMonth}/${year}&category=${category}`,
-    );
-    const sortedData = data.response.sort((a, b) => (a.sum < b.sum ? 1 : -1));
-    dispatch(kapustaActions.fetchCategoryDetails(sortedData));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const expensesNames = {
-  products: 'Продукты',
-  alcohol: 'Алкоголь',
-  entertainment: 'Развлечение',
-  health: 'Здоровье',
-  transport: 'Транспорт',
-  housing: 'Все для дома',
-  technique: 'Техника',
-  utilityCommunication: 'Коммуналка,связь',
-  sportsHobbies: 'Спорт,хобби',
-  education: 'Образование',
-  other: 'Прочее',
-};
-
-const incomeNames = {
-  otherIncome: 'Доп.доход',
-  salary: 'ЗП',
-};
-
 const fetchCategoryesChartData = (month, year) => async dispatch => {
   dispatch(kapustaActions.fetchExpensesChartDataRequest());
   dispatch(kapustaActions.fetchIncomeChartDataRequest());
@@ -215,14 +186,14 @@ const fetchCategoryesChartData = (month, year) => async dispatch => {
 
     const expenses = data.summary.expenses
       .map(data => ({
-        _id: expensesNames[data._id],
+        _id: expenseOptions[data._id],
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
 
     const income = data.summary.income
       .map(data => ({
-        _id: incomeNames[data._id],
+        _id: incomeOptions[data._id],
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
@@ -283,7 +254,6 @@ const operations = {
   calculateAvailableYears,
   fetchSumCategory,
   fetchMonthlySummary,
-  fetchCategoryDetails,
   fetchCategoryesChartData,
   fetchCategoryExpensesDetails,
   fetchCategoryIncomeDetails,
