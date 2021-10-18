@@ -1,4 +1,4 @@
-import { defaults, error, success } from '@pnotify/core';
+import { defaults, error, success, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/Material.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -50,7 +50,7 @@ export const logoutSuccess = () =>
   });
 
 export const enterError = () =>
-  error({
-    text: `Все поля обязательны и должы быть заполнены`,
+  info({
+    text: `Заполните описание и выберите категорию.`,
     ...settings,
   });
