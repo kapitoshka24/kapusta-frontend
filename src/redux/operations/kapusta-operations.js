@@ -201,20 +201,6 @@ const fetchMonthlySummaryIncome = () => async dispatch => {
   }
 };
 
-const fetchCategoryDetails = (month, year, category) => async dispatch => {
-  const correctMonth = month < 10 ? '0'.concat(month) : month;
-
-  try {
-    const { data } = await axios.get(
-      `/currency-movements/detailed-categories?date=${correctMonth}/${year}&category=${category}`,
-    );
-    const sortedData = data.response.sort((a, b) => (a.sum < b.sum ? 1 : -1));
-    dispatch(kapustaActions.fetchCategoryDetails(sortedData));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const fetchCategoryesChartData = (month, year) => async dispatch => {
   dispatch(kapustaActions.fetchExpensesChartDataRequest());
   dispatch(kapustaActions.fetchIncomeChartDataRequest());
@@ -299,7 +285,6 @@ const operations = {
   fetchSumCategory,
   fetchMonthlySummary,
   fetchMonthlySummaryIncome,
-  fetchCategoryDetails,
   fetchCategoryesChartData,
   fetchCategoryExpensesDetails,
   fetchCategoryIncomeDetails,
