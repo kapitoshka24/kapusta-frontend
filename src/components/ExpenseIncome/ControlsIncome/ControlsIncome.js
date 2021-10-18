@@ -8,6 +8,11 @@ import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
 
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
+
 const options = [
   { value: 'salary', label: 'ЗП' },
   { value: 'otherIncome', label: 'Доп. доход' },
@@ -34,8 +39,22 @@ export default function ControlsIncome() {
     }));
   }, []);
 
+  const handlePriceChange = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputChangeHandler(e.target.value),
+    }));
+  };
+
+  const handlePriceBlur = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputBlurHandler(e.target.value),
+    }));
+  };
+
   const handleSubmit = useCallback(
-    async e => {
+    e => {
       e.preventDefault();
 
       const data = {
@@ -45,8 +64,8 @@ export default function ControlsIncome() {
         category,
       };
 
-      await dispatch(kapustaOperations.addIncome(data));
-      await dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.addIncome(data));
+      dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
     [dispatch, name, sum, category],
@@ -83,13 +102,13 @@ export default function ControlsIncome() {
 
           <div className={styles.input__sum__thumb}>
             <input
-              type="text"
               name="sum"
-              placeholder="0,00"
+              placeholder="0.00"
               pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
               title="Значение должно состоять из цифр и может иметь точку"
               className={styles.input__sum}
-              onChange={handleChange}
+              onBlur={handlePriceBlur}
+              onChange={handlePriceChange}
               value={sum}
             />
             <Calculator className={styles.icon__calculator} />
