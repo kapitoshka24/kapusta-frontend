@@ -209,9 +209,12 @@ const fetchCategoryesChartData = (month, year) => async dispatch => {
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
+    console.log(income);
 
-    dispatch(kapustaActions.fetchExpensesChartDataSuccess(expenses));
-    dispatch(kapustaActions.fetchIncomeChartDataSuccess(income));
+    dispatch(
+      kapustaActions.fetchExpensesChartDataSuccess(expenses ? expenses : []),
+    );
+    dispatch(kapustaActions.fetchIncomeChartDataSuccess(income ? income : []));
   } catch (error) {
     dispatch(kapustaActions.fetchExpensesChartDataError(error));
     dispatch(kapustaActions.fetchIncomeChartDataError(error));
