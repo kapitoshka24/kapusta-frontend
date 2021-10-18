@@ -4,11 +4,13 @@
 .list {
   list-style: none;
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   padding-left: 0;
   margin: 0;
 
   &Item {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -26,20 +28,24 @@
       );
     }
 
+    &:hover .label:last-child {
+      transform: translateY(calc(100% + 5px));
+      color: $expenses-black;
+    }
+
     &:hover .label {
-      transform: scale(1.2);
+      transform: translateY(calc(5px));
       color: $expenses-black;
     }
 
     &:not(:last-child) {
-      margin-right: 25px;
+      margin-right: 35px;
     }
   }
 }
 
 .bar {
   width: 100%;
-  margin-bottom: 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   transition: transitionFunc(all);
@@ -51,12 +57,22 @@
   font-size: 12px;
   color: $text-grey;
   line-height: 1.16;
+  text-align: center;
 
   white-space: nowrap;
   transition: transitionFunc(all);
 
   &:not(:last-child) {
     margin-bottom: 10px;
+  }
+
+  &:last-child {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(100% + 10px));
+    min-width: 50px;
+    max-width: 80px;
+    white-space: pre-wrap;
   }
 }
 
@@ -65,7 +81,7 @@
   margin-left: auto;
   width: 666px;
   height: 422px;
-  border-radius: 30px;
+  // border-radius: 30px;
   padding: 29px 31px 25px 31px;
   background-color: $white;
   background-image: url('./chart-bg-tablet.png');
@@ -73,10 +89,10 @@
   background-position: 50% 61%;
   overflow: hidden;
 
-  margin-top: 30px;
+  // margin-top: 30px;
   padding-top: 25px;
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  border-radius: 30px;
+  // box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  // border-radius: 30px;
 
   @include from(desktop) {
     width: 1060px;

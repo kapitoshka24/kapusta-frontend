@@ -15,10 +15,13 @@ import TableMobileIncome from '../TableMobileIncome';
 import MonthlySummary from '../MonthlySummary';
 import styles from './Expense.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
-import mainStyles from '../../../styles/AppComon.module.scss';
+import mainStyles from '../../../styles/AppCommon.module.scss';
+import TableAdjustments from '../TableAdjustments';
+import TableMobileAdjustments from '../TableMobileAdjustments';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
+  const [date, setDate] = useState({ date: '' });
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -41,6 +44,9 @@ export default function Expense() {
             </Tab>
             <Tab className={styles.tab} selectedClassName={styles.tab__active}>
               Доход
+            </Tab>
+            <Tab className={styles.tab} selectedClassName={styles.tab__active}>
+              Корректировки
             </Tab>
           </TabList>
 
@@ -69,6 +75,15 @@ export default function Expense() {
               {width < 1280 && <MonthlySummary />}
             </div>
           </TabPanel>
+          <TabPanel>
+            <TabContainer>
+              <div
+                className={`${styles.data__container} ${styles.data__container_adjustment}`}
+              >
+                <TableAdjustments />
+              </div>
+            </TabContainer>
+          </TabPanel>
         </Tabs>
       ) : (
         <Tabs>
@@ -79,16 +94,22 @@ export default function Expense() {
             <Tab className={styles.tab} selectedClassName={styles.tab__active}>
               Доход
             </Tab>
+            <Tab className={styles.tab} selectedClassName={styles.tab__active}>
+              Корректировки
+            </Tab>
           </TabList>
 
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
               {showControls && (
-                <ControlsMobile closeControls={toggleControls} />
+                <ControlsMobile
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobile />
@@ -99,14 +120,25 @@ export default function Expense() {
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
               {showControls && (
-                <ControlsMobileIncome closeControls={toggleControls} />
+                <ControlsMobileIncome
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobileIncome />
+              </div>
+            </TabContainer>
+          </TabPanel>
+          <TabPanel>
+            <TabContainer>
+              <div className={[styles.date__mobile_container_adjustment]}></div>
+              <div className={styles.data__container}>
+                <TableMobileAdjustments />
               </div>
             </TabContainer>
           </TabPanel>

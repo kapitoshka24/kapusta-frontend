@@ -24,7 +24,7 @@ const options = [
   { value: 'other', label: 'Прочее' },
 ];
 
-export default function ControlsMobile({ closeControls }) {
+export default function ControlsMobile({ closeControls, propDate }) {
   const [expense, setExpense] = useState({
     name: '',
     sum: '',
@@ -46,11 +46,11 @@ export default function ControlsMobile({ closeControls }) {
   }, []);
 
   const handleSubmit = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date: propDate,
         name,
         sum,
         category,
@@ -61,11 +61,13 @@ export default function ControlsMobile({ closeControls }) {
         return;
       }
 
-      dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.addExpense(data));
+      await dispatch(kapustaOperations.fetchTotalBalance());
+
       e.target.reset();
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, propDate],
   );
 
   const handleReset = () => {
@@ -74,7 +76,6 @@ export default function ControlsMobile({ closeControls }) {
 
   const resetForm = () => {
     setExpense({ name: '', sum: '' });
-    // setCategory({ category: '' });
   };
 
   const handleBackdropClick = e => {
