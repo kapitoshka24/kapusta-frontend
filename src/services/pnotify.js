@@ -1,4 +1,4 @@
-import { defaults, error, success, info } from '@pnotify/core';
+import { defaults, error, success, info, alert } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/Material.css';
 import 'material-design-icons/iconfont/material-icons.css';
@@ -12,6 +12,14 @@ const settings = {
   width: '300px',
   delay: 2500,
 };
+
+alert({
+  delay: 0,
+  hide: true,
+  text: '',
+  addClass: 'no-visible',
+  destroy: true,
+});
 
 export const serverError = () =>
   error({
