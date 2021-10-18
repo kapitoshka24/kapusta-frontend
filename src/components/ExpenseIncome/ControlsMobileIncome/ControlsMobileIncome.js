@@ -20,7 +20,6 @@ export default function ControlsMobile({ closeControls, propDate }) {
     name: '',
     sum: '',
   });
-  console.log(propDate);
   const [category, setCategory] = useState({ category: '' });
   // const [date, setDate] = useState({ date: '' });
 
