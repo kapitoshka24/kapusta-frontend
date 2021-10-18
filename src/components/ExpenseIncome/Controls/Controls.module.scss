@@ -46,11 +46,11 @@
 .date__container {
   @include from-to(tablet, desktop) {
     position: absolute;
-// <<<<<<< datepicker
-//     top: 32px;
-// =======
-//     top: 12px;
-// >>>>>>> dev
+    // <<<<<<< datepicker
+    //     top: 32px;
+    // =======
+    //     top: 12px;
+    // >>>>>>> dev
     left: 0;
   }
 }
@@ -113,6 +113,7 @@
   padding: 0 21px;
   height: 44px;
 
+  font-family: Roboto;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.1667;
@@ -173,6 +174,7 @@
     display: block;
     width: 126px;
     text-align: end;
+    font-weight: 700;
 
     border-radius: 16px 0 0 16px;
 
