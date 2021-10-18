@@ -76,10 +76,6 @@ const error = createReducer(null, {
   [kapustaActions.deleteIncomeError]: (_, { payload }) => payload,
 });
 
-const categoryDetails = createReducer([], {
-  [kapustaActions.fetchCategoryDetails]: (_state, { payload }) => payload,
-});
-
 const expensesChartData = createReducer([], {
   [kapustaActions.fetchExpensesChartDataSuccess]: (_state, { payload }) =>
     payload,
@@ -128,7 +124,6 @@ export default combineReducers({
   monthlySummary,
   monthlySummaryIncome,
   error,
-  categoryDetails,
   totalIncome,
   totalExpenses,
   expensesChartData,

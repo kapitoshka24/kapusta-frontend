@@ -2,6 +2,8 @@ import axios from 'axios';
 import { kapustaActions } from '../actions';
 import getYears from '../../helpers/getYears';
 import { enterError } from '../../services/pnotify';
+import { expenseOptions } from '../../helpers/expenseOptions';
+import { incomeOptions } from '../../helpers/incomeOptions';
 
 axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
 const currentYear = new Date().getFullYear();
@@ -166,6 +168,7 @@ const fetchSumCategory = (month, year) => async dispatch => {
       );
     }
   } catch (error) {
+    console.log(error.message);
     dispatch(kapustaActions.getSumCategoryError(error));
   }
 };
@@ -212,25 +215,6 @@ const fetchCategoryDetails = (month, year, category) => async dispatch => {
   }
 };
 
-const expensesNames = {
-  products: 'Продукты',
-  alcohol: 'Алкоголь',
-  entertainment: 'Развлечение',
-  health: 'Здоровье',
-  transport: 'Транспорт',
-  housing: 'Все для дома',
-  technique: 'Техника',
-  utilityCommunication: 'Коммуналка,связь',
-  sportsHobbies: 'Спорт,хобби',
-  education: 'Образование',
-  other: 'Прочее',
-};
-
-const incomeNames = {
-  otherIncome: 'Доп.доход',
-  salary: 'ЗП',
-};
-
 const fetchCategoryesChartData = (month, year) => async dispatch => {
   dispatch(kapustaActions.fetchExpensesChartDataRequest());
   dispatch(kapustaActions.fetchIncomeChartDataRequest());
@@ -244,20 +228,22 @@ const fetchCategoryesChartData = (month, year) => async dispatch => {
 
     const expenses = data?.summary?.expenses
       .map(data => ({
-        _id: expensesNames[data._id],
+        _id: expenseOptions[data._id],
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
 
     const income = data?.summary?.income
       .map(data => ({
-        _id: incomeNames[data._id],
+        _id: incomeOptions[data._id],
         sum: data.total,
       }))
       .sort((a, b) => (a.sum < b.sum ? 1 : -1));
 
-    dispatch(kapustaActions.fetchExpensesChartDataSuccess(expenses));
-    dispatch(kapustaActions.fetchIncomeChartDataSuccess(income));
+    dispatch(
+      kapustaActions.fetchExpensesChartDataSuccess(expenses ? expenses : []),
+    );
+    dispatch(kapustaActions.fetchIncomeChartDataSuccess(income ? income : []));
   } catch (error) {
     dispatch(kapustaActions.fetchExpensesChartDataError(error));
     dispatch(kapustaActions.fetchIncomeChartDataError(error));

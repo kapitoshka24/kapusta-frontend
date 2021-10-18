@@ -3,11 +3,7 @@ import sprite from './income-sprite.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import kapustaOperations from '../../../redux/operations/kapusta-operations';
 import kapustaSelectors from '../../../redux/selectors/kapusta-selectors';
-
-const names = {
-  otherIncome: 'Доп.доход',
-  salary: 'ЗП',
-};
+import { incomeOptions } from '../../../helpers/incomeOptions';
 
 const SliderIncomeList = ({ income }) => {
   const dispatch = useDispatch();
@@ -36,7 +32,7 @@ const SliderIncomeList = ({ income }) => {
                 <use href={`${sprite}#${_id}`}></use>
               </svg>
             </div>
-            <p className={styles.name}>{names[_id]}</p>
+            <p className={styles.name}>{incomeOptions[_id]}</p>
           </li>
         );
       })}
