@@ -1,10 +1,5 @@
 import styles from './ChartOptional.module.scss';
 
-// const data = [
-//   { _id: 'Свинина', sum: 5000 },
-//   { _id: 'Говядина', sum: 4500 },
-// ];
-
 const calculateHeight = ({ data, size, idx }) => {
   const values = data.map(el => el.sum);
   const maxValue = Math.max(...values);
