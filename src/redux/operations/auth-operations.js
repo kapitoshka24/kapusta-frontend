@@ -90,11 +90,9 @@ const getCurrentUser = () => async (dispatch, getState) => {
     return;
   }
 
-  accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
     accessToken.set(persistedToken);
-
     const { data } = await axios.get('/users/current');
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
