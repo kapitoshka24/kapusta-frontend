@@ -38,12 +38,6 @@ a {
   text-decoration: none;
 }
 
-.react-tabs {
-  @include from(desktop) {
-    padding-bottom: 75px;
-  }
-}
-
 .no-visible {
   opacity: 0.0000001% !important;
 }
