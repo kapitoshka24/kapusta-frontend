@@ -82,7 +82,7 @@ export default function LoginPage() {
           </p>
           <a
             className={loginStyles.googleBtn}
-            href="https://kapusta-backend.herokuapp.com/api/users/google"
+            href="https://kapusta-backend-app.herokuapp.com/api/users/google"
           >
             <img
               src={googleSymbol}

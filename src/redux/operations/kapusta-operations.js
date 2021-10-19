@@ -5,7 +5,7 @@ import { enterError } from '../../services/pnotify';
 import { expenseOptions } from '../../helpers/expenseOptions';
 import { incomeOptions } from '../../helpers/incomeOptions';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'https://kapusta-backend-app.herokuapp.com/api';
 const currentYear = new Date().getFullYear();
 
 const fetchExpense = () => async dispatch => {

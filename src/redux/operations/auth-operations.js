@@ -8,7 +8,7 @@ import {
   logoutSuccess,
 } from '../../services/pnotify';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api';
+axios.defaults.baseURL = 'https://kapusta-backend-app.herokuapp.com/api';
 
 const accessToken = {
   set(token) {
