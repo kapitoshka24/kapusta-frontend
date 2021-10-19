@@ -128,7 +128,8 @@ const loginWithGoogle = data => async dispatch => {
     accessToken.set(data.accessToken);
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
-    dispatch(authActions.loginGoogleError(error));
+    console.log(error);
+    // dispatch(authActions.loginGoogleError(error));
   }
 };
 

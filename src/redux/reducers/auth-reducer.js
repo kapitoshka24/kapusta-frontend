@@ -18,6 +18,13 @@ const user = createReducer(initialUserState, {
     email: payload.data.email,
     createdAt: payload.data.createdAt,
   }),
+  [authActions.loginGoogleSuccess]: (_, { payload }) => ({
+    id: payload.data.id,
+    name: payload.data.name,
+    picture: payload.data.picture,
+    email: payload.data.email,
+    createdAt: payload.data.createdAt,
+  }),
   [authActions.registerSuccess]: (_, { payload }) => payload.data,
   [authActions.logoutSuccess]: () => initialUserState,
   [authActions.getCurrentUserSuccess]: (_, { payload }) => ({
