@@ -104,3 +104,7 @@
     fill: $red;
   }
 }
+
+.disabled-delete {
+  pointer-events: none;
+}

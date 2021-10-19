@@ -117,6 +117,7 @@ export default function Controls() {
             name="name"
             placeholder="Описание товара"
             className={styles.input__item}
+            autoComplete="off"
             onChange={handleChange}
             value={name}
           />
@@ -132,6 +133,7 @@ export default function Controls() {
               className={styles.input__sum}
               onChange={handlePriceChange}
               onBlur={handlePriceBlur}
+              autoComplete="off"
               value={sum}
             />
             <Calculator className={styles.icon__calculator} />

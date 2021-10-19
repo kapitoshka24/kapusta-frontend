@@ -26,7 +26,6 @@ export default function ControlsMobile({ closeControls, propDate }) {
     name: '',
     sum: '',
   });
-  console.log(propDate);
   const [category, setCategory] = useState({ category: '' });
   // const [date, setDate] = useState({ date: '' });
 
@@ -78,8 +77,9 @@ export default function ControlsMobile({ closeControls, propDate }) {
 
       e.target.reset();
       resetForm();
+      closeControls();
     },
-    [dispatch, name, sum, category, propDate],
+    [dispatch, name, sum, category, propDate, closeControls],
   );
 
   const handleReset = () => {
@@ -120,6 +120,7 @@ export default function ControlsMobile({ closeControls, propDate }) {
               name="name"
               placeholder="Описание товара"
               className={styles.input__item}
+              autoComplete="off"
               onChange={handleChange}
             />
 
@@ -135,6 +136,7 @@ export default function ControlsMobile({ closeControls, propDate }) {
                 onBlur={handlePriceBlur}
                 onChange={handlePriceChange}
                 value={sum}
+                autoComplete="off"
               />
               <Calculator className={styles.icon__calculator} />
               <div className={styles.icon__mobile_calculator_container}>

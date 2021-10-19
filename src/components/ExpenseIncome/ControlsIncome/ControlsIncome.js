@@ -102,6 +102,7 @@ export default function ControlsIncome() {
             name="name"
             placeholder="Описание товара"
             className={styles.input__item}
+            autoComplete="off"
             onChange={handleChange}
             value={name}
           />
@@ -117,6 +118,7 @@ export default function ControlsIncome() {
               className={styles.input__sum}
               onBlur={handlePriceBlur}
               onChange={handlePriceChange}
+              autoComplete="off"
               value={sum}
             />
             <Calculator className={styles.icon__calculator} />

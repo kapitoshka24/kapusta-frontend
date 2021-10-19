@@ -7,6 +7,7 @@ import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
+import { enterBalance } from '../../../services/pnotify';
 
 export default function ReportBalance() {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -40,13 +41,20 @@ export default function ReportBalance() {
       setShowModal(false);
     }
   };
-  const handleSubmit = e => {
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    if (getBalance === balanceValue) {
+      enterBalance();
+      return;
+    }
+    await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    await dispatch(kapustaOperations.fetchAdjustments());
     if (balanceValue === '') {
       setBalanceValue(0);
     }
   };
+
   const { width } = useWindowDementions();
 
   return (

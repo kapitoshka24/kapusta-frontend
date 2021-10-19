@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-
 import {
   inputChangeHandler,
   inputBlurHandler,
@@ -10,6 +9,7 @@ import {
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 import { Link } from 'react-router-dom';
+import { enterBalance } from '../../../services/pnotify';
 
 const TotalBalance = () => {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -49,12 +49,14 @@ const TotalBalance = () => {
     setBalanceValue(inputBlurHandler(value));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-
-    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
-    dispatch(kapustaOperations.fetchAdjustments());
-
+    if (getBalance === balanceValue) {
+      enterBalance();
+      return;
+    }
+    await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    await dispatch(kapustaOperations.fetchAdjustments());
     if (balanceValue === '') {
       setBalanceValue(0);
     }

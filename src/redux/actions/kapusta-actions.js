@@ -9,6 +9,16 @@ const actions = {
   ),
   fetchMonthlySummaryError: createAction('kapusta/fetchMonthlySummaryError'),
 
+  fetchMonthlySummaryIncomeRequest: createAction(
+    'kapusta/fetchMonthlySummaryIncomeRequest',
+  ),
+  fetchMonthlySummaryIncomeSuccess: createAction(
+    'kapusta/fetchMonthlySummaryIncomeSuccess',
+  ),
+  fetchMonthlySummaryIncomeError: createAction(
+    'kapusta/fetchMonthlySummaryIncomeError',
+  ),
+
   totalBalanceRequest: createAction('kapusta/totalBalanceRequest'),
   totalBalanceSuccess: createAction('kapusta/totalBalanceSuccess'),
   totalBalanceError: createAction('kapusta/totalBalanceError'),
@@ -27,7 +37,6 @@ const actions = {
   incrementReportMonth: createAction('kapusta/incrementReportMonth'),
   decrementReportMonth: createAction('kapusta/decrementReportMonth'),
   changeReportYears: createAction('kapusta/changeReportYears'),
-  fetchCategoryDetails: createAction('kapusta/fetchCategoryDetails'),
 
   fetchExpenseRequest: createAction('kapusta/fetchExpenseRequest'),
   fetchExpenseSuccess: createAction('kapusta/fetchExpenseSuccess'),
