@@ -56,7 +56,7 @@ class TurnoverSlider extends Component {
       asNavFor: '.slider',
       centerPadding: '3px',
 
-      // adaptiveHeight: true,
+      adaptiveHeight: true,
     };
 
     const { expensesChartData, incomeChartData } = this.props;
