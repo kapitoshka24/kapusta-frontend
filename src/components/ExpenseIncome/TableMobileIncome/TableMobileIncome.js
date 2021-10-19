@@ -51,7 +51,9 @@ export default function TableMobile() {
           </div>
 
           <div className={styles.sum__thumb}>
-            <span className={styles.sumPositive}>{sum} грн.</span>
+            <span className={styles.sumPositive}>
+              {Number.parseFloat(sum).toFixed(2)} грн.
+            </span>
             <div className={styles.icon__thumb}>
               <Delete
                 className={`${styles.icon__delete} ${

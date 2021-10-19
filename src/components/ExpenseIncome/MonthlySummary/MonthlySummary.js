@@ -21,7 +21,7 @@ function MonthlySummary() {
         {list.map(({ _id, total }) => (
           <li key={_id} className={styles.MonthItem}>
             <span>{_id}</span>
-            <span>{total}</span>
+            <span>{Number.parseFloat(total).toFixed(2)}</span>
           </li>
         ))}
       </ul>

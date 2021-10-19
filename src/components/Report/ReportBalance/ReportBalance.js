@@ -102,16 +102,11 @@ export default function ReportBalance() {
                 name="balance"
                 type="number"
                 onChange={handleChange}
-                value={balanceValue}
+                value={parseFloat(balanceValue).toFixed(2)}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
             </div>
-            {/* {windowWidth >= 1280 && (
-              <button className={styles.button} disabled={false} type="submit">
-                Подтвердить
-              </button>
-            )} */}
           </div>
         </form>
       )}

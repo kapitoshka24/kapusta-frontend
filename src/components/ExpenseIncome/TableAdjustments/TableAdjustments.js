@@ -61,7 +61,7 @@ export default function TableAdjustments() {
               <td
                 className={sum >= 0 ? styles.sumPositive : styles.sumNegative}
               >
-                {Number.parseInt(sum, 10)} грн
+                {Number.parseFloat(sum).toFixed(2)} грн
               </td>
               <td
                 className={`${styles.icon__bg} ${

@@ -13,19 +13,6 @@ const SliderExpenses = () => {
       ) : (
         <SliderNotification category="расходов" />
       )}
-
-      {/* {true && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-          }}
-        >
-          <Loader type="ThreeDots" color="#FF751D" height={50} width={50} />
-        </div>
-      )} */}
     </>
   );
 };
