@@ -27,7 +27,7 @@ function GetCurrentMonth() {
   };
 
   const handleIncrementMonth = () => {
-    if (month !== MONTHS.length - 1) {
+    if (month !== MONTHS.length - 1 && month < new Date().getMonth()) {
       dispatch(actions.incrementReportMonth());
       return;
     }
