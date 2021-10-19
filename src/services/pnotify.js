@@ -33,12 +33,6 @@ export const loginSuccess = () =>
     ...settings,
   });
 
-// export const registerSuccess = email =>
-//   success({
-//     text: `Проверьте почту ${email} и пройдите верификацию.`,
-//     ...settings,
-//   });
-
 export const registerError = () =>
   error({
     text: 'Не удалось зарегистрировать. Возможно, вы уже?:) Если нет, повторите запрос позже.',
@@ -59,7 +53,7 @@ export const logoutSuccess = () =>
 
 export const enterError = () =>
   info({
-    text: `Заполните описание и выберите категорию.`,
+    text: `Заполните описание, выберите категорию и введите сумму.`,
     ...settings,
   });
 

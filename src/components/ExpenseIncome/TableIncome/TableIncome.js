@@ -56,7 +56,9 @@ export default function Table() {
                 <EllipsisText text={name} length={40} />
               </td>
               <td className={styles.category}>{incomeOptions[category]}</td>
-              <td className={styles.sumPositive}>{sum} грн</td>
+              <td className={styles.sumPositive}>
+                {Number.parseFloat(sum).toFixed(2)} грн
+              </td>
               <td
                 className={`${styles.icon__bg} ${
                   disabledDelete ? styles['disabled-delete'] : ''

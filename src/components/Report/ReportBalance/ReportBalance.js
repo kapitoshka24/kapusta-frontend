@@ -7,6 +7,7 @@ import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
+import { enterBalance } from '../../../services/pnotify';
 
 export default function ReportBalance() {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -40,13 +41,22 @@ export default function ReportBalance() {
       setShowModal(false);
     }
   };
-  const handleSubmit = e => {
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    if (
+      parseFloat(getBalance).toFixed(2) === parseFloat(balanceValue).toFixed(2)
+    ) {
+      enterBalance();
+      return;
+    }
+    await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
+    await dispatch(kapustaOperations.fetchAdjustments());
     if (balanceValue === '') {
       setBalanceValue(0);
     }
   };
+
   const { width } = useWindowDementions();
 
   return (
@@ -64,7 +74,7 @@ export default function ReportBalance() {
                 id="balance"
                 name="balance"
                 onChange={handleChange}
-                value={balanceValue}
+                value={parseFloat(balanceValue).toFixed(2)}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
@@ -92,16 +102,11 @@ export default function ReportBalance() {
                 name="balance"
                 type="number"
                 onChange={handleChange}
-                value={balanceValue}
+                value={parseFloat(balanceValue).toFixed(2)}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
             </div>
-            {/* {windowWidth >= 1280 && (
-              <button className={styles.button} disabled={false} type="submit">
-                Подтвердить
-              </button>
-            )} */}
           </div>
         </form>
       )}

@@ -25,7 +25,9 @@ export default function ChartOptional({ data }) {
               style={{ animationDelay: `${idx * 100}ms` }}
               key={el._id}
             >
-              <p className={styles.label}>{`${el.sum} грн`}</p>
+              <p className={styles.label}>{`${parseFloat(el.sum).toFixed(
+                2,
+              )} грн`}</p>
               <div
                 style={{
                   height: barHeight,

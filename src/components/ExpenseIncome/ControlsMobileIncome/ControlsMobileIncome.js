@@ -8,6 +8,12 @@ import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
+
 import { enterError } from '../../../services/pnotify';
 
 const options = [
@@ -36,8 +42,22 @@ export default function ControlsMobile({ closeControls, propDate }) {
     }));
   }, []);
 
+  const handlePriceChange = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputChangeHandler(e.target.value),
+    }));
+  };
+
+  const handlePriceBlur = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputBlurHandler(e.target.value),
+    }));
+  };
+
   const handleSubmit = useCallback(
-    async e => {
+    e => {
       e.preventDefault();
 
       const data = {
@@ -52,8 +72,8 @@ export default function ControlsMobile({ closeControls, propDate }) {
         return;
       }
 
-      await dispatch(kapustaOperations.addIncome(data));
-      await dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.addIncome(data));
+      dispatch(kapustaOperations.fetchTotalBalance());
 
       e.target.reset();
       resetForm();
@@ -108,14 +128,15 @@ export default function ControlsMobile({ closeControls, propDate }) {
 
             <div className={styles.input__sum__thumb}>
               <input
-                type="text"
                 name="sum"
-                placeholder="0,00"
-                pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
+                placeholder="0.00"
+                // pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
                 title="Значение должно состоять из цифр и может иметь точку"
                 className={styles.input__sum}
+                onBlur={handlePriceBlur}
+                onChange={handlePriceChange}
+                value={sum}
                 autoComplete="off"
-                onChange={handleChange}
               />
               <Calculator className={styles.icon__calculator} />
               <div className={styles.icon__mobile_calculator_container}>

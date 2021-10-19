@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { kapustaSelectors } from '../../../redux/selectors';
 import { kapustaOperations } from '../../../redux/operations';
-
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 import { Link } from 'react-router-dom';
@@ -31,18 +34,26 @@ const TotalBalance = () => {
     setShowModal(prevVal => !prevVal);
   };
 
-  const handleChange = e => {
-    const reg = /[A-Za-zА-Яа-яЁё]/g;
-    setBalanceValue(e.target.value.replace(reg, ''));
-    if (Number(e.target.value) === 0) {
+  const handleChange = ({ target: { value } }) => {
+    setBalanceValue(inputChangeHandler(value));
+
+    if (numberBalanceValue === 0) {
+      console.log(1);
       setShowModal(true);
     } else {
       setShowModal(false);
     }
   };
+
+  const handleBlur = ({ target: { value } }) => {
+    setBalanceValue(inputBlurHandler(value));
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
-    if (getBalance === balanceValue) {
+    if (
+      parseFloat(getBalance).toFixed(2) === parseFloat(balanceValue).toFixed(2)
+    ) {
       enterBalance();
       return;
     }
@@ -65,7 +76,8 @@ const TotalBalance = () => {
             id="balance"
             name="balance"
             onChange={handleChange}
-            value={balanceValue}
+            onBlur={handleBlur}
+            value={parseFloat(balanceValue).toFixed(2)}
             autoComplete="off"
           />
           <button className={styles.button} disabled={false} type="submit">

@@ -9,6 +9,11 @@ import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
 import { enterError } from '../../../services/pnotify';
 
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
+
 const options = [
   { value: 'transport', label: 'Транспорт' },
   { value: 'products', label: 'Продукты' },
@@ -36,6 +41,28 @@ export default function Controls() {
 
   const dispatch = useDispatch();
 
+  const handlePriceChange = useCallback(e => {
+    const { name, value } = e.currentTarget;
+
+    const val = inputChangeHandler(value);
+
+    setExpense(prevExpense => ({
+      ...prevExpense,
+      [name]: val,
+    }));
+  }, []);
+
+  const handlePriceBlur = e => {
+    const { name, value } = e.target;
+
+    const val = inputBlurHandler(value);
+
+    setExpense(prevExpense => ({
+      ...prevExpense,
+      [name]: val,
+    }));
+  };
+
   const handleChange = useCallback(e => {
     const { name, value } = e.currentTarget;
 
@@ -46,7 +73,7 @@ export default function Controls() {
   }, []);
 
   const handleSubmit = useCallback(
-    async e => {
+    e => {
       e.preventDefault();
       const data = {
         date,
@@ -60,8 +87,8 @@ export default function Controls() {
         return;
       }
 
-      await dispatch(kapustaOperations.addExpense(data));
-      await dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.addExpense(data));
+      dispatch(kapustaOperations.fetchTotalBalance());
       resetForm();
     },
     [dispatch, name, sum, category, date],
@@ -99,14 +126,14 @@ export default function Controls() {
 
           <div className={styles.input__sum__thumb}>
             <input
-              type="text"
               name="sum"
-              placeholder="0,00"
+              placeholder="0.00"
               pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
               title="Значение должно состоять из цифр и может иметь точку"
               className={styles.input__sum}
+              onChange={handlePriceChange}
+              onBlur={handlePriceBlur}
               autoComplete="off"
-              onChange={handleChange}
               value={sum}
             />
             <Calculator className={styles.icon__calculator} />
