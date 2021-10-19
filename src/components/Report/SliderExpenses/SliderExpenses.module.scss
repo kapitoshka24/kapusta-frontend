@@ -69,8 +69,11 @@
   height: 56px;
   max-width: 56px;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &::after {
+  /* &::after {
     z-index: -1;
     display: block;
     position: absolute;
@@ -79,24 +82,40 @@
     width: 59px;
     height: 46px;
     border-radius: 20px;
-
     background-color: $background-grey;
+  } */
+  .iconBlock {
+    display: block;
+    width: 59px;
+    height: 46px;
+    border-radius: 20px;
+    background-color: $background-grey;
+
+    &:hover {
+      background-color: $diagram-light;
+      cursor: pointer;
+    }
+    &:focus {
+      background-color: $diagram-light;
+      cursor: pointer;
+    }
   }
 }
-
-.iconContainer:hover::after {
-  background-color: $diagram-light;
-}
-
 .icon {
-  height: 100%;
+  height: 90%;
   width: 100%;
+  position: absolute;
+  z-index: 2;
   fill: $expenses-black;
+}
 
-  &:hover {
-    fill: $background-orange;
-    cursor: pointer;
-  }
+.iconBlock:hover .icon {
+  fill: $background-orange;
+  cursor: pointer;
+}
+.iconBlock:focus .icon {
+  fill: $background-orange;
+  cursor: pointer;
 }
 
 .amount,
@@ -104,7 +123,6 @@
   margin: 0;
 
   text-align: center;
-
   font-weight: 400;
   font-size: 12px;
   line-height: 1, 6;

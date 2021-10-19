@@ -1,5 +1,6 @@
 import styles from './SliderExpenses.module.scss';
 import sprite from './expenses-sprite.svg';
+import shortid from 'shortid';
 import { useSelector, useDispatch } from 'react-redux';
 import kapustaOperations from '../../../redux/operations/kapusta-operations';
 import kapustaSelectors from '../../../redux/selectors/kapusta-selectors';
@@ -27,6 +28,7 @@ const SliderExpensesList = ({ expenses }) => {
     const category = e.currentTarget.dataset.value;
     dispatch(kapustaOperations.fetchCategoryDetails(month + 1, year, category));
   };
+  const index = shortid();
   return (
     <ul className={styles.expensesList}>
       {expenses.map(({ _id, total }) => {
@@ -39,9 +41,11 @@ const SliderExpensesList = ({ expenses }) => {
           >
             <p className={styles.amount}>{total.toFixed(2)}</p>
             <div className={styles.iconContainer}>
-              <svg className={styles.icon}>
-                <use href={`${sprite}#${_id}`}></use>
-              </svg>
+              <div className={styles.iconBlock} tabIndex={index}>
+                <svg className={styles.icon}>
+                  <use href={`${sprite}#${_id}`}></use>
+                </svg>
+              </div>
             </div>
             <p className={styles.name}>{names[_id]}</p>
           </li>
