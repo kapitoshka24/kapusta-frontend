@@ -159,6 +159,7 @@
 
 .input__sum {
   border-radius: 0 16px 16px 0;
+  padding-right: 50px;
 
   @include from(tablet) {
     width: 104px;

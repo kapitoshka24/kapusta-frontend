@@ -9,7 +9,7 @@ import {
 import BalanceModal from '../BalanceModal';
 import styles from './TotalBalance.module.scss';
 import { Link } from 'react-router-dom';
-import { enterBalance } from '../../../services/pnotify';
+import { enterBalance, enterSum } from '../../../services/pnotify';
 
 const TotalBalance = () => {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -57,6 +57,11 @@ const TotalBalance = () => {
       enterBalance();
       return;
     }
+    if (balanceValue > 999999999) {
+      enterSum();
+      return;
+    }
+
     await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
     await dispatch(kapustaOperations.fetchAdjustments());
     if (balanceValue === '') {

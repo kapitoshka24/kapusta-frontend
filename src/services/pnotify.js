@@ -57,6 +57,12 @@ export const enterError = () =>
     ...settings,
   });
 
+export const enterSum = () =>
+  info({
+    text: `Сумма должна быть от 0 до 999999999.`,
+    ...settings,
+  });
+
 export const enterBalance = () =>
   info({
     text: `Новое значение баланса должно отличаться от текущего.`,
