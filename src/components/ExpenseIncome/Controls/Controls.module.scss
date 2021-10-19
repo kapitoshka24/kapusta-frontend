@@ -14,7 +14,7 @@
 }
 
 .controls__container {
-  padding: 0 0 48px 0;
+  margin-bottom: 48px;
 
   @include to(tablet) {
     position: absolute;
@@ -39,7 +39,6 @@
   @include from(desktop) {
     display: flex;
     align-items: center;
-    padding: 0 0 59px 0;
   }
 }
 
