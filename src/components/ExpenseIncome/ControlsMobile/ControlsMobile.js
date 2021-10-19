@@ -14,7 +14,7 @@ import {
   inputBlurHandler,
 } from '../../../helpers/priceInputParser';
 
-import { enterError } from '../../../services/pnotify';
+import { enterError, enterSum } from '../../../services/pnotify';
 
 const options = [
   { value: 'transport', label: 'Транспорт' },
@@ -78,6 +78,10 @@ export default function ControlsMobile({ closeControls, propDate }) {
 
       if (name === '' || sum === '' || category === undefined) {
         enterError();
+        return;
+      }
+      if (+sum > 999999999) {
+        enterSum();
         return;
       }
 

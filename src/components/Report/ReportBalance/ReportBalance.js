@@ -7,7 +7,7 @@ import BackToMainPage from '../../BackToMainPage';
 import GetCurrentMonth from '../GetCurrentMonth';
 import styles from './ReportBalance.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
-import { enterBalance } from '../../../services/pnotify';
+import { enterBalance, enterSum } from '../../../services/pnotify';
 
 export default function ReportBalance() {
   const getBalance = useSelector(kapustaSelectors.getTotalBalance);
@@ -48,6 +48,11 @@ export default function ReportBalance() {
       parseFloat(getBalance).toFixed(2) === parseFloat(balanceValue).toFixed(2)
     ) {
       enterBalance();
+      return;
+    }
+
+    if (balanceValue > 999999999) {
+      enterSum();
       return;
     }
     await dispatch(kapustaOperations.addTotalBalance(numberBalanceValue));
