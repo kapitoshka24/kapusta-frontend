@@ -129,7 +129,7 @@ const loginWithGoogle = data => async dispatch => {
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
     console.log(error);
-    // dispatch(authActions.loginGoogleError(error));
+    dispatch(authActions.loginGoogleError(error));
   }
 };
 
