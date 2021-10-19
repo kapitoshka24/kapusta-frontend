@@ -51,7 +51,9 @@ const TotalBalance = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (getBalance === balanceValue) {
+    if (
+      parseFloat(getBalance).toFixed(2) === parseFloat(balanceValue).toFixed(2)
+    ) {
       enterBalance();
       return;
     }
@@ -75,7 +77,7 @@ const TotalBalance = () => {
             name="balance"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={balanceValue}
+            value={parseFloat(balanceValue).toFixed(2)}
             autoComplete="off"
           />
           <button className={styles.button} disabled={false} type="submit">

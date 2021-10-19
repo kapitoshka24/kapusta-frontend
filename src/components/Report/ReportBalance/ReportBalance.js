@@ -44,7 +44,9 @@ export default function ReportBalance() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (getBalance === balanceValue) {
+    if (
+      parseFloat(getBalance).toFixed(2) === parseFloat(balanceValue).toFixed(2)
+    ) {
       enterBalance();
       return;
     }
@@ -72,7 +74,7 @@ export default function ReportBalance() {
                 id="balance"
                 name="balance"
                 onChange={handleChange}
-                value={balanceValue}
+                value={parseFloat(balanceValue).toFixed(2)}
                 autoComplete="off"
               />
               <span className={styles.currency}>UAH</span>
