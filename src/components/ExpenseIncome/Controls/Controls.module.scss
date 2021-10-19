@@ -44,13 +44,11 @@
 }
 
 .date__container {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
   @include from-to(tablet, desktop) {
     position: absolute;
-    // <<<<<<< datepicker
-    //     top: 32px;
-    // =======
-    //     top: 12px;
-    // >>>>>>> dev
     left: 0;
   }
 }
