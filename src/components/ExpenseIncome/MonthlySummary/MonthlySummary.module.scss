@@ -78,4 +78,8 @@
   &:not(:last-child) {
     margin-bottom: 2px;
   }
+
+  &:last-child {
+    border-bottom-left-radius: 20px;
+  }
 }
