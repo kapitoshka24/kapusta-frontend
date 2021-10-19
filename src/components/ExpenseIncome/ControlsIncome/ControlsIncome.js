@@ -78,6 +78,7 @@ export default function ControlsIncome() {
 
       dispatch(kapustaOperations.addIncome(data));
       dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.fetchMonthlySummaryIncome());
 
       resetForm();
     },

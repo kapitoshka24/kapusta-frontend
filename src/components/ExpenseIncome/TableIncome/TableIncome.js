@@ -22,6 +22,7 @@ export default function Table() {
       setDisabledDelete(true);
       await dispatch(kapustaOperations.deleteIncome(id));
       await dispatch(kapustaOperations.fetchTotalBalance());
+      await dispatch(kapustaOperations.fetchMonthlySummaryIncome());
       setDisabledDelete(false);
     },
     [dispatch],

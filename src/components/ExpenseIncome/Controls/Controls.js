@@ -94,6 +94,7 @@ export default function Controls() {
 
       dispatch(kapustaOperations.addExpense(data));
       dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.fetchMonthlySummary());
       resetForm();
     },
     [dispatch, name, sum, category, date],
