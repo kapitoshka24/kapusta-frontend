@@ -90,6 +90,7 @@ export default function Controls() {
             name="name"
             placeholder="Описание товара"
             className={styles.input__item}
+            autoComplete="off"
             onChange={handleChange}
             value={name}
           />
@@ -104,6 +105,7 @@ export default function Controls() {
               pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
               title="Значение должно состоять из цифр и может иметь точку"
               className={styles.input__sum}
+              autoComplete="off"
               onChange={handleChange}
               value={sum}
             />

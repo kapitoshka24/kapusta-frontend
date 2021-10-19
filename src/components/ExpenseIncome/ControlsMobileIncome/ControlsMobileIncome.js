@@ -100,6 +100,7 @@ export default function ControlsMobile({ closeControls, propDate }) {
               name="name"
               placeholder="Описание товара"
               className={styles.input__item}
+              autoComplete="off"
               onChange={handleChange}
             />
 
@@ -113,6 +114,7 @@ export default function ControlsMobile({ closeControls, propDate }) {
                 pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
                 title="Значение должно состоять из цифр и может иметь точку"
                 className={styles.input__sum}
+                autoComplete="off"
                 onChange={handleChange}
               />
               <Calculator className={styles.icon__calculator} />
