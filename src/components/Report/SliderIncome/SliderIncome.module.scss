@@ -30,7 +30,7 @@
   }
 
   @include from(desktop) {
-    padding: 24px 170px 35px 170px;
+    padding: 30px 170px 40px 170px;
   }
 }
 
@@ -69,32 +69,22 @@
   height: 56px;
   max-width: 56px;
   border-radius: 20px;
-
-  &::after {
-    z-index: -1;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    content: '';
-    width: 59px;
-    height: 46px;
-    border-radius: 20px;
-
-    background-color: $background-grey;
-  }
-}
-
-.iconContainer:hover::after {
-  background-color: $diagram-light;
 }
 
 .icon {
   height: 100%;
   width: 100%;
   fill: $expenses-black;
-  &:hover {
+  background-color: $background-grey;
+  border-radius: 20px;
+  overflow: visible;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
     fill: $background-orange;
-    cursor: pointer;
+    background-color: $diagram-light;
   }
 }
 

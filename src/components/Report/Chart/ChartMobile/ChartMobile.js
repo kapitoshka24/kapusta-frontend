@@ -1,10 +1,5 @@
 import styles from './ChartMobile.module.scss';
 
-// const data = [
-//   { _id: 'Свинина', sum: 5000 },
-//   { _id: 'Говядина', sum: 4500 },
-// ];
-
 const calculateWidth = ({ data, size, idx }) => {
   const values = data.map(el => el.sum);
   const maxValue = Math.max(...values);
@@ -37,7 +32,9 @@ export default function ChartMobile({ data }) {
             >
               <div className={styles.labelWrapper}>
                 <p className={styles.label}>{el._id}</p>
-                <p className={styles.label}>{`${el.sum} грн`}</p>
+                <p className={styles.label}>{`${parseFloat(el.sum).toFixed(
+                  2,
+                )} грн`}</p>
               </div>
               <div
                 className={styles.bar}

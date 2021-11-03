@@ -30,20 +30,6 @@ export default function LoginPage() {
   const fetchError = useSelector(authSelectors.getError);
   const onLogin = user => dispatch(authOperations.logIn(user));
 
-  useEffect(() => {
-    const windowUrl = window.location.search;
-    const params = new URLSearchParams(windowUrl);
-    const accessToken = params.get('accessToken');
-    const refreshToken = params.get('refreshToken');
-    const sid = params.get('sid');
-
-    if (accessToken && refreshToken && sid) {
-      dispatch(
-        authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
-      );
-    }
-  }, [dispatch]);
-
   const { errors, values, handleSubmit, setFieldError, setFieldValue } =
     useFormik({
       initialValues: {
@@ -60,13 +46,26 @@ export default function LoginPage() {
   const debounce = useDebounce(onValidation, 800);
 
   useEffect(() => {
+    const windowUrl = window.location.search;
+    const params = new URLSearchParams(windowUrl);
+    const accessToken = params.get('accessToken');
+    const refreshToken = params.get('refreshToken');
+    const sid = params.get('sid');
+
+    if (accessToken && refreshToken && sid) {
+      dispatch(
+        authOperations.loginWithGoogle({ accessToken, refreshToken, sid }),
+      );
+      window.location.reload();
+    }
+
     if (debounce) {
       const error = validate(values);
 
       setFieldError(debounce[0], error[debounce[0]]);
       setOnValidation();
     }
-  }, [debounce, setFieldError, values]);
+  }, [dispatch, debounce, setFieldError, values]);
 
   const handleChange = ({ target: { name, value } }) => {
     setOnValidation([name, value]);

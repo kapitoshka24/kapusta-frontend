@@ -1,10 +1,5 @@
 import styles from './ChartOptional.module.scss';
 
-// const data = [
-//   { _id: 'Свинина', sum: 5000 },
-//   { _id: 'Говядина', sum: 4500 },
-// ];
-
 const calculateHeight = ({ data, size, idx }) => {
   const values = data.map(el => el.sum);
   const maxValue = Math.max(...values);
@@ -30,7 +25,9 @@ export default function ChartOptional({ data }) {
               style={{ animationDelay: `${idx * 100}ms` }}
               key={el._id}
             >
-              <p className={styles.label}>{`${el.sum} грн`}</p>
+              <p className={styles.label}>{`${parseFloat(el.sum).toFixed(
+                2,
+              )} грн`}</p>
               <div
                 style={{
                   height: barHeight,

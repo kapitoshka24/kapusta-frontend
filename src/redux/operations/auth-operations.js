@@ -8,7 +8,7 @@ import {
   logoutSuccess,
 } from '../../services/pnotify';
 
-axios.defaults.baseURL = 'https://kapusta-backend.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://kapusta-backend-app.herokuapp.com/api';
 
 const accessToken = {
   set(token) {
@@ -41,7 +41,7 @@ const registerWithGoogle = credentials => async dispatch => {
   dispatch(authActions.registerGoogleRequest());
   try {
     const { data } = await axios.post('/users/google/v1', credentials);
-
+    accessToken.set(data.data.headers.accessToken);
     await dispatch(authActions.registerGoogleSuccess(data));
   } catch (error) {
     if (error.response.data.code === 409) {
@@ -72,8 +72,8 @@ const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
   try {
     await axios.post('/users/logout');
-    accessToken.unset();
     dispatch(authActions.logoutSuccess());
+    accessToken.unset();
     logoutSuccess();
   } catch (error) {
     dispatch(authActions.logoutError(error.message));
@@ -90,11 +90,9 @@ const getCurrentUser = () => async (dispatch, getState) => {
     return;
   }
 
-  accessToken.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
   try {
     accessToken.set(persistedToken);
-
     const { data } = await axios.get('/users/current');
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
@@ -127,6 +125,7 @@ const refreshSession = async (dispatch, getState) => {
 const loginWithGoogle = data => async dispatch => {
   dispatch(authActions.loginGoogleRequest());
   try {
+    accessToken.set(data.accessToken);
     await dispatch(authActions.loginGoogleSuccess(data));
   } catch (error) {
     dispatch(authActions.loginGoogleError(error));

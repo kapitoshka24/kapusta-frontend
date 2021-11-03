@@ -53,13 +53,36 @@ const monthlySummary = createReducer([], {
   [kapustaActions.fetchMonthlySummarySuccess]: (_, { payload }) => payload,
 });
 
-const error = createReducer(null, {
-  [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) =>
-    console.log(payload),
+const monthlySummaryIncome = createReducer([], {
+  [kapustaActions.fetchMonthlySummaryIncomeSuccess]: (_, { payload }) =>
+    payload,
 });
 
-const categoryDetails = createReducer([], {
-  [kapustaActions.fetchCategoryDetails]: (_state, { payload }) => payload,
+const error = createReducer(null, {
+  [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) => payload,
+  [kapustaActions.fetchExpenseError]: (_, { payload }) => payload,
+  [kapustaActions.fetchIncomeChartDataError]: (_, { payload }) => payload,
+  [kapustaActions.fetchAdjustmentsError]: (_, { payload }) => payload,
+  [kapustaActions.fetchExpensesChartDataError]: (_, { payload }) => payload,
+  [kapustaActions.fetchMonthlySummaryError]: (_, { payload }) => payload,
+  [kapustaActions.fetchIncomeError]: (_, { payload }) => payload,
+  [kapustaActions.totalBalanceError]: (_, { payload }) => payload,
+  [kapustaActions.addAdjustmentsError]: (_, { payload }) => payload,
+  [kapustaActions.addExpenseError]: (_, { payload }) => payload,
+  [kapustaActions.addIncomeError]: (_, { payload }) => payload,
+  [kapustaActions.addTotalBalanceError]: (_, { payload }) => payload,
+  [kapustaActions.deleteAdjustmentsError]: (_, { payload }) => payload,
+  [kapustaActions.deleteExpenseError]: (_, { payload }) => payload,
+  [kapustaActions.deleteIncomeError]: (_, { payload }) => payload,
+});
+
+const expensesChartData = createReducer([], {
+  [kapustaActions.fetchExpensesChartDataSuccess]: (_state, { payload }) =>
+    payload,
+});
+const incomeChartData = createReducer([], {
+  [kapustaActions.fetchIncomeChartDataSuccess]: (_state, { payload }) =>
+    payload,
 });
 
 const expense = createReducer([], {
@@ -99,8 +122,10 @@ export default combineReducers({
   reportYears,
   reportSummary,
   monthlySummary,
+  monthlySummaryIncome,
   error,
-  categoryDetails,
   totalIncome,
   totalExpenses,
+  expensesChartData,
+  incomeChartData,
 });

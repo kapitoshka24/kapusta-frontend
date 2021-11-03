@@ -1,20 +1,55 @@
-import styles from './Date.module.scss';
 import { ReactComponent as Calendar } from '../../../images/calendar.svg';
 
-export default function DateComponent() {
-  const getCurrentDay = () => {
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
+import { forwardRef, useState, useEffect } from 'react';
+import styles from './Date.module.scss';
+import DatePicker, { registerLocale } from 'react-datepicker';
 
-    return `${day}.${month}.${year}`;
-  };
+import ru from 'date-fns/locale/ru';
+import 'react-datepicker/dist/react-datepicker.css';
+import './Date.css';
+
+registerLocale('ru', ru);
+
+export default function DateComponent({ setDate }) {
+  const [startDate, setStartDate] = useState(new Date());
+
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button
+      id="datePicker"
+      className={styles.DatePicker}
+      onClick={onClick}
+      ref={ref}
+    >
+      {value}
+    </button>
+  ));
+  useEffect(() => {
+    setDate(
+      `${
+        startDate.getFullYear() +
+        '-' +
+        ('0' + (startDate.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + startDate.getDate()).slice(-2)
+      }`,
+    );
+  }, [startDate, setDate]);
 
   return (
-    <div className={styles.date__container}>
-      <Calendar className={styles.icon__calendar} />
-      <span className={styles.date}>{getCurrentDay()}</span>
-    </div>
+    <>
+      <label htmlFor="datePicker" className={styles.lableCursor}>
+        <Calendar className={styles.icon__calendar} />
+      </label>
+
+      <DatePicker
+        customInput={<ExampleCustomInput />}
+        locale="ru"
+        minDate={new Date('01-01-2021')}
+        maxDate={new Date()}
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        dateFormat="dd.MM.yyyy"
+      />
+    </>
   );
 }

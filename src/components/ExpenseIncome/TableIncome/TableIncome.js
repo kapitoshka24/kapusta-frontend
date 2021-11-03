@@ -1,6 +1,6 @@
 import EllipsisText from 'react-ellipsis-text';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 import { ReactComponent as Delete } from '../../../images/delete.svg';
 import styles from '../Table/Table.module.scss';
@@ -10,6 +10,7 @@ import { incomeOptions } from '../../../helpers/incomeOptions';
 
 export default function Table() {
   const income = useSelector(kapustaSelectors.getIncome);
+  const [disabledDelete, setDisabledDelete] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,8 +19,11 @@ export default function Table() {
 
   const onDeleteIncome = useCallback(
     async id => {
+      setDisabledDelete(true);
       await dispatch(kapustaOperations.deleteIncome(id));
       await dispatch(kapustaOperations.fetchTotalBalance());
+      await dispatch(kapustaOperations.fetchMonthlySummaryIncome());
+      setDisabledDelete(false);
     },
     [dispatch],
   );
@@ -53,9 +57,13 @@ export default function Table() {
                 <EllipsisText text={name} length={40} />
               </td>
               <td className={styles.category}>{incomeOptions[category]}</td>
-              <td className={styles.sumPositive}>{sum} грн</td>
+              <td className={styles.sumPositive}>
+                {Number.parseFloat(sum).toFixed(2)} грн
+              </td>
               <td
-                className={styles.icon__bg}
+                className={`${styles.icon__bg} ${
+                  disabledDelete ? styles['disabled-delete'] : ''
+                }`}
                 onClick={() => onDeleteIncome(_id)}
               >
                 <Delete className={styles.icon__delete} />

@@ -41,9 +41,13 @@ export default function Calendar({ handleCalendarToggle, setCalendarIsOpen }) {
     if (e.target === e.currentTarget) {
       return;
     }
-    const targetMonth = e.target.dataset.name;
-    dispatch(actions.changeReportMonth(MONTHS.indexOf(targetMonth)));
-    handleCalendarToggle();
+
+    const { name, disabled } = e.target.dataset;
+
+    if (!JSON.parse(disabled)) {
+      dispatch(actions.changeReportMonth(MONTHS.indexOf(name)));
+      handleCalendarToggle();
+    }
   };
 
   const handleIncrementYear = () => {
@@ -81,13 +85,14 @@ export default function Calendar({ handleCalendarToggle, setCalendarIsOpen }) {
         </button>
       </div>
       <ul onClick={onListClick} className={styles.monthContainer}>
-        {MONTHS.map(monthEl => (
+        {MONTHS.map((monthEl, i) => (
           <li
             className={`${styles.monthItem} ${
               month === MONTHS.indexOf(monthEl) ? styles.monthItem_current : ''
             }`}
             key={monthEl}
             data-name={monthEl}
+            data-disabled={i > new Date().getMonth()}
           >
             <p className={styles.monthName}>{monthEl}</p>
           </li>

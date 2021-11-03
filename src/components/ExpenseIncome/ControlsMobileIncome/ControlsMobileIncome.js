@@ -9,18 +9,25 @@ import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
 
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
+
+import { enterError, enterSum } from '../../../services/pnotify';
+
 const options = [
   { value: 'salary', label: 'ЗП' },
   { value: 'otherIncome', label: 'Доп. доход' },
 ];
 
-export default function ControlsMobile({ closeControls }) {
+export default function ControlsMobile({ closeControls, propDate }) {
   const [income, setIncome] = useState({
     name: '',
     sum: '',
   });
-
   const [category, setCategory] = useState({ category: '' });
+  // const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = income;
 
@@ -35,23 +42,48 @@ export default function ControlsMobile({ closeControls }) {
     }));
   }, []);
 
+  const handlePriceChange = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputChangeHandler(e.target.value),
+    }));
+  };
+
+  const handlePriceBlur = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputBlurHandler(e.target.value),
+    }));
+  };
+
   const handleSubmit = useCallback(
-    async e => {
+    e => {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date: propDate,
         name,
         sum,
         category,
       };
 
-      await dispatch(kapustaOperations.addIncome(data));
-      await dispatch(kapustaOperations.fetchTotalBalance());
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
+      if (+sum > 999999999) {
+        enterSum();
+        return;
+      }
+
+      dispatch(kapustaOperations.addIncome(data));
+      dispatch(kapustaOperations.fetchTotalBalance());
+
       e.target.reset();
       resetForm();
+      closeControls();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, propDate, closeControls],
   );
 
   const handleReset = () => {
@@ -74,7 +106,11 @@ export default function ControlsMobile({ closeControls }) {
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.controls__container}>
         <div className={styles.inputs__date__thumb}>
-          {width >= 768 && <DateComponent />}
+          {width >= 768 && (
+            <DateComponent
+            // setDate={setDate}
+            />
+          )}
 
           <BackToMainPage closeModal={closeControls} />
 
@@ -88,6 +124,7 @@ export default function ControlsMobile({ closeControls }) {
               name="name"
               placeholder="Описание товара"
               className={styles.input__item}
+              autoComplete="off"
               onChange={handleChange}
             />
 
@@ -95,13 +132,15 @@ export default function ControlsMobile({ closeControls }) {
 
             <div className={styles.input__sum__thumb}>
               <input
-                type="text"
                 name="sum"
-                placeholder="0,00"
-                pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
+                placeholder="0.00"
+                // pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
                 title="Значение должно состоять из цифр и может иметь точку"
                 className={styles.input__sum}
-                onChange={handleChange}
+                onBlur={handlePriceBlur}
+                onChange={handlePriceChange}
+                value={sum}
+                autoComplete="off"
               />
               <Calculator className={styles.icon__calculator} />
               <div className={styles.icon__mobile_calculator_container}>

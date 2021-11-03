@@ -69,33 +69,47 @@
   height: 56px;
   max-width: 56px;
   border-radius: 20px;
+  // border: 0;
+  // &:hover,
+  // &:focus {
 
-  &::after {
-    z-index: -1;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    content: '';
-    width: 59px;
-    height: 46px;
-    border-radius: 20px;
+  //   fill: $background-orange;
+  //   background-color: $diagram-light;
+  //   cursor: pointer;
+  // }
+  // .iconContainer .icon:hover,
+  // .iconContainer .icon:focus {
+  //   fill: $background-orange;
+  // }
 
-    background-color: $background-grey;
-  }
-}
+  // &::after {
+  //   z-index: -1;
+  //   display: block;
+  //   position: absolute;
+  //   bottom: 0;
+  //   content: '';
+  //   width: 59px;
+  //   height: 46px;
+  //   border-radius: 20px;
 
-.iconContainer:hover::after {
-  background-color: $diagram-light;
+  //   background-color: $background-grey;
+  // }
 }
 
 .icon {
   height: 100%;
   width: 100%;
   fill: $expenses-black;
+  background-color: $background-grey;
+  border-radius: 20px;
+  overflow: visible;
+  outline: none;
+  cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     fill: $background-orange;
-    cursor: pointer;
+    background-color: $diagram-light;
   }
 }
 

@@ -58,12 +58,21 @@
     background-color: #ffdac180;
     border-radius: 10px;
   }
+
+  &[data-disabled='true']:hover {
+    background-color: transparent;
+    cursor: default;
+  }
 }
 
 .monthName {
   color: $white;
   font-size: 14px;
   pointer-events: none;
+
+  .monthItem[data-disabled='true'] & {
+    color: rgba(82, 85, 95, 0.7);
+  }
 }
 
 .currentYearSwitcher {

@@ -13,6 +13,7 @@ import TableMobile from '../TableMobile';
 import TableIncome from '../TableIncome';
 import TableMobileIncome from '../TableMobileIncome';
 import MonthlySummary from '../MonthlySummary';
+import MonthlySummaryIncome from '../MonthlySummaryIncome';
 import styles from './Expense.module.scss';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import mainStyles from '../../../styles/AppCommon.module.scss';
@@ -21,6 +22,7 @@ import TableMobileAdjustments from '../TableMobileAdjustments';
 
 export default function Expense() {
   const [showControls, setShowControls] = useState(false);
+  const [date, setDate] = useState({ date: '' });
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -67,11 +69,11 @@ export default function Expense() {
               <ControlsIncome />
               <div className={styles.data__container}>
                 <TableIncome />
-                {width >= 1280 && <MonthlySummary />}
+                {width >= 1280 && <MonthlySummaryIncome />}
               </div>
             </TabContainer>
             <div className={mainStyles.container}>
-              {width < 1280 && <MonthlySummary />}
+              {width < 1280 && <MonthlySummaryIncome />}
             </div>
           </TabPanel>
           <TabPanel>
@@ -101,11 +103,14 @@ export default function Expense() {
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
               {showControls && (
-                <ControlsMobile closeControls={toggleControls} />
+                <ControlsMobile
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobile />
@@ -116,11 +121,14 @@ export default function Expense() {
           <TabPanel>
             <TabContainer>
               <div className={styles.date__mobile_container}>
-                <Date />
+                <Date setDate={setDate} />
                 <EnterButton closeControls={toggleControls} />
               </div>
               {showControls && (
-                <ControlsMobileIncome closeControls={toggleControls} />
+                <ControlsMobileIncome
+                  propDate={date}
+                  closeControls={toggleControls}
+                />
               )}
               <div className={styles.data__container}>
                 <TableMobileIncome />

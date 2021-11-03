@@ -122,10 +122,6 @@
     color: $white;
     background: $modalButtonAccent;
   }
-
-  &:active {
-    box-shadow: inset 1px 1px 4px $black;
-  }
 }
 
 .googleSymbol {

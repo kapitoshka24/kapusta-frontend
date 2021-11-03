@@ -3,20 +3,7 @@ import sprite from './expenses-sprite.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import kapustaOperations from '../../../redux/operations/kapusta-operations';
 import kapustaSelectors from '../../../redux/selectors/kapusta-selectors';
-
-const names = {
-  products: 'Продукты',
-  alcohol: 'Алкоголь',
-  entertainment: 'Развлечение',
-  health: 'Здоровье',
-  transport: 'Транспорт',
-  housing: 'Все для дома',
-  technique: 'Техника',
-  utilityCommunication: 'Коммуналка,связь',
-  sportsHobbies: 'Спорт,хобби',
-  education: 'Образование',
-  other: 'Прочее',
-};
+import { expenseOptions } from '../../../helpers/expenseOptions';
 
 const SliderExpensesList = ({ expenses }) => {
   const dispatch = useDispatch();
@@ -25,7 +12,9 @@ const SliderExpensesList = ({ expenses }) => {
 
   const handleExpensesClick = e => {
     const category = e.currentTarget.dataset.value;
-    dispatch(kapustaOperations.fetchCategoryDetails(month + 1, year, category));
+    dispatch(
+      kapustaOperations.fetchCategoryExpensesDetails(month + 1, year, category),
+    );
   };
   return (
     <ul className={styles.expensesList}>
@@ -38,12 +27,12 @@ const SliderExpensesList = ({ expenses }) => {
             data-value={_id}
           >
             <p className={styles.amount}>{total.toFixed(2)}</p>
-            <div className={styles.iconContainer}>
-              <svg className={styles.icon}>
+            <div tabIndex="0" className={styles.iconContainer}>
+              <svg tabIndex="0" className={styles.icon}>
                 <use href={`${sprite}#${_id}`}></use>
               </svg>
             </div>
-            <p className={styles.name}>{names[_id]}</p>
+            <p className={styles.name}>{expenseOptions[_id]}</p>
           </li>
         );
       })}

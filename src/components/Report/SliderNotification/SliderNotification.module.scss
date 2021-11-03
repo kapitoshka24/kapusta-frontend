@@ -2,17 +2,10 @@
 @import '../../../styles/utils/mixins';
 
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding-top: 80px;
-  padding-bottom: 80px;
-
-  @include from(tablet) {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
+  height: 100%;
+  margin-top: 73px;
+  margin-bottom: 73px;
+  text-align: center;
 }
 
 .text {

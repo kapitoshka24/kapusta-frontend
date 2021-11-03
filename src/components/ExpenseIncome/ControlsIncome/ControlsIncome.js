@@ -7,6 +7,12 @@ import styles from '../Controls/Controls.module.scss';
 import { ReactComponent as Calculator } from '../../../images/calculator.svg';
 import useWindowDementions from '../../../helpers/useWindowDementions';
 import { kapustaOperations } from '../../../redux/operations';
+import { enterError, enterSum } from '../../../services/pnotify';
+
+import {
+  inputChangeHandler,
+  inputBlurHandler,
+} from '../../../helpers/priceInputParser';
 
 const options = [
   { value: 'salary', label: 'ЗП' },
@@ -20,6 +26,7 @@ export default function ControlsIncome() {
   });
 
   const [category, setCategory] = useState({ category: '' });
+  const [date, setDate] = useState({ date: '' });
 
   const { name, sum } = income;
 
@@ -34,22 +41,48 @@ export default function ControlsIncome() {
     }));
   }, []);
 
+  const handlePriceChange = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputChangeHandler(e.target.value),
+    }));
+  };
+
+  const handlePriceBlur = e => {
+    setIncome(prevExpense => ({
+      ...prevExpense,
+      [e.target.name]: inputBlurHandler(e.target.value),
+    }));
+  };
+
   const handleSubmit = useCallback(
-    async e => {
+    e => {
       e.preventDefault();
 
       const data = {
-        date: new Date(),
+        date,
         name,
         sum,
         category,
       };
 
-      await dispatch(kapustaOperations.addIncome(data));
-      await dispatch(kapustaOperations.fetchTotalBalance());
+      if (name === '' || sum === '' || category === undefined) {
+        enterError();
+        return;
+      }
+
+      if (+sum > 999999999) {
+        enterSum();
+        return;
+      }
+
+      dispatch(kapustaOperations.addIncome(data));
+      dispatch(kapustaOperations.fetchTotalBalance());
+      dispatch(kapustaOperations.fetchMonthlySummaryIncome());
+
       resetForm();
     },
-    [dispatch, name, sum, category],
+    [dispatch, name, sum, category, date],
   );
 
   const handleReset = () => {
@@ -65,7 +98,7 @@ export default function ControlsIncome() {
   return (
     <div className={styles.controls__container}>
       <div className={styles.date__container}>
-        {width >= 768 && <DateComponent />}
+        {width >= 768 && <DateComponent setDate={setDate} />}
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -75,6 +108,7 @@ export default function ControlsIncome() {
             name="name"
             placeholder="Описание товара"
             className={styles.input__item}
+            autoComplete="off"
             onChange={handleChange}
             value={name}
           />
@@ -83,13 +117,14 @@ export default function ControlsIncome() {
 
           <div className={styles.input__sum__thumb}>
             <input
-              type="text"
               name="sum"
-              placeholder="0,00"
+              placeholder="0.00"
               pattern="^\d+(?:[.]\d+)?(?:\d+(?:[.]\d+)?)*$"
               title="Значение должно состоять из цифр и может иметь точку"
               className={styles.input__sum}
-              onChange={handleChange}
+              onBlur={handlePriceBlur}
+              onChange={handlePriceChange}
+              autoComplete="off"
               value={sum}
             />
             <Calculator className={styles.icon__calculator} />

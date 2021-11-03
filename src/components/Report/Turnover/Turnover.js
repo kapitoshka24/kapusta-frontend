@@ -6,15 +6,18 @@ const Turnover = () => {
   const totalIncome = useSelector(kapustaSelectors.getTotalIncome);
   const totalExpenses = useSelector(kapustaSelectors.getTotalExpenses);
 
+  const parsedExpense = parseFloat(totalExpenses).toFixed(2);
+  const parsedIncome = parseFloat(totalIncome).toFixed(2);
+
   return (
     <div className={styles.turnoverContainer}>
       <div className={styles.contentContainer}>
         <p className={styles.expenses}>
           Расходы:
           <span className={styles.expensesContent}>{`- ${
-            totalExpenses.length > 8
-              ? `${totalExpenses.substring(0, 7)}...`
-              : totalExpenses
+            parsedExpense.length > 8
+              ? `${parsedExpense.substring(0, 7)}...`
+              : parsedExpense
           } грн.`}</span>
         </p>
       </div>
@@ -24,9 +27,9 @@ const Turnover = () => {
           Доходы:
           <span className={styles.incomeContent}>
             {`+ ${
-              totalIncome.length > 8
-                ? `${totalIncome.substring(0, 7)}...`
-                : totalIncome
+              parsedIncome.length > 8
+                ? `${parsedIncome.substring(0, 7)}...`
+                : parsedIncome
             } грн.`}
           </span>
         </p>
