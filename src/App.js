@@ -12,7 +12,10 @@ import appStyles from './styles/AppCommon.module.scss';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const ForgottenPage = lazy(() => import('./pages/ForgottenPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 const ExpenseIncomePage = lazy(() => import('./pages/ExpenseIncomePage'));
+
 const ReportPage = lazy(() => import('./pages/ReportPage'));
 
 export default function App() {
@@ -44,6 +47,14 @@ export default function App() {
           <PublicRoute path="/register" restricted redirectTo="/main-page">
             <RegisterPage />
           </PublicRoute>
+          <PublicRoute path="/forgotten" restricted>
+            <ForgottenPage />
+          </PublicRoute>
+          <PublicRoute
+            path="/resetPassword/:verificationToken"
+            restricted
+            component={ResetPasswordPage}
+          />
           <PrivateRoute path="/main-page" restricted redirectTo="/login">
             <ExpenseIncomePage />
           </PrivateRoute>

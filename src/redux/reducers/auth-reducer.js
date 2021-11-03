@@ -46,6 +46,9 @@ const error = createReducer(null, {
   [authActions.loginGoogleError]: setError,
   [authActions.registerGoogleError]: setError,
   [authActions.clearErrors]: () => null,
+  [authActions.forgottenRejected]: setError,
+  [authActions.resetPasswordRejected]: setError,
+  [authActions.loginSuccess]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -88,10 +91,41 @@ const emailVerification = createReducer(initialEmailVerificationState, {
   [authActions.registerError]: () => initialEmailVerificationState,
 });
 
+const initialForgottenState = {
+  email: null,
+  onReset: false,
+  resetStart: null,
+};
+
+const forgotten = createReducer(initialForgottenState, {
+  [authActions.forgottenPending]: () => {},
+  [authActions.forgottenFulfilled]: (_, { payload }) => ({
+    email: payload.email,
+    onReset: true,
+    resetStart: Date.parse(new Date()),
+  }),
+  [authActions.forgottenRejected]: (_, { payload }) => initialForgottenState,
+});
+
+const initialResetPasswordState = {
+  success: false,
+};
+const resetPassword = createReducer(initialResetPasswordState, {
+  [authActions.resetPasswordFulfilled]: (_, { payload }) => ({
+    success: payload,
+  }),
+  [authActions.resetPasswordRejected]: (_, { payload }) =>
+    initialResetPasswordState,
+  [authActions.loginGoogleSuccess]: () => initialResetPasswordState,
+  [authActions.forgottenFulfilled]: () => initialResetPasswordState,
+});
+
 export default combineReducers({
   user,
   isLoggedIn,
   isFetching,
   error,
   emailVerification,
+  forgotten,
+  resetPassword,
 });

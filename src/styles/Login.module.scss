@@ -255,3 +255,12 @@
     background: $background-orange;
   }
 }
+
+.forgottenLink {
+  float: right;
+  color: $modalButtonAccent;
+  text-decoration: underline;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

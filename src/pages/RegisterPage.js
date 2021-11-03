@@ -116,160 +116,162 @@ export default function RegisterPage({ location }) {
     setFieldValue(name, value);
   };
 
-  return (
-    <>
-      {onVerification ? (
-        <div className={registerStyles.modalVerification}>
-          <div className={registerStyles.modalBodyFirst}>
-            <p className={registerStyles.modalTitleVerification}>
-              На Ваш email (<span>{email}</span>) было отправлено письмо с
-              дальнейшими инструкциями.
-            </p>
-            <p className={registerStyles.modalTitleVerification}>
-              {timer ? (
-                `Не пришло письмо? Отправить повторно через (${timer})`
-              ) : (
-                <button
-                  className={registerStyles.btnResendVerification}
-                  onClick={resendEmailVerificationHandler}
-                >
-                  Отправить письмо повторно.
-                </button>
-              )}
-            </p>
-
-            <div className={registerStyles.modalContinueBtn}>
-              <Link
-                className={`${registerStyles.modalLogin} ${registerStyles.active}`}
-                to={{
-                  pathname: `/login`,
-                  state: { from: location },
-                }}
-              >
-                Продолжить
-              </Link>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className={registerStyles.modal}>
-          <div className={registerStyles.modalBodyFirst}>
-            <p
-              className={`${registerStyles.modalTitle} ${registerStyles.modalTitleGoogle}`}
+  return onVerification ? (
+    <div className={registerStyles.modalVerification}>
+      <div className={registerStyles.modalBodyFirst}>
+        <p className={registerStyles.modalTitleVerification}>
+          На Ваш email (<span>{email}</span>) было отправлено письмо с
+          дальнейшими инструкциями.
+        </p>
+        <p className={registerStyles.modalTitleVerification}>
+          {timer ? (
+            `Не пришло письмо? Отправить повторно через (${timer})`
+          ) : (
+            <button
+              className={registerStyles.btnResendVerification}
+              onClick={resendEmailVerificationHandler}
             >
-              Вы можете зарегистрироваться с помощью Google Account:
-            </p>
-            <GoogleRegistration />
-            <p className={registerStyles.modalTitle}>Или с помощью e-mail:</p>
+              Отправить письмо повторно.
+            </button>
+          )}
+        </p>
+
+        <div className={registerStyles.modalContinueBtn}>
+          <Link
+            className={`${registerStyles.modalLogin} ${registerStyles.active}`}
+            to={{
+              pathname: `/login`,
+            }}
+          >
+            Продолжить
+          </Link>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className={registerStyles.modal}>
+      <div className={registerStyles.modalBodyFirst}>
+        <p
+          className={`${registerStyles.modalTitle} ${registerStyles.modalTitleGoogle}`}
+        >
+          Вы можете зарегистрироваться с помощью Google Account:
+        </p>
+        <GoogleRegistration />
+        <p className={registerStyles.modalTitle}>Или с помощью e-mail:</p>
+      </div>
+
+      <form onSubmit={handleSubmit} noValidate>
+        <div className={registerStyles.modalBodyFirst}>
+          <div className={registerStyles.modalGroup}>
+            <label className={registerStyles.modalLabel}>
+              {errors.name ? (
+                <span className={registerStyles.errorStar}>*</span>
+              ) : null}
+              Имя:
+              <input
+                type="text"
+                name="name"
+                className={registerStyles.modalInput}
+                placeholder="Имя"
+                onChange={handleChange}
+                value={values.name}
+                autoComplete="off"
+              />
+              {errors.name ? (
+                <div className={registerStyles.error}>{errors.name}</div>
+              ) : null}
+            </label>
           </div>
 
-          <form onSubmit={handleSubmit} noValidate>
-            <div className={registerStyles.modalBodyFirst}>
-              <div className={registerStyles.modalGroup}>
-                <label className={registerStyles.modalLabel}>
-                  {errors.name ? (
-                    <span className={registerStyles.errorStar}>*</span>
-                  ) : null}
-                  Имя:
-                  <input
-                    type="text"
-                    name="name"
-                    className={registerStyles.modalInput}
-                    placeholder="Имя"
-                    onChange={handleChange}
-                    value={values.name}
-                    autoComplete="off"
-                  />
-                  {errors.name ? (
-                    <div className={registerStyles.error}>{errors.name}</div>
-                  ) : null}
-                </label>
-              </div>
+          <div className={registerStyles.modalGroup}>
+            <label className={registerStyles.modalLabel}>
+              {errors.email ? (
+                <span className={registerStyles.errorStar}>*</span>
+              ) : null}
+              Электронная почта:
+              <input
+                type="email"
+                name="email"
+                className={registerStyles.modalInput}
+                placeholder="your@email.com"
+                onChange={handleChange}
+                value={values.email}
+                autoComplete="off"
+              />
+              {errors.email ? (
+                <div className={registerStyles.error}>{errors.email}</div>
+              ) : null}
+              {fetchError?.email ? (
+                <>
+                  <span className={registerStyles.error}>
+                    {fetchError.email}
+                  </span>
+                  <Link
+                    to="/forgotten"
+                    className={registerStyles.btnResendVerification}
+                    onClick={() => dispatch(auth.clearErrors())}
+                  >
+                    Забыли пароль?
+                  </Link>
+                </>
+              ) : null}
+            </label>
+          </div>
 
-              <div className={registerStyles.modalGroup}>
-                <label className={registerStyles.modalLabel}>
-                  {errors.email ? (
-                    <span className={registerStyles.errorStar}>*</span>
-                  ) : null}
-                  Электронная почта:
-                  <input
-                    type="email"
-                    name="email"
-                    className={registerStyles.modalInput}
-                    placeholder="your@email.com"
-                    onChange={handleChange}
-                    value={values.email}
-                    autoComplete="off"
-                  />
-                  {errors.email ? (
-                    <div className={registerStyles.error}>{errors.email}</div>
-                  ) : null}
-                  {fetchError?.email ? (
-                    <div className={registerStyles.error}>
-                      {fetchError.email}
-                    </div>
-                  ) : null}
-                </label>
-              </div>
+          <div className={registerStyles.modalGroup}>
+            <label className={registerStyles.modalLabel}>
+              {errors.password ? (
+                <span className={registerStyles.errorStar}>*</span>
+              ) : null}
+              Пароль:
+              <input
+                type="password"
+                name="password"
+                className={registerStyles.modalInput}
+                placeholder="Пароль"
+                onChange={handleChange}
+                value={values.password}
+              />
+              {errors.password ? (
+                <div className={registerStyles.error}>{errors.password}</div>
+              ) : null}
+            </label>
+          </div>
 
-              <div className={registerStyles.modalGroup}>
-                <label className={registerStyles.modalLabel}>
-                  {errors.password ? (
-                    <span className={registerStyles.errorStar}>*</span>
-                  ) : null}
-                  Пароль:
-                  <input
-                    type="password"
-                    name="password"
-                    className={registerStyles.modalInput}
-                    placeholder="Пароль"
-                    onChange={handleChange}
-                    value={values.password}
-                  />
-                  {errors.password ? (
-                    <div className={registerStyles.error}>
-                      {errors.password}
-                    </div>
-                  ) : null}
-                </label>
-              </div>
-
-              <div className={registerStyles.modalGroup}>
-                <label className={registerStyles.modalLabel}>
-                  {errors.confirm ? (
-                    <span className={registerStyles.errorStar}>*</span>
-                  ) : null}
-                  Подтверждение пароля:
-                  <input
-                    type="password"
-                    name="confirm"
-                    className={registerStyles.modalInput}
-                    placeholder="Подтвердите пароль"
-                    onChange={handleChange}
-                    value={values.confirm}
-                  />
-                  {errors.confirm ? (
-                    <div className={registerStyles.error}>{errors.confirm}</div>
-                  ) : null}
-                </label>
-              </div>
-            </div>
-
-            <div className={registerStyles.modalButtons}>
-              <Link className={registerStyles.modalLogin} to="/login">
-                Войти
-              </Link>
-              <button
-                type="submit"
-                className={`${registerStyles.active} ${registerStyles.modalRegister}`}
-                onClick={() => dispatch(auth.clearErrors())}
-              >
-                Регистрация
-              </button>
-            </div>
-          </form>
+          <div className={registerStyles.modalGroup}>
+            <label className={registerStyles.modalLabel}>
+              {errors.confirm ? (
+                <span className={registerStyles.errorStar}>*</span>
+              ) : null}
+              Подтверждение пароля:
+              <input
+                type="password"
+                name="confirm"
+                className={registerStyles.modalInput}
+                placeholder="Подтвердите пароль"
+                onChange={handleChange}
+                value={values.confirm}
+              />
+              {errors.confirm ? (
+                <div className={registerStyles.error}>{errors.confirm}</div>
+              ) : null}
+            </label>
+          </div>
         </div>
-      )}
-    </>
+
+        <div className={registerStyles.modalButtons}>
+          <Link className={registerStyles.modalLogin} to="/login">
+            Войти
+          </Link>
+          <button
+            type="submit"
+            className={`${registerStyles.active} ${registerStyles.modalRegister}`}
+            onClick={() => dispatch(auth.clearErrors())}
+          >
+            Регистрация
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
